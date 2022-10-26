@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "onboard/*": ["./src/screens/onboard/*"],
+      "course/*": ["./src/screens/courses/*"],
+      "screens/*": ["./src/screens/*"],
+      "features/*": ["./src/features/*"],
+      "assets/*": ["./src/assets/*"],
+      "api/*": ["./src/store/api/*"],
+      "utils/*": ["./src/utils/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "config/*": ["./src/config/*"]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": "@react-native-community",
+
+  "rules": {
+    "semi": [0],
+    "curly": [0],
+    "allowTemplateLiterals": true
+  }
+}
