@@ -2,35 +2,40 @@ import React from 'react'
 import GetLocation from 'react-native-get-location'
 
 const deltaCoordinates = {
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
+  // latitudeDelta: 0.0922,
+  // longitudeDelta: 0.0421,
+  latitudeDelta: 0.003,
+  longitudeDelta: 0.002,
 }
 
 export const useLocation = () => {
-  const [destination, setDestination] = React.useState('')
+  const [userLocation, setUserLocation] = React.useState('')
 
   // user location effect
   React.useEffect(() => {
-    ;(async () => {
+    const get = async () => {
       try {
         const location = await GetLocation.getCurrentPosition({
           // Setting this to true makes location null on Android Emulator
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
           timeout: 15000,
         })
 
-        // console.log('check', userCountry)
         if (!location) return
-        setDestination(location)
+        setUserLocation(location)
       } catch (error) {
+        console.log('error getting location', error)
+
         if (error.code == 'UNAUTHORIZED') {
           return showErrorToast('Location permission not granted')
         }
-
-        console.log('error getting location')
       }
-    })()
+    }
+
+    get()
   }, [])
 
-  return { destination }
+  return {
+    userLocation,
+  }
 }

@@ -30,8 +30,8 @@ const Routes = () => {
             cardStyleInterpolator: forFade,
           }}
         >
-          <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="HomeTabs" component={Tabs} />
+          <Stack.Screen name="Welcome" component={Welcome} />
         </Stack.Navigator>
 
         {/* <Toast config={toastConfig} /> */}

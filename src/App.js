@@ -9,7 +9,7 @@ import Routes from 'navigation/routes'
 
 LogBox.ignoreLogs([
   'Remote debugger',
-  // 'to be unitless',
+  'to be unitless',
   'Require cycle',
   // 'ViewPropTypes',
   // 'Found screens with',
