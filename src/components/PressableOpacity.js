@@ -33,6 +33,12 @@ const PressableOpacity = (props) => {
       }}
       {...props}
       {...props?.triggerProps}
+      // style={({ pressed }) => [
+      //   {
+      //     backgroundColor: pressed ? COLORS.tapColor : 'transparent',
+      //     borderRadius: 20,
+      //   },
+      // ]}
     >
       <Animated.View
         style={{

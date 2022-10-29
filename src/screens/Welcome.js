@@ -5,50 +5,36 @@ import { ImageBackground } from 'react-native'
 import { capitalize } from 'lodash'
 
 import { COLORS, Fonts, images } from 'theme'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import PressableOpacity from 'components/PressableOpacity'
 
 const Welcome = ({ navigation: { navigate } }) => {
   const languages = ['english', 'espanol', 'portuguese']
 
   return (
-    <SafeAreaView>
-      <ImageBackground
-        opacity={0.8}
-        source={images.bgImg}
-        style={{ height: '100%' }}
-      >
-        <LangSelector>
-          {/* <Flex mb={'10px'}>
+    <ImageBackground opacity={0.8} source={images.bgImg} style={{ height: '100%' }}>
+      <LangSelector>
+        {/* <Flex mb={'10px'}>
             <Fonts.RegularText color={COLORS.white}>
               Choose your language
             </Fonts.RegularText>
           </Flex> */}
 
-          <Row justifyContent={'space-between'}>
-            {languages.map((l) => (
-              <Language
-                p={'20px'}
-                key={l}
-                onPress={() => navigate('Dashboard')}
-              >
-                <Flex alignSelf={'center'}>
-                  <Flag source={images[l]} alt={'flag'} />
-                </Flex>
-                <Flex mt={'20px'}>
-                  <Fonts.SmallText
-                    style={{ textAlign: 'center' }}
-                    color={COLORS.white}
-                  >
-                    {capitalize(l)}
-                  </Fonts.SmallText>
-                </Flex>
-              </Language>
-            ))}
-          </Row>
-        </LangSelector>
-      </ImageBackground>
-    </SafeAreaView>
+        <Row justifyContent={'space-between'}>
+          {languages.map((l) => (
+            <Language p={'20px'} key={l} onPress={() => navigate('HomeTabs')}>
+              <Flex alignSelf={'center'}>
+                <Flag source={images[l]} alt={'flag'} />
+              </Flex>
+              <Flex mt={'20px'}>
+                <Fonts.SmallText style={{ textAlign: 'center' }} color={COLORS.white}>
+                  {capitalize(l)}
+                </Fonts.SmallText>
+              </Flex>
+            </Language>
+          ))}
+        </Row>
+      </LangSelector>
+    </ImageBackground>
   )
 }
 

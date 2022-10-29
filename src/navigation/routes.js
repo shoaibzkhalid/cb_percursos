@@ -31,7 +31,7 @@ const Routes = () => {
           }}
         >
           <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="Dashboard" component={Tabs} />
+          <Stack.Screen name="HomeTabs" component={Tabs} />
         </Stack.Navigator>
 
         {/* <Toast config={toastConfig} /> */}
