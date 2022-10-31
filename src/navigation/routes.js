@@ -30,11 +30,9 @@ const Routes = () => {
             cardStyleInterpolator: forFade,
           }}
         >
-          <Stack.Screen name="HomeTabs" component={Tabs} />
           <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="HomeTabs" component={Tabs} />
         </Stack.Navigator>
-
-        {/* <Toast config={toastConfig} /> */}
       </NavigationContainer>
     </StyledSafeAreaView>
   )

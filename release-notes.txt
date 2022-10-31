@@ -1,1 +1,3 @@
-- First version
+- Added weather
+- Ui elements for welcome screen 
+- Multiple language support

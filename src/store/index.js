@@ -16,7 +16,7 @@ const persistedReducer = persistReducer(
     key: 'root',
     version: 1,
     storage: AsyncStorage,
-    // whitelist: ['app',],
+    blacklist: ['app'],
   },
   rootReducer
 )

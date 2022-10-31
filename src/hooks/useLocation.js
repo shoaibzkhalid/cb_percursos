@@ -1,5 +1,7 @@
 import React from 'react'
 import GetLocation from 'react-native-get-location'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserLocation } from 'store/slices/appSlice'
 
 const deltaCoordinates = {
   // latitudeDelta: 0.0922,
@@ -9,7 +11,8 @@ const deltaCoordinates = {
 }
 
 export const useLocation = () => {
-  const [userLocation, setUserLocation] = React.useState('')
+  const dispatch = useDispatch()
+  const userLocation = useSelector((state) => state.app.userLocation)
 
   // user location effect
   React.useEffect(() => {
@@ -22,7 +25,7 @@ export const useLocation = () => {
         })
 
         if (!location) return
-        setUserLocation(location)
+        dispatch(setUserLocation(location))
       } catch (error) {
         console.log('error getting location', error)
 

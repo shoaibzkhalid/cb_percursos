@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { COLORS } from 'theme'
 import { PressableOpacity } from 'components'
-
 import { bottomTabs } from 'config'
 
 const Tabs = () => {
@@ -21,8 +20,8 @@ const Tabs = () => {
           options={{
             tabBarIcon: ({ focused }) => (
               <>
-                {/* {getIcon(focused ? COLORS.primaryBtn : COLORS.dark40)} */}
-                {focused && <TinyActiveDot />}
+                {getIcon(focused ? COLORS.primaryBtn : COLORS.dark40)}
+                {/* {focused && <TinyActiveDot />} */}
               </>
             ),
             tabBarButton: (props) => <PressableOpacity {...props} />,

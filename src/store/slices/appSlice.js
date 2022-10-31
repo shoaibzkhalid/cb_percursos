@@ -5,12 +5,21 @@ const app = createSlice({
   name: 'app',
   // initial state
   initialState: {
-    accessToken: null,
+    lang: 'en',
     userLocation: null,
+    weather: {
+      weather: null,
+      main: {
+        temp: null,
+      },
+    },
   },
   reducers: {
-    setAccessToken(state, action) {
-      state.accessToken = action.payload
+    setLang(state, action) {
+      state.lang = action.payload
+    },
+    setWeather(state, action) {
+      state.weather = action.payload
     },
     setUserLocation(state, action) {
       state.userLocation = action.payload
@@ -19,5 +28,5 @@ const app = createSlice({
 })
 
 // actions that can be made
-export const { setAccessToken, setUserLocation } = app.actions
+export const { setLang, setUserLocation, setWeather } = app.actions
 export default app.reducer

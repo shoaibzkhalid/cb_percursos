@@ -36,7 +36,6 @@ const Dashboard = () => {
 
   const [region, setRegion] = React.useState(origin)
   const destination = waypoints[DESTINATION_INDEX]
-  // console.log('destination')
 
   React.useEffect(() => {
     if (!origin || !destination) return
