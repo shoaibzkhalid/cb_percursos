@@ -1,1 +1,1 @@
-- Fixed android issues
+- Added test map directions

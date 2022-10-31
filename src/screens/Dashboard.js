@@ -18,7 +18,6 @@ const ASPECT_RATIO = width / height
 const LATITUDE_DELTA = 0.0922
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
-// const kml = require('../assets/kml/21.kml')
 const ORIGIN_INDEX = 0
 const DESTINATION_INDEX = 333
 // const DESTINATION_INDEX = geometry.coordinates.length - 1
@@ -43,7 +42,9 @@ const Dashboard = () => {
 
   React.useEffect(() => {
     if (!origin || !destination) return
-    mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
+    setTimeout(() => {
+      mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
+    }, 1000)
   }, [])
 
   return (
@@ -82,8 +83,8 @@ const Dashboard = () => {
             ...deltaCoordinates,
           }}
           showsUserLocation
-        />
-        {/* <Marker
+        >
+          <Marker
             coordinate={origin}
             identifier={'origin'}
             description={name}
@@ -113,8 +114,8 @@ const Dashboard = () => {
             identifier={'destination'}
             description={name}
             title={'End'}
-          /> */}
-        {/* </MapView> */}
+          />
+        </MapView>
       </Flex>
     </View>
   )
