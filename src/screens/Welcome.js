@@ -11,18 +11,16 @@ import { setLang } from 'store/slices/appSlice'
 import { useI18n } from 'hooks/useI18n'
 import { languages } from 'config/constants'
 import { useWeather } from 'hooks/useWeather'
-import { useLocation } from 'hooks/useLocation'
 
 const Welcome = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
-  useLocation()
   const { t } = useI18n()
   const { getIconUrl } = useWeather()
   const { weather, main } = useSelector((state) => state.app.weather)
   const { temp } = main
 
   return (
-    <ImageBackground opacity={0.8} source={images.bgImg} style={{ height: '100%' }}>
+    <ImageBackground opacity={0.6} source={images.bgImg} style={{ height: '100%' }}>
       <Flex alignItems={'center'} mt={'20px'}>
         <Image source={images.title} style={{ width: 300, height: 30 }} alt={'title'} />
 

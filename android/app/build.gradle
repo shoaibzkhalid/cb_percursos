@@ -130,6 +130,14 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
+
+def getApiKey(){
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('local.properties')))
+    return props['GOOGLE_MAPS_API_KEY']
+}
+
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -142,6 +150,8 @@ android {
         versionCode 1
         versionName "1.1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+        manifestPlaceholders = [ GOOGLE_MAPS_API_KEY:getApiKey()]
+
 
         if (isNewArchitectureEnabled()) {
             // We configure the CMake build only if you decide to opt-in for the New Architecture.

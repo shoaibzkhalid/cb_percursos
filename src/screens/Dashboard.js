@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { Dimensions, Platform, StyleSheet, View } from 'react-native'
 import React from 'react'
 import MapView, { Marker } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
@@ -6,11 +6,11 @@ import MapViewDirections from 'react-native-maps-directions'
 import { Flex, Row } from 'native-base'
 import { BackButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
-import { useLocation } from 'hooks/useLocation'
 
 import { getTrails } from 'store/trails'
 import { GC_API_KEY } from 'config/keys'
 import { capitalize } from 'lodash'
+import { useSelector } from 'react-redux'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -23,15 +23,19 @@ const ORIGIN_INDEX = 0
 const DESTINATION_INDEX = 333
 // const DESTINATION_INDEX = geometry.coordinates.length - 1
 
+const deltaCoordinates = {
+  latitudeDelta: 0.003,
+  longitudeDelta: 0.002,
+}
+
 const Dashboard = () => {
   const mapRef = React.useRef()
+  const userLocation = useSelector((state) => state.app.userLocation)
 
-  const { userLocation, deltaCoordinates } = useLocation()
   const trails = getTrails()
 
   const { waypoints, properties } = trails[0]
   const { name, stroke } = properties
-
   const origin = waypoints[ORIGIN_INDEX]
 
   const [region, setRegion] = React.useState(origin)
@@ -40,7 +44,6 @@ const Dashboard = () => {
   React.useEffect(() => {
     if (!origin || !destination) return
     mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
-    return () => {}
   }, [])
 
   return (
@@ -50,20 +53,22 @@ const Dashboard = () => {
         <Fonts.RegularText>Maps</Fonts.RegularText>
       </Row>
 
-      <Flex background={'red.100'} height={'700px'}>
-        <PressableOpacity
-          style={[
-            StyleSheet.absoluteFill,
-            {
-              zIndex: 100000000,
-              left: width - 40,
-              top: 10,
-            },
-          ]}
-          onPress={() => setRegion(userLocation)}
-        >
-          <Icons.Location color={COLORS.primaryBtn} />
-        </PressableOpacity>
+      <Flex height={'700px'}>
+        {Platform.OS !== 'android' && (
+          <PressableOpacity
+            style={[
+              StyleSheet.absoluteFill,
+              {
+                zIndex: 100000000,
+                left: width - 40,
+                top: 10,
+              },
+            ]}
+            onPress={() => setRegion(userLocation)}
+          >
+            <Icons.Location color={COLORS.primaryBtn} />
+          </PressableOpacity>
+        )}
 
         <MapView
           ref={mapRef}
@@ -77,8 +82,8 @@ const Dashboard = () => {
             ...deltaCoordinates,
           }}
           showsUserLocation
-        >
-          <Marker
+        />
+        {/* <Marker
             coordinate={origin}
             identifier={'origin'}
             description={name}
@@ -108,8 +113,8 @@ const Dashboard = () => {
             identifier={'destination'}
             description={name}
             title={'End'}
-          />
-        </MapView>
+          /> */}
+        {/* </MapView> */}
       </Flex>
     </View>
   )

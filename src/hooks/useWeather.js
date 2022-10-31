@@ -1,9 +1,12 @@
-import { OPEN_WEATHER_KEY } from 'config/keys'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { OPEN_WEATHER_KEY } from 'config/keys'
 import { setWeather } from 'store/slices/appSlice'
+import { useLocation } from './useLocation'
 
 export const useWeather = () => {
+  useLocation()
   const dispatch = useDispatch()
   const userLocation = useSelector((state) => state.app.userLocation)
 
@@ -12,6 +15,7 @@ export const useWeather = () => {
   }, [userLocation])
 
   const getWeather = async () => {
+    if (!userLocation) return
     const { latitude, longitude } = userLocation
 
     let url =

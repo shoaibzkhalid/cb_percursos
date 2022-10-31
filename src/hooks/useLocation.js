@@ -3,13 +3,6 @@ import GetLocation from 'react-native-get-location'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserLocation } from 'store/slices/appSlice'
 
-const deltaCoordinates = {
-  // latitudeDelta: 0.0922,
-  // longitudeDelta: 0.0421,
-  latitudeDelta: 0.003,
-  longitudeDelta: 0.002,
-}
-
 export const useLocation = () => {
   const dispatch = useDispatch()
   const userLocation = useSelector((state) => state.app.userLocation)

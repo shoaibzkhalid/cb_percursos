@@ -1,6 +1,6 @@
 {
   "name": "cb_percursos",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "ios": "npx react-native run-ios --simulator=\"iPhone 13\"",
@@ -18,7 +18,7 @@
     "dist": "yarn run build && firebase appdistribution:distribute android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk --app 1:334901946661:android:54f4a9c8cd9218967cd2cc --groups team --release-notes-file release-notes.txt",
     "pub": "git push && git push cat master && yarn run dist",
     "bundle": "cd android && ./gradlew clean && ./gradlew bundleRelease",
-    "push": "git push origin notif && git push cat notif && yarn run dist",
+    "push": "git push cat master && yarn run dist",
     "list-ios-devices": "xcrun simctl list devices"
   },
   "dependencies": {
