@@ -1,1 +1,2 @@
-- Added test map directions
+- updated app name
+- ios icon
