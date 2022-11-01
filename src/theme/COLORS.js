@@ -1,6 +1,7 @@
 export default {
   // base colors
   primary: '#313A5A', // light
+  brand: '#432414', // light
 
   primaryBtn: '#2176FF',
   primaryBtnLight: '#eaf2fe',

@@ -12,3 +12,8 @@ export const languages = [
     code: 'pr',
   },
 ]
+
+export const deltaCoordinates = {
+  latitudeDelta: 0.003,
+  longitudeDelta: 0.002,
+}

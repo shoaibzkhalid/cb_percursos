@@ -11,7 +11,7 @@ const Tabs = () => {
   const Tab = createBottomTabNavigator()
 
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Map">
       {bottomTabs.map(({ name, component, getIcon }) => (
         <Tab.Screen
           key={name}

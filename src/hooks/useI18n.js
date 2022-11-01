@@ -14,6 +14,7 @@ export const useI18n = () => {
     pr,
   })
 
+  if (!lang) return
   i18n.defaultLocale = lang
   i18n.locale = lang
 
