@@ -1,2 +1,1 @@
-- updated app name
-- ios icon
+- Integrated splash screen in the app - ios and android

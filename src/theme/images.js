@@ -6,5 +6,6 @@ const english = require('../assets/images/english.png')
 
 const title = require('../assets/images/title.png')
 const logo = require('../assets/images/logo.png')
+const splash = require('../assets/images/splash.png')
 
-export default { bgImg, portuguese, english, espanol, title, top, logo }
+export default { bgImg, portuguese, english, espanol, title, top, logo, splash }
