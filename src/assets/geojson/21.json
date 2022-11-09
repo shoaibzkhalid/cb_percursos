@@ -1,5 +1,4 @@
 {
-  "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
@@ -360,8 +359,13 @@
       "properties": {
         "name": "verde",
         "stroke": "#00ff00",
-        "stroke-opacity": 1
-      }
+        "stroke-opacity": 1,
+        "trail": 21,
+        "distance": 7400,
+        "duration": 60,
+        "color": "#60AC56"
+      },
+      "description": "Percurso circular com início e fim no centro de BTT. Desenvolvendo-se junto ao Vale do Mujo, percorre a localidade de Sarzedas, seguindo depois em direção a Silveira dos Figos e regressando a Sarzedas pelo caminho de S. Sebastião. É o percurso mais fácil do centro, acessível a todos os praticantes da modalidade."
     }
   ]
 }

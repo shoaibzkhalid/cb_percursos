@@ -1,5 +1,4 @@
 {
-  "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
@@ -1443,8 +1442,13 @@
       "properties": {
         "name": "azul",
         "stroke": "#0000ff",
-        "stroke-opacity": 1
-      }
+        "stroke-opacity": 1,
+        "trail": 23,
+        "distance": 28500,
+        "duration": 210,
+        "color": "#3D5BA5"
+      },
+      "description": "Percurso circular com início e fim no Centro de BTT. Sai deSarzedas em direção a Sobrainho da Ribeira, segue ao longoda Ribeira do Alvito até às localidades de Sesmo e Pomar.Atravessa várias aldeias como Azenha de Cima, Monte deGoula, Gatas, Rapoula e Sarzedas. No troço entre Azenhade Cima e Rapoula segue ao longo da Ribeira da Magueija.Percurso moderado."
     }
   ]
 }

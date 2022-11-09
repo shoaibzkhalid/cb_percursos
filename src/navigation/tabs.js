@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import { COLORS } from 'theme'
+import { COLORS, Fonts } from 'theme'
 import { PressableOpacity } from 'components'
 import { bottomTabs } from 'config'
 
@@ -11,7 +11,7 @@ const Tabs = () => {
   const Tab = createBottomTabNavigator()
 
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Map">
+    <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Trails">
       {bottomTabs.map(({ name, component, getIcon }) => (
         <Tab.Screen
           key={name}
@@ -20,8 +20,15 @@ const Tabs = () => {
           options={{
             tabBarIcon: ({ focused }) => (
               <>
-                {getIcon(focused ? COLORS.primaryBtn : COLORS.dark40)}
+                {getIcon(focused ? COLORS.textAccent : COLORS.dark40)}
                 {/* {focused && <TinyActiveDot />} */}
+              </>
+            ),
+            tabBarLabel: ({ focused }) => (
+              <>
+                <Fonts.SmallTextLight color={focused ? COLORS.textAccent : COLORS.dark40}>
+                  {name}
+                </Fonts.SmallTextLight>
               </>
             ),
             tabBarButton: (props) => <PressableOpacity {...props} />,

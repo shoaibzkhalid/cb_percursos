@@ -12,6 +12,7 @@ LogBox.ignoreLogs([
   'Remote debugger',
   'to be unitless',
   'Require cycle',
+  'RCTBridge required',
   // 'ViewPropTypes',
   // 'Found screens with',
   // 'new NativeEventEmitter',

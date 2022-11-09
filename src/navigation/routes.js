@@ -10,6 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from 'theme'
 import Tabs from './tabs'
 import Welcome from 'screens/Welcome'
+import Trail from 'screens/Trail'
 
 const Routes = () => {
   const Stack = createStackNavigator()
@@ -23,7 +24,13 @@ const Routes = () => {
 
   return (
     <StyledSafeAreaView edges={['top']}>
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          colors: {
+            background: COLORS.screenBg,
+          },
+        }}
+      >
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
@@ -31,6 +38,7 @@ const Routes = () => {
           }}
         >
           <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="Trail" component={Trail} />
           <Stack.Screen name="HomeTabs" component={Tabs} />
         </Stack.Navigator>
       </NavigationContainer>

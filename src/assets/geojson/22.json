@@ -1,5 +1,4 @@
 {
-  "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
@@ -406,8 +405,13 @@
       "properties": {
         "name": "verde_almaceda",
         "stroke": "#00ff00",
-        "stroke-opacity": 1
-      }
+        "stroke-opacity": 1,
+        "trail": 22,
+        "distance": 8300,
+        "duration": 90,
+        "color": "#60AC56"
+      },
+      "description": "Percurso circular com início e fim em Almaceda. Desenvolve-seao longo da Ribeira de Almaceda em direção à aldeia de Rochasde Baixo, retomando o percurso para Almaceda. É um percursofácil, acessível a todos os praticantes da modalidade."
     }
   ]
 }

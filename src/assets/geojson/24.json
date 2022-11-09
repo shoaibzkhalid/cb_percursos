@@ -1,5 +1,4 @@
 {
-  "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
@@ -1220,8 +1219,13 @@
       "properties": {
         "name": "azul_almaceda",
         "stroke": "#0000ff",
-        "stroke-opacity": 1
-      }
+        "stroke-opacity": 1,
+        "trail": 24,
+        "distance": 24500,
+        "duration": 220,
+        "color": "#60AC56"
+      },
+      "description": "Percurso circular com início e fim em Almaceda. Segue emconjunto com o percurso verde de Almaceda, fazendo depoisligação a Martim Branco, Carvalheiras, Valbom e voltandoa ligar-se ao percurso verde até ao final em Almaceda.Acompanha a ribeira de Almaceda ao longo de grande partedo percurso. Percurso moderado"
     }
   ]
 }

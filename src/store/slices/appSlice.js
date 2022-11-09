@@ -5,7 +5,7 @@ const app = createSlice({
   name: 'app',
   // initial state
   initialState: {
-    lang: 'en',
+    lang: 'pr',
     userLocation: null,
     weather: {
       weather: null,
@@ -13,6 +13,7 @@ const app = createSlice({
         temp: null,
       },
     },
+    filters: [],
   },
   reducers: {
     setLang(state, action) {

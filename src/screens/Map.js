@@ -7,11 +7,11 @@ import { Flex, Row } from 'native-base'
 import { BackButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 
-import { getTrails } from 'store/trails'
 import { GC_API_KEY } from 'config/keys'
 import { capitalize } from 'lodash'
 import { useSelector } from 'react-redux'
 import { deltaCoordinates } from 'config/constants'
+import { useTrails } from 'hooks/useTrails'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -25,7 +25,7 @@ const DESTINATION_INDEX = 333
 
 const Map = () => {
   const mapRef = React.useRef()
-  const trails = getTrails()
+  const { trails, trailImages } = useTrails()
 
   const { waypoints, properties } = trails[0]
   const { name, stroke } = properties
@@ -57,7 +57,7 @@ const Map = () => {
         showsUserLocation
       >
         {trails.map(({ properties, waypoints }, index) => {
-          console.log(properties.name, index, waypoints[0])
+          // console.log(properties.name, index, waypoints[0])
           return (
             <Marker
               key={index}

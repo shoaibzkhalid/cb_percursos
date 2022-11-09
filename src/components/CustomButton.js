@@ -15,7 +15,7 @@ const CustomButton = (props) => {
       case 'tertiary':
         return COLORS.dark40
       default:
-        return COLORS.primaryBtn
+        return COLORS.brand
     }
   }
 
@@ -51,8 +51,7 @@ const StyledBtn = styled(Button)`
 `
 
 const StyledBtnText = styled(Fonts.RegularText)`
-  color: ${({ type }) =>
-    `${type !== 'secondary' ? COLORS.white : COLORS.primary}`};
+  color: ${({ type }) => `${type !== 'secondary' ? COLORS.white : COLORS.primary}`};
 `
 
 export default CustomButton

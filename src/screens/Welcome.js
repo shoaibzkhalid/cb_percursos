@@ -20,16 +20,21 @@ const Welcome = ({ navigation: { navigate } }) => {
   const { temp } = main
 
   return (
-    <ImageBackground opacity={0.6} source={images.bgImg} style={{ height: '100%' }}>
+    <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
       <Flex alignItems={'center'} mt={'20px'}>
-        <Image source={images.title} style={{ width: 300, height: 30 }} alt={'title'} />
-
-        <Flex mt={'10px'}>
-          <Image source={images.top} style={{ width: 50, height: 50 }} alt={'title'} />
+        <Flex mr={'auto'} ml={'10px'} mb={'20px'}>
+          <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logo} />
         </Flex>
+
+        <Image
+          source={images.logo1}
+          resizeMode={'contain'}
+          style={{ width: 140, height: 180 }}
+          alt={'title'}
+        />
       </Flex>
       {weather && (
-        <Row alignItems={'center'} w={'33.5%'} justifyContent={'space-between'} mx={'20px'}>
+        <WeatherRow>
           <Image
             alt={'temp'}
             style={{ width: 70, height: 70 }}
@@ -39,11 +44,11 @@ const Welcome = ({ navigation: { navigate } }) => {
           />
 
           <Flex mb={'6px'}>
-            <Fonts.MediumHeading color={COLORS.black}>
+            <Fonts.MediumHeading color={COLORS.white}>
               {Math.floor(temp)}°C
             </Fonts.MediumHeading>
           </Flex>
-        </Row>
+        </WeatherRow>
       )}
       <LangSelector>
         <Flex mb={'0px'}>
@@ -53,7 +58,7 @@ const Welcome = ({ navigation: { navigate } }) => {
         <Row justifyContent={'space-between'}>
           {languages.map(({ title, code }) => (
             <Language
-              p={'20px'}
+              p={'10px'}
               key={title}
               onPress={() => {
                 dispatch(setLang(code))
@@ -72,10 +77,6 @@ const Welcome = ({ navigation: { navigate } }) => {
           ))}
         </Row>
       </LangSelector>
-
-      <Flex mr={'auto'} ml={'10px'} mb={'20px'}>
-        <Image alt={'logo'} style={{ width: 170, height: 90 }} source={images.logo} />
-      </Flex>
     </ImageBackground>
   )
 }
@@ -98,6 +99,16 @@ const LangSelector = styled(Flex)`
   margin: 20px;
   align-items: center;
   margin-top: auto;
+  top: 10px;
+`
+
+const WeatherRow = styled(Row)`
+  align-items: center;
+  margin: 0 20px;
+  justify-content: space-between;
+  width: 33.3%;
+  margin-top: auto;
+  top: 30%;
 `
 
 export default Welcome

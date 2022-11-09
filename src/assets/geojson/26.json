@@ -1,5 +1,4 @@
 {
-  "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
@@ -5344,8 +5343,13 @@
       "properties": {
         "name": "preto",
         "stroke": "#000000",
-        "stroke-opacity": 1
-      }
+        "stroke-opacity": 1,
+        "trail": 26,
+        "distance": 98800,
+        "duration": 750,
+        "color": "#221F20"
+      },
+      "description": "Percurso circular com início e fim no Centro de BTT.No início, segue em conjunto com o percurso vermelho,derivando para a serra da Pedragueira. Passa pelas aldeiasde Valbom e Martim Branco, segue em direção a Chãoda Vã, Salgueiro do Campo e Palvarinho, retomandofinalmente o percurso que coincide novamente com opercurso vermelho até Sarzedas. Percurso difícil comelevado grau de dificuldade recomendado apenas parapraticantes experientes."
     }
   ]
 }

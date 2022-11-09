@@ -1,1 +1,2 @@
-- Integrated splash screen in the app - ios and android
+- completed trail list screen
+- added trail filters based on duration, distance and difficulty

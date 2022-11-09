@@ -8,13 +8,13 @@ export const bottomTabs = [
   {
     name: 'Trails',
     component: Trails,
-    getIcon: (color) => <Icons.Map color={color} />,
-  },
-  {
-    name: 'Dashboard',
-    component: Dashboard,
     getIcon: (color) => <Icons.Trail color={color} width={22} />,
   },
+  // {
+  //   name: 'Dashboard',
+  //   component: Dashboard,
+  //   getIcon: (color) => <Icons.Trail color={color} width={22} />,
+  // },
 
   {
     name: 'Map',

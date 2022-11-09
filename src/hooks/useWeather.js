@@ -18,16 +18,18 @@ export const useWeather = () => {
     if (!userLocation) return
     const { latitude, longitude } = userLocation
 
+    // 39.819838, -7.495759
+
     let url =
       'https://api.openweathermap.org/data/2.5/weather?lat=' +
-      latitude +
+      39.819838 +
       '&lon=' +
-      longitude +
+      -7.495759 +
       `&units=metric&appid=${OPEN_WEATHER_KEY}`
 
     const temp = await fetch(url)
     const res = await temp.json()
-    // console.log('res', res)
+    // console.log('res', res, temp)
     dispatch(setWeather(res))
   }
 
