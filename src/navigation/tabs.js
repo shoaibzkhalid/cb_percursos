@@ -1,17 +1,27 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import { COLORS, Fonts } from 'theme'
+import { COLORS, Fonts, Styles } from 'theme'
 import { PressableOpacity } from 'components'
 import { bottomTabs } from 'config'
+import { Flex } from 'native-base'
 
 const Tabs = () => {
   const Tab = createBottomTabNavigator()
 
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Trails">
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          paddingBottom: 0,
+          height: 66,
+          borderTopColor: 'transparent',
+          ...Styles.dropShadow,
+        },
+      }}
+      initialRouteName="Trails"
+    >
       {bottomTabs.map(({ name, component, getIcon }) => (
         <Tab.Screen
           key={name}
@@ -19,17 +29,14 @@ const Tabs = () => {
           component={component}
           options={{
             tabBarIcon: ({ focused }) => (
-              <>
-                {getIcon(focused ? COLORS.textAccent : COLORS.dark40)}
-                {/* {focused && <TinyActiveDot />} */}
-              </>
+              <Flex mt={'10px'}>{getIcon(focused ? COLORS.textAccent : COLORS.dark40)}</Flex>
             ),
             tabBarLabel: ({ focused }) => (
-              <>
+              <Flex mb={'10px'}>
                 <Fonts.SmallTextLight color={focused ? COLORS.textAccent : COLORS.dark40}>
                   {name}
                 </Fonts.SmallTextLight>
-              </>
+              </Flex>
             ),
             tabBarButton: (props) => <PressableOpacity {...props} />,
           }}
@@ -38,19 +45,5 @@ const Tabs = () => {
     </Tab.Navigator>
   )
 }
-
-const TinyActiveDot = styled.View`
-  background-color: ${COLORS.primaryBtn};
-  width: 6px;
-  height: 6px;
-  border-radius: 50px;
-  position: absolute;
-
-  ${Platform.OS === 'android'
-    ? {
-        bottom: '15px',
-      }
-    : { bottom: 0 }}
-`
 
 export default Tabs

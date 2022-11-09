@@ -10,22 +10,18 @@ import { setFilter, setFiltersApplied } from 'store/slices/filterSlice'
 const FilterModal = ({ title, isOpen, onClose, headingW, children }) => {
   const dispatch = useDispatch()
 
-  const titleAndClose = () => (
-    <Row alignItems={'center'} justifyContent={'space-between'} m={'20px'}>
-      <Flex w={headingW}>
-        <Fonts.BigHeading>{title}</Fonts.BigHeading>
-      </Flex>
-
-      <PressableOpacity onPress={onClose}>
-        <Icons.Close />
-      </PressableOpacity>
-    </Row>
-  )
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={'full'}>
       <StyledModal>
-        {titleAndClose()}
+        <Row alignItems={'center'} justifyContent={'space-between'} m={'20px'}>
+          <Flex w={headingW}>
+            <Fonts.BigHeading>{title}</Fonts.BigHeading>
+          </Flex>
+
+          <PressableOpacity onPress={onClose}>
+            <Icons.Close color={COLORS.textAccent} />
+          </PressableOpacity>
+        </Row>
         {children}
         <Row alignItems={'center'} justifyContent={'space-around'}>
           <CustomButton
@@ -58,7 +54,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW, children }) => {
 const StyledModal = styled(Flex)`
   background-color: white;
   padding: 0 10px;
-  width: 80%;
+  width: 90%;
   border-radius: 15px;
 
   border-color: 1px;

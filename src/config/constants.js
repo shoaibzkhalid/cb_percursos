@@ -16,8 +16,8 @@ export const languages = [
 ]
 
 export const deltaCoordinates = {
-  latitudeDelta: 0.003,
-  longitudeDelta: 0.002,
+  latitudeDelta: 0.1994,
+  longitudeDelta: 0.1992,
 }
 
 export const filters = [

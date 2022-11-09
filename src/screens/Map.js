@@ -1,5 +1,5 @@
+import { Dimensions, Platform, StyleSheet, View } from 'react-native'
 import React from 'react'
-import { Dimensions } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
 
@@ -8,7 +8,6 @@ import { BackButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 
 import { GC_API_KEY } from 'config/keys'
-import { capitalize } from 'lodash'
 import { useSelector } from 'react-redux'
 import { deltaCoordinates } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
@@ -25,24 +24,43 @@ const DESTINATION_INDEX = 333
 
 const Map = () => {
   const mapRef = React.useRef()
-  const { trails, trailImages } = useTrails()
+  const userLocation = useSelector((state) => state.app.userLocation)
+
+  const { trails } = useTrails()
 
   const { waypoints, properties } = trails[0]
-  const { name, stroke } = properties
   const origin = waypoints[ORIGIN_INDEX]
 
   const [region, setRegion] = React.useState(origin)
   const destination = waypoints[DESTINATION_INDEX]
 
-  React.useEffect(() => {
-    // if (!origin || !destination) return
-    // setTimeout(() => {
-    //   mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
-    // }, 1000)
-  }, [])
+  // React.useEffect(() => {
+  //   if (!origin || !destination) return
+  //   setTimeout(() => {
+  //     mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
+  //   }, 1000)
+  // }, [])
+
+  // console.log('test', trails[0].properties.color)
 
   return (
-    <Flex height={'700px'}>
+    <Flex height={'730px'}>
+      {Platform.OS !== 'android' && (
+        <PressableOpacity
+          style={[
+            StyleSheet.absoluteFill,
+            {
+              zIndex: 100000000,
+              left: width - 40,
+              top: 10,
+            },
+          ]}
+          onPress={() => setRegion(userLocation)}
+        >
+          <Icons.Location color={COLORS.primaryBtn} />
+        </PressableOpacity>
+      )}
+
       <MapView
         ref={mapRef}
         style={{ flex: 1 }}
@@ -56,15 +74,22 @@ const Map = () => {
         }}
         showsUserLocation
       >
-        {trails.map(({ properties, waypoints }, index) => {
-          // console.log(properties.name, index, waypoints[0])
+        {trails.map((t, index) => {
+          const DEST_INDEX = t.waypoints.length - 1
+          console.log('TEST', t.properties)
+
           return (
-            <Marker
+            <MapViewDirections
               key={index}
-              coordinate={waypoints[0]}
-              identifier={'origin'}
-              description={properties.name}
-              title={`Trail ${index + 1}`}
+              // waypoints={t.waypoints}
+              // splitWaypoints={true}
+              mode={'WALKING'}
+              precision={'high'}
+              origin={t.waypoints[ORIGIN_INDEX]}
+              destination={t.waypoints[333]}
+              apikey={GC_API_KEY}
+              strokeWidth={5}
+              strokeColor={t.properties.color}
             />
           )
         })}

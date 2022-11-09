@@ -21,7 +21,6 @@ const Trails = ({ navigation: { navigate } }) => {
   const Filter = React.useCallback(() => {
     const dispatch = useDispatch()
     const trailFilters = useSelector((state) => state.filter.trailFilters)
-
     return (
       <FilterModal
         isOpen={modalOpen}
@@ -78,12 +77,63 @@ const Trails = ({ navigation: { navigate } }) => {
     )
   }, [modalOpen])
 
+  const Item = React.useCallback(({ item, index }) => {
+    const { properties } = item
+
+    const { distance, trail, duration, color } = properties
+    const hours = Math.abs((duration / 60).toFixed(1))
+
+    const specs = [
+      {
+        id: 0,
+        icon: <Icons.Compass color={COLORS.textAccent} />,
+        value: `${(distance / 1000).toLocaleString('pt-PT')} km`,
+      },
+      {
+        id: 1,
+        icon: <Icons.Hourglass color={COLORS.textAccent} />,
+        value: `${hours.toLocaleString('pt-PT')} hr`,
+      },
+      {
+        id: 2,
+        icon: <Icons.Balance color={COLORS.textAccent} />,
+        value: `${getDifficulty(distance)}`,
+      },
+    ]
+
+    return (
+      <Styles.Item onPress={() => navigate('Trail')}>
+        <Styles.TrailContainer>
+          <Styles.TrailImg source={trailImages[index]} alt={`image ${trail}`} />
+
+          <Styles.TrailLabel color={color}>
+            <Flex p={'5px'}>
+              <Fonts.RegularText color={COLORS.white}>{trail}</Fonts.RegularText>
+            </Flex>
+          </Styles.TrailLabel>
+        </Styles.TrailContainer>
+
+        <Row mt={'10px'}>
+          {specs.map(({ icon, value, id }) => (
+            <Row key={id} alignItems={'center'} mx={'10px'}>
+              <Flex mx={'5px'}>
+                <Fonts.RegularText>{value}</Fonts.RegularText>
+              </Flex>
+              {icon}
+            </Row>
+          ))}
+        </Row>
+
+        <Styles.LogoImg alt={'logo'} source={images.logo} />
+      </Styles.Item>
+    )
+  }, [])
+
   return (
     <>
       <FlatList
         ListHeaderComponent={() => {
           const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.black
-
           return (
             <Flex m={'10px'}>
               <Row alignItems={'center'}>
@@ -109,55 +159,8 @@ const Trails = ({ navigation: { navigate } }) => {
         showsVerticalScrollIndicator={false}
         bounces={false}
         data={trails}
-        renderItem={({ item: { properties }, index }) => {
-          const { distance, trail, duration, color } = properties
-          const hours = Math.abs((duration / 60).toFixed(1))
-
-          const specs = [
-            {
-              id: 0,
-              icon: <Icons.Compass color={COLORS.textAccent} />,
-              value: `${distance / 1000} km`,
-            },
-            {
-              id: 1,
-              icon: <Icons.Hourglass color={COLORS.textAccent} />,
-              value: `${hours} hr`,
-            },
-            {
-              id: 2,
-              icon: <Icons.Balance color={COLORS.textAccent} />,
-              value: `${getDifficulty(distance)}`,
-            },
-          ]
-
-          return (
-            <Styles.Item onPress={() => navigate('Trail')}>
-              <Styles.TrailContainer>
-                <Styles.TrailImg source={trailImages[index]} alt={`image ${trail}`} />
-
-                <Styles.TrailLabel color={color}>
-                  <Flex p={'5px'}>
-                    <Fonts.RegularText color={COLORS.white}>{trail}</Fonts.RegularText>
-                  </Flex>
-                </Styles.TrailLabel>
-              </Styles.TrailContainer>
-
-              <Row mt={'10px'}>
-                {specs.map(({ icon, value, id }) => (
-                  <Row key={id} alignItems={'center'} mx={'10px'}>
-                    <Flex mx={'5px'}>
-                      <Fonts.RegularText>{value}</Fonts.RegularText>
-                    </Flex>
-                    {icon}
-                  </Row>
-                ))}
-              </Row>
-
-              <Styles.LogoImg alt={'logo'} source={images.logo} />
-            </Styles.Item>
-          )
-        }}
+        renderItem={({ item, index }) => <Item item={item} index={index} />}
+        // renderItem={({ item, index }) => <></>}
       />
       <Filter />
     </>
