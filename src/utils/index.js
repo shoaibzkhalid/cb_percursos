@@ -1,13 +1,13 @@
 export const getDifficulty = (distance) => {
   if (distance > 50000) {
-    return 'Hard'
+    return 'HARD'
   }
 
   if (distance > 20000) {
-    return 'Medium'
+    return 'MEDIUM'
   }
 
-  return 'Easy'
+  return 'EASY'
 }
 
 export const pipe =

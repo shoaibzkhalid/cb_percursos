@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Icons } from 'theme'
 
-import { Dashboard, Map, Trails } from 'screens'
+import { Map, Trails } from 'screens'
 
 export const bottomTabs = [
   {
-    name: 'Trails',
+    name: 'TRAILS',
     component: Trails,
     getIcon: (color) => <Icons.Trail color={color} width={22} />,
   },
@@ -17,7 +17,7 @@ export const bottomTabs = [
   // },
 
   {
-    name: 'Map',
+    name: 'MAP',
     component: Map,
     getIcon: (color) => <Icons.Map color={color} />,
   },

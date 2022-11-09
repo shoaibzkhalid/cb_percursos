@@ -5,9 +5,14 @@ import { COLORS, Fonts, Styles } from 'theme'
 import { PressableOpacity } from 'components'
 import { bottomTabs } from 'config'
 import { Flex } from 'native-base'
+import { useI18n } from 'hooks/useI18n'
 
 const Tabs = () => {
+  const { t } = useI18n()
+
   const Tab = createBottomTabNavigator()
+
+  // console.log(bottomTabs[0])
 
   return (
     <Tab.Navigator
@@ -34,7 +39,7 @@ const Tabs = () => {
             tabBarLabel: ({ focused }) => (
               <Flex mb={'10px'}>
                 <Fonts.SmallTextLight color={focused ? COLORS.textAccent : COLORS.dark40}>
-                  {name}
+                  {t(name)}
                 </Fonts.SmallTextLight>
               </Flex>
             ),

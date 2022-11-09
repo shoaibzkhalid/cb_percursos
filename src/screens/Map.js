@@ -3,14 +3,15 @@ import React from 'react'
 import MapView, { Marker } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
 
-import { Flex, Row } from 'native-base'
-import { BackButton, PressableOpacity } from 'components'
-import { COLORS, Fonts, Icons } from 'theme'
+import { Flex, Image } from 'native-base'
+import { PressableOpacity } from 'components'
+import { COLORS, Icons, images } from 'theme'
 
 import { GC_API_KEY } from 'config/keys'
 import { useSelector } from 'react-redux'
 import { deltaCoordinates } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
+import { Fragment } from 'react'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -41,7 +42,7 @@ const Map = () => {
   //   }, 1000)
   // }, [])
 
-  // console.log('test', trails[0].properties.color)
+  // console.log('test', trails[0].properties.trail)
 
   return (
     <Flex height={'730px'}>
@@ -76,21 +77,40 @@ const Map = () => {
       >
         {trails.map((t, index) => {
           const DEST_INDEX = t.waypoints.length - 1
-          console.log('TEST', t.properties)
 
           return (
-            <MapViewDirections
-              key={index}
-              // waypoints={t.waypoints}
-              // splitWaypoints={true}
-              mode={'WALKING'}
-              precision={'high'}
-              origin={t.waypoints[ORIGIN_INDEX]}
-              destination={t.waypoints[333]}
-              apikey={GC_API_KEY}
-              strokeWidth={5}
-              strokeColor={t.properties.color}
-            />
+            <Fragment key={index}>
+              <Marker
+                coordinate={t.waypoints[ORIGIN_INDEX]}
+                identifier={'origin'}
+                // description={name}
+                title={String(t.properties.trail)}
+              >
+                <Image source={images.start} style={{ height: 35, width: 35 }} alt={'start'} />
+              </Marker>
+
+              <MapViewDirections
+                key={index}
+                // waypoints={t.waypoints.slice(0, 20)}
+                // splitWaypoints={true}
+                mode={'WALKING'}
+                // precision={'high'}
+                origin={t.waypoints[ORIGIN_INDEX]}
+                destination={t.waypoints[333]}
+                apikey={GC_API_KEY}
+                strokeWidth={5}
+                strokeColor={t.properties.color}
+              />
+
+              <Marker
+                coordinate={t.waypoints[333]}
+                identifier={'origin'}
+                // description={name}
+                title={String(t.properties.trail)}
+              >
+                <Image alt={'end'} source={images.end} style={{ height: 35, width: 35 }} />
+              </Marker>
+            </Fragment>
           )
         })}
       </MapView>

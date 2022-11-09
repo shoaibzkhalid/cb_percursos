@@ -15,9 +15,6 @@ export const useWeather = () => {
   }, [userLocation])
 
   const getWeather = async () => {
-    if (!userLocation) return
-    const { latitude, longitude } = userLocation
-
     // 39.819838, -7.495759
 
     let url =

@@ -11,6 +11,7 @@ import { GC_API_KEY } from 'config/keys'
 import { useSelector } from 'react-redux'
 import { deltaCoordinates } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
+import { useI18n } from 'hooks/useI18n'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -23,6 +24,8 @@ const DESTINATION_INDEX = 333
 // const DESTINATION_INDEX = geometry.coordinates.length - 1
 
 const Trail = () => {
+  const { t } = useI18n()
+
   const mapRef = React.useRef()
   const userLocation = useSelector((state) => state.app.userLocation)
 
@@ -46,7 +49,7 @@ const Trail = () => {
     <View>
       <Row alignItems={'center'} m={'10px'}>
         <BackButton />
-        <Fonts.RegularText>Maps</Fonts.RegularText>
+        <Fonts.RegularText>{t}</Fonts.RegularText>
       </Row>
 
       <Flex height={'700px'}>

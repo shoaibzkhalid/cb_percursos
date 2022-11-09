@@ -24,6 +24,7 @@ export const filters = [
   {
     id: 0,
     name: 'distance',
+    title: 'DISTANCE',
     icon: <Icons.Compass color={COLORS.textAccent} width={25} />,
     options: [
       {
@@ -44,6 +45,7 @@ export const filters = [
   {
     id: 1,
     name: 'duration',
+    title: 'DURATION',
     icon: <Icons.Hourglass color={COLORS.textAccent} width={25} />,
     options: [
       {
@@ -59,24 +61,25 @@ export const filters = [
         value: '> 10',
       },
     ],
-    unit: 'hour',
+    unit: 'hr',
   },
   {
     id: 2,
     name: 'difficulty',
+    title: 'DIFFICULTY',
     icon: <Icons.Balance color={COLORS.textAccent} width={25} />,
     options: [
       {
         id: 6,
-        value: 'Easy',
+        value: 'EASY',
       },
       {
         id: 7,
-        value: 'Medium',
+        value: 'MEDIUM',
       },
       {
         id: 8,
-        value: 'Hard',
+        value: 'HARD',
       },
     ],
     unit: '',

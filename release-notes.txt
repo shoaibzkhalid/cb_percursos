@@ -1,2 +1,1 @@
-- completed trail list screen
-- added trail filters based on duration, distance and difficulty
+- added translations for all langs

@@ -6,8 +6,10 @@ import { CustomButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { useDispatch } from 'react-redux'
 import { setFilter, setFiltersApplied } from 'store/slices/filterSlice'
+import { useI18n } from 'hooks/useI18n'
 
 const FilterModal = ({ title, isOpen, onClose, headingW, children }) => {
+  const { t } = useI18n()
   const dispatch = useDispatch()
 
   return (
@@ -25,14 +27,14 @@ const FilterModal = ({ title, isOpen, onClose, headingW, children }) => {
         {children}
         <Row alignItems={'center'} justifyContent={'space-around'}>
           <CustomButton
-            title={'Filter'}
+            title={t('FILTER')}
             onPress={() => {
               dispatch(setFiltersApplied(true))
               onClose()
             }}
           />
           <CustomButton
-            title={'Clear'}
+            title={t('CLEAR')}
             type={'secondary'}
             onPress={() => {
               dispatch(setFiltersApplied(false))
