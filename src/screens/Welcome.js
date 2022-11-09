@@ -61,8 +61,8 @@ const Welcome = ({ navigation: { navigate } }) => {
               p={'10px'}
               key={title}
               onPress={() => {
-                dispatch(setLang(code))
                 navigate('HomeTabs')
+                dispatch(setLang(code))
               }}
             >
               <Flex alignSelf={'center'}>

@@ -144,6 +144,8 @@ const Trails = ({ navigation: { navigate } }) => {
   return (
     <>
       <FlatList
+        keyExtractor={(item) => item.properties.trail}
+        initialNumToRender={3}
         ListHeaderComponent={() => {
           const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.black
           return (

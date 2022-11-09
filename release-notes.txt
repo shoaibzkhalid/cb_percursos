@@ -1,1 +1,1 @@
-- added translations for all langs
+- resolved slow performance
