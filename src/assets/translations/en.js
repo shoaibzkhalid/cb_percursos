@@ -12,4 +12,6 @@ export const en = {
   DISTANCE: 'Distance',
   DIFFICULTY: 'Difficulty',
   CLEAR: 'Clear',
+
+  SOS: 'SOS',
 }

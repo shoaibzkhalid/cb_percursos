@@ -13,4 +13,6 @@ export const pr = {
   DISTANCE: 'Distância',
   DIFFICULTY: 'Dificuldade',
   CLEAR: 'Clara',
+
+  SOS: 'SOS',
 }

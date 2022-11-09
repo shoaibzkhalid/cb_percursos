@@ -128,7 +128,7 @@ const Trails = ({ navigation: { navigate } }) => {
         <Row mt={'10px'}>
           {specs.map(({ icon, value, id }) => (
             <Row key={id} alignItems={'center'} mx={'10px'}>
-              <Flex mx={'5px'}>
+              <Flex mr={'5px'}>
                 <Fonts.RegularText>{value}</Fonts.RegularText>
               </Flex>
               {icon}
@@ -176,7 +176,6 @@ const Trails = ({ navigation: { navigate } }) => {
         bounces={false}
         data={trails}
         renderItem={({ item, index }) => <Item item={item} index={index} />}
-        // renderItem={({ item, index }) => <></>}
       />
       <Filter />
     </>

@@ -41,13 +41,17 @@ const Trail = () => {
   React.useEffect(() => {
     if (!origin || !destination) return
     setTimeout(() => {
-      mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
+      // mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
     }, 1000)
   }, [])
 
   return (
     <View>
       <Row alignItems={'center'} m={'10px'}>
+        <BackButton />
+        <Fonts.RegularText>{t('TRAILS')}</Fonts.RegularText>
+      </Row>
+      {/* <Row alignItems={'center'} m={'10px'}>
         <BackButton />
         <Fonts.RegularText>{t}</Fonts.RegularText>
       </Row>
@@ -114,7 +118,7 @@ const Trail = () => {
             title={'End'}
           />
         </MapView>
-      </Flex>
+      </Flex> */}
     </View>
   )
 }

@@ -9,7 +9,6 @@ import { useI18n } from 'hooks/useI18n'
 
 const Tabs = () => {
   const { t } = useI18n()
-
   const Tab = createBottomTabNavigator()
 
   // console.log(bottomTabs[0])

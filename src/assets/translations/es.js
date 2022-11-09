@@ -14,4 +14,6 @@ export const es = {
   DISTANCE: 'Distancia',
   DIFFICULTY: 'Dificultad',
   CLEAR: 'Clara',
+
+  SOS: 'SOS',
 }

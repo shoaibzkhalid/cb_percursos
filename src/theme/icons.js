@@ -15,8 +15,13 @@ import Compass from 'assets/icons/Compass.svg'
 import Filter from 'assets/icons/Filter.svg'
 import Close from 'assets/icons/Close.svg'
 
+import Phone from 'assets/icons/Phone.svg'
+import Mail from 'assets/icons/Mail.svg'
+
 // All the icons used in the app
 export default {
+  Phone,
+  Mail,
   Close,
   Filter,
   Compass,
