@@ -4,6 +4,7 @@ export const es = {
   FILTER: 'Filtrar',
 
   TRAILS: 'Caminos',
+  TRAIL: 'Sendero',
 
   EASY: 'Fácil',
   MEDIUM: 'Medio',
@@ -16,4 +17,7 @@ export const es = {
   CLEAR: 'Clara',
 
   SOS: 'SOS',
+
+  BIKE: 'Bike',
+  WALK: 'Walk',
 }

@@ -6,7 +6,6 @@ const app = createSlice({
   // initial state
   initialState: {
     lang: 'pr',
-    userLocation: null,
     weather: {
       weather: null,
       main: {
@@ -14,6 +13,7 @@ const app = createSlice({
       },
     },
     filters: [],
+    activeTrailType: 'bike',
   },
   reducers: {
     setLang(state, action) {
@@ -22,12 +22,13 @@ const app = createSlice({
     setWeather(state, action) {
       state.weather = action.payload
     },
-    setUserLocation(state, action) {
-      state.userLocation = action.payload
+
+    setActiveTrailType(state, action) {
+      state.activeTrailType = action.payload
     },
   },
 })
 
 // actions that can be made
-export const { setLang, setUserLocation, setWeather } = app.actions
+export const { setLang, setWeather, setActiveTrailType } = app.actions
 export default app.reducer

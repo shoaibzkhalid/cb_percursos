@@ -5349,7 +5349,11 @@
         "duration": 750,
         "color": "#221F20"
       },
-      "description": "Percurso circular com início e fim no Centro de BTT.No início, segue em conjunto com o percurso vermelho,derivando para a serra da Pedragueira. Passa pelas aldeiasde Valbom e Martim Branco, segue em direção a Chãoda Vã, Salgueiro do Campo e Palvarinho, retomandofinalmente o percurso que coincide novamente com opercurso vermelho até Sarzedas. Percurso difícil comelevado grau de dificuldade recomendado apenas parapraticantes experientes."
+
+      "description": {
+        "pr": "Percurso circular com início e fim em Almaceda. Segue emconjunto com o percurso verde de Almaceda, fazendo depoisligação a Martim Branco, Carvalheiras, Valbom e voltandoa ligar-se ao percurso verde até ao final em Almaceda.Acompanha a ribeira de Almaceda ao longo de grande partedo percurso. Percurso moderado.",
+        "en": "Circular route starting and finishing at the MountainBiking Centre. At first, it coincides with the red route,before splitting off to the Serra da Pedragueira. It passesthrough the villages of Valbom and Martim Branco,then passes through Chão da Vã, Salgueiro do Campoand Palvarinho, finally rejoining the route that coincidesagain with the red route to Sarzedas. Difficult routewith a high degree of difficulty, only recommended forexperienced practitioners."
+      }
     }
   ]
 }

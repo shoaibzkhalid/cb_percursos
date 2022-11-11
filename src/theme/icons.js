@@ -5,7 +5,6 @@ import Location from 'assets/icons/Location.svg'
 import Map from 'assets/icons/Map.svg'
 import Sos from 'assets/icons/Sos.svg'
 import Trail from 'assets/icons/Trail.svg'
-import Walk from 'assets/icons/Walk.svg'
 
 import Tag from 'assets/icons/Tag.svg'
 import Hourglass from 'assets/icons/Hourglass.svg'
@@ -17,9 +16,13 @@ import Close from 'assets/icons/Close.svg'
 
 import Phone from 'assets/icons/Phone.svg'
 import Mail from 'assets/icons/Mail.svg'
+import Bike from 'assets/icons/Bike.svg'
+import Walk from 'assets/icons/Walk.svg'
 
 // All the icons used in the app
 export default {
+  Bike,
+  Walk,
   Phone,
   Mail,
   Close,
@@ -35,5 +38,4 @@ export default {
   Map,
   Sos,
   Trail,
-  Walk,
 }

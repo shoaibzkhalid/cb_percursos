@@ -1,1 +1,4 @@
-- sos
+- bike, walk icons 
+- improved design
+- added fonts for ios
+- added new screen

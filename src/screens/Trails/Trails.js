@@ -1,21 +1,28 @@
 import React from 'react'
+import PagerView from 'react-native-pager-view'
 import { FlatList, Flex, Row } from 'native-base'
 import { capitalize } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
-import { getDifficulty } from 'utils'
 import { PressableOpacity } from 'components'
 import FilterModal from 'features/FilterModal'
-import { filters } from 'config/constants'
+import { filters, trailTypes } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
 import { setFilter } from 'store/slices/filterSlice'
 
 import Styles from './Trails.styles'
 import { useI18n } from 'hooks/useI18n'
+import TrailSpecs from 'features/TrailSpecs'
+import { setActiveTrailType } from 'store/slices/appSlice'
 
 const Trails = ({ navigation: { navigate } }) => {
+  const dispatch = useDispatch()
+  const pagerView = React.useRef()
   const { t } = useI18n()
+  const [activeTab, setActiveTab] = React.useState(0)
+  const trailTypesKeys = Object.keys(trailTypes)
+
   const { trails, trailImages } = useTrails()
   const [modalOpen, setModalOpen] = React.useState(false)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
@@ -92,29 +99,10 @@ const Trails = ({ navigation: { navigate } }) => {
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
 
-    const { distance, trail, duration, color } = properties
-    const hours = Math.abs((duration / 60).toFixed(1))
-
-    const specs = [
-      {
-        id: 0,
-        icon: <Icons.Compass color={COLORS.textAccent} />,
-        value: `${(distance / 1000).toLocaleString('pt-PT')} km`,
-      },
-      {
-        id: 1,
-        icon: <Icons.Hourglass color={COLORS.textAccent} />,
-        value: `${hours.toLocaleString('pt-PT')} hr`,
-      },
-      {
-        id: 2,
-        icon: <Icons.Balance color={COLORS.textAccent} />,
-        value: `${t(getDifficulty(distance))}`,
-      },
-    ]
+    const { trail, color } = properties
 
     return (
-      <Styles.Item onPress={() => navigate('Trail')}>
+      <Styles.Item onPress={() => navigate('Trail', { item, trailImage: trailImages[index] })}>
         <Styles.TrailContainer>
           <Styles.TrailImg source={trailImages[index]} alt={`image ${trail}`} />
 
@@ -125,58 +113,95 @@ const Trails = ({ navigation: { navigate } }) => {
           </Styles.TrailLabel>
         </Styles.TrailContainer>
 
-        <Row mt={'10px'}>
-          {specs.map(({ icon, value, id }) => (
-            <Row key={id} alignItems={'center'} mx={'10px'}>
-              <Flex mr={'5px'}>
-                <Fonts.RegularText>{value}</Fonts.RegularText>
-              </Flex>
-              {icon}
-            </Row>
-          ))}
-        </Row>
+        <TrailSpecs properties={properties} />
 
         <Styles.LogoImg alt={'logo'} source={images.logo} />
       </Styles.Item>
     )
   }, [])
 
+  const Header = React.useCallback(() => {
+    const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.white
+
+    return (
+      <Flex my={'20px'}>
+        <Row alignItems={'center'} mx={'10px'}>
+          <Fonts.BigHeading color={COLORS.white}>{t('TRAILS')}</Fonts.BigHeading>
+
+          <PressableOpacity
+            onPress={() => {
+              setModalOpen(!modalOpen)
+            }}
+            ml={'auto'}
+          >
+            <Row alignItems={'center'} mx={'10px'}>
+              <Fonts.RegularText color={filterIconColor}>{t('FILTER')}</Fonts.RegularText>
+              <Flex px={'10px'}>
+                <Icons.Filter width={15} color={filterIconColor} />
+              </Flex>
+            </Row>
+          </PressableOpacity>
+        </Row>
+
+        <Row alignItems={'center'} justifyContent={'space-around'} mt={'10px'}>
+          {trailTypesArr.map(({ iconLight }, index) => {
+            const isActive = activeTab === index
+
+            return (
+              <PressableOpacity
+                key={index}
+                onPress={() => {
+                  dispatch(setActiveTrailType(trailTypesKeys[index]))
+                  pagerView.current.setPage(index)
+                }}
+                style={{
+                  borderBottomWidth: isActive ? 3 : 0,
+                  borderColor: COLORS.white,
+                  height: 50,
+                }}
+              >
+                <Flex p={'12px'}>{iconLight}</Flex>
+              </PressableOpacity>
+            )
+          })}
+        </Row>
+      </Flex>
+    )
+  }, [activeTab])
+
+  const trailTypesArr = [trailTypes['bike'], trailTypes['walk']]
+
   return (
     <>
-      <FlatList
-        keyExtractor={(item) => item.properties.trail}
-        initialNumToRender={3}
-        ListHeaderComponent={() => {
-          const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.black
-          return (
-            <Flex m={'10px'}>
-              <Row alignItems={'center'}>
-                <Fonts.BigHeading color={COLORS.textAccent}>{t('TRAILS')}</Fonts.BigHeading>
+      <Header />
 
-                <PressableOpacity
-                  onPress={() => {
-                    setModalOpen(!modalOpen)
-                  }}
-                  ml={'auto'}
-                >
-                  <Row alignItems={'center'} mx={'10px'}>
-                    <Fonts.RegularText color={filterIconColor}>
-                      {t('FILTER')}
-                    </Fonts.RegularText>
-                    <Flex px={'10px'}>
-                      <Icons.Filter width={15} color={filterIconColor} />
-                    </Flex>
-                  </Row>
-                </PressableOpacity>
-              </Row>
-            </Flex>
-          )
+      <PagerView
+        ref={pagerView}
+        initialPage={0}
+        onPageSelected={({ nativeEvent: { position } }) => {
+          setActiveTab(position)
+
+          console.log('trailTypesKeys[position]', trailTypesKeys[position])
+          dispatch(setActiveTrailType(trailTypesKeys[position]))
         }}
-        showsVerticalScrollIndicator={false}
-        bounces={false}
-        data={trails}
-        renderItem={({ item, index }) => <Item item={item} index={index} />}
-      />
+        style={{ flex: 1 }}
+      >
+        {trailTypesArr.map((trail, index) => (
+          <FlatList
+            key={index}
+            contentContainerStyle={{
+              backgroundColor: COLORS.screenBg,
+            }}
+            keyExtractor={(item) => item.properties.trail}
+            initialNumToRender={3}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            data={trails}
+            renderItem={({ item, index }) => <Item item={item} index={index} />}
+          />
+        ))}
+      </PagerView>
+
       <Filter />
     </>
   )

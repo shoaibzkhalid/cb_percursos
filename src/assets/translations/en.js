@@ -3,6 +3,8 @@ export const en = {
   FILTER: 'Filter',
   TRAILS: 'Trails',
 
+  TRAIL: 'Trail',
+
   EASY: 'Easy',
   MEDIUM: 'Medium',
   HARD: 'Hard',
@@ -14,4 +16,7 @@ export const en = {
   CLEAR: 'Clear',
 
   SOS: 'SOS',
+
+  BIKE: 'Bike',
+  WALK: 'Walk',
 }

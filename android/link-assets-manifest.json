@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Nunito-Bold.ttf",
+      "sha1": "268fe458b85dea695c2ac6a84db064674d9ded6d"
+    },
+    {
+      "path": "src/assets/fonts/Nunito-Italic.ttf",
+      "sha1": "bfbb007702b6ab77086e63bd3cb041f759d982e9"
+    },
+    {
+      "path": "src/assets/fonts/Nunito-Medium.ttf",
+      "sha1": "475fddd702a0ee28909898e8cab9c32c03d42f2d"
+    },
+    {
+      "path": "src/assets/fonts/Nunito-Regular.ttf",
+      "sha1": "f4e169e36ea616d890b8311485b4489543ec080c"
+    },
+    {
+      "path": "src/assets/fonts/Nunito-VariableFont_wght.ttf",
+      "sha1": "ca84d58a447db3c5d6283191a5cd9e895c35b462"
+    }
+  ]
+}

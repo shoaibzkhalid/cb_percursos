@@ -365,7 +365,10 @@
         "duration": 60,
         "color": "#60AC56"
       },
-      "description": "Percurso circular com início e fim no centro de BTT. Desenvolvendo-se junto ao Vale do Mujo, percorre a localidade de Sarzedas, seguindo depois em direção a Silveira dos Figos e regressando a Sarzedas pelo caminho de S. Sebastião. É o percurso mais fácil do centro, acessível a todos os praticantes da modalidade."
+      "description": {
+        "pr": "Percurso circular com início e fim no centro de BTT. Desenvolvendo-se junto ao Vale do Mujo, percorre a localidade de Sarzedas, seguindo depois em direção a Silveira dos Figos e regressando a Sarzedas pelo caminho de S. Sebastião. É o percurso mais fácil do centro, acessível a todos os praticantes da modalidade.",
+        "en": "Circular route starting and finishing at the MountainBike Centre. Running along the Vale do Mujo, it passesthrough the village of Sarzedas before striking outtowards Silveira dos Figos and returning to Sarzedas viathe S. Sebastião track. It is the centre’s easiest route,accessible to all practitioners of the sport."
+      }
     }
   ]
 }

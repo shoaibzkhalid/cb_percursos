@@ -14,6 +14,7 @@ export const useTrails = () => {
 
   let trails = trailsData.map((t) => ({
     properties: t.features[0].properties,
+    description: t.features[0].description,
     waypoints: t.features[0].geometry.coordinates.map((c) => ({
       longitude: c[0],
       latitude: c[1],

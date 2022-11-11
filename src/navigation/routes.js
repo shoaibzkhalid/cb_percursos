@@ -27,7 +27,7 @@ const Routes = () => {
       <NavigationContainer
         theme={{
           colors: {
-            background: COLORS.screenBg,
+            background: COLORS.textAccent,
           },
         }}
       >

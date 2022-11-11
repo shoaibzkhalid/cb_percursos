@@ -2,7 +2,8 @@ export const pr = {
   CHOOSE_LANG: 'Escolha seu idioma',
   FILTER: 'Filtro',
 
-  TRAILS: 'Trilhas',
+  TRAILS: 'Trilhos',
+  TRAIL: 'Trilha',
 
   EASY: 'Fácil',
   MEDIUM: 'Moderada',
@@ -12,7 +13,10 @@ export const pr = {
   DURATION: 'Duração',
   DISTANCE: 'Distância',
   DIFFICULTY: 'Dificuldade',
-  CLEAR: 'Clara',
+  CLEAR: 'Limpar',
 
   SOS: 'SOS',
+
+  BIKE: 'Bike',
+  WALK: 'Walk',
 }

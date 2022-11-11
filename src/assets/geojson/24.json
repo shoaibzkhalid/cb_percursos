@@ -1225,7 +1225,11 @@
         "duration": 220,
         "color": "#3D5BA5"
       },
-      "description": "Percurso circular com início e fim em Almaceda. Segue emconjunto com o percurso verde de Almaceda, fazendo depoisligação a Martim Branco, Carvalheiras, Valbom e voltandoa ligar-se ao percurso verde até ao final em Almaceda.Acompanha a ribeira de Almaceda ao longo de grande partedo percurso. Percurso moderado"
+
+      "description": {
+        "pr": "Percurso circular com início e fim em Almaceda. Segue emconjunto com o percurso verde de Almaceda, fazendo depoisligação a Martim Branco, Carvalheiras, Valbom e voltandoa ligar-se ao percurso verde até ao final em Almaceda.Acompanha a ribeira de Almaceda ao longo de grande partedo percurso. Percurso moderado.",
+        "en": "Circular route starting and finishing in Almaceda. It coincideswith the Almaceda green route before passing throughMartim Branco, Carvalheiras and Valbom, then rejoins thegreen route to finish at Almaceda. It follows the Ribeira deAlmaceda for much of the route. Moderate route."
+      }
     }
   ]
 }
