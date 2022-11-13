@@ -1,11 +1,7 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
-import MapView, { Marker } from 'react-native-maps'
-import MapViewDirections from 'react-native-maps-directions'
-import { Flex } from 'native-base'
+import MapView, { Marker, Polyline } from 'react-native-maps'
 
-import { GC_API_KEY } from 'config/keys'
-import { COLORS, Icons } from 'theme'
 import { useSelector } from 'react-redux'
 import { trailTypes } from 'config/constants'
 
@@ -17,7 +13,8 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 const ORIGIN_INDEX = 0
 // const DESTINATION_INDEX = geometry.coordinates.length - 1
 
-const TrailMap = ({ trail }) => {
+const TrailMap = (props) => {
+  const { trail, onPress } = props
   const mapRef = React.useRef()
   const activeTrailType = useSelector((state) => state.app.activeTrailType)
 
@@ -30,57 +27,57 @@ const TrailMap = ({ trail }) => {
     longitudeDelta: LONGITUDE_DELTA,
   }
 
-  const DEST_INDEX = parseInt((50 * trail.waypoints.length - 1) / 100)
-
-  const destination = waypoints[DEST_INDEX]
+  const destination = waypoints[trail.waypoints.length - 1]
 
   React.useEffect(() => {
     if (!origin || !destination) return
     setTimeout(() => {
-      mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
+      // mapRef.current.fitToSuppliedMarkers(['origin', 'destination'])
     }, 1000)
   }, [])
 
   return (
-    <Flex height={'300px'} mb={'110px'}>
-      <MapView
-        ref={mapRef}
-        style={{ flex: 1 }}
-        // zoomControlEnabled={false}
-        // zoomEnabled={false}
-        // moveOnMarkerPress={false}
-        initialRegion={{
-          ...origin,
-          ...deltas,
-        }}
-        showsUserLocation
-      >
-        <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
-          {trailTypes[activeTrailType].icon}
-        </Marker>
+    <MapView
+      {...props}
+      ref={mapRef}
+      style={{ flex: 1 }}
+      initialRegion={{
+        ...origin,
+        ...deltas,
+      }}
+      showsUserLocation
+      minZoomLevel={3}
+    >
+      <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
+        {trailTypes[activeTrailType].icon}
+      </Marker>
 
-        <MapViewDirections
-          waypoints={waypoints.slice(0, 3)}
+      <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
+
+      {/* <MapViewDirections
+          // waypoints={waypoints.filter((w, index) => index % 4 === 0)}
+          waypoints={waypoints}
+          // waypoints={waypoints.length > 2 ? waypoints.slice(1, -1) : undefined}
           splitWaypoints={true}
           origin={origin}
           mode={trailTypes[activeTrailType].mapMode}
-          precision={'high'}
+          // region={waypoints[CENTER_INDEX]}
+          // precision={'high'}
           destination={destination}
           apikey={GC_API_KEY}
           strokeWidth={5}
           strokeColor={color}
-        />
+        /> */}
 
-        <Marker
-          coordinate={destination}
-          identifier={'destination'}
-          description={name}
-          title={'End'}
-        >
-          {trailTypes[activeTrailType].icon}
-        </Marker>
-      </MapView>
-    </Flex>
+      <Marker
+        coordinate={destination}
+        identifier={'destination'}
+        description={name}
+        title={'End'}
+      >
+        {trailTypes[activeTrailType].icon}
+      </Marker>
+    </MapView>
   )
 }
 

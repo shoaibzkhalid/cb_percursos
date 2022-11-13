@@ -19,8 +19,16 @@ import Mail from 'assets/icons/Mail.svg'
 import Bike from 'assets/icons/Bike.svg'
 import Walk from 'assets/icons/Walk.svg'
 
+import Chevron from 'assets/icons/Chevron.svg'
+
+import WalkPin from 'assets/icons/WalkPin.svg'
+import BikePin from 'assets/icons/BikePin.svg'
+
 // All the icons used in the app
 export default {
+  BikePin,
+  WalkPin,
+  Chevron,
   Bike,
   Walk,
   Phone,

@@ -9,6 +9,7 @@ const filter = createSlice({
       duration: [],
       distance: [],
       difficulty: [],
+      type: [],
     },
     filtersApplied: false,
   },

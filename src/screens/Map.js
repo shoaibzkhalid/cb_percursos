@@ -4,7 +4,7 @@ import MapView, { Marker } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
 import { getDistance } from 'geolib'
 
-import { Flex, Image } from 'native-base'
+import { Flex, Icon, Image } from 'native-base'
 import { PressableOpacity } from 'components'
 import { COLORS, Icons, images } from 'theme'
 
@@ -81,7 +81,7 @@ const Map = () => {
                 title={String(t.properties.trail)}
               >
                 {/* {trailTypes[activeTrailType].icon} */}
-                <Image source={images.start} style={{ height: 35, width: 35 }} alt={'start'} />
+                <Icons.BikePin color={COLORS.black} width={25} height={25} />
               </Marker>
 
               {/* <MapViewDirections

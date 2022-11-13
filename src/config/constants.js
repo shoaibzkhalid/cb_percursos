@@ -90,34 +90,34 @@ export const filters = [
     unit: '',
   },
 
-  // {
-  //   id: 3,
-  //   name: 'type',
-  //   title: 'TYPE',
-  //   icon: <Icons.Balance color={COLORS.textAccent} width={25} />,
-  //   options: [
-  //     {
-  //       id: 8,
-  //       value: 'BIKE',
-  //     },
-  //     {
-  //       id: 9,
-  //       value: 'WALK',
-  //     },
-  //   ],
-  //   unit: '',
-  // },
+  {
+    id: 3,
+    name: 'type',
+    title: 'TYPE',
+    icon: <Icons.Balance color={COLORS.textAccent} width={25} />,
+    options: [
+      {
+        id: 8,
+        value: 'BIKE',
+      },
+      {
+        id: 9,
+        value: 'WALK',
+      },
+    ],
+    unit: '',
+  },
 ]
 
 export const trailTypes = {
   bike: {
-    iconLight: <Icons.Bike color={COLORS.white} />,
-    icon: <Icons.Bike color={COLORS.black} />,
+    iconLight: <Icons.BikePin color={COLORS.white} width={25} height={25} />,
+    icon: <Icons.BikePin color={COLORS.black} width={25} height={25} />,
     mapMode: 'BICYCLING',
   },
   walk: {
-    iconLight: <Icons.Walk color={COLORS.white} />,
-    icon: <Icons.Walk color={COLORS.black} />,
+    iconLight: <Icons.WalkPin color={COLORS.white} width={25} height={25} />,
+    icon: <Icons.WalkPin color={COLORS.black} width={25} height={25} />,
     mapMode: 'WALKING',
   },
 }

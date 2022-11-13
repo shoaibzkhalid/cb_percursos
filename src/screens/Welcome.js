@@ -17,7 +17,32 @@ const Welcome = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const { getIconUrl } = useWeather()
   const { weather, main } = useSelector((state) => state.app.weather)
-  const { temp } = main
+
+  console.log('weather', weather)
+
+  const Weather = React.useCallback(() => {
+    return (
+      <>
+        {weather && (
+          <WeatherRow>
+            <Image
+              alt={'temp'}
+              style={{ width: 70, height: 70 }}
+              source={{
+                uri: getIconUrl(weather[0].icon),
+              }}
+            />
+
+            <Flex mb={'6px'}>
+              <Fonts.MediumHeading color={COLORS.white}>
+                {Math.floor(main?.temp)}°C
+              </Fonts.MediumHeading>
+            </Flex>
+          </WeatherRow>
+        )}
+      </>
+    )
+  }, [weather])
 
   return (
     <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
@@ -33,23 +58,9 @@ const Welcome = ({ navigation: { navigate } }) => {
           alt={'title'}
         />
       </Flex>
-      {weather && (
-        <WeatherRow>
-          <Image
-            alt={'temp'}
-            style={{ width: 70, height: 70 }}
-            source={{
-              uri: getIconUrl(weather[0].icon),
-            }}
-          />
 
-          <Flex mb={'6px'}>
-            <Fonts.MediumHeading color={COLORS.white}>
-              {Math.floor(temp)}°C
-            </Fonts.MediumHeading>
-          </Flex>
-        </WeatherRow>
-      )}
+      <Weather />
+
       <LangSelector>
         <Flex mb={'0px'}>
           <Fonts.RegularText color={COLORS.white}>{t('CHOOSE_LANG')}</Fonts.RegularText>
@@ -82,8 +93,8 @@ const Welcome = ({ navigation: { navigate } }) => {
 }
 
 const Flag = styled(Image)`
-  width: 60px;
-  height: 60px;
+  width: 35px;
+  height: 35px;
   border-radius: 50px;
 `
 

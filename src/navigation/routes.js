@@ -11,6 +11,7 @@ import { COLORS } from 'theme'
 import Tabs from './tabs'
 import Welcome from 'screens/Welcome'
 import Trail from 'screens/Trail'
+import TrailMapFull from 'features/TrailMapFull/TrailMapFull'
 
 const Routes = () => {
   const Stack = createStackNavigator()
@@ -27,7 +28,7 @@ const Routes = () => {
       <NavigationContainer
         theme={{
           colors: {
-            background: COLORS.textAccent,
+            background: COLORS.brand,
           },
         }}
       >
@@ -39,6 +40,7 @@ const Routes = () => {
         >
           <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="HomeTabs" component={Tabs} />
+          <Stack.Screen name="TrailMapFull" component={TrailMapFull} />
           <Stack.Screen name="Trail" component={Trail} />
         </Stack.Navigator>
       </NavigationContainer>

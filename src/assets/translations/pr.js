@@ -19,4 +19,6 @@ export const pr = {
 
   BIKE: 'Bike',
   WALK: 'Walk',
+
+  TYPE: 'Type',
 }

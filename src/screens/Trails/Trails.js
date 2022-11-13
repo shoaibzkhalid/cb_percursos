@@ -1,5 +1,4 @@
 import React from 'react'
-import PagerView from 'react-native-pager-view'
 import { FlatList, Flex, Row } from 'native-base'
 import { capitalize } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,13 +13,12 @@ import { setFilter } from 'store/slices/filterSlice'
 import Styles from './Trails.styles'
 import { useI18n } from 'hooks/useI18n'
 import TrailSpecs from 'features/TrailSpecs'
-import { setActiveTrailType } from 'store/slices/appSlice'
+import { setActiveTrail, setActiveTrailType } from 'store/slices/appSlice'
+import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
 
 const Trails = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
-  const pagerView = React.useRef()
   const { t } = useI18n()
-  const [activeTab, setActiveTab] = React.useState(0)
   const trailTypesKeys = Object.keys(trailTypes)
 
   const { trails, trailImages } = useTrails()
@@ -102,7 +100,12 @@ const Trails = ({ navigation: { navigate } }) => {
     const { trail, color } = properties
 
     return (
-      <Styles.Item onPress={() => navigate('Trail', { item, trailImage: trailImages[index] })}>
+      <Styles.Item
+        onPress={() => {
+          navigate('Trail', { item, trailImage: trailImages[index] })
+          dispatch(setActiveTrail(item))
+        }}
+      >
         <Styles.TrailContainer>
           <Styles.TrailImg source={trailImages[index]} alt={`image ${trail}`} />
 
@@ -113,7 +116,7 @@ const Trails = ({ navigation: { navigate } }) => {
           </Styles.TrailLabel>
         </Styles.TrailContainer>
 
-        <TrailSpecs properties={properties} />
+        <TrailSpecs properties={properties} ml={'10px'} />
 
         <Styles.LogoImg alt={'logo'} source={images.logo} />
       </Styles.Item>
@@ -142,66 +145,24 @@ const Trails = ({ navigation: { navigate } }) => {
             </Row>
           </PressableOpacity>
         </Row>
-
-        <Row alignItems={'center'} justifyContent={'space-around'} mt={'10px'}>
-          {trailTypesArr.map(({ iconLight }, index) => {
-            const isActive = activeTab === index
-
-            return (
-              <PressableOpacity
-                key={index}
-                onPress={() => {
-                  dispatch(setActiveTrailType(trailTypesKeys[index]))
-                  pagerView.current.setPage(index)
-                }}
-                style={{
-                  borderBottomWidth: isActive ? 3 : 0,
-                  borderColor: COLORS.white,
-                  height: 50,
-                }}
-              >
-                <Flex p={'12px'}>{iconLight}</Flex>
-              </PressableOpacity>
-            )
-          })}
-        </Row>
       </Flex>
     )
-  }, [activeTab])
-
-  const trailTypesArr = [trailTypes['bike'], trailTypes['walk']]
+  }, [])
 
   return (
     <>
       <Header />
-
-      <PagerView
-        ref={pagerView}
-        initialPage={0}
-        onPageSelected={({ nativeEvent: { position } }) => {
-          setActiveTab(position)
-
-          console.log('trailTypesKeys[position]', trailTypesKeys[position])
-          dispatch(setActiveTrailType(trailTypesKeys[position]))
+      <FlatList
+        contentContainerStyle={{
+          backgroundColor: COLORS.screenBg,
         }}
-        style={{ flex: 1 }}
-      >
-        {trailTypesArr.map((trail, index) => (
-          <FlatList
-            key={index}
-            contentContainerStyle={{
-              backgroundColor: COLORS.screenBg,
-            }}
-            keyExtractor={(item) => item.properties.trail}
-            initialNumToRender={3}
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            data={trails}
-            renderItem={({ item, index }) => <Item item={item} index={index} />}
-          />
-        ))}
-      </PagerView>
-
+        keyExtractor={(item) => item.properties.trail}
+        initialNumToRender={3}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        data={trails}
+        renderItem={({ item, index }) => <Item item={item} index={index} />}
+      />
       <Filter />
     </>
   )

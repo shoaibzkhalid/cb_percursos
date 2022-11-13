@@ -19,4 +19,5 @@ export const en = {
 
   BIKE: 'Bike',
   WALK: 'Walk',
+  TYPE: 'Type',
 }

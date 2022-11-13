@@ -19,6 +19,8 @@ export const useTrails = () => {
       longitude: c[0],
       latitude: c[1],
     })),
+
+    elevations: t.features[0].geometry.coordinates.map((c) => c[2]),
   }))
 
   const difficultySelected = trailFilters.difficulty.map((i) => i.id)
