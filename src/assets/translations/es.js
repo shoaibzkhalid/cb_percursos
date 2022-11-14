@@ -3,8 +3,8 @@ export const es = {
 
   FILTER: 'Filtrar',
 
-  TRAILS: 'Caminos',
-  TRAIL: 'Sendero',
+  TRAILS: 'Rutas',
+  TRAIL: 'Ruta',
 
   EASY: 'Fácil',
   MEDIUM: 'Medio',
@@ -18,7 +18,17 @@ export const es = {
 
   SOS: 'SOS',
 
-  BIKE: 'Bike',
-  WALK: 'Walk',
-  TYPE: 'Type',
+  BIKE: 'Bicicleta',
+  WALK: 'Andar',
+  TYPE: 'Modelo',
+
+  TODAYS_FORECAST: `Pronóstico de hoy`,
+
+  ELEVATION: 'Elevación',
+
+  MIN: 'Mínimo',
+  MAX: 'Máx',
+
+  PLAY: 'Play',
+  PAUSE: 'Pause',
 }

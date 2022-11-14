@@ -50,7 +50,7 @@ const Trail = ({ navigation: { navigate } }) => {
       <Flex>
         <Flex m={'10px'}>
           <Fonts.RegularTextLight color={COLORS.dark80}>
-            Todays Forecast
+            {t('TODAYS_FORECAST')}
           </Fonts.RegularTextLight>
         </Flex>
 

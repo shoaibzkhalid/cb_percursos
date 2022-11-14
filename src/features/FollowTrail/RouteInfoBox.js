@@ -2,35 +2,42 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Row } from 'native-base'
 
-import { COLORS, Fonts } from 'theme'
+import { COLORS, Fonts, Icons } from 'theme'
 import { PressableOpacity } from 'components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRoutePlaying } from 'store/slices/appSlice'
+import { useI18n } from 'hooks/useI18n'
 
 const RouteInfoBox = ({ routeDetails, altitude }) => {
   const dispatch = useDispatch()
   // console.log('TEST', routeDetails)
+  const { t } = useI18n()
   const routePlaying = useSelector((state) => state.app.routePlaying)
 
   const { distance, duration } = routeDetails
   const columns = [
-    { id: 0, title: 'Time', value: `${Math.abs(duration.toFixed(1))} min` },
-    { id: 1, title: 'Distance', value: `${Math.abs(distance.toFixed(2))} km` },
-    { id: 2, title: 'Elevation', value: `${Math.abs(altitude).toFixed(1)} m` },
+    { id: 0, title: t('DURATION'), value: `${Math.abs(duration.toFixed(1))} min` },
+    { id: 1, title: t('DISTANCE'), value: `${Math.abs(distance.toFixed(2))} km` },
+    { id: 2, title: t('ELEVATION'), value: `${Math.abs(altitude).toFixed(1)} m` },
   ]
 
   const ActionBtn = React.useCallback(() => {
     return (
       <PauseBtn
         backgroundColor={'red.400'}
+        // backgroundColor={COLORS}
         onPress={() => {
           dispatch(setRoutePlaying(!routePlaying))
-          // navigate('TrailMapFull')
         }}
       >
-        <Fonts.RegularText color={COLORS.white}>
+        {/* <Fonts.RegularText color={COLORS.white}>
           {routePlaying ? 'Pause' : 'Play'}
-        </Fonts.RegularText>
+        </Fonts.RegularText> */}
+        {routePlaying ? (
+          <Icons.Pause color={COLORS.white} />
+        ) : (
+          <Icons.Play color={COLORS.white} />
+        )}
       </PauseBtn>
     )
   }, [routePlaying])

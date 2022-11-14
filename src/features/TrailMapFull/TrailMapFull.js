@@ -1,14 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Flex, Pressable, Row } from 'native-base'
+import { Flex, Row } from 'native-base'
 import { Dimensions } from 'react-native'
 
 import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
 import TrailMap from 'features/TrailMap'
 import { StyleSheet } from 'react-native'
-import { BackButton } from 'components'
+import { BackButton, PressableOpacity } from 'components'
 import { useI18n } from 'hooks/useI18n'
-import { COLORS, Fonts } from 'theme'
+import { COLORS, Fonts, Icons } from 'theme'
 
 const height = Dimensions.get('window').height
 
@@ -24,15 +24,17 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           {activeTrail.properties.trail}
         </Fonts.RegularText>
 
-        <Pressable
+        <PressableOpacity
           ml={'auto'}
           mr={'15px'}
           onPress={() => {
             navigate('FollowTrail')
           }}
+          hitSlop={50}
         >
-          <Fonts.RegularText color={COLORS.white}>Follow</Fonts.RegularText>
-        </Pressable>
+          <Icons.Play color={COLORS.white} width={20} />
+          {/* <Fonts.RegularText color={COLORS.white}>Follow</Fonts.RegularText> */}
+        </PressableOpacity>
       </Row>
 
       <Flex h={height}>

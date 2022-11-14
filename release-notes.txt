@@ -1,1 +1,3 @@
-- adding location tracking on trail
+- added missing translations
+- added buttons for play and pause in route
+- added elevation icon

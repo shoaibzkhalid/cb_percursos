@@ -20,4 +20,13 @@ export const en = {
   BIKE: 'Bike',
   WALK: 'Walk',
   TYPE: 'Type',
+
+  TODAYS_FORECAST: `Today's Forecast`,
+
+  ELEVATION: 'Elevation',
+  MIN: 'Min',
+  MAX: 'Max',
+
+  PLAY: 'Play',
+  PAUSE: 'Pause',
 }

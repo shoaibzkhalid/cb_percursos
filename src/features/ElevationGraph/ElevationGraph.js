@@ -6,8 +6,11 @@ import { Flex, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
 import { getXLabels } from './utils'
+import { useI18n } from 'hooks/useI18n'
 
 const ElevationGraph = ({ trail }) => {
+  const { t } = useI18n()
+
   const distance = trail.properties.distance
   const xLabels = getXLabels(Math.floor(distance / 1000))
   const [isOpen, setIsOpen] = React.useState(false)
@@ -49,12 +52,23 @@ const ElevationGraph = ({ trail }) => {
             alignItems={'center'}
           >
             <Flex>
-              <Fonts.RegularTextLightest color={COLORS.brand}>
-                Min Elevation: {_.min(trail.elevations)}m
-              </Fonts.RegularTextLightest>
-              <Fonts.RegularTextLightest color={COLORS.brand}>
-                Max Elevation: {_.max(trail.elevations)}m
-              </Fonts.RegularTextLightest>
+              <Row alignItems={'center'}>
+                <Flex mr={'10px'}>
+                  <Icons.ElevationDown />
+                </Flex>
+                <Fonts.RegularTextLightest color={COLORS.brand}>
+                  {t('MIN')} {t('ELEVATION')}: {_.min(trail.elevations)}m
+                </Fonts.RegularTextLightest>
+              </Row>
+
+              <Row alignItems={'center'}>
+                <Flex mr={'10px'}>
+                  <Icons.Elevation />
+                </Flex>
+                <Fonts.RegularTextLightest color={COLORS.brand}>
+                  {t('MAX')} {t('ELEVATION')}: {_.max(trail.elevations)}m
+                </Fonts.RegularTextLightest>
+              </Row>
             </Flex>
 
             <Animated.View

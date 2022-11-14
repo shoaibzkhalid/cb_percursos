@@ -26,8 +26,17 @@ import BikePin from 'assets/icons/BikePin.svg'
 
 import Finish from 'assets/icons/Finish.svg'
 
+import Play from 'assets/icons/Play.svg'
+import Pause from 'assets/icons/Pause.svg'
+import Elevation from 'assets/icons/Elevation.svg'
+import ElevationDown from 'assets/icons/ElevationDown.svg'
+
 // All the icons used in the app
 export default {
+  Play,
+  Pause,
+  Elevation,
+  ElevationDown,
   Finish,
   BikePin,
   WalkPin,

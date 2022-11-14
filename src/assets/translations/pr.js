@@ -2,8 +2,8 @@ export const pr = {
   CHOOSE_LANG: 'Escolha seu idioma',
   FILTER: 'Filtro',
 
-  TRAILS: 'Trilhos',
-  TRAIL: 'Trilha',
+  TRAILS: 'Percursos',
+  TRAIL: 'Percurso',
 
   EASY: 'Fácil',
   MEDIUM: 'Moderada',
@@ -17,8 +17,16 @@ export const pr = {
 
   SOS: 'SOS',
 
-  BIKE: 'Bike',
-  WALK: 'Walk',
+  BIKE: 'Bicicleta',
+  WALK: 'Caminar',
 
-  TYPE: 'Type',
+  TYPE: 'Escribe',
+  TODAYS_FORECAST: `Previsão de hoje`,
+
+  ELEVATION: 'Elevação',
+  MIN: 'Mín',
+  MAX: 'Máx',
+
+  PLAY: 'Play',
+  PAUSE: 'Pause',
 }
