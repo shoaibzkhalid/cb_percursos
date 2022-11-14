@@ -24,8 +24,11 @@ import Chevron from 'assets/icons/Chevron.svg'
 import WalkPin from 'assets/icons/WalkPin.svg'
 import BikePin from 'assets/icons/BikePin.svg'
 
+import Finish from 'assets/icons/Finish.svg'
+
 // All the icons used in the app
 export default {
+  Finish,
   BikePin,
   WalkPin,
   Chevron,

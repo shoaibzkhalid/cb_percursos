@@ -6,22 +6,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { PressableOpacity } from 'components'
 import FilterModal from 'features/FilterModal'
-import { filters, trailTypes } from 'config/constants'
+import { filters } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
 import { setFilter } from 'store/slices/filterSlice'
 
 import Styles from './Trails.styles'
 import { useI18n } from 'hooks/useI18n'
 import TrailSpecs from 'features/TrailSpecs'
-import { setActiveTrail, setActiveTrailType } from 'store/slices/appSlice'
-import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
+import { setActiveTrail } from 'store/slices/appSlice'
 
 const Trails = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
   const { t } = useI18n()
-  const trailTypesKeys = Object.keys(trailTypes)
 
   const { trails, trailImages } = useTrails()
+  // console.log('trails', trails)
   const [modalOpen, setModalOpen] = React.useState(false)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
 
@@ -160,6 +159,7 @@ const Trails = ({ navigation: { navigate } }) => {
         initialNumToRender={3}
         showsVerticalScrollIndicator={false}
         bounces={false}
+        // data={trails.slice(0, 3)}
         data={trails}
         renderItem={({ item, index }) => <Item item={item} index={index} />}
       />

@@ -55,6 +55,8 @@ const Map = () => {
           ...deltaCoordinates,
         }}
         showsUserLocation
+        followsUserLocation
+        userLocationUpdateInterval={1000}
       >
         {trails.map((t, index) => {
           const DEST_INDEX = parseInt((50 * t.waypoints.length - 1) / 100)

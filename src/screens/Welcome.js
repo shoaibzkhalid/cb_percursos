@@ -17,8 +17,7 @@ const Welcome = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const { getIconUrl } = useWeather()
   const { weather, main } = useSelector((state) => state.app.weather)
-
-  console.log('weather', weather)
+  // console.log('weather', weather)
 
   const Weather = React.useCallback(() => {
     return (
@@ -72,6 +71,7 @@ const Welcome = ({ navigation: { navigate } }) => {
               p={'10px'}
               key={title}
               onPress={() => {
+                dispatch(setLang(code))
                 navigate('HomeTabs')
                 dispatch(setLang(code))
               }}

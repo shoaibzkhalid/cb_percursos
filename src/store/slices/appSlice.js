@@ -17,11 +17,15 @@ const app = createSlice({
     activeTrailType: 'bike',
     activeTrail: null,
     weatherLoading: null,
+    userLocation: null,
+    routePlaying: false,
+    isLoading: false,
   },
   reducers: {
     setLang(state, action) {
       state.lang = action.payload
     },
+
     setWeather(state, action) {
       state.weather = action.payload
     },
@@ -41,6 +45,14 @@ const app = createSlice({
     setWeatherLoading(state, action) {
       state.weatherLoading = action.payload
     },
+
+    setUserLocation(state, action) {
+      state.userLocation = action.payload
+    },
+
+    setRoutePlaying(state, action) {
+      state.routePlaying = action.payload
+    },
   },
 })
 
@@ -52,5 +64,7 @@ export const {
   setWeatherForecast,
   setActiveTrailType,
   setActiveTrail,
+  setUserLocation,
+  setRoutePlaying,
 } = app.actions
 export default app.reducer

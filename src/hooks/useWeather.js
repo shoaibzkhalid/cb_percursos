@@ -1,8 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import GetLocation from 'react-native-get-location'
 
 import { OPEN_WEATHER_KEY } from 'config/keys'
-import { setWeather, setWeatherForecast, setWeatherLoading } from 'store/slices/appSlice'
+import {
+  setUserLocation,
+  setWeather,
+  setWeatherForecast,
+  setWeatherLoading,
+} from 'store/slices/appSlice'
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 
@@ -22,6 +28,16 @@ export const useWeather = () => {
     const temp = await fetch(url)
     const res = await temp.json()
     dispatch(setWeather(res))
+
+    const location = await GetLocation.getCurrentPosition({
+      // Setting this to true makes location null on Android Emulator
+      enableHighAccuracy: true,
+      timeout: 15000,
+    })
+
+    // console.log('location', location)
+
+    dispatch(setUserLocation(location))
   }
 
   const getWeatherForecast = async () => {

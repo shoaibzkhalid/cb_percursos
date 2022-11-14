@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Flex, Row } from 'native-base'
+import { Flex, Pressable, Row } from 'native-base'
 import { Dimensions } from 'react-native'
 
 import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
@@ -12,9 +12,8 @@ import { COLORS, Fonts } from 'theme'
 
 const height = Dimensions.get('window').height
 
-const TrailMapFull = () => {
+const TrailMapFull = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
-
   const activeTrail = useSelector((state) => state.app.activeTrail)
 
   return (
@@ -24,10 +23,20 @@ const TrailMapFull = () => {
         <Fonts.RegularText color={COLORS.white}>
           {activeTrail.properties.trail}
         </Fonts.RegularText>
+
+        <Pressable
+          ml={'auto'}
+          mr={'15px'}
+          onPress={() => {
+            navigate('FollowTrail')
+          }}
+        >
+          <Fonts.RegularText color={COLORS.white}>Follow</Fonts.RegularText>
+        </Pressable>
       </Row>
 
       <Flex h={height}>
-        <TrailMap trail={activeTrail} />
+        <TrailMap trail={activeTrail} showsUserLocation={true} />
       </Flex>
       <Flex style={(StyleSheet.absoluteFill, { bottom: '27%' })}>
         <ElevationGraph trail={activeTrail} />

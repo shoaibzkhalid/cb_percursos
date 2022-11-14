@@ -1,6 +1,1 @@
-- removed tabs for bikes and walk trails
-- added filter options in the modal for bike and trails
-- fixed description spacing
-- added new icons
-- added elevation graph
-- new full map screen
+- adding location tracking on trail

@@ -113,11 +113,14 @@ export const trailTypes = {
   bike: {
     iconLight: <Icons.BikePin color={COLORS.white} width={25} height={25} />,
     icon: <Icons.BikePin color={COLORS.black} width={25} height={25} />,
+    locationIcon: <Icons.Bike color={COLORS.textAccent} width={25} height={25} />,
+
     mapMode: 'BICYCLING',
   },
   walk: {
     iconLight: <Icons.WalkPin color={COLORS.white} width={25} height={25} />,
     icon: <Icons.WalkPin color={COLORS.black} width={25} height={25} />,
+    locationIcon: <Icons.Walk color={COLORS.textAccent} width={25} height={25} />,
     mapMode: 'WALKING',
   },
 }

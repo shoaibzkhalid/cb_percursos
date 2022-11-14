@@ -15,7 +15,7 @@ import dayjs from 'dayjs'
 const Trail = ({ navigation: { navigate } }) => {
   const lang = useSelector((state) => state.app.lang)
   const weatherForecast = useSelector((state) => state.app.weatherForecast)
-  console.log('weatherForecast', weatherForecast)
+  // console.log('weatherForecast', weatherForecast)
 
   const { t } = useI18n()
   const route = useRoute()
@@ -59,7 +59,7 @@ const Trail = ({ navigation: { navigate } }) => {
           numColumns={4}
           renderItem={({ item }) => {
             const { weather, main } = item
-            console.log('f', item.dt_txt)
+            // console.log('f', item.dt_txt)
 
             return (
               <WeatherRow>
@@ -100,6 +100,7 @@ const Trail = ({ navigation: { navigate } }) => {
         moveOnMarkerPress={false}
         rotateEnabled={false}
         scrollEnabled={false}
+        showsUserLocation={false}
         onPress={() => {
           navigate('TrailMapFull')
         }}

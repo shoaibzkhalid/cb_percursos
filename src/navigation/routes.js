@@ -12,6 +12,7 @@ import Tabs from './tabs'
 import Welcome from 'screens/Welcome'
 import Trail from 'screens/Trail'
 import TrailMapFull from 'features/TrailMapFull/TrailMapFull'
+import FollowTrail from 'features/FollowTrail/FollowTrail'
 
 const Routes = () => {
   const Stack = createStackNavigator()
@@ -39,9 +40,10 @@ const Routes = () => {
           }}
         >
           <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="HomeTabs" component={Tabs} />
-          <Stack.Screen name="TrailMapFull" component={TrailMapFull} />
           <Stack.Screen name="Trail" component={Trail} />
+          <Stack.Screen name="TrailMapFull" component={TrailMapFull} />
+          <Stack.Screen name="FollowTrail" component={FollowTrail} />
+          <Stack.Screen name="HomeTabs" component={Tabs} />
         </Stack.Navigator>
       </NavigationContainer>
     </StyledSafeAreaView>
