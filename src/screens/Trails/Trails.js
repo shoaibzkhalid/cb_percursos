@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { PressableOpacity } from 'components'
 import FilterModal from 'features/FilterModal'
-import { filters } from 'config/constants'
+import { filters, trailTypes } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
 import { setFilter } from 'store/slices/filterSlice'
 
@@ -16,11 +16,9 @@ import TrailSpecs from 'features/TrailSpecs'
 import { setActiveTrail } from 'store/slices/appSlice'
 
 const Trails = ({ navigation: { navigate } }) => {
-  const dispatch = useDispatch()
   const { t } = useI18n()
-
+  const dispatch = useDispatch()
   const { trails, trailImages } = useTrails()
-  // console.log('trails', trails)
   const [modalOpen, setModalOpen] = React.useState(false)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
 
@@ -95,8 +93,7 @@ const Trails = ({ navigation: { navigate } }) => {
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
-
-    const { trail, color } = properties
+    const { trail, color, type } = properties
 
     return (
       <Styles.Item
@@ -113,9 +110,13 @@ const Trails = ({ navigation: { navigate } }) => {
               <Fonts.RegularText color={COLORS.white}>{trail}</Fonts.RegularText>
             </Flex>
           </Styles.TrailLabel>
+
+          <Styles.TrailType color={COLORS.textAccent}>
+            {trailTypes[type].typeIcon}
+          </Styles.TrailType>
         </Styles.TrailContainer>
 
-        <TrailSpecs properties={properties} ml={'10px'} />
+        <TrailSpecs ml={'10px'} item={item} showElevation />
 
         <Styles.LogoImg alt={'logo'} source={images.logo} />
       </Styles.Item>

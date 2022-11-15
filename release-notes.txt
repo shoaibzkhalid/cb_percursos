@@ -1,3 +1,5 @@
-- added missing translations
-- added buttons for play and pause in route
-- added elevation icon
+- updated icons for weather 
+- added forecast for the 4 days in trail screen
+- added some translation
+- trail type icon in trails screen
+- and other improvements

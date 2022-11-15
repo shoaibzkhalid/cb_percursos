@@ -29,7 +29,8 @@ const TrailMap = (props) => {
   return (
     <MapView
       ref={mapRef}
-      style={{ flex: 1 }}
+      style={[{ flex: 1, ...props.style }]}
+      // style={{ flex: 1 }}
       initialRegion={{
         ...origin,
         ...deltas,

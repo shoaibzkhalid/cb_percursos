@@ -21,7 +21,7 @@ export const en = {
   WALK: 'Walk',
   TYPE: 'Type',
 
-  TODAYS_FORECAST: `Today's Forecast`,
+  WEATHER_FORECAST: `Weather Forecast`,
 
   ELEVATION: 'Elevation',
   MIN: 'Min',

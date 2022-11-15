@@ -11,26 +11,21 @@ import { setLang } from 'store/slices/appSlice'
 import { useI18n } from 'hooks/useI18n'
 import { languages } from 'config/constants'
 import { useWeather } from 'hooks/useWeather'
+import { weatherIcons } from 'theme/weatherIcons'
 
 const Welcome = ({ navigation: { navigate } }) => {
+  useWeather()
   const dispatch = useDispatch()
   const { t } = useI18n()
-  const { getIconUrl } = useWeather()
   const { weather, main } = useSelector((state) => state.app.weather)
-  // console.log('weather', weather)
+  const weatherIcon = weather ? weatherIcons[`_${weather[0].icon}`] : null
 
   const Weather = React.useCallback(() => {
     return (
       <>
         {weather && (
           <WeatherRow>
-            <Image
-              alt={'temp'}
-              style={{ width: 70, height: 70 }}
-              source={{
-                uri: getIconUrl(weather[0].icon),
-              }}
-            />
+            {weatherIcon ? weatherIcon(COLORS.white) : weatherIcons._03n(COLORS.white)}
 
             <Flex mb={'6px'}>
               <Fonts.MediumHeading color={COLORS.white}>

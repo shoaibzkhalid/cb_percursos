@@ -22,7 +22,7 @@ export const es = {
   WALK: 'Andar',
   TYPE: 'Modelo',
 
-  TODAYS_FORECAST: `Pronóstico de hoy`,
+  WEATHER_FORECAST: `Pronóstico del tiempo`,
 
   ELEVATION: 'Elevación',
 

@@ -35,8 +35,6 @@ export const useWeather = () => {
       timeout: 15000,
     })
 
-    // console.log('location', location)
-
     dispatch(setUserLocation(location))
   }
 
@@ -45,12 +43,13 @@ export const useWeather = () => {
     const temp = await fetch(url)
     const res = await temp.json()
 
-    // console.log('Test', res)
-    dispatch(setWeatherForecast(res.list))
+    const forecast = [res.list[4], res.list[12], res.list[20], res.list[28]]
+
+    dispatch(setWeatherForecast(forecast))
     dispatch(setWeatherLoading(false))
   }
 
-  const getIconUrl = (icon) => `https://openweathermap.org/img/w/${icon}.png`
+  // const getIconUrl = (icon) => `https://openweathermap.org/img/w/${icon}.png`
 
-  return { getIconUrl }
+  return {}
 }

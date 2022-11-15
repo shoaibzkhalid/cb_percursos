@@ -54,19 +54,19 @@ const ElevationGraph = ({ trail }) => {
             <Flex>
               <Row alignItems={'center'}>
                 <Flex mr={'10px'}>
-                  <Icons.ElevationDown />
+                  <Icons.Elevation color={COLORS.black} />
                 </Flex>
                 <Fonts.RegularTextLightest color={COLORS.brand}>
-                  {t('MIN')} {t('ELEVATION')}: {_.min(trail.elevations)}m
+                  {t('MAX')} {t('ELEVATION')}: {_.max(trail.elevations)}m
                 </Fonts.RegularTextLightest>
               </Row>
 
               <Row alignItems={'center'}>
                 <Flex mr={'10px'}>
-                  <Icons.Elevation />
+                  <Icons.ElevationDown />
                 </Flex>
                 <Fonts.RegularTextLightest color={COLORS.brand}>
-                  {t('MAX')} {t('ELEVATION')}: {_.max(trail.elevations)}m
+                  {t('MIN')} {t('ELEVATION')}: {_.min(trail.elevations)}m
                 </Fonts.RegularTextLightest>
               </Row>
             </Flex>

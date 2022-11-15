@@ -21,7 +21,7 @@ export const pr = {
   WALK: 'Caminar',
 
   TYPE: 'Escribe',
-  TODAYS_FORECAST: `Previsão de hoje`,
+  WEATHER_FORECAST: `Previsão do tempo`,
 
   ELEVATION: 'Elevação',
   MIN: 'Mín',

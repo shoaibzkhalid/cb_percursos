@@ -4,10 +4,12 @@ import { Flex, Row } from 'native-base'
 import { COLORS, Fonts, Icons } from 'theme'
 import { getDifficulty } from 'utils'
 import { useI18n } from 'hooks/useI18n'
+import _ from 'lodash'
 
-const TrailSpecs = ({ properties, ml = '0px' }) => {
+const TrailSpecs = ({ ml = '0px', item, showElevation }) => {
   const { t } = useI18n()
 
+  const { properties } = item
   const { distance, duration } = properties
   const hours = Math.abs((duration / 60).toFixed(1))
 
@@ -27,11 +29,18 @@ const TrailSpecs = ({ properties, ml = '0px' }) => {
       icon: <Icons.Balance color={COLORS.textAccent} />,
       value: `${t(getDifficulty(distance))}`,
     },
+    {
+      id: 3,
+      icon: <Icons.Elevation color={COLORS.textAccent} />,
+      value: `${_.max(item.elevations)}m`,
+    },
   ]
+
+  const fSpecs = showElevation ? specs.slice(0, 3) : specs
 
   return (
     <Row mt={'10px'}>
-      {specs.map(({ icon, value, id }) => (
+      {fSpecs.map(({ icon, value, id }) => (
         <Row key={id} alignItems={'center'} mx={'10px'} ml={ml}>
           <Flex mr={'5px'}>
             <Fonts.RegularText>{value}</Fonts.RegularText>

@@ -409,7 +409,8 @@
         "trail": 22,
         "distance": 8300,
         "duration": 90,
-        "color": "#60AC56"
+        "color": "#60AC56",
+        "type": "bike"
       },
 
       "description": {

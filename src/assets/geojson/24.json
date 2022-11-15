@@ -1223,7 +1223,8 @@
         "trail": 24,
         "distance": 24500,
         "duration": 220,
-        "color": "#3D5BA5"
+        "color": "#3D5BA5",
+        "type": "bike"
       },
 
       "description": {

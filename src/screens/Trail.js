@@ -11,11 +11,11 @@ import { useSelector } from 'react-redux'
 import TrailSpecs from 'features/TrailSpecs'
 import TrailMap from 'features/TrailMap'
 import dayjs from 'dayjs'
+import { weatherIcons } from 'theme/weatherIcons'
 
 const Trail = ({ navigation: { navigate } }) => {
   const lang = useSelector((state) => state.app.lang)
   const weatherForecast = useSelector((state) => state.app.weatherForecast)
-  // console.log('weatherForecast', weatherForecast)
 
   const { t } = useI18n()
   const route = useRoute()
@@ -38,7 +38,7 @@ const Trail = ({ navigation: { navigate } }) => {
       <Image source={trailImage} h={'250px'} alt={'trail'} />
       <CustomCard style={{ padding: 20 }}>
         <Flex mb={'20px'}>
-          <TrailSpecs properties={properties} />
+          <TrailSpecs item={item} />
         </Flex>
         <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight>
       </CustomCard>
@@ -50,31 +50,25 @@ const Trail = ({ navigation: { navigate } }) => {
       <Flex>
         <Flex m={'10px'}>
           <Fonts.RegularTextLight color={COLORS.dark80}>
-            {t('TODAYS_FORECAST')}
+            {t('WEATHER_FORECAST')}
           </Fonts.RegularTextLight>
         </Flex>
 
         <FlatList
-          data={weatherForecast.slice(0, 4)}
+          data={weatherForecast}
           numColumns={4}
           renderItem={({ item }) => {
             const { weather, main } = item
-            // console.log('f', item.dt_txt)
+            const weatherIcon = weather ? weatherIcons[`_${weather[0].icon}`] : null
 
             return (
               <WeatherRow>
                 <Flex alignItems={'center'}>
                   <Fonts.SmallHeadingLight color={COLORS.dark80}>
-                    {dayjs(item.dt_txt).format('hh:mm')}
+                    {dayjs(item.dt_txt).format('ddd')}
                   </Fonts.SmallHeadingLight>
 
-                  <Image
-                    alt={'temp'}
-                    style={{ width: 40, height: 40 }}
-                    source={{
-                      uri: `https://openweathermap.org/img/w/${weather[0].icon}.png`,
-                    }}
-                  />
+                  <Flex py={'10px'}>{weatherIcon(COLORS.dark80)}</Flex>
 
                   <Flex>
                     <Fonts.SmallHeadingLight color={COLORS.dark80}>
@@ -91,7 +85,13 @@ const Trail = ({ navigation: { navigate } }) => {
   )
 
   const Map = () => (
-    <Flex h={'240px'}>
+    <Flex
+      h={'240px'}
+      backgroundColor={COLORS.white}
+      mx={'10px'}
+      // px={'10px'}
+      borderRadius={'15px'}
+    >
       <TrailMap
         trail={item}
         zoomTapEnabled={false}
@@ -104,6 +104,10 @@ const Trail = ({ navigation: { navigate } }) => {
         onPress={() => {
           navigate('TrailMapFull')
         }}
+        style={{
+          borderRadius: 15,
+          flex: 1,
+        }}
       />
     </Flex>
   )
@@ -111,7 +115,6 @@ const Trail = ({ navigation: { navigate } }) => {
   return (
     <FlatList
       // keyExtractor={(item) => item.properties.trail}
-
       initialNumToRender={2}
       showsVerticalScrollIndicator={false}
       data={[
@@ -129,9 +132,7 @@ const CustomCard = styled(Flex)`
   background-color: ${COLORS.white};
   border-radius: 20px;
   min-width: 200px;
-
   margin: 10px 10px;
-  /* padding: 20px; */
 `
 
 const WeatherRow = styled(Row)`

@@ -25,6 +25,16 @@ const TrailLabel = styled(Flex)`
   bottom: 0px;
   background-color: ${({ color }) => `${color}`};
 `
+const TrailType = styled(Flex)`
+  margin: 10px;
+  position: absolute;
+  /* bottom: 0px; */
+  top: 0;
+  right: 0;
+
+  padding: 5px 10px;
+  background-color: ${({ color }) => `${color}`};
+`
 
 const LogoImg = styled(Image)`
   margin: 10px;
@@ -53,4 +63,5 @@ export default {
   TrailLabel,
   LogoImg,
   OptionRow,
+  TrailType,
 }
