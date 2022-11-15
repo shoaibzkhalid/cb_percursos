@@ -1,5 +1,2 @@
-- updated icons for weather 
-- added forecast for the 4 days in trail screen
-- added some translation
-- trail type icon in trails screen
-- and other improvements
+- added border radius to map 
+- fixed issues of smaller screen size devices

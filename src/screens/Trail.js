@@ -87,9 +87,9 @@ const Trail = ({ navigation: { navigate } }) => {
   const Map = () => (
     <Flex
       h={'240px'}
+      overflow={'hidden'}
       backgroundColor={COLORS.white}
       mx={'10px'}
-      // px={'10px'}
       borderRadius={'15px'}
     >
       <TrailMap
@@ -103,10 +103,6 @@ const Trail = ({ navigation: { navigate } }) => {
         showsUserLocation={false}
         onPress={() => {
           navigate('TrailMapFull')
-        }}
-        style={{
-          borderRadius: 15,
-          flex: 1,
         }}
       />
     </Flex>

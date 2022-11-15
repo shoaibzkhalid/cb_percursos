@@ -42,51 +42,51 @@ const Map = () => {
   // }, [])
 
   return (
-    <Flex height={'730px'}>
-      <MapView
-        ref={mapRef}
-        style={{ flex: 1 }}
-        initialRegion={{
-          ...origin,
-          ...deltaCoordinates,
-        }}
-        region={{
-          ...origin,
-          ...deltaCoordinates,
-        }}
-        showsUserLocation
-        followsUserLocation
-        userLocationUpdateInterval={1000}
-      >
-        {trails.map((t, index) => {
-          const DEST_INDEX = parseInt((50 * t.waypoints.length - 1) / 100)
+    <MapView
+      ref={mapRef}
+      style={{ flex: 1 }}
+      initialRegion={{
+        ...origin,
+        ...deltaCoordinates,
+      }}
+      region={{
+        ...origin,
+        ...deltaCoordinates,
+      }}
+      showsCompass={true}
+      showsUserLocation
+      followsUserLocation
+      userLocationUpdateInterval={1000}
+    >
+      {trails.map((t, index) => {
+        const DEST_INDEX = parseInt((50 * t.waypoints.length - 1) / 100)
 
-          const origin = t.waypoints[ORIGIN_INDEX]
-          const destination = t.waypoints[DEST_INDEX]
+        const origin = t.waypoints[ORIGIN_INDEX]
+        const destination = t.waypoints[DEST_INDEX]
 
-          if (index === 5) {
-            // console.log(test)
-            // console.log('test', t.waypoints[ORIGIN_INDEX], t.waypoints[DEST_INDEX])
-          }
+        if (index === 5) {
+          // console.log(test)
+          // console.log('test', t.waypoints[ORIGIN_INDEX], t.waypoints[DEST_INDEX])
+        }
 
-          if (index !== 5) {
-            // console.log('test', t.waypoints[ORIGIN_INDEX], t.waypoints[DEST_INDEX])
-            // return
-          }
+        if (index !== 5) {
+          // console.log('test', t.waypoints[ORIGIN_INDEX], t.waypoints[DEST_INDEX])
+          // return
+        }
 
-          return (
-            <Fragment key={index}>
-              <Marker
-                coordinate={origin}
-                identifier={'origin'}
-                // description={name}
-                title={String(t.properties.trail)}
-              >
-                {/* {trailTypes[activeTrailType].icon} */}
-                <Icons.BikePin color={COLORS.black} width={25} height={25} />
-              </Marker>
+        return (
+          <Fragment key={index}>
+            <Marker
+              coordinate={origin}
+              identifier={'origin'}
+              // description={name}
+              title={String(t.properties.trail)}
+            >
+              {/* {trailTypes[activeTrailType].icon} */}
+              <Icons.BikePin color={COLORS.black} width={25} height={25} />
+            </Marker>
 
-              {/* <MapViewDirections
+            {/* <MapViewDirections
                 key={index}
                 // waypoints={t.waypoints.slice(0, 20)}
                 // splitWaypoints={true}
@@ -99,7 +99,7 @@ const Map = () => {
                 strokeColor={t.properties.color}
               /> */}
 
-              {/* <Marker
+            {/* <Marker
                 coordinate={destination}
                 identifier={'origin'}
                 // description={name}
@@ -107,11 +107,10 @@ const Map = () => {
               >
                 <Image alt={'end'} source={images.end} style={{ height: 35, width: 35 }} />
               </Marker> */}
-            </Fragment>
-          )
-        })}
-      </MapView>
-    </Flex>
+          </Fragment>
+        )
+      })}
+    </MapView>
   )
 }
 

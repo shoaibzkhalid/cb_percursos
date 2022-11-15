@@ -114,7 +114,7 @@ const WeatherRow = styled(Row)`
   justify-content: space-between;
   width: 33.3%;
   margin-top: auto;
-  top: 30%;
+  top: 10%;
 `
 
 export default Welcome

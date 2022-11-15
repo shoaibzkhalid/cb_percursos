@@ -40,7 +40,7 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
       <Flex h={height}>
         <TrailMap trail={activeTrail} showsUserLocation={true} />
       </Flex>
-      <Flex style={(StyleSheet.absoluteFill, { bottom: '27%' })}>
+      <Flex style={(StyleSheet.absoluteFill, { bottom: '28%' })}>
         <ElevationGraph trail={activeTrail} />
       </Flex>
     </Flex>

@@ -29,8 +29,6 @@ const TrailMap = (props) => {
   return (
     <MapView
       ref={mapRef}
-      style={[{ flex: 1, ...props.style }]}
-      // style={{ flex: 1 }}
       initialRegion={{
         ...origin,
         ...deltas,
@@ -38,7 +36,11 @@ const TrailMap = (props) => {
       minZoomLevel={3}
       showsUserLocation
       followsUserLocation
+      style={{
+        flex: 1,
+      }}
       {...props}
+      customMapStyle={{ padding: 40, borderRadius: 40 }}
     >
       <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
         {trailTypes[activeTrailType].icon}
