@@ -5,20 +5,22 @@ const app = createSlice({
   name: 'app',
   // initial state
   initialState: {
-    lang: 'pr',
+    lang: 'pt',
     weather: {
       weather: null,
       main: {
         temp: null,
       },
     },
-    weatherForecast: null,
     filters: [],
+
     activeTrailType: 'bike',
+    routePlaying: false,
     activeTrail: null,
+
+    weatherForecast: null,
     weatherLoading: null,
     userLocation: null,
-    routePlaying: false,
     isLoading: false,
   },
   reducers: {

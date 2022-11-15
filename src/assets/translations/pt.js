@@ -1,4 +1,4 @@
-export const pr = {
+export const pt = {
   CHOOSE_LANG: 'Escolha seu idioma',
   FILTER: 'Filtro',
 

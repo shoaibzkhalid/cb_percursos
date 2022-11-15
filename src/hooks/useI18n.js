@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux'
 
 import { en } from 'assets/translations/en'
 import { es } from 'assets/translations/es'
-import { pr } from 'assets/translations/pr'
+import { pt } from 'assets/translations/pt'
+import dayjs from 'dayjs'
+
+// dayjs locales for portuguese and spanish
+require('dayjs/locale/pt')
+require('dayjs/locale/es')
 
 export const useI18n = () => {
   const lang = useSelector((state) => state.app.lang)
@@ -11,8 +16,10 @@ export const useI18n = () => {
   const i18n = new I18n({
     en,
     es,
-    pr,
+    pt,
   })
+
+  dayjs.locale(lang)
 
   if (!lang) return
   i18n.defaultLocale = lang

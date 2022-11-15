@@ -3,7 +3,7 @@ import { COLORS, Icons } from 'theme'
 export const languages = [
   {
     title: 'portuguese',
-    code: 'pr',
+    code: 'pt',
   },
   {
     title: 'english',

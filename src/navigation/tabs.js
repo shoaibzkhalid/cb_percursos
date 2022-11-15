@@ -11,8 +11,6 @@ const Tabs = () => {
   const { t } = useI18n()
   const Tab = createBottomTabNavigator()
 
-  // console.log(bottomTabs[0])
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -24,28 +22,29 @@ const Tabs = () => {
           ...Styles.dropShadow,
         },
       }}
-      initialRouteName="Trails"
     >
-      {bottomTabs.map(({ name, component, getIcon }) => (
-        <Tab.Screen
-          key={name}
-          name={name}
-          component={component}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <Flex mt={'10px'}>{getIcon(focused ? COLORS.textAccent : COLORS.dark40)}</Flex>
-            ),
-            tabBarLabel: ({ focused }) => (
-              <Flex mb={'10px'}>
-                <Fonts.SmallTextLight color={focused ? COLORS.textAccent : COLORS.dark40}>
-                  {t(name)}
-                </Fonts.SmallTextLight>
-              </Flex>
-            ),
-            tabBarButton: (props) => <PressableOpacity {...props} />,
-          }}
-        />
-      ))}
+      {bottomTabs.map(({ name, component, getIcon }) => {
+        return (
+          <Tab.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Flex mt={'10px'}>{getIcon(focused ? COLORS.textAccent : COLORS.dark40)}</Flex>
+              ),
+              tabBarLabel: ({ focused }) => (
+                <Flex mb={'10px'}>
+                  <Fonts.SmallTextLight color={focused ? COLORS.textAccent : COLORS.dark40}>
+                    {t(name)}
+                  </Fonts.SmallTextLight>
+                </Flex>
+              ),
+              tabBarButton: (props) => <PressableOpacity {...props} />,
+            }}
+          />
+        )
+      })}
     </Tab.Navigator>
   )
 }
