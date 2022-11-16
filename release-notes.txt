@@ -1,1 +1,1 @@
-- improved loading or Trails screen
+- added loading for flatlist 

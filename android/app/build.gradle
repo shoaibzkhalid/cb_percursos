@@ -147,8 +147,8 @@ android {
         applicationId "com.cb_percursos"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.4.7"
+        versionCode 4
+        versionName "1.4.9"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
         manifestPlaceholders = [ GOOGLE_MAPS_API_KEY:getApiKey()]
 

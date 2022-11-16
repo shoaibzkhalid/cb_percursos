@@ -4,7 +4,7 @@ import { capitalize } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
-import { PressableOpacity } from 'components'
+import { LoadingAnimation, PressableOpacity } from 'components'
 import { filters, trailImages, trailTypes } from 'config/constants'
 import { setFilter } from 'store/slices/filterSlice'
 
@@ -21,9 +21,10 @@ const Trails = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
   const trails = useSelector((state) => state.app.trails)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
+  const [loading, setLoading] = React.useState(true)
 
   const [page, setPage] = React.useState(0)
-  const [data, setData] = React.useState(trails.slice(0, 3))
+  const [data, setData] = React.useState(trails.slice(page, 3))
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
@@ -159,7 +160,7 @@ const Trails = ({ navigation: { navigate } }) => {
   console.log(trails)
 
   const loadMoreData = () => {
-    if (data.length >= trails.length) return
+    if (data.length >= trails.length) return setLoading(false)
 
     const start = page + 3
     setPage(page + 3)
@@ -170,11 +171,17 @@ const Trails = ({ navigation: { navigate } }) => {
     <>
       <Header />
       <FlatList
-        // data={[...trails, ...trails, ...trails, ...trails]}
-        // data={trails.slice(0, 3)}
-        data={data}
+        data={filtersApplied ? trails : data}
         onEndReachedThreshold={0.2}
         onEndReached={loadMoreData}
+        ListFooterComponent={() => {
+          if (!loading) return
+          return (
+            <Flex p={'50px'}>
+              <LoadingAnimation />
+            </Flex>
+          )
+        }}
         getItemLayout={getItemLayout}
         initialNumToRender={3}
         contentContainerStyle={{

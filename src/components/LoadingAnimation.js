@@ -9,7 +9,7 @@ const LoadingAnimation = ({ style, color, size }) => {
     <Flex style={StyleSheet.absoluteFillObject} justifyContent={'center'}>
       <ActivityIndicator
         size={size ? size : 'large'}
-        color={color ? color : COLORS.primaryBtn}
+        color={color ? color : COLORS.textAccent}
       />
     </Flex>
   )
