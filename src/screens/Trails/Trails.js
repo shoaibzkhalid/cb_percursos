@@ -6,95 +6,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { PressableOpacity } from 'components'
 import { filters, trailImages, trailTypes } from 'config/constants'
-
 import { setFilter } from 'store/slices/filterSlice'
-import { setActiveTrail } from 'store/slices/appSlice'
 
+import { setActiveTrail } from 'store/slices/appSlice'
 import { useI18n } from 'hooks/useI18n'
 import FilterModal from 'features/FilterModal'
 import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
-
 const ITEM_HEIGHT = 232
 
 const Trails = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const dispatch = useDispatch()
-
   const trails = useSelector((state) => state.app.trails)
-
-  const [modalOpen, setModalOpen] = React.useState(false)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
-
-  const Filter = React.useCallback(() => {
-    const dispatch = useDispatch()
-    const trailFilters = useSelector((state) => state.filter.trailFilters)
-
-    return (
-      <FilterModal
-        isOpen={modalOpen}
-        title={t('FILTER')}
-        onClose={() => setModalOpen(!modalOpen)}
-      >
-        {filters.map((filter) => {
-          const { icon, id, name, options, unit, title } = filter
-
-          return (
-            <Flex key={id} mb={'20px'}>
-              <Row alignItems={'center'}>
-                <Flex mr={'10px'}>{icon}</Flex>
-                <Fonts.RegularText>{capitalize(t(title))}</Fonts.RegularText>
-              </Row>
-
-              <Row mt={'10px'} justifyContent={'space-between'} flexWrap={'wrap'}>
-                {options.map((option, index) => {
-                  const { value } = option
-                  const selected = trailFilters[name].filter(({ id }) => id === option.id)[0]
-                  const removedItemList = trailFilters[name].filter(
-                    ({ id }) => id !== option.id
-                  )
-
-                  const selectedColor = selected ? COLORS.textAccent : COLORS.transparent
-
-                  return (
-                    <Styles.OptionRow
-                      key={index}
-                      color={selectedColor}
-                      onPress={() => {
-                        if (selected) {
-                          return dispatch(
-                            setFilter({
-                              ...trailFilters,
-                              [name]: removedItemList,
-                            })
-                          )
-                        }
-
-                        return dispatch(
-                          setFilter({
-                            ...trailFilters,
-                            [name]: [...new Set([...trailFilters[name], option])],
-                          })
-                        )
-                      }}
-                    >
-                      <Fonts.RegularText
-                        style={{ textAlign: 'center' }}
-                        color={selected ? COLORS.white : COLORS.textAccent}
-                      >
-                        {name === 'difficulty' ? t(value) : value} {unit}
-                      </Fonts.RegularText>
-                    </Styles.OptionRow>
-                  )
-                })}
-              </Row>
-            </Flex>
-          )
-        })}
-      </FilterModal>
-    )
-  }, [modalOpen])
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
@@ -136,6 +62,10 @@ const Trails = ({ navigation: { navigate } }) => {
   })
 
   const Header = React.useCallback(() => {
+    const dispatch = useDispatch()
+    const trailFilters = useSelector((state) => state.filter.trailFilters)
+
+    const [modalOpen, setModalOpen] = React.useState(false)
     const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.white
 
     return (
@@ -157,6 +87,68 @@ const Trails = ({ navigation: { navigate } }) => {
             </Row>
           </PressableOpacity>
         </Row>
+
+        <FilterModal
+          isOpen={modalOpen}
+          title={t('FILTER')}
+          onClose={() => setModalOpen(!modalOpen)}
+        >
+          {filters.map((filter) => {
+            const { icon, id, name, options, unit, title } = filter
+
+            return (
+              <Flex key={id} mb={'20px'}>
+                <Row alignItems={'center'}>
+                  <Flex mr={'10px'}>{icon}</Flex>
+                  <Fonts.RegularText>{capitalize(t(title))}</Fonts.RegularText>
+                </Row>
+
+                <Row mt={'10px'} justifyContent={'space-between'} flexWrap={'wrap'}>
+                  {options.map((option, index) => {
+                    const { value } = option
+                    const selected = trailFilters[name].filter(({ id }) => id === option.id)[0]
+                    const removedItemList = trailFilters[name].filter(
+                      ({ id }) => id !== option.id
+                    )
+
+                    const selectedColor = selected ? COLORS.textAccent : COLORS.transparent
+
+                    return (
+                      <Styles.OptionRow
+                        key={index}
+                        color={selectedColor}
+                        onPress={() => {
+                          if (selected) {
+                            return dispatch(
+                              setFilter({
+                                ...trailFilters,
+                                [name]: removedItemList,
+                              })
+                            )
+                          }
+
+                          return dispatch(
+                            setFilter({
+                              ...trailFilters,
+                              [name]: [...new Set([...trailFilters[name], option])],
+                            })
+                          )
+                        }}
+                      >
+                        <Fonts.RegularText
+                          style={{ textAlign: 'center' }}
+                          color={selected ? COLORS.white : COLORS.textAccent}
+                        >
+                          {name === 'difficulty' ? t(value) : value} {unit}
+                        </Fonts.RegularText>
+                      </Styles.OptionRow>
+                    )
+                  })}
+                </Row>
+              </Flex>
+            )
+          })}
+        </FilterModal>
       </Flex>
     )
   }, [])
@@ -176,7 +168,6 @@ const Trails = ({ navigation: { navigate } }) => {
         bounces={false}
         renderItem={({ item, index }) => <Item item={item} index={index} />}
       />
-      <Filter />
     </>
   )
 }

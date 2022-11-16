@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { COLORS } from 'theme'
 import { PressableOpacity } from 'components'
 
-const Item = styled(Pressable)`
+const Item = styled(PressableOpacity)`
   border-radius: 15px;
   margin: 10px;
   /* height: 232px; */

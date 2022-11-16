@@ -1,2 +1,3 @@
-- improve list performance
-- changed colors of text
+- removed unused packages
+- fixed filter issue
+- fixed trail filter model performance issue

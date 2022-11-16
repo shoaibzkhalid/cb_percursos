@@ -43,6 +43,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW, children }) => {
                   duration: [],
                   distance: [],
                   difficulty: [],
+                  type: [],
                 })
               )
             }}

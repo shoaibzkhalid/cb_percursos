@@ -39,5 +39,5 @@ export const useTrails = () => {
 
   React.useEffect(() => {
     dispatch(setTrails(filtersApplied ? filtered : trails))
-  }, [])
+  }, [filtersApplied])
 }

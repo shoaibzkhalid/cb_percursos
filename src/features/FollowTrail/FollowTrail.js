@@ -73,10 +73,9 @@ const FollowTrail = () => {
           strokeColor={'transparent'}
           resetOnChange={false}
           onReady={(result) => {
-            console.log('result', result)
+            // console.log('result', result)
             setRouteDetails(result)
 
-            // console.log('result', result)
             mapRef.current.fitToCoordinates(result.coordinates, {
               edgePadding: {
                 right: width / 20,
