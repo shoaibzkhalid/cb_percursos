@@ -1,5 +1,2 @@
-- revamped trail screen design
-- added new screens - safety
-- new icons for elevation
-- and other fixes
-- missing icon of safety
+- improve list performance
+- changed colors of text

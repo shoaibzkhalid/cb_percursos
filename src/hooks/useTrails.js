@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   distanceFilter,
@@ -7,8 +8,11 @@ import {
   filterByDuration,
 } from 'utils/sort'
 import { trailsData } from 'services/trails'
+import { setTrails } from 'store/slices/appSlice'
 
 export const useTrails = () => {
+  const dispatch = useDispatch()
+
   const trailFilters = useSelector((state) => state.filter.trailFilters)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
 
@@ -33,16 +37,7 @@ export const useTrails = () => {
   filtered = distanceFilter(durationSelected, filtered, filterByDuration, 'duration')
   filtered = distanceFilter(difficultySelected, filtered, filterByDifficulty)
 
-  return {
-    trails: filtersApplied ? filtered : trails,
-    trailImages: [
-      require('../assets/images/21.jpg'),
-      require('../assets/images/22.jpg'),
-      require('../assets/images/23.jpg'),
-      require('../assets/images/24.jpg'),
-      require('../assets/images/24.jpg'),
-      require('../assets/images/24.jpg'),
-      require('../assets/images/24.jpg'),
-    ],
-  }
+  React.useEffect(() => {
+    dispatch(setTrails(filtersApplied ? filtered : trails))
+  }, [])
 }

@@ -125,3 +125,13 @@ export const trailTypes = {
     mapMode: 'WALKING',
   },
 }
+
+export const trailImages = [
+  require('../assets/images/21.jpg'),
+  require('../assets/images/22.jpg'),
+  require('../assets/images/23.jpg'),
+  require('../assets/images/24.jpg'),
+  require('../assets/images/24.jpg'),
+  require('../assets/images/24.jpg'),
+  require('../assets/images/24.jpg'),
+]

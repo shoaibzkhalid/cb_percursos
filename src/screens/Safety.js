@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS, Fonts, Icons } from 'theme'
 import Content from 'features/Content'
 import { useI18n } from 'hooks/useI18n'
-import { Flex } from 'native-base'
+import { FlatList, Flex } from 'native-base'
 
 const Safety = () => {
   const { t } = useI18n()
@@ -24,11 +24,16 @@ const Safety = () => {
           <Fonts.RegularText>{t('RULES_HEADING')}</Fonts.RegularText>
         </Flex>
 
-        {rules.map((rule) => (
-          <Flex my={1}>
-            <Fonts.RegularTextLight>• {rule.trim()}</Fonts.RegularTextLight>
-          </Flex>
-        ))}
+        <FlatList
+          data={rules}
+          renderItem={({ item }) => (
+            <Flex my={1}>
+              <Fonts.RegularTextLight color={COLORS.dark80}>
+                • {item.trim()}
+              </Fonts.RegularTextLight>
+            </Flex>
+          )}
+        />
       </Content>
     </>
   )

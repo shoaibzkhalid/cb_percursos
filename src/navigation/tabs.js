@@ -22,7 +22,7 @@ const Tabs = () => {
           ...Styles.dropShadow,
         },
       }}
-      initialRouteName={'SOS'}
+      // initialRouteName={'SOS'}
     >
       {bottomTabs.map(({ name, component, getIcon }) => {
         return (

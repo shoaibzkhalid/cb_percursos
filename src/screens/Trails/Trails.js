@@ -5,20 +5,25 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { PressableOpacity } from 'components'
-import FilterModal from 'features/FilterModal'
-import { filters, trailTypes } from 'config/constants'
-import { useTrails } from 'hooks/useTrails'
+import { filters, trailImages, trailTypes } from 'config/constants'
+
 import { setFilter } from 'store/slices/filterSlice'
+import { setActiveTrail } from 'store/slices/appSlice'
+
+import { useI18n } from 'hooks/useI18n'
+import FilterModal from 'features/FilterModal'
+import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
-import { useI18n } from 'hooks/useI18n'
-import TrailSpecs from 'features/TrailSpecs'
-import { setActiveTrail } from 'store/slices/appSlice'
+
+const ITEM_HEIGHT = 232
 
 const Trails = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const dispatch = useDispatch()
-  const { trails, trailImages } = useTrails()
+
+  const trails = useSelector((state) => state.app.trails)
+
   const [modalOpen, setModalOpen] = React.useState(false)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
 
@@ -123,6 +128,13 @@ const Trails = ({ navigation: { navigate } }) => {
     )
   }, [])
 
+  // we set the height of item is fixed
+  const getItemLayout = (data, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index,
+    index,
+  })
+
   const Header = React.useCallback(() => {
     const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.white
 
@@ -153,15 +165,15 @@ const Trails = ({ navigation: { navigate } }) => {
     <>
       <Header />
       <FlatList
+        data={trails}
+        getItemLayout={getItemLayout}
+        initialNumToRender={3}
         contentContainerStyle={{
           backgroundColor: COLORS.screenBg,
         }}
         keyExtractor={(item) => item.properties.trail}
-        initialNumToRender={3}
         showsVerticalScrollIndicator={false}
         bounces={false}
-        // data={trails.slice(0, 3)}
-        data={trails}
         renderItem={({ item, index }) => <Item item={item} index={index} />}
       />
       <Filter />

@@ -7,6 +7,7 @@ import { COLORS, Icons } from 'theme'
 import { deltaCoordinates } from 'config/constants'
 import { useTrails } from 'hooks/useTrails'
 import { Fragment } from 'react'
+import { useSelector } from 'react-redux'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -16,7 +17,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 const Map = () => {
   const mapRef = React.useRef()
-  const { trails } = useTrails()
+  const trails = useSelector((state) => state.app.trails)
   const { waypoints } = trails[0]
   const origin = waypoints[0]
 

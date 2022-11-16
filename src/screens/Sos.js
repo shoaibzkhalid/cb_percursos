@@ -33,8 +33,7 @@ const Sos = () => {
               height={30}
               color={COLORS.textAccent}
             />
-            <Fonts.RegularText>SOS Emergência </Fonts.RegularText>
-            <Fonts.RegularText>112</Fonts.RegularText>
+            <Fonts.RegularText color={COLORS.dark80}>SOS Emergência 112</Fonts.RegularText>
           </Row>
         </PressableOpacity>
 
@@ -50,7 +49,9 @@ const Sos = () => {
               height={30}
               color={COLORS.textAccent}
             />
-            <Fonts.RegularText>camara@cm-castelobranco.pt</Fonts.RegularText>
+            <Fonts.RegularText color={COLORS.dark80}>
+              camara@cm-castelobranco.pt
+            </Fonts.RegularText>
           </Row>
         </PressableOpacity>
       </Content>

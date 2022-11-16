@@ -7,6 +7,7 @@ import { PressableOpacity } from 'components'
 const Item = styled(Pressable)`
   border-radius: 15px;
   margin: 10px;
+  /* height: 232px; */
 `
 
 const TrailContainer = styled(Flex)`
