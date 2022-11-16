@@ -1,3 +1,1 @@
-- removed unused packages
-- fixed filter issue
-- fixed trail filter model performance issue
+- improved loading or Trails screen

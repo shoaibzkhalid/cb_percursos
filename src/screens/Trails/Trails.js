@@ -22,6 +22,9 @@ const Trails = ({ navigation: { navigate } }) => {
   const trails = useSelector((state) => state.app.trails)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
 
+  const [page, setPage] = React.useState(0)
+  const [data, setData] = React.useState(trails.slice(0, 3))
+
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
     const { trail, color, type } = properties
@@ -153,17 +156,31 @@ const Trails = ({ navigation: { navigate } }) => {
     )
   }, [])
 
+  console.log(trails)
+
+  const loadMoreData = () => {
+    if (data.length >= trails.length) return
+
+    const start = page + 3
+    setPage(page + 3)
+    setData([...data, ...trails.slice(start, start + 3)])
+  }
+
   return (
     <>
       <Header />
       <FlatList
-        data={trails}
+        // data={[...trails, ...trails, ...trails, ...trails]}
+        // data={trails.slice(0, 3)}
+        data={data}
+        onEndReachedThreshold={0.2}
+        onEndReached={loadMoreData}
         getItemLayout={getItemLayout}
         initialNumToRender={3}
         contentContainerStyle={{
           backgroundColor: COLORS.screenBg,
         }}
-        keyExtractor={(item) => item.properties.trail}
+        keyExtractor={(item, index) => index}
         showsVerticalScrollIndicator={false}
         bounces={false}
         renderItem={({ item, index }) => <Item item={item} index={index} />}
