@@ -2,3 +2,4 @@
 - added new screens - safety
 - new icons for elevation
 - and other fixes
+- missing icon of safety

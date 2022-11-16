@@ -27,6 +27,6 @@ export const bottomTabs = [
   {
     name: 'SAFETY',
     component: Safety,
-    getIcon: (color) => <Icons.Sos color={color} width={32} />,
+    getIcon: (color) => <Icons.Safety color={color} width={32} />,
   },
 ]
