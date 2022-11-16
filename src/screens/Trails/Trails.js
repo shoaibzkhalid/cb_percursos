@@ -116,7 +116,7 @@ const Trails = ({ navigation: { navigate } }) => {
           </Styles.TrailType>
         </Styles.TrailContainer>
 
-        <TrailSpecs ml={'10px'} item={item} showElevation />
+        <TrailSpecs ml={'10px'} item={item} />
 
         <Styles.LogoImg alt={'logo'} source={images.logo} />
       </Styles.Item>

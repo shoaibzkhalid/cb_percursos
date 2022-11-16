@@ -33,7 +33,6 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           hitSlop={50}
         >
           <Icons.Play color={COLORS.white} width={20} />
-          {/* <Fonts.RegularText color={COLORS.white}>Follow</Fonts.RegularText> */}
         </PressableOpacity>
       </Row>
 

@@ -6,7 +6,7 @@ import { getDifficulty } from 'utils'
 import { useI18n } from 'hooks/useI18n'
 import _ from 'lodash'
 
-const TrailSpecs = ({ ml = '0px', item, showElevation }) => {
+const TrailSpecs = ({ ml = '0px', item }) => {
   const { t } = useI18n()
 
   const { properties } = item
@@ -29,18 +29,11 @@ const TrailSpecs = ({ ml = '0px', item, showElevation }) => {
       icon: <Icons.Balance color={COLORS.textAccent} />,
       value: `${t(getDifficulty(distance))}`,
     },
-    {
-      id: 3,
-      icon: <Icons.Elevation color={COLORS.textAccent} />,
-      value: `${_.max(item.elevations)}m`,
-    },
   ]
-
-  const fSpecs = showElevation ? specs.slice(0, 3) : specs
 
   return (
     <Row mt={'10px'}>
-      {fSpecs.map(({ icon, value, id }) => (
+      {specs.map(({ icon, value, id }) => (
         <Row key={id} alignItems={'center'} mx={'10px'} ml={ml}>
           <Flex mr={'5px'}>
             <Fonts.RegularText>{value}</Fonts.RegularText>

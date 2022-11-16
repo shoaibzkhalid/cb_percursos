@@ -1,47 +1,61 @@
 import React from 'react'
-import { COLORS, Fonts, Icons } from 'theme'
+
+import Content from 'features/Content'
+import { useI18n } from 'hooks/useI18n'
+
+import { Flex, Row } from 'native-base'
+import { Linking } from 'react-native'
 import styled from 'styled-components'
-import { Flex, ScrollView } from 'native-base'
+
+import { COLORS, Fonts, Icons } from 'theme'
+import { PressableOpacity } from 'components'
 
 const Sos = () => {
+  const { t } = useI18n()
+
+  const content = {
+    title: t('SOS'),
+    icon: <Icons.Sos width={30} height={30} color={COLORS.white} style={{ margin: 10 }} />,
+  }
+
   return (
-    <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-      <Flex alignItems={'center'} my={'20px'}>
-        {/* <Icons.Sos width={120} height={120} color={COLORS.red} /> */}
-        <Flex mt={'20px'}>
-          <Fonts.BigHeading>SOS</Fonts.BigHeading>
-        </Flex>
-      </Flex>
+    <>
+      <Content content={content}>
+        <PressableOpacity
+          onPress={() => {
+            Linking.openURL('tel:112')
+          }}
+        >
+          <Row alignItems={'center'} my={'30px'}>
+            <Icons.Phone
+              style={{ marginRight: 10 }}
+              width={30}
+              height={30}
+              color={COLORS.textAccent}
+            />
+            <Fonts.RegularText>SOS Emergência </Fonts.RegularText>
+            <Fonts.RegularText>112</Fonts.RegularText>
+          </Row>
+        </PressableOpacity>
 
-      <CustomCard>
-        <Icons.Phone width={120} height={120} color={COLORS.textAccent} />
-
-        <Flex alignItems={'center'} p={'20px'}>
-          <Fonts.RegularText color={COLORS.dark40}>Phone</Fonts.RegularText>
-          <Fonts.RegularText>123 123 123</Fonts.RegularText>
-        </Flex>
-      </CustomCard>
-
-      <CustomCard>
-        <Icons.Mail width={120} height={120} color={COLORS.textAccent} />
-
-        <Flex alignItems={'center'} p={'20px'}>
-          <Fonts.RegularText color={COLORS.dark40}>Mail</Fonts.RegularText>
-          <Fonts.RegularText>123 123 123</Fonts.RegularText>
-        </Flex>
-      </CustomCard>
-    </ScrollView>
+        <PressableOpacity
+          onPress={() => {
+            Linking.openURL('mailto:camara@cm-castelobranco.pt')
+          }}
+        >
+          <Row alignItems={'center'}>
+            <Icons.Mail
+              style={{ marginRight: 10 }}
+              width={30}
+              height={30}
+              color={COLORS.textAccent}
+            />
+            <Fonts.RegularText>camara@cm-castelobranco.pt</Fonts.RegularText>
+          </Row>
+        </PressableOpacity>
+      </Content>
+    </>
   )
 }
-
-const CustomCard = styled(Flex)`
-  background-color: white;
-  border-radius: 15px;
-  height: 210px;
-
-  margin: 10px;
-  padding: 10px;
-  align-items: center;
-`
 
 export default Sos

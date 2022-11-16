@@ -31,6 +31,8 @@ import Pause from 'assets/icons/Pause.svg'
 import Elevation from 'assets/icons/Elevation.svg'
 import ElevationDown from 'assets/icons/ElevationDown.svg'
 
+import Safety from 'assets/icons/Safety.svg'
+
 // All the icons used in the app
 export default {
   Play,
@@ -58,4 +60,6 @@ export default {
   Map,
   Sos,
   Trail,
+
+  Safety,
 }

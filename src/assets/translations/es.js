@@ -31,4 +31,5 @@ export const es = {
 
   PLAY: 'Play',
   PAUSE: 'Pause',
+  SAFETY: 'La seguridad',
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { Icons } from 'theme'
 import { Map, Trails } from 'screens'
 import Sos from 'screens/Sos'
+import Safety from 'screens/Safety'
 
 export const bottomTabs = [
   {
@@ -20,6 +21,12 @@ export const bottomTabs = [
   {
     name: 'SOS',
     component: Sos,
+    getIcon: (color) => <Icons.Sos color={color} width={32} />,
+  },
+
+  {
+    name: 'SAFETY',
+    component: Safety,
     getIcon: (color) => <Icons.Sos color={color} width={32} />,
   },
 ]
