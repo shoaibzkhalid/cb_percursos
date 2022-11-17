@@ -43,7 +43,7 @@ const Welcome = ({ navigation: { navigate } }) => {
   return (
     <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
       <Flex alignItems={'center'} mt={'20px'}>
-        <Flex mr={'auto'} ml={'10px'} mb={'20px'}>
+        <Flex mr={'auto'} mb={'20px'}>
           <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logo} />
         </Flex>
 

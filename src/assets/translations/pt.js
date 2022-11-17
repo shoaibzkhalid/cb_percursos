@@ -37,4 +37,18 @@ export const pt = {
   • Aconselhável uso de GPS. `,
 
   RULES_HEADING: 'Normas de conduta',
+
+  START: 'Começar',
+
+  DIRECTIONS: 'instruções',
+
+  GNR: 'G.N.S',
+  CIVIL_DEFENSE: 'Defesa Civil',
+
+  MY_LOCATION: 'minha posição atual',
+  COORDINATES: 'coordenadas',
+  SENT_FROM: 'Enviado do aplicativo móvel CB Percursos',
+
+  CALL: 'Ligar',
+  SEND_LOCATION: 'enviar localização',
 }

@@ -1,1 +1,3 @@
-- added loading for flatlist 
+- Revamped SOS screen
+- added more icons
+- and other changes

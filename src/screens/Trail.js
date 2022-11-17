@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { FlatList, Flex, Image, Row } from 'native-base'
 import { useRoute } from '@react-navigation/native'
 
-import { BackButton } from 'components'
+import { BackButton, CustomButton } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { weatherIcons } from 'theme/weatherIcons'
 
@@ -14,6 +14,7 @@ import { useI18n } from 'hooks/useI18n'
 import TrailSpecs from 'features/TrailSpecs'
 import TrailMap from 'features/TrailMap'
 import { trailTypes } from 'config/constants'
+import { Linking, Platform } from 'react-native'
 
 const Trail = ({ navigation: { navigate } }) => {
   const lang = useSelector((state) => state.app.lang)
@@ -58,20 +59,20 @@ const Trail = ({ navigation: { navigate } }) => {
   const Content = () => (
     <CustomCard>
       <Flex mb={'20px'}>
-        <TrailSpecs item={item} />
+        <TrailSpecs item={item} mx={'10px'} />
       </Flex>
       <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight>
       <Map />
 
       <FlatList
         data={weatherForecast}
-        ListHeaderComponent={() => (
-          <Flex my={'10px'}>
-            <Fonts.RegularTextLight color={COLORS.dark80}>
-              {t('WEATHER_FORECAST')}
-            </Fonts.RegularTextLight>
-          </Flex>
-        )}
+        // ListHeaderComponent={() => (
+        //   <Flex my={'10px'}>
+        //     <Fonts.RegularTextLight color={COLORS.dark80}>
+        //       {t('WEATHER_FORECAST')}
+        //     </Fonts.RegularTextLight>
+        //   </Flex>
+        // )}
         numColumns={4}
         renderItem={({ item }) => {
           const { weather, main } = item
@@ -100,6 +101,10 @@ const Trail = ({ navigation: { navigate } }) => {
     </CustomCard>
   )
 
+  const { longitude, latitude } = item.waypoints[item.waypoints.length - 1]
+  const origin = `${item.waypoints[0].longitude}%2C${item.waypoints[0].latitude}`
+  const destination = `${latitude},${longitude}%2C`
+
   const Map = () => (
     <Flex
       h={'240px'}
@@ -121,6 +126,30 @@ const Trail = ({ navigation: { navigate } }) => {
           navigate('TrailMapFull')
         }}
       />
+
+      <CustomButton
+        onPress={() => {
+          if (Platform.OS === 'ios') {
+            return Linking.openURL(`http://maps.apple.com/?daddr=${destination}&dirflg=w`)
+          }
+
+          Linking.openURL(
+            `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=bicycling`
+          )
+        }}
+      >
+        <Flex mr={'10px'}>
+          <Icons.Directions color={'white'} />
+        </Flex>
+        <Fonts.RegularText color={'white'}>{t('DIRECTIONS')}</Fonts.RegularText>
+      </CustomButton>
+
+      <Row alignItems={'center'} justifyContent={'center'}>
+        <Icons.Pin style={{ marginRight: 5 }} color={COLORS.textAccent} />
+        <Fonts.SmallText color={COLORS.dark40}>
+          {parseFloat(longitude).toFixed(6)}, {parseFloat(latitude).toFixed(6)}
+        </Fonts.SmallText>
+      </Row>
     </Flex>
   )
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, Flex, Row } from 'native-base'
-import { capitalize } from 'lodash'
+import _, { capitalize } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
@@ -45,6 +45,15 @@ const Trails = ({ navigation: { navigate } }) => {
               <Fonts.RegularText color={COLORS.white}>{trail}</Fonts.RegularText>
             </Flex>
           </Styles.TrailLabel>
+
+          {/* <Styles.ElevationTextContainer>
+            <Flex mx={'10px'}>
+              <Icons.Elevation color={COLORS.textAccent} />
+            </Flex>
+            <Fonts.RegularTextLight color={COLORS.white}>
+              {_.max(item.elevations)} m
+            </Fonts.RegularTextLight>
+          </Styles.ElevationTextContainer> */}
 
           <Styles.TrailType color={COLORS.textAccent}>
             {trailTypes[type].typeIcon}
@@ -156,8 +165,6 @@ const Trails = ({ navigation: { navigate } }) => {
       </Flex>
     )
   }, [])
-
-  console.log(trails)
 
   const loadMoreData = () => {
     if (data.length >= trails.length) return setLoading(false)

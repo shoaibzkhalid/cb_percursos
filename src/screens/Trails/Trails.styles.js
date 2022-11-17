@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Flex, Image, Pressable } from 'native-base'
+import { Flex, Image, Pressable, Row } from 'native-base'
 import styled from 'styled-components'
 import { COLORS } from 'theme'
 import { PressableOpacity } from 'components'
@@ -57,7 +57,15 @@ const OptionRow = styled(PressableOpacity)`
   border-color: ${COLORS.textAccent};
 `
 
+const ElevationTextContainer = styled(Row)`
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  align-items: center;
+`
+
 export default {
+  ElevationTextContainer,
   Item,
   TrailContainer,
   TrailImg,

@@ -1,19 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Flex, Row } from 'native-base'
-import { Dimensions } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
 import TrailMap from 'features/TrailMap'
-import { StyleSheet } from 'react-native'
 import { BackButton, PressableOpacity } from 'components'
-import { useI18n } from 'hooks/useI18n'
 import { COLORS, Fonts, Icons } from 'theme'
+import { useI18n } from 'hooks/useI18n'
 
 const height = Dimensions.get('window').height
 
 const TrailMapFull = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
+
   const activeTrail = useSelector((state) => state.app.activeTrail)
 
   return (
@@ -32,7 +32,10 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           }}
           hitSlop={50}
         >
-          <Icons.Play color={COLORS.white} width={20} />
+          <Row alignItems={'center'}>
+            <Fonts.RegularTextLight color={COLORS.white}>{t('START')}</Fonts.RegularTextLight>
+            <Icons.Start color={COLORS.white} width={20} style={{ marginLeft: 5 }} />
+          </Row>
         </PressableOpacity>
       </Row>
 

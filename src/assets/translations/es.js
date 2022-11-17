@@ -32,4 +32,18 @@ export const es = {
   PLAY: 'Play',
   PAUSE: 'Pause',
   SAFETY: 'La seguridad',
+
+  START: 'Comienzo',
+  DIRECTIONS: 'Direcciones',
+
+  GNR: 'policía',
+  CIVIL_DEFENSE: 'Defensa Civil',
+
+  MY_LOCATION: 'mi posición actual',
+  COORDINATES: 'coordenadas',
+  SENT_FROM: 'Enviado desde la aplicación móvil de CB Percursos',
+
+  CALL: 'Llamar',
+
+  SEND_LOCATION: 'enviar ubicación',
 }

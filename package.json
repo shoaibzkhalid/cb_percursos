@@ -1,6 +1,6 @@
 {
   "name": "cb_percursos",
-  "version": "1.4.8",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "ios": "npx react-native run-ios --simulator=\"iPhone 14\"",

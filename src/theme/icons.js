@@ -33,8 +33,15 @@ import ElevationDown from 'assets/icons/ElevationDown.svg'
 
 import Safety from 'assets/icons/Safety.svg'
 
+import Directions from 'assets/icons/Directions.svg'
+import Start from 'assets/icons/Start.svg'
+import Pin from 'assets/icons/Pin.svg'
+
 // All the icons used in the app
 export default {
+  Pin,
+  Directions,
+  Start,
   Play,
   Pause,
   Elevation,
