@@ -15,7 +15,7 @@ import { useLocation } from 'hooks/useLocation'
 const Sos = () => {
   const { t } = useI18n()
   const { userLocation } = useLocation()
-  const location = `${userLocation.latitude},${userLocation.longitude}`
+  const location = `${userLocation?.latitude},${userLocation?.longitude}`
 
   const locationUrl = `https://maps.google.com/maps?q=${location}`
   const message = `${t('MY_LOCATION')}\n${t('COORDINATES')}: ${locationUrl}\n\n${t(

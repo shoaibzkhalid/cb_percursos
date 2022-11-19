@@ -25,7 +25,8 @@ const Trails = ({ navigation: { navigate } }) => {
   const [loading, setLoading] = React.useState(true)
 
   const [page, setPage] = React.useState(0)
-  const [data, setData] = React.useState(trails.slice(page, 3))
+  const DATA_LENGTH = 5
+  const [data, setData] = React.useState(trails.slice(page, DATA_LENGTH))
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
@@ -164,9 +165,9 @@ const Trails = ({ navigation: { navigate } }) => {
   const loadMoreData = () => {
     if (data.length >= trails.length) return setLoading(false)
 
-    const start = page + 3
-    setPage(page + 3)
-    setData([...data, ...trails.slice(start, start + 3)])
+    const start = page + DATA_LENGTH
+    setPage(page + DATA_LENGTH)
+    setData([...data, ...trails.slice(start, start + DATA_LENGTH)])
   }
 
   return (

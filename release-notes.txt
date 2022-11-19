@@ -1,8 +1,1 @@
-- new fonts for headings
-- new walk trail added
-- elevation graph position issue
-- walk icon for walk trail
-- expand text option for long texts in trail screen
-- icons fix for elevation
-- sos number correction
-- new info message in Follow trail screen
+- fixed some crashes and errors

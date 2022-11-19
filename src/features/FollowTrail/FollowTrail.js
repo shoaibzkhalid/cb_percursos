@@ -47,10 +47,12 @@ const FollowTrail = () => {
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
   // const currentLocation = waypoints[currentIndex]
-  const currentLocation = {
-    longitude: userLocation.longitude,
-    latitude: userLocation.latitude,
-  }
+  const currentLocation = currentLocation
+    ? {
+        longitude: userLocation?.longitude,
+        latitude: userLocation?.latitude,
+      }
+    : null
 
   React.useEffect(() => {
     return () => {
@@ -66,44 +68,51 @@ const FollowTrail = () => {
     }, 10000)
   }, [routePlaying, currentIndex, userLocation])
 
+  console.log('currentLocation', currentLocation)
+
   const MapDirections = React.useCallback(() => {
     return (
       <>
-        <MapViewDirections
-          // mode={trailTypes[].mapMode}
-          mode={'BICYCLING'}
-          origin={origin}
-          destination={currentLocation}
-          precision={'high'}
-          apikey={GC_API_KEY}
-          strokeWidth={5}
-          strokeColor={'transparent'}
-          resetOnChange={false}
-          onReady={(result) => {
-            // console.log('result', result)
-            setRouteDetails(result)
+        {currentLocation && (
+          <>
+            {' '}
+            <MapViewDirections
+              // mode={trailTypes[].mapMode}
+              mode={'BICYCLING'}
+              origin={origin}
+              destination={currentLocation}
+              precision={'high'}
+              apikey={GC_API_KEY}
+              strokeWidth={5}
+              strokeColor={'transparent'}
+              resetOnChange={false}
+              onReady={(result) => {
+                // console.log('result', result)
+                setRouteDetails(result)
 
-            mapRef.current.fitToCoordinates(result.coordinates, {
-              edgePadding: {
-                right: width / 20,
-                bottom: height / 20,
-                left: width / 20,
-                top: height / 20,
-              },
-            })
-          }}
-          onError={(error) => {
-            console.log('error', error)
-          }}
-        />
-        <Marker
-          coordinate={currentLocation}
-          identifier={'currentLocation'}
-          description={name}
-          title={'Start'}
-        >
-          {trailTypes[type].icon}
-        </Marker>
+                mapRef.current.fitToCoordinates(result.coordinates, {
+                  edgePadding: {
+                    right: width / 20,
+                    bottom: height / 20,
+                    left: width / 20,
+                    top: height / 20,
+                  },
+                })
+              }}
+              onError={(error) => {
+                console.log('error', error)
+              }}
+            />
+            <Marker
+              coordinate={currentLocation}
+              identifier={'currentLocation'}
+              description={name}
+              title={'Start'}
+            >
+              {trailTypes[type].icon}
+            </Marker>
+          </>
+        )}
       </>
     )
   }, [currentIndex, userLocation])

@@ -43,7 +43,7 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           trail={activeTrail}
           showsUserLocation={true}
           style={{
-            height: height - 150,
+            height: isPoly ? height - 100 : height - 150,
           }}
         />
       </Flex>
