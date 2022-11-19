@@ -8,6 +8,7 @@ const type = {
   regular: 'Nunito-Regular',
   bold: 'Nunito-Bold',
   italic: 'Nunito-Italic',
+  heading: 'Museo-700',
 }
 
 // Fonts Sizes
@@ -85,6 +86,13 @@ const SmallHeadingLight = styled(Text)`
 
 // -------------Body Texts-------------
 
+const Heading = styled.Text`
+  ${commonTextStyles}
+  font-family: ${type.heading};
+  font-size: ${({ size }) => (size ? `${size}px` : '17px')};
+  /* font-size: ${size.regular}px; */
+`
+
 const RegularTextBold = styled.Text`
   ${fontWeight800}
   font-size: ${size.regular}px;
@@ -160,4 +168,5 @@ export default {
   Medium,
 
   TinyText,
+  Heading,
 }

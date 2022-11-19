@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Flex, Row } from 'native-base'
-import { Dimensions, StyleSheet } from 'react-native'
+import { Dimensions } from 'react-native'
 
 import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
 import TrailMap from 'features/TrailMap'
@@ -13,16 +13,15 @@ const height = Dimensions.get('window').height
 
 const TrailMapFull = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
-
   const activeTrail = useSelector((state) => state.app.activeTrail)
+  const { trailType } = activeTrail
+  const isPoly = trailType === 'MultiPolygon'
 
   return (
     <Flex>
       <Row alignItems={'center'} m={'10px'}>
         <BackButton />
-        <Fonts.RegularText color={COLORS.white}>
-          {activeTrail.properties.trail}
-        </Fonts.RegularText>
+        <Fonts.Heading color={COLORS.white}>{activeTrail.properties.trail}</Fonts.Heading>
 
         <PressableOpacity
           ml={'auto'}
@@ -40,11 +39,16 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
       </Row>
 
       <Flex h={height}>
-        <TrailMap trail={activeTrail} showsUserLocation={true} />
+        <TrailMap
+          trail={activeTrail}
+          showsUserLocation={true}
+          style={{
+            height: height - 150,
+          }}
+        />
       </Flex>
-      <Flex style={(StyleSheet.absoluteFill, { bottom: '28%' })}>
-        <ElevationGraph trail={activeTrail} />
-      </Flex>
+
+      {!isPoly && <ElevationGraph trail={activeTrail} />}
     </Flex>
   )
 }

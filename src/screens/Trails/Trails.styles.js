@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Flex, Image, Pressable, Row } from 'native-base'
+import { Flex, Image, Row } from 'native-base'
 import styled from 'styled-components'
 import { COLORS } from 'theme'
 import { PressableOpacity } from 'components'
@@ -7,7 +7,6 @@ import { PressableOpacity } from 'components'
 const Item = styled(PressableOpacity)`
   border-radius: 15px;
   margin: 10px;
-  /* height: 232px; */
 `
 
 const TrailContainer = styled(Flex)`

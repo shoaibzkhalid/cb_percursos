@@ -4,8 +4,7 @@ import MapView, { Marker } from 'react-native-maps'
 
 import { COLORS, Icons } from 'theme'
 
-import { deltaCoordinates } from 'config/constants'
-import { useTrails } from 'hooks/useTrails'
+import { deltaCoordinates, trailTypes } from 'config/constants'
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -18,6 +17,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 const Map = () => {
   const mapRef = React.useRef()
   const trails = useSelector((state) => state.app.trails)
+
   const { waypoints } = trails[0]
   const origin = waypoints[0]
 
@@ -29,17 +29,20 @@ const Map = () => {
         ...origin,
         ...deltaCoordinates,
       }}
-      region={{
-        ...origin,
-        ...deltaCoordinates,
-      }}
+      // region={{
+      //   ...origin,
+      //   ...deltaCoordinates,
+      // }}
       showsCompass={true}
       showsUserLocation
       followsUserLocation
       userLocationUpdateInterval={1000}
     >
       {trails.map((t, index) => {
-        const origin = t.waypoints[0]
+        const { trailType, waypoints, properties } = t
+        const isPoly = trailType === 'MultiPolygon'
+
+        const origin = isPoly ? waypoints[0][0] : waypoints[0]
 
         return (
           <Fragment key={index}>
@@ -48,8 +51,7 @@ const Map = () => {
               identifier={'origin'}
               title={String(t.properties.trail)}
             >
-              {/* {trailTypes[activeTrailType].icon} */}
-              <Icons.BikePin color={COLORS.black} width={25} height={25} />
+              {trailTypes[properties.type].icon}
             </Marker>
           </Fragment>
         )

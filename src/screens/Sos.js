@@ -75,9 +75,9 @@ const Sos = () => {
           />
           <CustomButton
             onPress={() => {
-              Linking.openURL('tel:272 330339')
+              Linking.openURL('tel:272 329935')
             }}
-            title={`${t('CIVIL_DEFENSE')} (272 330339)`}
+            title={`${t('CIVIL_DEFENSE')} (272 329935)`}
           />
         </Flex>
       </Content>

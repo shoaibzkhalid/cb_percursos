@@ -15,7 +15,6 @@ const app = createSlice({
     filters: [],
     trails: [],
 
-    activeTrailType: 'bike',
     routePlaying: false,
     activeTrail: null,
 
@@ -35,10 +34,6 @@ const app = createSlice({
 
     setWeatherForecast(state, action) {
       state.weatherForecast = action.payload
-    },
-
-    setActiveTrailType(state, action) {
-      state.activeTrailType = action.payload
     },
 
     setActiveTrail(state, action) {
@@ -70,7 +65,6 @@ export const {
   setWeatherLoading,
   setWeather,
   setWeatherForecast,
-  setActiveTrailType,
   setActiveTrail,
   setUserLocation,
   setRoutePlaying,

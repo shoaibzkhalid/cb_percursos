@@ -410,7 +410,8 @@
         "distance": 8300,
         "duration": 90,
         "color": "#60AC56",
-        "type": "bike"
+        "type": "BIKE",
+        "difficulty": "easy"
       },
 
       "description": {

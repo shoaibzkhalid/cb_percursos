@@ -9,7 +9,9 @@ const Content = ({ content, children }) => {
     <>
       <Row w={'100%'} alignItems={'center'} m={'20px'} mb={'30px'}>
         {icon}
-        <Fonts.BigHeading color={COLORS.white}>{title}</Fonts.BigHeading>
+        <Fonts.Heading size={32} color={COLORS.white}>
+          {title}
+        </Fonts.Heading>
       </Row>
 
       <CustomCard>{children}</CustomCard>

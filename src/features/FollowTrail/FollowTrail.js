@@ -27,17 +27,24 @@ const FollowTrail = () => {
   const routePlaying = useSelector((state) => state.app.routePlaying)
   const trail = useSelector((state) => state.app.activeTrail)
 
-  const activeTrailType = useSelector((state) => state.app.activeTrailType)
   const [routeDetails, setRouteDetails] = React.useState({ distance: 0, duration: 0 })
 
-  const { waypoints, properties } = trail
+  const { waypoints, properties, trailType } = trail
+  const { type } = properties
   const { name, color } = properties
-  const origin = waypoints[0]
+  const isPoly = trailType === 'MultiPolygon'
+
+  const origin = isPoly ? waypoints[0][0] : waypoints[0]
+
   const deltas = {
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
   }
-  const destination = waypoints[trail.waypoints.length - 1]
+
+  const destination = isPoly
+    ? waypoints[0][trail.waypoints[0].length - 1]
+    : waypoints[trail.waypoints.length - 1]
+
   const [currentIndex, setCurrentIndex] = React.useState(0)
   // const currentLocation = waypoints[currentIndex]
   const currentLocation = {
@@ -63,7 +70,7 @@ const FollowTrail = () => {
     return (
       <>
         <MapViewDirections
-          // mode={trailTypes[activeTrailType].mapMode}
+          // mode={trailTypes[].mapMode}
           mode={'BICYCLING'}
           origin={origin}
           destination={currentLocation}
@@ -95,7 +102,7 @@ const FollowTrail = () => {
           description={name}
           title={'Start'}
         >
-          {trailTypes[activeTrailType].locationIcon}
+          {trailTypes[type].icon}
         </Marker>
       </>
     )
@@ -115,11 +122,20 @@ const FollowTrail = () => {
         // followsUserLocation
       >
         <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
-          {trailTypes[activeTrailType].icon}
+          {trailTypes[type].icon}
         </Marker>
 
         <MapDirections />
-        <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
+
+        {isPoly ? (
+          <>
+            {waypoints.map((w, index) => (
+              <Polyline key={index} coordinates={w} strokeWidth={5} strokeColor={'red'} />
+            ))}
+          </>
+        ) : (
+          <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
+        )}
 
         <Marker
           coordinate={destination}

@@ -1,16 +1,16 @@
-export const filterByDifficulty = (distance, key) => {
+export const filterByDifficulty = (difficulty, key) => {
   if (key === 6) {
-    if (distance < 19000) return true
+    if (difficulty === 'easy') return true
     return false
   }
 
   if (key === 7) {
-    if (distance > 19000 && distance <= 50000) return true
+    if (difficulty === 'medium') return true
     return false
   }
 
   if (key === 8) {
-    if (distance > 50000) return true
+    if (difficulty === 'hard') return true
     return false
   }
 
@@ -55,11 +55,27 @@ export const filterByDuration = (duration, key) => {
   return false
 }
 
+export const filterByType = (type, key) => {
+  console.log('filterByType', type, key)
+
+  if (key === 8) {
+    if (type === 'BIKE') return true
+    return false
+  }
+
+  if (key === 9) {
+    if (type === 'WALK') return true
+    return false
+  }
+
+  return false
+}
+
 export const distanceFilter = (filters, toFilter, filterer, key = 'distance') => {
   if (!filters.length) return toFilter
 
-  const filtered = filters.map((d) =>
-    toFilter.filter(({ properties }) => filterer(properties[key], d))
+  const filtered = filters.map((filterKey) =>
+    toFilter.filter(({ properties }) => filterer(properties[key], filterKey))
   )
 
   return filtered.flat()

@@ -29,8 +29,6 @@ export const es = {
   MIN: 'Mínimo',
   MAX: 'Máx',
 
-  PLAY: 'Play',
-  PAUSE: 'Pause',
   SAFETY: 'La seguridad',
 
   START: 'Comienzo',
@@ -46,4 +44,5 @@ export const es = {
   CALL: 'Llamar',
 
   SEND_LOCATION: 'enviar ubicación',
+  PRESS_TO_START: 'Presiona para comenzar a seguir el rastro',
 }

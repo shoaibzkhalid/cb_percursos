@@ -6,4 +6,6 @@ import trail5 from 'assets/geojson/25.json'
 import trail6 from 'assets/geojson/26.json'
 import trail7 from 'assets/geojson/27.json'
 
-export const trailsData = [trail1, trail2, trail3, trail4, trail5, trail6, trail7]
+import trail8 from 'assets/geojson/28.json'
+
+export const trailsData = [trail1, trail2, trail3, trail4, trail5, trail6, trail7, trail8]

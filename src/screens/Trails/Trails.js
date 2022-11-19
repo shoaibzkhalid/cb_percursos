@@ -21,6 +21,7 @@ const Trails = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
   const trails = useSelector((state) => state.app.trails)
   const filtersApplied = useSelector((state) => state.filter.filtersApplied)
+  const trailFilters = useSelector((state) => state.filter.trailFilters)
   const [loading, setLoading] = React.useState(true)
 
   const [page, setPage] = React.useState(0)
@@ -35,6 +36,7 @@ const Trails = ({ navigation: { navigate } }) => {
         onPress={() => {
           navigate('Trail', { item, trailImage: trailImages[index] })
           dispatch(setActiveTrail(item))
+          setPage(0)
         }}
       >
         <Styles.TrailContainer>
@@ -45,15 +47,6 @@ const Trails = ({ navigation: { navigate } }) => {
               <Fonts.RegularText color={COLORS.white}>{trail}</Fonts.RegularText>
             </Flex>
           </Styles.TrailLabel>
-
-          {/* <Styles.ElevationTextContainer>
-            <Flex mx={'10px'}>
-              <Icons.Elevation color={COLORS.textAccent} />
-            </Flex>
-            <Fonts.RegularTextLight color={COLORS.white}>
-              {_.max(item.elevations)} m
-            </Fonts.RegularTextLight>
-          </Styles.ElevationTextContainer> */}
 
           <Styles.TrailType color={COLORS.textAccent}>
             {trailTypes[type].typeIcon}
@@ -84,7 +77,9 @@ const Trails = ({ navigation: { navigate } }) => {
     return (
       <Flex my={'20px'}>
         <Row alignItems={'center'} mx={'10px'}>
-          <Fonts.BigHeading color={COLORS.white}>{t('TRAILS')}</Fonts.BigHeading>
+          <Fonts.Heading size={32} color={COLORS.white}>
+            {t('TRAILS')}
+          </Fonts.Heading>
 
           <PressableOpacity
             onPress={() => {
@@ -178,6 +173,7 @@ const Trails = ({ navigation: { navigate } }) => {
     <>
       <Header />
       <FlatList
+        // data={[trails[7]]}
         data={filtersApplied ? trails : data}
         onEndReachedThreshold={0.2}
         onEndReached={loadMoreData}
@@ -192,7 +188,8 @@ const Trails = ({ navigation: { navigate } }) => {
         getItemLayout={getItemLayout}
         initialNumToRender={3}
         contentContainerStyle={{
-          backgroundColor: COLORS.screenBg,
+          backgroundColor: COLORS.white,
+          borderRadius: 20,
         }}
         keyExtractor={(item, index) => index}
         showsVerticalScrollIndicator={false}

@@ -27,8 +27,6 @@ export const pt = {
   MIN: 'Mín',
   MAX: 'Máx',
 
-  PLAY: 'Play',
-  PAUSE: 'Pause',
   SAFETY: 'Segurança',
 
   RULES: `Circule apenas em trilhos abertos • Não deixe vestígios da sua passagem • Tenha controlo sobre a sua bicicleta • Ceda sempre a prioridade • Nunca assuste os animais • Planeie antecipadamente o seu passeio • Tenha atenção à possibilidade de cruzamento com veículos motorizados nos caminhos públicos sinalizados
@@ -51,4 +49,6 @@ export const pt = {
 
   CALL: 'Ligar',
   SEND_LOCATION: 'enviar localização',
+
+  PRESS_TO_START: 'Pressione para começar a rastrear a trilha',
 }

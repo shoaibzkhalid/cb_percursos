@@ -6,30 +6,39 @@ import { Flex, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
 import { getXLabels } from './utils'
-import { useI18n } from 'hooks/useI18n'
+
+const { height } = Dimensions.get('window')
 
 const ElevationGraph = ({ trail }) => {
-  const { t } = useI18n()
-
   const distance = trail.properties.distance
   const xLabels = getXLabels(Math.floor(distance / 1000))
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(true)
 
-  const animatedValue = React.useRef(new Animated.Value(115)).current
+  const animatedValue = React.useRef(new Animated.Value(0)).current
 
   const animateView = () => {
     setIsOpen(!isOpen)
     Animated.timing(animatedValue, {
-      toValue: isOpen ? 115 : -110,
+      toValue: isOpen ? 190 : 0,
       duration: 250,
       useNativeDriver: true,
     }).start()
   }
 
   return (
-    <Flex>
+    <Flex
+      style={[
+        {
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+        },
+      ]}
+    >
       <Animated.View
         style={{
+          height: height / 2.2,
           transform: [
             {
               translateY: animatedValue,
@@ -37,12 +46,7 @@ const ElevationGraph = ({ trail }) => {
           ],
         }}
       >
-        <Pressable
-          onPress={() => {
-            animateView()
-          }}
-          w={'100%'}
-        >
+        <Pressable onPress={() => animateView()} w={'100%'}>
           <Row
             px={'10px'}
             py={'20px'}
@@ -57,7 +61,6 @@ const ElevationGraph = ({ trail }) => {
                   <Icons.Elevation color={COLORS.textAccent} />
                 </Flex>
                 <Fonts.RegularTextLightest color={COLORS.dark80}>
-                  {/* {t('MAX')} {t('ELEVATION')}:  */}
                   {_.max(trail.elevations)}m
                 </Fonts.RegularTextLightest>
 
@@ -85,6 +88,7 @@ const ElevationGraph = ({ trail }) => {
             </Animated.View>
           </Row>
         </Pressable>
+        {/* END OF TOP ROW */}
         <LineChart
           data={{
             labels: xLabels,
@@ -96,7 +100,7 @@ const ElevationGraph = ({ trail }) => {
           }}
           withVerticalLines={false}
           width={Dimensions.get('window').width} // from react-native
-          height={220}
+          height={165}
           yAxisSuffix="m"
           xAxisLabel=" km"
           withDots={false}
@@ -117,6 +121,10 @@ const ElevationGraph = ({ trail }) => {
             labelColor: (opacity = 1) => `${COLORS.brand}`,
           }}
           bezier
+          style={{
+            paddingBottom: 15,
+            backgroundColor: COLORS.white,
+          }}
         />
       </Animated.View>
     </Flex>

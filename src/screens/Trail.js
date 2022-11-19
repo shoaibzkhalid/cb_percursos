@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { FlatList, Flex, Image, Row } from 'native-base'
 import { useRoute } from '@react-navigation/native'
 
-import { BackButton, CustomButton } from 'components'
+import { BackButton, CustomButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { weatherIcons } from 'theme/weatherIcons'
 
@@ -14,29 +14,34 @@ import { useI18n } from 'hooks/useI18n'
 import TrailSpecs from 'features/TrailSpecs'
 import TrailMap from 'features/TrailMap'
 import { trailTypes } from 'config/constants'
-import { Linking, Platform } from 'react-native'
+import { Dimensions, Linking, Platform } from 'react-native'
+import DescModal from 'features/DescModal'
+
+const { height } = Dimensions.get('window')
 
 const Trail = ({ navigation: { navigate } }) => {
+  const route = useRoute()
+  const { t } = useI18n()
   const lang = useSelector((state) => state.app.lang)
   const weatherForecast = useSelector((state) => state.app.weatherForecast)
+  const [modelOpen, setModelOpen] = React.useState(false)
 
-  const { t } = useI18n()
-  const route = useRoute()
   const item = route.params.item
-
-  const { properties } = item
+  const { properties, trailType, waypoints } = item
   const { type } = properties
-
+  const isPoly = trailType === 'MultiPolygon'
   const maxEle = `${_.max(item.elevations)}m`
-
   const trailImage = route.params.trailImage
   const desc = item.description[lang]
+  const showExpandIcon = desc.length > 1000
+  const { longitude, latitude } = isPoly ? waypoints[0][0] : waypoints[0]
+  const destination = `${latitude},${longitude}%2C`
 
   const Header = () => (
     <>
       <Row alignItems={'center'} p={'10px'} background={COLORS.brand}>
         <BackButton />
-        <Fonts.RegularText color={COLORS.white}>{t('TRAIL')}</Fonts.RegularText>
+        <Fonts.Heading color={COLORS.white}>{t('TRAIL')}</Fonts.Heading>
         <Flex ml={'auto'} mr={'10px'}>
           {trailTypes[type].typeIcon}
         </Flex>
@@ -47,12 +52,15 @@ const Trail = ({ navigation: { navigate } }) => {
   const TrailImg = () => (
     <>
       <Image source={trailImage} h={'250px'} alt={'trail'} />
-      <ElevationTextContainer>
-        <Flex mx={'10px'}>
-          <Icons.Elevation color={COLORS.textAccent} />
-        </Flex>
-        <Fonts.RegularTextLight color={COLORS.white}>{maxEle}</Fonts.RegularTextLight>
-      </ElevationTextContainer>
+
+      {item.elevations[0] && (
+        <ElevationTextContainer>
+          <Flex mx={'10px'}>
+            <Icons.Elevation color={COLORS.textAccent} />
+          </Flex>
+          <Fonts.RegularTextLight color={COLORS.white}>{maxEle}</Fonts.RegularTextLight>
+        </ElevationTextContainer>
+      )}
     </>
   )
 
@@ -61,18 +69,31 @@ const Trail = ({ navigation: { navigate } }) => {
       <Flex mb={'20px'}>
         <TrailSpecs item={item} mx={'10px'} />
       </Flex>
-      <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight>
+
+      <DescModal isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)}>
+        <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight>
+      </DescModal>
+      <Row>
+        <Flex w={showExpandIcon ? '90%' : '100%'}>
+          <Fonts.RegularTextLight color={COLORS.dark80} numberOfLines={10}>
+            {desc}
+          </Fonts.RegularTextLight>
+        </Flex>
+
+        {showExpandIcon && (
+          <PressableOpacity onPress={() => setModelOpen(true)} style={{ top: -20 }}>
+            <Icons.Expand color={COLORS.textAccent} />
+
+            {/* <Flex w={'40px'} mt={'10px'} right={'6px'}>
+              <Fonts.TinyText color={COLORS.dark80}>Expand</Fonts.TinyText>
+            </Flex> */}
+          </PressableOpacity>
+        )}
+      </Row>
       <Map />
 
       <FlatList
         data={weatherForecast}
-        // ListHeaderComponent={() => (
-        //   <Flex my={'10px'}>
-        //     <Fonts.RegularTextLight color={COLORS.dark80}>
-        //       {t('WEATHER_FORECAST')}
-        //     </Fonts.RegularTextLight>
-        //   </Flex>
-        // )}
         numColumns={4}
         renderItem={({ item }) => {
           const { weather, main } = item
@@ -101,31 +122,24 @@ const Trail = ({ navigation: { navigate } }) => {
     </CustomCard>
   )
 
-  const { longitude, latitude } = item.waypoints[item.waypoints.length - 1]
-  const origin = `${item.waypoints[0].longitude}%2C${item.waypoints[0].latitude}`
-  const destination = `${latitude},${longitude}%2C`
-
   const Map = () => (
-    <Flex
-      h={'240px'}
-      overflow={'hidden'}
-      backgroundColor={COLORS.white}
-      my={'20px'}
-      borderRadius={'15px'}
-    >
-      <TrailMap
-        trail={item}
-        zoomTapEnabled={false}
-        zoomControlEnabled={false}
-        zoomEnabled={false}
-        moveOnMarkerPress={false}
-        rotateEnabled={false}
-        scrollEnabled={false}
-        showsUserLocation={false}
-        onPress={() => {
-          navigate('TrailMapFull')
-        }}
-      />
+    <Flex my={'20px'}>
+      <Flex h={'240px'} overflow={'hidden'} my={'20px'} borderRadius={'15px'}>
+        <TrailMap
+          trail={item}
+          zoomTapEnabled={false}
+          zoomControlEnabled={false}
+          zoomEnabled={false}
+          moveOnMarkerPress={false}
+          rotateEnabled={false}
+          scrollEnabled={false}
+          showsUserLocation={false}
+          style={{
+            flex: 1,
+          }}
+          onPress={() => navigate('TrailMapFull')}
+        />
+      </Flex>
 
       <CustomButton
         onPress={() => {

@@ -110,18 +110,18 @@ export const filters = [
 ]
 
 export const trailTypes = {
-  bike: {
+  BIKE: {
     iconLight: <Icons.BikePin color={COLORS.white} width={25} height={25} />,
     icon: <Icons.BikePin color={COLORS.black} width={25} height={25} />,
     locationIcon: <Icons.Bike color={COLORS.textAccent} width={25} height={25} />,
     typeIcon: <Icons.Bike color={COLORS.white} width={20} height={20} />,
     mapMode: 'BICYCLING',
   },
-  walk: {
+  WALK: {
     iconLight: <Icons.WalkPin color={COLORS.white} width={25} height={25} />,
     icon: <Icons.WalkPin color={COLORS.black} width={25} height={25} />,
     locationIcon: <Icons.Walk color={COLORS.textAccent} width={25} height={25} />,
-    typeIcon: <Icons.Bike color={COLORS.white} width={20} height={20} />,
+    typeIcon: <Icons.Walk color={COLORS.white} width={20} height={20} />,
     mapMode: 'WALKING',
   },
 }
@@ -134,4 +134,5 @@ export const trailImages = [
   require('../assets/images/24.jpg'),
   require('../assets/images/24.jpg'),
   require('../assets/images/24.jpg'),
+  require('../assets/images/28.jpg'),
 ]

@@ -17,7 +17,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW, children }) => {
       <StyledModal>
         <Row alignItems={'center'} justifyContent={'space-between'} m={'20px'}>
           <Flex w={headingW}>
-            <Fonts.BigHeading>{title}</Fonts.BigHeading>
+            <Fonts.Heading size={32}>{title}</Fonts.Heading>
           </Flex>
 
           <PressableOpacity onPress={onClose}>

@@ -1,3 +1,4 @@
+import Expand from 'assets/icons/Expand.svg'
 import Back from 'assets/icons/back.svg'
 
 import Cycle from 'assets/icons/Cycle.svg'
@@ -69,4 +70,5 @@ export default {
   Trail,
 
   Safety,
+  Expand,
 }

@@ -5348,7 +5348,8 @@
         "distance": 98800,
         "duration": 750,
         "color": "#221F20",
-        "type": "bike"
+        "type": "BIKE",
+        "difficulty": "hard"
       },
 
       "description": {

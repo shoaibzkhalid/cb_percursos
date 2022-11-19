@@ -1,6 +1,6 @@
 {
   "name": "cb_percursos",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "scripts": {
     "ios": "npx react-native run-ios --simulator=\"iPhone 14\"",
@@ -19,7 +19,8 @@
     "pub": "git push && git push cat master && yarn dist",
     "bundle": "cd android && ./gradlew clean && ./gradlew bundleRelease",
     "push": "git push cat master && yarn build && yarn dist",
-    "list-ios-devices": "xcrun simctl list devices"
+    "list-ios-devices": "xcrun simctl list devices",
+    "getip": "adb shell \"ifconfig | grep -A 1 wlan0 | tail -n 1 | cut -f2 -d: | cut -f1 -d' '\""
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.4.0",

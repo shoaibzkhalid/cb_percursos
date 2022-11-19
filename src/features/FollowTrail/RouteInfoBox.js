@@ -54,12 +54,16 @@ const RouteInfoBox = ({ routeDetails, altitude }) => {
       </Row>
 
       <ActionBtn />
+
+      <Flex my={'10px'} m={'auto'}>
+        <Fonts.SmallText color={COLORS.dark80}>{t('PRESS_TO_START')}</Fonts.SmallText>
+      </Flex>
     </Container>
   )
 }
 
 const Container = styled(Flex)`
-  height: 200px;
+  height: 230px;
   position: absolute;
   bottom: 0;
   left: 0;

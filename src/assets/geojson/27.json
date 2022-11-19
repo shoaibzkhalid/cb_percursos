@@ -1956,7 +1956,8 @@
         "distance": 35400,
         "duration": 270,
         "color": "#221F20",
-        "type": "bike"
+        "type": "BIKE",
+        "difficulty": "hard"
       },
 
       "description": {

@@ -10,7 +10,7 @@ const TrailSpecs = ({ ml = '0px', item, mx = 0 }) => {
   const { t } = useI18n()
 
   const { properties } = item
-  const { distance, duration } = properties
+  const { distance, duration, difficulty } = properties
   const hours = Math.abs((duration / 60).toFixed(1))
 
   const specs = [
@@ -27,15 +27,16 @@ const TrailSpecs = ({ ml = '0px', item, mx = 0 }) => {
     {
       id: 2,
       icon: <Icons.Balance color={COLORS.textAccent} />,
-      value: `${t(getDifficulty(distance))}`,
+      value: `${t(difficulty.toUpperCase())}`,
     },
 
     {
       id: 3,
-      ...(mx === 0 && {
-        icon: <Icons.Elevation color={COLORS.textAccent} />,
-        value: `${_.max(item.elevations)} m`,
-      }),
+      ...(mx === 0 &&
+        item.elevations[0] && {
+          icon: <Icons.Elevation color={COLORS.textAccent} />,
+          value: `${_.max(item.elevations)} m`,
+        }),
     },
   ]
 
