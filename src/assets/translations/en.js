@@ -46,4 +46,10 @@ export const en = {
   CALL: 'Call',
   SEND_LOCATION: 'Send Location',
   PRESS_TO_START: 'Press to start tracking the trail',
+  NO_DATA: 'No data',
+
+  ALERT_MSG:
+    'The trail is more than 1 km away. Do you want directions to the starting point from your location?',
+
+  ALERT_TITLE: 'Get Directions',
 }

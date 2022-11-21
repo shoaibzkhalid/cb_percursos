@@ -12,6 +12,9 @@ import RouteInfoBox from './RouteInfoBox'
 import { BackButton } from 'components'
 import { setRoutePlaying } from 'store/slices/appSlice'
 import { useLocation } from 'hooks/useLocation'
+import { getDistance } from 'geolib'
+import AlertModal from 'features/AlertModal'
+import { openMapLink } from 'utils'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -22,7 +25,9 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 const FollowTrail = () => {
   const mapRef = React.useRef()
   const dispatch = useDispatch()
-  const { userLocation, getLocation } = useLocation()
+  const userLocation = useSelector((state) => state.app.userLocation)
+
+  const { getLocation } = useLocation()
 
   const routePlaying = useSelector((state) => state.app.routePlaying)
   const trail = useSelector((state) => state.app.activeTrail)
@@ -35,6 +40,16 @@ const FollowTrail = () => {
   const isPoly = trailType === 'MultiPolygon'
 
   const origin = isPoly ? waypoints[0][0] : waypoints[0]
+  const originForMap = `${origin.latitude},${origin.longitude}%2C`
+
+  let distance
+
+  if (userLocation) {
+    distance = getDistance(origin, userLocation) // returns meters
+  }
+  const isHigherThanOneKM = distance / 1000 > 1
+
+  const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)
 
   const deltas = {
     latitudeDelta: LATITUDE_DELTA,
@@ -68,14 +83,11 @@ const FollowTrail = () => {
     }, 10000)
   }, [routePlaying, currentIndex, userLocation])
 
-  console.log('currentLocation', currentLocation)
-
   const MapDirections = React.useCallback(() => {
     return (
       <>
         {currentLocation && (
           <>
-            {' '}
             <MapViewDirections
               // mode={trailTypes[].mapMode}
               mode={'BICYCLING'}
@@ -119,14 +131,26 @@ const FollowTrail = () => {
 
   return (
     <>
+      <AlertModal
+        onPress={() => openMapLink(originForMap)}
+        isOpen={!showAlert}
+        onClose={() => setShowAlert(!showAlert)}
+      />
       <MapView
         ref={mapRef}
         style={{ flex: 1 }}
-        initialRegion={{
-          ...origin,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.01,
+        camera={{
+          center: origin,
+          pitch: 0,
+          heading: 0.5,
+          zoom: 14,
         }}
+
+        // initialRegion={{
+        //   ...origin,
+        //   latitudeDelta: 0.02,
+        //   longitudeDelta: 0.01,
+        // }}
         // showsUserLocation
         // followsUserLocation
       >
@@ -156,7 +180,12 @@ const FollowTrail = () => {
         </Marker>
       </MapView>
 
-      <Flex position={'absolute'} left={'20px'} backgroundColor={'transparent'}>
+      <Flex
+        position={'absolute'}
+        // top={'40px'}
+        right={'10px'}
+        backgroundColor={'transparent'}
+      >
         <BackButton />
       </Flex>
       <RouteInfoBox routeDetails={routeDetails} altitude={userLocation?.altitude || 0} />

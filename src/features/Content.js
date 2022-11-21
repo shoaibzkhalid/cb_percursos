@@ -23,7 +23,7 @@ const CustomCard = styled(Flex)`
   background-color: ${COLORS.white};
   border-radius: 20px;
   min-width: 200px;
-  min-height: 600px;
+  /* min-height: 420px; */
   margin: 10px 0px;
   margin-bottom: 0;
   padding: 10px 20px;

@@ -28,9 +28,16 @@ const TrailMap = (props) => {
   return (
     <MapView
       ref={mapRef}
-      initialRegion={{
-        ...origin,
-        ...deltas,
+      // initialRegion={{
+      //   ...origin,
+      //   ...deltas,
+      // }}
+
+      camera={{
+        center: origin,
+        pitch: 0,
+        heading: 0.5,
+        zoom: 14,
       }}
       minZoomLevel={3}
       showsUserLocation

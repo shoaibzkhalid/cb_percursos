@@ -1,1 +1,5 @@
-- fixed some crashes and errors
+- fixed performance issues
+- added new trails
+- added names for walk trails
+- Option to navigate to Trail starting point
+- and other fixes and improvements

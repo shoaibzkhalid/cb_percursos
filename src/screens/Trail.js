@@ -2,6 +2,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import styled from 'styled-components'
+import { Linking, Platform } from 'react-native'
 import { useSelector } from 'react-redux'
 import { FlatList, Flex, Image, Row } from 'native-base'
 import { useRoute } from '@react-navigation/native'
@@ -14,10 +15,8 @@ import { useI18n } from 'hooks/useI18n'
 import TrailSpecs from 'features/TrailSpecs'
 import TrailMap from 'features/TrailMap'
 import { trailTypes } from 'config/constants'
-import { Dimensions, Linking, Platform } from 'react-native'
 import DescModal from 'features/DescModal'
-
-const { height } = Dimensions.get('window')
+import { openMapLink } from 'utils'
 
 const Trail = ({ navigation: { navigate } }) => {
   const route = useRoute()
@@ -35,7 +34,7 @@ const Trail = ({ navigation: { navigate } }) => {
   const desc = item.description[lang]
   const showExpandIcon = desc.length > 1000
   const { longitude, latitude } = isPoly ? waypoints[0][0] : waypoints[0]
-  const destination = `${latitude},${longitude}%2C`
+  const origin = `${latitude},${longitude}%2C`
 
   const Header = () => (
     <>
@@ -141,17 +140,7 @@ const Trail = ({ navigation: { navigate } }) => {
         />
       </Flex>
 
-      <CustomButton
-        onPress={() => {
-          if (Platform.OS === 'ios') {
-            return Linking.openURL(`http://maps.apple.com/?daddr=${destination}&dirflg=w`)
-          }
-
-          Linking.openURL(
-            `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=bicycling`
-          )
-        }}
-      >
+      <CustomButton onPress={() => openMapLink(origin)}>
         <Flex mr={'10px'}>
           <Icons.Directions color={'white'} />
         </Flex>

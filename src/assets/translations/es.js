@@ -45,4 +45,9 @@ export const es = {
 
   SEND_LOCATION: 'enviar ubicación',
   PRESS_TO_START: 'Presiona para comenzar a seguir el rastro',
+  NO_DATA: 'Sin datos',
+
+  ALERT_MSG:
+    'El sendero está a más de 1 km de distancia. ¿Quieres indicaciones para llegar al punto de partida desde tu ubicación?',
+  ALERT_TITLE: 'Obtener las direcciones',
 }

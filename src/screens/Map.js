@@ -2,8 +2,6 @@ import { Dimensions } from 'react-native'
 import React from 'react'
 import MapView, { Marker } from 'react-native-maps'
 
-import { COLORS, Icons } from 'theme'
-
 import { deltaCoordinates, trailTypes } from 'config/constants'
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,16 +21,21 @@ const Map = () => {
 
   return (
     <MapView
+      cam
       ref={mapRef}
       style={{ flex: 1 }}
-      initialRegion={{
-        ...origin,
-        ...deltaCoordinates,
+      initialCamera={{
+        center: origin,
+        pitch: 0,
+        heading: 0.5,
+        zoom: 9,
       }}
-      // region={{
-      //   ...origin,
-      //   ...deltaCoordinates,
-      // }}
+      camera={{
+        center: origin,
+        pitch: 0,
+        heading: 0.5,
+        zoom: 10,
+      }}
       showsCompass={true}
       showsUserLocation
       followsUserLocation

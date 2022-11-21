@@ -35,15 +35,27 @@ const TrailSpecs = ({ ml = '0px', item, mx = 0 }) => {
       ...(mx === 0 &&
         item.elevations[0] && {
           icon: <Icons.Elevation color={COLORS.textAccent} />,
-          value: `${_.max(item.elevations)} m`,
+          value: `${parseFloat(_.max(item.elevations)).toFixed(1)} m`,
         }),
     },
   ]
 
   return (
-    <Row mt={'10px'}>
+    <Row
+      mt={'10px'}
+      // width={'100%'}
+      justifyContent={'space-between'}
+      mx={'5px'}
+      // background={'red.700'}
+    >
       {specs.map(({ icon, value, id }) => (
-        <Row key={id} alignItems={'center'} mx={mx} ml={ml}>
+        <Row
+          key={id}
+          alignItems={'center'}
+          // mx={mx}
+          // ml={ml}
+          // background={'amber.300'}
+        >
           <Flex mr={'5px'}>
             <Fonts.SmallText>{value}</Fonts.SmallText>
           </Flex>

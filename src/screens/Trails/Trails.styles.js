@@ -38,6 +38,7 @@ const TrailType = styled(Flex)`
 
 const LogoImg = styled(Image)`
   margin: 10px;
+  margin-left: 0;
   width: 110px;
   height: 50px;
 

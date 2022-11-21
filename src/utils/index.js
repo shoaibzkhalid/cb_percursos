@@ -1,4 +1,4 @@
-import { Share } from 'react-native'
+import { Linking, Share } from 'react-native'
 
 export const getDifficulty = (distance) => {
   if (distance > 50000) {
@@ -31,4 +31,16 @@ export const onShare = async (message) => {
   } catch (error) {
     alert(error.message)
   }
+}
+
+export const openMapLink = (destination) => {
+  // console.log('destination', destination)
+
+  if (Platform.OS === 'ios') {
+    return Linking.openURL(`http://maps.apple.com/?daddr=${destination}&dirflg=w`)
+  }
+
+  return Linking.openURL(
+    `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=bicycling`
+  )
 }

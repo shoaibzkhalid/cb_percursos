@@ -80,7 +80,7 @@ const ElevationGraph = ({ trail }) => {
 
             <Animated.View
               style={{
-                transform: [{ rotate: isOpen ? '180deg' : '0deg' }],
+                transform: [{ rotate: !isOpen ? '180deg' : '0deg' }],
                 marginRight: 20,
               }}
             >

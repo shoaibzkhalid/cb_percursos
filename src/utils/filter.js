@@ -56,8 +56,6 @@ export const filterByDuration = (duration, key) => {
 }
 
 export const filterByType = (type, key) => {
-  console.log('filterByType', type, key)
-
   if (key === 8) {
     if (type === 'BIKE') return true
     return false

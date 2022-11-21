@@ -13,10 +13,13 @@ import { languages } from 'config/constants'
 import { useWeather } from 'hooks/useWeather'
 import { weatherIcons } from 'theme/weatherIcons'
 import { useTrails } from 'hooks/useTrails'
+import { useLocation } from 'hooks/useLocation'
 
 const Welcome = ({ navigation: { navigate } }) => {
   useWeather()
+  useLocation()
   useTrails()
+
   const dispatch = useDispatch()
   const { t } = useI18n()
   const { weather, main } = useSelector((state) => state.app.weather)

@@ -7,10 +7,7 @@ import { COLORS } from 'theme'
 const LoadingAnimation = ({ style, color, size }) => {
   return (
     <Flex style={StyleSheet.absoluteFillObject} justifyContent={'center'}>
-      <ActivityIndicator
-        size={size ? size : 'large'}
-        color={color ? color : COLORS.textAccent}
-      />
+      <ActivityIndicator size={size ? size : 'large'} color={color ? color : COLORS.white} />
     </Flex>
   )
 }

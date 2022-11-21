@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FlatList, Flex, Modal, Row, ScrollView } from 'native-base'
+import { Flex, Modal, ScrollView } from 'native-base'
 
-import { PressableOpacity } from 'components'
-import { COLORS, Fonts, Icons } from 'theme'
-import { Pressable, StyleSheet } from 'react-native'
+import { COLORS, Icons } from 'theme'
+import { Pressable } from 'react-native'
 
-const DescModal = ({ title, isOpen, onClose, headingW, children }) => {
+const DescModal = ({ isOpen, onClose, children }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={'full'}>
       <StyledModal background={'red.100'} showsVerticalScrollIndicator={false}>

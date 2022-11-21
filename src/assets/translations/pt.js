@@ -40,8 +40,8 @@ export const pt = {
 
   DIRECTIONS: 'instruções',
 
-  GNR: 'G.N.S',
-  CIVIL_DEFENSE: 'Defesa Civil',
+  GNR: 'GNR',
+  CIVIL_DEFENSE: 'Proteção CiIvil',
 
   MY_LOCATION: 'minha posição atual',
   COORDINATES: 'coordenadas',
@@ -51,4 +51,10 @@ export const pt = {
   SEND_LOCATION: 'enviar localização',
 
   PRESS_TO_START: 'Pressione para começar a rastrear a trilha',
+  NO_DATA: 'sem dados',
+
+  ALERT_MSG:
+    'A trilha fica a mais de 1 km de distância. Você quer direções para o ponto de partida da sua localização?',
+
+  ALERT_TITLE: 'Obter direções',
 }

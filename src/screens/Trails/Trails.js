@@ -1,12 +1,11 @@
 import React from 'react'
 import { FlatList, Flex, Row } from 'native-base'
-import _, { capitalize } from 'lodash'
+import _ from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { LoadingAnimation, PressableOpacity } from 'components'
-import { filters, trailImages, trailTypes } from 'config/constants'
-import { setFilter } from 'store/slices/filterSlice'
+import { trailImages, trailTypes } from 'config/constants'
 
 import { setActiveTrail } from 'store/slices/appSlice'
 import { useI18n } from 'hooks/useI18n'
@@ -20,13 +19,15 @@ const Trails = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const dispatch = useDispatch()
   const trails = useSelector((state) => state.app.trails)
-  const filtersApplied = useSelector((state) => state.filter.filtersApplied)
   const trailFilters = useSelector((state) => state.filter.trailFilters)
+
   const [loading, setLoading] = React.useState(true)
 
-  const [page, setPage] = React.useState(0)
-  const DATA_LENGTH = 5
-  const [data, setData] = React.useState(trails.slice(page, DATA_LENGTH))
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }, [])
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
@@ -37,7 +38,6 @@ const Trails = ({ navigation: { navigate } }) => {
         onPress={() => {
           navigate('Trail', { item, trailImage: trailImages[index] })
           dispatch(setActiveTrail(item))
-          setPage(0)
         }}
       >
         <Styles.TrailContainer>
@@ -69,11 +69,10 @@ const Trails = ({ navigation: { navigate } }) => {
   })
 
   const Header = React.useCallback(() => {
-    const dispatch = useDispatch()
-    const trailFilters = useSelector((state) => state.filter.trailFilters)
-
     const [modalOpen, setModalOpen] = React.useState(false)
-    const filterIconColor = filtersApplied ? COLORS.textAccent : COLORS.white
+    const filterActive = Boolean(Object.values(trailFilters).flat().length)
+
+    const filterIconColor = filterActive ? COLORS.textAccent : COLORS.white
 
     return (
       <Flex my={'20px'}>
@@ -89,7 +88,7 @@ const Trails = ({ navigation: { navigate } }) => {
             ml={'auto'}
           >
             <Row alignItems={'center'} mx={'10px'}>
-              <Fonts.RegularText color={filterIconColor}>{t('FILTER')}</Fonts.RegularText>
+              <Fonts.Heading color={filterIconColor}>{t('FILTER')}</Fonts.Heading>
               <Flex px={'10px'}>
                 <Icons.Filter width={15} color={filterIconColor} />
               </Flex>
@@ -101,102 +100,37 @@ const Trails = ({ navigation: { navigate } }) => {
           isOpen={modalOpen}
           title={t('FILTER')}
           onClose={() => setModalOpen(!modalOpen)}
-        >
-          {filters.map((filter) => {
-            const { icon, id, name, options, unit, title } = filter
-
-            return (
-              <Flex key={id} mb={'20px'}>
-                <Row alignItems={'center'}>
-                  <Flex mr={'10px'}>{icon}</Flex>
-                  <Fonts.RegularText>{capitalize(t(title))}</Fonts.RegularText>
-                </Row>
-
-                <Row mt={'10px'} justifyContent={'space-between'} flexWrap={'wrap'}>
-                  {options.map((option, index) => {
-                    const { value } = option
-                    const selected = trailFilters[name].filter(({ id }) => id === option.id)[0]
-                    const removedItemList = trailFilters[name].filter(
-                      ({ id }) => id !== option.id
-                    )
-
-                    const selectedColor = selected ? COLORS.textAccent : COLORS.transparent
-
-                    return (
-                      <Styles.OptionRow
-                        key={index}
-                        color={selectedColor}
-                        onPress={() => {
-                          if (selected) {
-                            return dispatch(
-                              setFilter({
-                                ...trailFilters,
-                                [name]: removedItemList,
-                              })
-                            )
-                          }
-
-                          return dispatch(
-                            setFilter({
-                              ...trailFilters,
-                              [name]: [...new Set([...trailFilters[name], option])],
-                            })
-                          )
-                        }}
-                      >
-                        <Fonts.RegularText
-                          style={{ textAlign: 'center' }}
-                          color={selected ? COLORS.white : COLORS.textAccent}
-                        >
-                          {name === 'difficulty' ? t(value) : value} {unit}
-                        </Fonts.RegularText>
-                      </Styles.OptionRow>
-                    )
-                  })}
-                </Row>
-              </Flex>
-            )
-          })}
-        </FilterModal>
+        />
       </Flex>
     )
   }, [])
 
-  const loadMoreData = () => {
-    if (data.length >= trails.length) return setLoading(false)
-
-    const start = page + DATA_LENGTH
-    setPage(page + DATA_LENGTH)
-    setData([...data, ...trails.slice(start, start + DATA_LENGTH)])
-  }
-
   return (
     <>
       <Header />
-      <FlatList
-        // data={[trails[7]]}
-        data={filtersApplied ? trails : data}
-        onEndReachedThreshold={0.2}
-        onEndReached={loadMoreData}
-        ListFooterComponent={() => {
-          if (!loading) return
-          return (
-            <Flex p={'50px'}>
-              <LoadingAnimation />
+      {loading ? (
+        <LoadingAnimation />
+      ) : (
+        <FlatList
+          refreshing={loading}
+          data={trails}
+          getItemLayout={getItemLayout}
+          ListEmptyComponent={() => (
+            <Flex alignSelf={'center'}>
+              <Fonts.RegularText color={COLORS.white}>{t('NO_DATA')}</Fonts.RegularText>
             </Flex>
-          )
-        }}
-        getItemLayout={getItemLayout}
-        initialNumToRender={3}
-        contentContainerStyle={{
-          backgroundColor: COLORS.white,
-          borderRadius: 20,
-        }}
-        keyExtractor={(item, index) => index}
-        showsVerticalScrollIndicator={false}
-        bounces={false}
-        renderItem={({ item, index }) => <Item item={item} index={index} />}
-      />
+          )}
+          initialNumToRender={3}
+          contentContainerStyle={{
+            backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
+            borderRadius: 20,
+          }}
+          keyExtractor={(item, index) => index}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          renderItem={({ item, index }) => <Item item={item} index={index} />}
+        />
+      )}
     </>
   )
 }

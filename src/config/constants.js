@@ -1,5 +1,12 @@
 import { COLORS, Icons } from 'theme'
 
+export const FILTER_INITIAL_STATE = {
+  duration: [],
+  distance: [],
+  difficulty: [],
+  type: [],
+}
+
 export const languages = [
   {
     title: 'portuguese',
@@ -134,5 +141,19 @@ export const trailImages = [
   require('../assets/images/24.jpg'),
   require('../assets/images/24.jpg'),
   require('../assets/images/24.jpg'),
+
   require('../assets/images/28.jpg'),
+  require('../assets/images/28.jpg'),
+  require('../assets/images/28.jpg'),
+  require('../assets/images/28.jpg'),
+  require('../assets/images/28.jpg'),
+  require('../assets/images/28.jpg'),
+  require('../assets/images/28.jpg'),
+  // require('../assets/images/PR1.png'),
+  // require('../assets/images/PR2.png'),
+  // require('../assets/images/PR3.png'),
+  // require('../assets/images/PR4.png'),
+  // require('../assets/images/PR6.png'),
+  // require('../assets/images/PR7.png'),
+  // require('../assets/images/PR8.png'),
 ]
