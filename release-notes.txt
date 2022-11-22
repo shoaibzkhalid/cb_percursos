@@ -1,5 +1,13 @@
-- fixed performance issues
-- added new trails
-- added names for walk trails
-- Option to navigate to Trail starting point
-- and other fixes and improvements
+Added new trails
+The name of walking trails must be full ✅
+When a trais is open let the name still apear ✅
+Here remove the whitebox and center elements vertical. ✅
+the call change the rectangles og GNR and proteção to white ✅
+Also when names are big override the start fallow ✅
+increase the icons of trails on map. ✅
+Add text above call 112  Usar apenas em caso de emergência ✅ above the phones - Outros contactos de emergência ✅
+
+the bike or walk icon instead of point with user location like it  ✅
+Does message to go to start point if user is >1km of trail work? ✅
+Let altitute icon near the others as apear on list ✅
+add the name of the trail ✅

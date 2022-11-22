@@ -3,17 +3,14 @@ import { useDispatch } from 'react-redux'
 
 import { OPEN_WEATHER_KEY } from 'config/keys'
 import { setWeather, setWeatherForecast, setWeatherLoading } from 'store/slices/appSlice'
-import { useLocation } from './useLocation'
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 
 export const useWeather = () => {
   const dispatch = useDispatch()
-  const { getLocation } = useLocation()
 
   React.useEffect(() => {
     dispatch(setWeatherLoading(true))
-    getLocation()
     getWeather()
     getWeatherForecast()
   }, [])

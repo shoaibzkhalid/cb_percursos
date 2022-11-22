@@ -21,7 +21,10 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
     <Flex>
       <Row alignItems={'center'} m={'10px'}>
         <BackButton />
-        <Fonts.Heading color={COLORS.white}>{activeTrail.properties.trail}</Fonts.Heading>
+
+        <Flex w={'50%'}>
+          <Fonts.Heading color={COLORS.white}>{activeTrail.properties.name}</Fonts.Heading>
+        </Flex>
 
         <PressableOpacity
           ml={'auto'}

@@ -1368,17 +1368,16 @@
         ]
       },
       "properties": {
-        "name": "Current_21_12_2009",
         "stroke-opacity": 0.7843137254901961,
         "stroke": "#FF0014",
         "stroke-width": 4,
-
-        "trail": "Rota Ribeira da Magueija-Sarzedas",
+        "name": "Rota Ribeira da Magueija-Sarzedas",
         "distance": 4500,
         "duration": 80,
         "color": "#60AC56",
         "type": "WALK",
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "place": "Centro de Btt das Sarzedas"
       },
       "description": {
         "pt": "O Percurso da Rota da Ribeira da Magueija é linear e não muito longo. Dá a conhecer três aldeias da freguesia de Sarzedas e pode ser realizado no sentido Rapoula  Malhada do Cervo ou Malhada do Cervo Rapoula. Neste caso o caminho realizado teve inicio em Rapoula, aldeia pitoresca de casario disperso mas de gentes que sabem e gostam de receber quem chega de fora. Seguiremos agora ao longo da margem direita da ribeira da Magueija. É neste percurso que encontramos um conjunto de casas desabitadas a que chamam “Penteado”. Deixamos para trás Rapoula e Penteado em direção a Azenha de Baixo onde chegaremos por trilhos e campos agrícolas. Para chegar ao nosso próximo destino, Malhada do Cervo, tomamos o caminho que nos leva ao interior do pinhal, deixando para trás a ribeira da Magueija.",

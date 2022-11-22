@@ -14,6 +14,15 @@ import pr6 from 'assets/geojson/pr6_ctb.json'
 import pr7 from 'assets/geojson/pr7_ctb.json'
 import pr8 from 'assets/geojson/pr8_ctb.json'
 
+import cg1 from 'assets/geojson/centrobttgardunha_verde_1.json'
+import cg2 from 'assets/geojson/centrobttgardunha_azul_2.json'
+import cg3 from 'assets/geojson/centrobttgardunha_azul_3.json'
+import cg4 from 'assets/geojson/centrobttgardunha_vermelho_4.json'
+import cg5 from 'assets/geojson/centrobttgardunha_vermelho_5.json'
+import cg6 from 'assets/geojson/centrobttgardunha_vermelho_6.json'
+import cg7 from 'assets/geojson/centrobttgardunha_vermelho_7.json'
+import cg8 from 'assets/geojson/centrobttgardunha_vermelho_8.json'
+
 export const trailsData = [
   trail1,
   trail2,
@@ -30,4 +39,13 @@ export const trailsData = [
   pr6,
   pr7,
   pr8,
+  //
+  cg1,
+  cg2,
+  cg3,
+  cg4,
+  cg5,
+  cg6,
+  cg7,
+  cg8,
 ]

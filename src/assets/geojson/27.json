@@ -1951,13 +1951,13 @@
         ]
       },
       "properties": {
-        "name": "preto_almaceda",
-        "trail": 27,
+        "name": 27,
         "distance": 35400,
         "duration": 270,
         "color": "#221F20",
         "type": "BIKE",
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "place": "Centro de Btt das Sarzedas"
       },
 
       "description": {

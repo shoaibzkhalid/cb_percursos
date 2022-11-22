@@ -1071,18 +1071,18 @@
         ]
       },
       "properties": {
-        "name": "Path",
         "styleUrl": "#lineStyle",
         "stroke-opacity": 0.6,
         "stroke": "#59acff",
         "stroke-width": 6,
 
-        "trail": "Caminho do Xisto das Sarzedas",
+        "name": "PR3 - Caminho do Xisto das Sarzedas",
         "distance": 14800,
         "duration": 260,
         "color": "#60AC56",
         "type": "WALK",
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "place": "Centro de Btt das Sarzedas"
       },
       "description": {
         "pt": "O percurso tem início na aldeia, junto à Capela de Santo António, com uma primeira parte urbana onde é possível apreciar as ruas ladeadas de casas brasonadas. Chegados à Capela de S. Sebastião percorremos uma calçada Romana até ao Campanário e Igreja Matriz. Ainda na vila continuamos até à Fonte, local onde antigamente os habitantes iam buscar água e onde ainda existe um lavadouro. A partir daqui embrenhamo-nos num ambiente natural através de uma pequena vereda que atravessa pinheiros, sobreiros e carvalhos até chegarmos a Almoinhas e Rapoula. Encontramos então o “Monte dos Afonsos”, lugar onde habitou uma família com este nome e onde o casario de xisto se mantém muito bem conservado. A próxima paragem é em Gatas, que nos oferece uma vista deslumbrante sobre a Ribeira da Magueija e campos ainda cultivados nas suas margens, onde oliveiras seculares adornam pequenas hortas. É aqui que se situam as antigas Minas de Volfrâmio, que segundo os antigos relatos, era vendido para a Alemanha por altura da II Guerra Mundial. Avançando mais um pouco conseguimos vislumbrar todo o Vale da Santa, onde fica a Capela de Santa Maria Madalena, encontrando na descida vestígios da antiga exploração mineira. Surge-nos a Fonte Santa, assim chamada porque a água nunca seca e lhe serem reconhecidos milagres. A partir daqui o percurso é feito entre hortas, riachos e ribeiros. Já próximo do final atravessamos um carvalhal povoado de árvores seculares e regressamos ao local de partida.",

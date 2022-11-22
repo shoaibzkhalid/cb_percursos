@@ -52,9 +52,9 @@ const Map = () => {
             <Marker
               coordinate={origin}
               identifier={'origin'}
-              title={String(t.properties.trail)}
+              title={String(t.properties.name)}
             >
-              {trailTypes[properties.type].icon}
+              {trailTypes[properties.type].iconBig}
             </Marker>
           </Fragment>
         )

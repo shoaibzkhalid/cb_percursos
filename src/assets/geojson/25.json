@@ -2603,15 +2603,15 @@
         ]
       },
       "properties": {
-        "name": "vermelho",
         "stroke": "#ff0000",
         "stroke-opacity": 1,
-        "trail": 25,
+        "name": 25,
         "distance": 56400,
         "duration": 270,
         "color": "#C03633",
         "type": "BIKE",
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "place": "Centro de Btt das Sarzedas"
       },
       "description": {
         "pt": "Percurso circular com início e fim no Centro de BTT. No início, segue em conjunto com o percurso azul, separando-se perto da localidade de Rapoula. Tem troços ao longo da ribeira do Alvito e Ribeira da Magueija antes de seguir em direção a Chão da Vã e Salgueiro do Campo. Retoma o caminho de Sarzedas passando pelo sítio do Muro e pela aldeia de Serrasqueira. Percurso difícil.",

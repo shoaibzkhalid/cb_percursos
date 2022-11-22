@@ -7,12 +7,13 @@
       "properties": {
         "stroke": "#00ff00",
         "stroke-opacity": 1,
-        "trail": "Rota da Gardunha",
+        "name": "PR1 - Rota da Gardunha",
         "distance": 17400,
         "duration": 60,
         "color": "#60AC56",
         "type": "WALK",
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "place": "Centro de Btt das Sarzedas"
       },
       "geometry": {
         "type": "MultiPolygon",

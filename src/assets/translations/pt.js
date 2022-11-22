@@ -57,4 +57,7 @@ export const pt = {
     'A trilha fica a mais de 1 km de distância. Você quer direções para o ponto de partida da sua localização?',
 
   ALERT_TITLE: 'Obter direções',
+
+  EMERGENCY_TXT: 'Usar apenas em caso de emergência',
+  OTHER_CONTACTS: 'Outros contactos de emergência',
 }

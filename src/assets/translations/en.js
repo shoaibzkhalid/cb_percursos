@@ -52,4 +52,8 @@ export const en = {
     'The trail is more than 1 km away. Do you want directions to the starting point from your location?',
 
   ALERT_TITLE: 'Get Directions',
+
+  EMERGENCY_TXT: 'Use only in case of emergency',
+
+  OTHER_CONTACTS: 'Other emergency contacts',
 }

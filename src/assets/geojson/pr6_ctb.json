@@ -647,15 +647,15 @@
         ]
       },
       "properties": {
-        "name": "PT6",
         "stroke": "#00ff00",
         "stroke-opacity": 1,
-        "trail": "Rota Poço dos Sinos- Sarzeda",
+        "name": "PR6 - Rota Poço dos Sinos- Sarzeda",
         "distance": 15000,
         "duration": 180,
         "color": "#60AC56",
         "type": "WALK",
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "place": "Centro de Btt das Sarzedas"
       },
       "description": {
         "pt": "O percurso circular do Poço dos Sinos tem início junto da Casa do Povo da Grade, localidade de gentes afáveis e daí segue por entre olivais e pequenas hortas familiares até à aldeia de Casal Novo. Nesta aldeia o silêncio reina, o casario desabitado, mas conservado, recebe quem por lá passa. Seguimos para o pinhal, pelas margens da ribeira entre salgueiros e amieiros, entre matos e oliveiras centenárias esquecidas pelos donos, que outrora delas tiravam rendimento, em direção à Ribeira da Magueija. O caminho leva-nos ao encontro da Ribeira do Goulo. Também aqui a natureza já tomou o lugar do olival tradicional plantado pelos antepassados de quem ainda hoje mora nas aldeias vizinhas. É nesta Ribeira que mais à frente vamos encontrar a Ponte do Poço dos Sinos que tem lendas e historias para descobrir junto de quem as sabe contar. A Capela de St. Ildefonso é a nossa próxima paragem, depois de ficar para trás a companhia das oliveiras e sobreiros plantados pelo homem. De St. Ildefonso regressamos à Ribeira que alberga na margem o velho lagar do qual restam apenas as galgas que moíam as azeitonas. Vamos encontrar o Moinho do Pereiro e o Moinho do Casal Novo onde podemos entrar e aprender como era moído o cereal. Estamos agora de volta à Grade e aos seus campos cultivados onde termina este percurso, no mesmo local de onde partimos.",

@@ -145,6 +145,7 @@ const FollowTrail = () => {
           heading: 0.5,
           zoom: 14,
         }}
+        showsUserLocation={true}
 
         // initialRegion={{
         //   ...origin,
@@ -180,12 +181,7 @@ const FollowTrail = () => {
         </Marker>
       </MapView>
 
-      <Flex
-        position={'absolute'}
-        // top={'40px'}
-        right={'10px'}
-        backgroundColor={'transparent'}
-      >
+      <Flex position={'absolute'} top={'50px'} left={'10px'} backgroundColor={'transparent'}>
         <BackButton />
       </Flex>
       <RouteInfoBox routeDetails={routeDetails} altitude={userLocation?.altitude || 0} />

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Flex, Row } from 'native-base'
 import { COLORS, Fonts } from 'theme'
 
-const Content = ({ content, children }) => {
+const Content = ({ content, children, bg }) => {
   const { icon, title } = content
   return (
     <>
@@ -14,13 +14,15 @@ const Content = ({ content, children }) => {
         </Fonts.Heading>
       </Row>
 
-      <CustomCard>{children}</CustomCard>
+      <CustomCard bg={bg}>{children}</CustomCard>
     </>
   )
 }
 
 const CustomCard = styled(Flex)`
-  background-color: ${COLORS.white};
+  background-color: ${COLORS.brand};
+  background-color: ${({ bg = 'white' }) => `${bg}`};
+
   border-radius: 20px;
   min-width: 200px;
   /* min-height: 420px; */

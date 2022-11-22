@@ -5341,15 +5341,15 @@
         ]
       },
       "properties": {
-        "name": "preto",
         "stroke": "#000000",
         "stroke-opacity": 1,
-        "trail": 26,
+        "name": 26,
         "distance": 98800,
         "duration": 750,
         "color": "#221F20",
         "type": "BIKE",
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "place": "Centro de Btt das Sarzedas"
       },
 
       "description": {

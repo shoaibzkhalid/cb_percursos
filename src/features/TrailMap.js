@@ -1,8 +1,11 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
+import { useSelector } from 'react-redux'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 
 import { trailTypes } from 'config/constants'
+import { COLORS, Icons } from 'theme'
+import { PressableOpacity } from 'components'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -13,12 +16,14 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 const TrailMap = (props) => {
   const { trail } = props
   const mapRef = React.useRef()
+  const userLocation = useSelector((state) => state.app.userLocation)
 
   const { waypoints, properties, trailType } = trail
   const { name, color } = properties
   const isPoly = trailType === 'MultiPolygon'
 
   const origin = isPoly ? waypoints[0][0] : waypoints[0]
+  const [region, setRegion] = React.useState(origin)
 
   const deltas = {
     latitudeDelta: LATITUDE_DELTA,
@@ -26,40 +31,72 @@ const TrailMap = (props) => {
   }
 
   return (
-    <MapView
-      ref={mapRef}
-      // initialRegion={{
-      //   ...origin,
-      //   ...deltas,
-      // }}
+    <>
+      <PressableOpacity
+        onPress={() => setRegion(userLocation)}
+        style={{
+          position: 'absolute',
+          top: 20,
+          right: 15,
+          zIndex: 100000,
+        }}
+      >
+        <Icons.Gps color={COLORS.dark80} />
+      </PressableOpacity>
+      <MapView
+        ref={mapRef}
+        // initialRegion={{
+        //   ...origin,
+        //   ...deltas,
+        // }}
 
-      camera={{
-        center: origin,
-        pitch: 0,
-        heading: 0.5,
-        zoom: 14,
-      }}
-      minZoomLevel={3}
-      showsUserLocation
-      followsUserLocation
-      zoomControlEnabled
-      customMapStyle={{ padding: 40, borderRadius: 40 }}
-      {...props}
-    >
-      <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
-        {trailTypes[trail.properties.type].icon}
-      </Marker>
+        camera={{
+          center: region,
+          pitch: 0,
+          heading: 0.5,
+          zoom: 14,
+        }}
+        minZoomLevel={3}
+        showsMyLocationButton={false}
+        // showsMyLocationButton={false}
+        showsUserLocation={false}
+        // followsUserLocation
+        zoomControlEnabled
+        customMapStyle={{ padding: 40, borderRadius: 40 }}
+        {...props}
+      >
+        {/* <Flex
+          background={'red.100'}
+          style={{ position: 'absolute', top: 110, left: 0, right: 0, bottom: 0 }}
+        >
+          <Icons.Gps />
+        </Flex> */}
+        {userLocation && (
+          <Marker
+            coordinate={userLocation}
+            identifier={'userLocation'}
+            description={name}
+            title={'Start'}
+          >
+            {trailTypes[trail.properties.type].icon}
+          </Marker>
+        )}
 
-      {isPoly ? (
-        <>
-          {waypoints.map((w, index) => (
-            <Polyline key={index} coordinates={w} strokeWidth={5} strokeColor={'red'} />
-          ))}
-        </>
-      ) : (
-        <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
-      )}
-    </MapView>
+        <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
+          {trailTypes[trail.properties.type].icon}
+        </Marker>
+
+        {isPoly ? (
+          <>
+            {waypoints.map((w, index) => (
+              <Polyline key={index} coordinates={w} strokeWidth={5} strokeColor={'red'} />
+            ))}
+          </>
+        ) : (
+          <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
+        )}
+      </MapView>
+    </>
   )
 }
 

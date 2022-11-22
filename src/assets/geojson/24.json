@@ -1217,15 +1217,15 @@
         ]
       },
       "properties": {
-        "name": "azul_almaceda",
         "stroke": "#0000ff",
         "stroke-opacity": 1,
-        "trail": 24,
+        "name": 24,
         "distance": 24500,
         "duration": 220,
         "color": "#3D5BA5",
         "type": "BIKE",
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "place": "Centro de Btt das Sarzedas"
       },
 
       "description": {

@@ -2,7 +2,6 @@ import React from 'react'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import styled from 'styled-components'
-import { Linking, Platform } from 'react-native'
 import { useSelector } from 'react-redux'
 import { FlatList, Flex, Image, Row } from 'native-base'
 import { useRoute } from '@react-navigation/native'
@@ -40,7 +39,11 @@ const Trail = ({ navigation: { navigate } }) => {
     <>
       <Row alignItems={'center'} p={'10px'} background={COLORS.brand}>
         <BackButton />
-        <Fonts.Heading color={COLORS.white}>{t('TRAIL')}</Fonts.Heading>
+
+        <Flex w={'70%'}>
+          <Fonts.Heading color={COLORS.white}>{properties.name}</Fonts.Heading>
+        </Flex>
+        {/* <Fonts.Heading color={COLORS.white}>{t('TRAIL')}</Fonts.Heading> */}
         <Flex ml={'auto'} mr={'10px'}>
           {trailTypes[type].typeIcon}
         </Flex>
@@ -51,15 +54,14 @@ const Trail = ({ navigation: { navigate } }) => {
   const TrailImg = () => (
     <>
       <Image source={trailImage} h={'250px'} alt={'trail'} />
-
-      {item.elevations[0] && (
+      {/* {item.elevations[0] && (
         <ElevationTextContainer>
           <Flex mx={'10px'}>
             <Icons.Elevation color={COLORS.textAccent} />
           </Flex>
           <Fonts.RegularTextLight color={COLORS.white}>{maxEle}</Fonts.RegularTextLight>
         </ElevationTextContainer>
-      )}
+      )} */}
     </>
   )
 
@@ -80,12 +82,8 @@ const Trail = ({ navigation: { navigate } }) => {
         </Flex>
 
         {showExpandIcon && (
-          <PressableOpacity onPress={() => setModelOpen(true)} style={{ top: -20 }}>
+          <PressableOpacity onPress={() => setModelOpen(true)} style={{ top: 0 }}>
             <Icons.Expand color={COLORS.textAccent} />
-
-            {/* <Flex w={'40px'} mt={'10px'} right={'6px'}>
-              <Fonts.TinyText color={COLORS.dark80}>Expand</Fonts.TinyText>
-            </Flex> */}
           </PressableOpacity>
         )}
       </Row>
@@ -158,7 +156,7 @@ const Trail = ({ navigation: { navigate } }) => {
 
   return (
     <FlatList
-      // keyExtractor={(item) => item.properties.trail}
+      // keyExtractor={(item) => item.properties.name}
       initialNumToRender={3}
       showsVerticalScrollIndicator={false}
       data={[

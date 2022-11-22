@@ -640,18 +640,18 @@
         ]
       },
       "properties": {
-        "name": "Path",
         "styleUrl": "#lineStyle",
         "stroke-opacity": 0.6,
         "stroke": "#59acff",
         "stroke-width": 6,
 
-        "trail": "Rota dos Lagares-Almaceda",
+        "name": "PR7 - Rota dos Lagares-Almaceda",
         "distance": 15000,
         "duration": 255,
         "color": "#60AC56",
         "type": "WALK",
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "place": "Centro de Btt das Sarzedas"
       },
       "description": {
         "pt": "O caminho pela Rota dos Lagares é circular e leva-nos a conhecer antigos lagares de azeite, tradicionalmente conhecidos por Lagares de Varas. Iniciamos o percurso em Almaceda próximo das ruinas do primeiro lagar de varas que iremos encontrar ao longo do trajeto. Seguimos agora ao longo da ribeira de Almaceda que alberga nas suas margens olivais e pequenas hortas familiares primorosamente cultivados. É nesta ribeira que pouco depois de sair de Almaceda encontramos o segundo lagar de varas, também este quase em ruinas mas onde ainda podemos ver todas as peças constituintes do lagar através das suas janelas entreabertas. Deixamos para trás os campos agrícolas e retomamos o caminho por entre pinhal e novas plantações florestais que nos levará ao último lagar deste percurso. Estamos agora no lagar de Rochas de Cima recentemente recuperado para que possa ser visitado e dar a conhecer aos seus visitantes o processo de extração de azeite mais utilizado na Beira Baixa antes de surgirem processos mais recentes e industrializados. A viagem segue e leva-nos de visita a Rochas de Cima antes de rumar à aldeia de Violeiro. Nesta aldeia é paragem obrigatória a fonte de mergulho de águas frescas e cristalinas que durante anos, ainda no século passado, foi local de abastecimento publico. Continuamos agora a nossa viagem por caminhos florestais, tantas vezes percorridos pelos resineiros, que nos levam de novo a Almaceda e ao final desta rota",

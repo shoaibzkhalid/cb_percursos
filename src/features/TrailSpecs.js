@@ -32,11 +32,11 @@ const TrailSpecs = ({ ml = '0px', item, mx = 0 }) => {
 
     {
       id: 3,
-      ...(mx === 0 &&
-        item.elevations[0] && {
-          icon: <Icons.Elevation color={COLORS.textAccent} />,
-          value: `${parseFloat(_.max(item.elevations)).toFixed(1)} m`,
-        }),
+      // {
+      icon: <Icons.Elevation color={COLORS.textAccent} />,
+      value: `${parseFloat(_.max(item.elevations)).toFixed(1)} m`,
+      // }
+      // ...(mx === 0 && item.elevations[0]),
     },
   ]
 

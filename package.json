@@ -1,6 +1,6 @@
 {
   "name": "cb_percursos",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "scripts": {
     "ios": "npx react-native run-ios --simulator=\"iPhone 14\"",
@@ -23,6 +23,7 @@
     "getip": "adb shell \"ifconfig | grep -A 1 wlan0 | tail -n 1 | cut -f2 -d: | cut -f1 -d' '\""
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^3.0.3",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/stack": "^6.3.2",

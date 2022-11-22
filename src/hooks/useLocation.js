@@ -1,7 +1,8 @@
 import React from 'react'
-import GetLocation from 'react-native-get-location'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserLocation } from 'store/slices/appSlice'
+
+import Geolocation from '@react-native-community/geolocation'
 
 export const useLocation = () => {
   const dispatch = useDispatch()
@@ -9,23 +10,22 @@ export const useLocation = () => {
 
   const getLocation = async () => {
     try {
-      const location = await GetLocation.getCurrentPosition({
-        // Setting this to true makes location null on Android Emulator
-        enableHighAccuracy: true,
-        timeout: 15000,
+      Geolocation.getCurrentPosition((info) => {
+        const location = {
+          latitude: info.coords.latitude,
+          longitude: info.coords.longitude,
+        }
+
+        dispatch(setUserLocation(location))
       })
-
-      // console.log('getLocation', location)
-
-      dispatch(setUserLocation(location))
     } catch (e) {
       console.log('error getting location', e)
     }
   }
 
-  // React.useEffect(() => {
-  //   getLocation()
-  // }, [])
+  React.useEffect(() => {
+    getLocation()
+  }, [])
 
   return { userLocation, getLocation }
 }
