@@ -472,7 +472,7 @@
         ]
       },
       "properties": {
-        "name": "Centro Btt Gardunha_azul_7",
+        "name": "Centro Btt Gardunha azul 7",
 
         "stroke": "#00ff00",
         "stroke-opacity": 1,
@@ -488,8 +488,7 @@
         },
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
-        "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg7"
       },
       "description": {
         "pt": "Este é um percurso de dificuldade moderada, com 25,5 Km de extensão, 265m de acumulado de subidas e um declive máximo de 11,60%. Com início e fim no Louriçal do Campo, este percurso leva-nos até à barragem de Stª Águeda, em particular até um dos braços norte da albufeira, local de eleição de nidificação de aves migratórias. Desenvolve-se maioritariamente em estradões agrícolas.",

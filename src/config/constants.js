@@ -101,7 +101,7 @@ export const filters = [
     id: 3,
     name: 'type',
     title: 'TYPE',
-    icon: <Icons.Balance color={COLORS.textAccent} width={25} />,
+    icon: <Icons.Category color={COLORS.textAccent} width={25} />,
     options: [
       {
         id: 8,
@@ -137,7 +137,7 @@ export const trailTypes = {
   },
 }
 
-export const trailImages = [
+export const trailImages1 = [
   require('../assets/images/21.jpg'),
   require('../assets/images/22.jpg'),
   require('../assets/images/23.jpg'),
@@ -161,3 +161,31 @@ export const trailImages = [
   // require('../assets/images/PR7.png'),
   // require('../assets/images/PR8.png'),
 ]
+
+export const trailImages = {
+  _21: require('../assets/images/21.jpg'),
+  _22: require('../assets/images/22.jpg'),
+  _23: require('../assets/images/23.jpg'),
+  _24: require('../assets/images/24.jpg'),
+  _25: require('../assets/images/24.jpg'),
+  _26: require('../assets/images/24.jpg'),
+  _27: require('../assets/images/24.jpg'),
+
+  pr1: require('../assets/images/pr1.jpg'),
+  pr2: require('../assets/images/pr4.jpg'),
+  pr3: require('../assets/images/pr1.jpg'),
+  pr4: require('../assets/images/pr4.jpg'),
+  pr6: require('../assets/images/pr9.jpg'),
+  pr7: require('../assets/images/pr7.jpg'),
+  pr8: require('../assets/images/pr4.jpg'),
+  pr9: require('../assets/images/pr9.jpg'),
+
+  cg1: require('../assets/images/cg1.jpg'),
+  cg2: require('../assets/images/cg2.jpg'),
+  cg3: require('../assets/images/cg3.jpg'),
+  cg4: require('../assets/images/cg4.jpg'),
+  cg5: require('../assets/images/cg5.jpg'),
+  cg6: require('../assets/images/cg6.jpg'),
+  cg7: require('../assets/images/cg7.jpg'),
+  cg8: require('../assets/images/cg8.jpg'),
+}

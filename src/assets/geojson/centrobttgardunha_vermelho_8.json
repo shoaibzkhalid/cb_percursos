@@ -1220,7 +1220,7 @@
         ]
       },
       "properties": {
-        "name": "Centro Btt Gardunha_vermelho_8",
+        "name": "Centro Btt Gardunha vermelho 8",
         "visibility": true,
         "open": "1",
 
@@ -1239,8 +1239,7 @@
         },
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
-        "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg8"
       },
       "description": {
         "pt": "Este é um percurso difícil, possui 27 Km de extensão e 1243m de desnível acumulado positivo, com um máximo de 23,40% de inclinação. Tem início e final em Louriçal do Campo e sobe ao ponto mais alto da Serra da Gardunha pela encosta Sul e a seguir desce até S. Vicente da Beira, ao longo do vale da Srª da Ourada, passa no Casal da Serra e termina em Louriçal do Campo. Este percurso, deslumbra-nos com as vistas sobre as planícies a Sul da Gardunha e a diferença com as paisagens a Norte visíveis no ponto mais alto.",

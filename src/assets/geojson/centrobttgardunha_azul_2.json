@@ -493,7 +493,7 @@
         ]
       },
       "properties": {
-        "name": "Centro Btt Gardunha_azul_2",
+        "name": "Centro Btt Gardunha azul 2",
 
         "stroke": "#00ff00",
         "stroke-opacity": 1,
@@ -510,8 +510,7 @@
         },
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
-        "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg2"
       },
 
       "description": {

@@ -1229,7 +1229,7 @@
         ]
       },
       "properties": {
-        "name": "Gardunha_vermelho_3_n",
+        "name": "Gardunha vermelho",
 
         "stroke": "#00ff00",
         "stroke-opacity": 1,
@@ -1247,7 +1247,7 @@
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
         "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg3"
       },
       "description": {
         "pt": "Classificado como difícil, este percurso tem 54,7 Km e 1267 m de desnível acumulado de subidas, atingindo os 19,90% de inclinação. É um percurso circular com início e fim no Centro de BTT Serra da Gardunha, passando, entre outros, em Alcaria, Lavacolhos, Enxabarda e Souto da Casa.Leva-nos ao longo da encosta Norte da Gardunha para Sul, na direcção do cabeço da Argemela, seguindo para os conhecidos campos da Cova da Beira e das margens do Zêzere.",

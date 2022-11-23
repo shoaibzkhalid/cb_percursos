@@ -411,7 +411,8 @@
         "color": "#60AC56",
         "type": "BIKE",
         "difficulty": "easy",
-        "place": "Centro de Btt das Sarzedas"
+        "place": "Centro de Btt das Sarzedas",
+        "image": "_22"
       },
 
       "description": {

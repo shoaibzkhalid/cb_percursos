@@ -867,7 +867,7 @@
         ]
       },
       "properties": {
-        "name": "Centro Btt Gardunha_vermelho_4",
+        "name": "Centro Btt Gardunha vermelho 4",
 
         "stroke": "#00ff00",
         "stroke-opacity": 1,
@@ -884,7 +884,7 @@
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
         "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg4"
       },
       "description": {
         "pt": "Sendo um percurso difícil e que se desenrola maioritariamente em serra, tem 30,2 Km de extensão e 920m de desnível acumulado positivo, com um máximo de 20,2 % de inclinação. Caracteriza-se por ser circular, tendo início e final no Centro de BTT Serra da Gardunha, passando em Fundão, Alcongosta, Donas, Alcaide e na casa do guarda, regressando ao ponto de origem. Percorre grande parte da encosta norte da Serra da Gardunha por entre soutos e campos de cerejeiras, desvendando grande beleza paisagística sobre toda a Cova da Beira, com a Serra da Estrela como pano de fundo.",

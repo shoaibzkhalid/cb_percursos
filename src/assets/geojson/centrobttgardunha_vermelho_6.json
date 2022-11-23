@@ -252,7 +252,7 @@
         ]
       },
       "properties": {
-        "name": "Centro Btt Gardunha_verde_6",
+        "name": "Centro Btt Gardunha verde 6",
         "stroke": "#00ff00",
         "stroke-opacity": 1,
         "color": "#60AC56",
@@ -268,8 +268,7 @@
         },
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
-        "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg6"
       },
 
       "description": {

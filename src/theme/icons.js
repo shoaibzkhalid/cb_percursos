@@ -40,8 +40,11 @@ import Pin from 'assets/icons/Pin.svg'
 
 import Gps from 'assets/icons/Gps.svg'
 
+import Category from 'assets/icons/Category.svg'
+
 // All the icons used in the app
 export default {
+  Category,
   Gps,
   Pin,
   Directions,

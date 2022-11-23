@@ -1780,7 +1780,7 @@
         ]
       },
       "properties": {
-        "name": "Centro Btt Gardunha_preto_5",
+        "name": "Centro Btt Gardunha preto 5",
 
         "stroke": "#00ff00",
         "stroke-opacity": 1,
@@ -1798,7 +1798,7 @@
         "styleUrl": "#gpsiesStyle",
         "stroke-width": 5,
         "icon-scale": 0.5,
-        "icon": "https://www.gpsies.com/images/milestone.png"
+        "image": "cg5"
       },
       "description": {
         "pt": "Este é um percurso circular, que pode ter início e final em qualquer das portas do Centro de BTT Serra da Gardunha, visto que, assim, ficam ligadas entre si. Percurso de elevada dificuldade com uma distância total de 59,1km. Passa em Fundão, Alcongosta, Donas, Alcaide, Alpedrinha, Castelo Novo, Louriçal do Campo, contando, a meia encosta da Serra, com uma vista espectacular para toda a região envolvente.",

@@ -1,6 +1,6 @@
 import React from 'react'
-import { FlatList, Flex, Row } from 'native-base'
 import _ from 'lodash'
+import { FlatList, Flex, Row } from 'native-base'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
@@ -14,6 +14,7 @@ import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
 import { Places } from 'enums/places'
+
 const ITEM_HEIGHT = 232
 
 const Trails = ({ navigation: { navigate } }) => {
@@ -22,8 +23,6 @@ const Trails = ({ navigation: { navigate } }) => {
   const trails = useSelector((state) => state.app.trails)
   const trailFilters = useSelector((state) => state.filter.trailFilters)
 
-  console.log(trails.filter((t) => t.properties.place == Places.Gardunha))
-  console.log(trails.filter((t) => t.properties.place == Places.Sarzedas))
   const places = [
     {
       id: 0,
@@ -37,9 +36,8 @@ const Trails = ({ navigation: { navigate } }) => {
     },
   ]
 
-  // console.log(Places.Gardunha)
-
   const [loading, setLoading] = React.useState(true)
+  const distance = getDistance(origin, userLocation)
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -49,18 +47,17 @@ const Trails = ({ navigation: { navigate } }) => {
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
-    const { name, color, type } = properties
+    const { name, color, type, image } = properties
 
     return (
       <Styles.Item
         onPress={() => {
-          navigate('Trail', { item, trailImage: trailImages[index] })
+          navigate('Trail', { item, trailImage: trailImages[image] })
           dispatch(setActiveTrail(item))
         }}
       >
         <Styles.TrailContainer>
-          <Styles.TrailImg source={trailImages[index]} alt={`image ${name}`} />
-
+          <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
           <Styles.TrailLabel color={color}>
             <Flex p={'5px'}>
               <Fonts.RegularText color={COLORS.white}>{name}</Fonts.RegularText>
@@ -137,7 +134,7 @@ const Trails = ({ navigation: { navigate } }) => {
                 ListHeaderComponent={() => (
                   <>
                     {item.data.length ? (
-                      <Flex m={'10px'} mt={'20px'}>
+                      <Flex m={'10px'} mt={'20px'} mb={0}>
                         <Fonts.Heading>{item.place}</Fonts.Heading>
                       </Flex>
                     ) : null}
@@ -146,52 +143,23 @@ const Trails = ({ navigation: { navigate } }) => {
                 refreshing={loading}
                 data={item.data}
                 getItemLayout={getItemLayout}
-                ListEmptyComponent={() => (
-                  <Flex alignSelf={'center'}>
-                    <Fonts.RegularText color={COLORS.white}>{t('NO_DATA')}</Fonts.RegularText>
-                  </Flex>
-                )}
                 initialNumToRender={3}
-                contentContainerStyle={{
-                  backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
-                  borderRadius: 20,
-                }}
                 keyExtractor={(item, index) => index}
                 showsVerticalScrollIndicator={false}
                 bounces={false}
                 renderItem={({ item, index }) => <Item item={item} index={index} />}
               />
             )}
-            contentContainerStyle={{
-              backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
-              borderRadius: 20,
-            }}
-          />
-
-          {/* <FlatList
-            ListHeaderComponent={() => (
-              <Flex m={'10px'} mt={'20px'}>
-                <Fonts.Heading>Centro de Btt das Sarzedas</Fonts.Heading>
-              </Flex>
-            )}
-            refreshing={loading}
-            data={trails}
-            getItemLayout={getItemLayout}
             ListEmptyComponent={() => (
               <Flex alignSelf={'center'}>
                 <Fonts.RegularText color={COLORS.white}>{t('NO_DATA')}</Fonts.RegularText>
               </Flex>
             )}
-            initialNumToRender={3}
             contentContainerStyle={{
               backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
               borderRadius: 20,
             }}
-            keyExtractor={(item, index) => index}
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            renderItem={({ item, index }) => <Item item={item} index={index} />}
-          /> */}
+          />
         </>
       )}
     </>

@@ -61,9 +61,9 @@ const Welcome = ({ navigation: { navigate } }) => {
       <Weather />
 
       <LangSelector>
-        <Flex mb={'0px'}>
+        {/* <Flex mb={'0px'}>
           <Fonts.RegularText color={COLORS.white}>{t('CHOOSE_LANG')}</Fonts.RegularText>
-        </Flex>
+        </Flex> */}
 
         <Row justifyContent={'space-between'}>
           {languages.map(({ title, code }) => (
