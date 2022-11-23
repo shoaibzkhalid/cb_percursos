@@ -1,3 +1,1 @@
-- updated images and titles of the trails
-- removed language text from welcome screen
-- Type icon change
+- fixed a crash

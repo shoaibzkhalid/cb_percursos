@@ -14,6 +14,7 @@ import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
 import { Places } from 'enums/places'
+import { getDistance } from 'geolib'
 
 const ITEM_HEIGHT = 232
 
@@ -22,6 +23,7 @@ const Trails = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
   const trails = useSelector((state) => state.app.trails)
   const trailFilters = useSelector((state) => state.filter.trailFilters)
+  const userLocation = useSelector((state) => state.app.userLocation)
 
   const places = [
     {
@@ -37,7 +39,6 @@ const Trails = ({ navigation: { navigate } }) => {
   ]
 
   const [loading, setLoading] = React.useState(true)
-  const distance = getDistance(origin, userLocation)
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -47,7 +48,11 @@ const Trails = ({ navigation: { navigate } }) => {
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
+    const origin = item.waypoints[0]
     const { name, color, type, image } = properties
+
+    // const distance = Math.abs(getDistance(origin, userLocation) / 1000).toFixed(1)
+    // console.log('item', distance)
 
     return (
       <Styles.Item
@@ -67,6 +72,13 @@ const Trails = ({ navigation: { navigate } }) => {
           <Styles.TrailType color={COLORS.textAccent}>
             {trailTypes[type].typeIcon}
           </Styles.TrailType>
+          {/* <Styles.TrailDist
+          // color={COLORS.textAccent}
+          >
+            <Fonts.SmallText color={COLORS.white}>
+              {distance.toLocaleString('pt-PT')} km
+            </Fonts.SmallText>
+          </Styles.TrailDist> */}
         </Styles.TrailContainer>
 
         <TrailSpecs ml={'10px'} item={item} />
