@@ -3,8 +3,8 @@ import { Fragment } from 'react'
 import { Dimensions } from 'react-native'
 import MapView, { Callout, Marker } from 'react-native-maps'
 
-import { useSelector } from 'react-redux'
 import { COLORS, Fonts, images } from 'theme'
+import { useTrails } from 'hooks/useTrails'
 import { useTrailActions } from 'hooks/useTrailActions'
 import { Flex, Image, Row } from 'native-base'
 
@@ -15,10 +15,9 @@ const LATITUDE_DELTA = 0.0922
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 const Map = () => {
+  const { trails } = useTrails()
   const mapRef = React.useRef()
   const { getTrailSpecs } = useTrailActions()
-
-  const trails = useSelector((state) => state.app.trails)
 
   const { waypoints } = trails[0]
   const origin = waypoints[0]

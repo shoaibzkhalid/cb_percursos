@@ -15,9 +15,6 @@ export const useTrails = () => {
   const dispatch = useDispatch()
 
   const trailFilters = useSelector((state) => state.filter.trailFilters)
-
-  // console.log('trailsData', trailsData[11].features[0].geometry.coordinates)
-
   let trails = trailsData.map((t) => ({
     properties: t.features[0].properties,
     description: t.features[0].description,
@@ -48,10 +45,9 @@ export const useTrails = () => {
   filtered = distanceFilter(difficultySelected, filtered, filterByDifficulty, 'difficulty')
   filtered = distanceFilter(typeSelected, filtered, filterByType, 'type')
 
-  // trailsData[11].features[0].geometry.coordinates[0].map((t) => console.log(t[2]))
-  // console.log('trailsData', trails[11].features[0].geometry.coordinates)
-
   React.useEffect(() => {
     dispatch(setTrails(filtered))
   }, [trailFilters])
+
+  return { trails }
 }
