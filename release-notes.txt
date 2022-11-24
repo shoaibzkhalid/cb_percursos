@@ -1,1 +1,4 @@
-- fixed a crash
+- FIXED google unable to find directions to the Starting Point of the Trail
+- FIXED get Direction Alert not showing if user location greater than 1km
+- ADDED distance from user location to the trail in Trails screen
+- ADDED trail details on icon press in MAP screen
