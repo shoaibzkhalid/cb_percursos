@@ -1,9 +1,8 @@
-import { Dimensions } from 'react-native'
 import React from 'react'
+import { Fragment } from 'react'
+import { Dimensions } from 'react-native'
 import MapView, { Callout, Marker } from 'react-native-maps'
 
-import { deltaCoordinates, trailTypes } from 'config/constants'
-import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { COLORS, Fonts, images } from 'theme'
 import { useTrailActions } from 'hooks/useTrailActions'
@@ -44,15 +43,12 @@ const Map = () => {
       showsCompass={true}
       zoomControlEnabled={true}
       showsUserLocation
-      // followsUserLocation
     >
       {trails.map((t, index) => {
         const { trailType, waypoints, properties } = t
         const isPoly = trailType === 'MultiPolygon'
         const specs = getTrailSpecs(t)
         const origin = isPoly ? waypoints[0][0] : waypoints[0]
-
-        console.log('TEST', properties.type)
 
         return (
           <Fragment key={index}>

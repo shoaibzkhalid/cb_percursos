@@ -15,12 +15,15 @@ import TrailSpecs from 'features/TrailSpecs'
 import Styles from './Trails.styles'
 import { Places } from 'enums/places'
 import { getDistance } from 'geolib'
+import TrailSelection from 'features/TrailSelection'
 
 const ITEM_HEIGHT = 232
 
 const Trails = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const dispatch = useDispatch()
+  const [modelOpen, setModelOpen] = React.useState(true)
+
   const trails = useSelector((state) => state.app.trails)
   const trailFilters = useSelector((state) => state.filter.trailFilters)
   const userLocation = useSelector((state) => state.app.userLocation)
@@ -98,9 +101,9 @@ const Trails = ({ navigation: { navigate } }) => {
 
   const Header = React.useCallback(() => {
     const [modalOpen, setModalOpen] = React.useState(false)
-    const filterActive = Boolean(Object.values(trailFilters).flat().length)
+    // const filterActive = Boolean(Object.values(trailFilters).flat().length)
 
-    const filterIconColor = filterActive ? COLORS.textAccent : COLORS.white
+    // const filterIconColor = filterActive ? COLORS.textAccent : COLORS.white
 
     return (
       <Flex my={'20px'}>
@@ -116,9 +119,9 @@ const Trails = ({ navigation: { navigate } }) => {
             ml={'auto'}
           >
             <Row alignItems={'center'} mx={'10px'}>
-              <Fonts.Heading color={filterIconColor}>{t('FILTER')}</Fonts.Heading>
+              <Fonts.Heading color={COLORS.white}>{t('FILTER')}</Fonts.Heading>
               <Flex px={'10px'}>
-                <Icons.Filter width={15} color={filterIconColor} />
+                <Icons.Filter width={15} color={COLORS.white} />
               </Flex>
             </Row>
           </PressableOpacity>
@@ -135,7 +138,9 @@ const Trails = ({ navigation: { navigate } }) => {
 
   return (
     <>
+      <TrailSelection isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)} />
       <Header />
+
       {loading ? (
         <LoadingAnimation />
       ) : (
@@ -156,7 +161,7 @@ const Trails = ({ navigation: { navigate } }) => {
                 refreshing={loading}
                 data={item.data}
                 getItemLayout={getItemLayout}
-                initialNumToRender={4}
+                initialNumToRender={8}
                 keyExtractor={(item, index) => index}
                 showsVerticalScrollIndicator={false}
                 bounces={false}

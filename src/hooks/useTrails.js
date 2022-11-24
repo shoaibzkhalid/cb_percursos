@@ -34,6 +34,8 @@ export const useTrails = () => {
     elevations: t.features[0].geometry.coordinates.map((c) => c[2]),
   }))
 
+  // console.log('trailFilters', trailFilters)
+
   const difficultySelected = trailFilters.difficulty.map((i) => i.id)
   const distanceSelected = trailFilters.distance.map((i) => i.id)
   const durationSelected = trailFilters.duration.map((i) => i.id)
