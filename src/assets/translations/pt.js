@@ -17,8 +17,8 @@ export const pt = {
 
   SOS: 'SOS',
 
-  BIKE: 'Bicicleta',
-  WALK: 'Caminar',
+  BIKE: 'Btt',
+  WALK: 'Pedestre',
 
   TYPE: 'Escribe',
   WEATHER_FORECAST: `Previsão do tempo`,
@@ -61,4 +61,5 @@ export const pt = {
   EMERGENCY_TXT: 'Usar apenas em caso de emergência',
   OTHER_CONTACTS: 'Outros contactos de emergência',
   GO_TO_MAP: 'Ir para o mapa',
+  SELECT_TYPE: 'Seleccione o tipo de percurso',
 }

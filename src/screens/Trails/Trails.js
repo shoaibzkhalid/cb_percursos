@@ -25,27 +25,27 @@ const Trails = ({ navigation: { navigate } }) => {
   const [modelOpen, setModelOpen] = React.useState(true)
 
   const trails = useSelector((state) => state.app.trails)
-  const trailFilters = useSelector((state) => state.filter.trailFilters)
+  // const trailFilters = useSelector((state) => state.filter.trailFilters)
   const filterLoading = useSelector((state) => state.filter.filterLoading)
   const userLocation = useSelector((state) => state.app.userLocation)
 
-  const places = [
-    {
-      id: 0,
-      place: Places.Gardunha,
-      data: trails.filter((t) => t.properties.place == Places.Gardunha),
-    },
-    {
-      id: 1,
-      place: Places.Sarzedas,
-      data: trails.filter((t) => t.properties.place == Places.Sarzedas),
-    },
-  ]
+  // const places = [
+  //   {
+  //     id: 0,
+  //     place: Places.Gardunha,
+  //     data: trails.filter((t) => t.properties.place == Places.Gardunha),
+  //   },
+  //   {
+  //     id: 1,
+  //     place: Places.Sarzedas,
+  //     data: trails.filter((t) => t.properties.place == Places.Sarzedas),
+  //   },
+  // ]
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
     const origin = item.waypoints[0]
-    const { name, color, type, image } = properties
+    const { name, color, type, image, place } = properties
 
     const distance = Math.abs(getDistance(origin, userLocation) / 1000).toFixed(1)
     const localeDistance = parseFloat(distance).toLocaleString('pt-PT')
@@ -59,11 +59,20 @@ const Trails = ({ navigation: { navigate } }) => {
       >
         <Styles.TrailContainer>
           <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
-          <Styles.TrailLabel color={color}>
-            <Flex p={'5px'}>
-              <Fonts.RegularText color={COLORS.white}>{name}</Fonts.RegularText>
-            </Flex>
-          </Styles.TrailLabel>
+
+          <Styles.LabelsContainer>
+            <Styles.TrailLabel color={COLORS.white} mb={'10px'}>
+              <Flex p={'5px'}>
+                <Fonts.RegularText color={COLORS.black}>{place}</Fonts.RegularText>
+              </Flex>
+            </Styles.TrailLabel>
+
+            <Styles.TrailLabel color={color}>
+              <Flex p={'5px'}>
+                <Fonts.RegularText color={COLORS.white}>{name}</Fonts.RegularText>
+              </Flex>
+            </Styles.TrailLabel>
+          </Styles.LabelsContainer>
 
           <Styles.TrailType color={COLORS.textAccent}>
             {trailTypes[type].typeIcon}
@@ -129,8 +138,6 @@ const Trails = ({ navigation: { navigate } }) => {
     )
   }, [])
 
-  console.log(filterLoading, places[0].data)
-
   return (
     <>
       <TrailSelection isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)} />
@@ -141,6 +148,24 @@ const Trails = ({ navigation: { navigate } }) => {
       ) : (
         <>
           <FlatList
+            data={trails}
+            getItemLayout={getItemLayout}
+            initialNumToRender={8}
+            keyExtractor={(item, index) => index}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            renderItem={({ item, index }) => <Item item={item} index={index} />}
+            ListEmptyComponent={() => (
+              <Flex alignSelf={'center'}>
+                <Fonts.RegularText color={COLORS.white}>{t('NO_DATA')}</Fonts.RegularText>
+              </Flex>
+            )}
+            contentContainerStyle={{
+              backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
+              borderRadius: 20,
+            }}
+          />
+          {/* <FlatList
             data={places}
             renderItem={({ item }) => (
               <FlatList
@@ -171,7 +196,7 @@ const Trails = ({ navigation: { navigate } }) => {
               backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
               borderRadius: 20,
             }}
-          />
+          /> */}
         </>
       )}
     </>

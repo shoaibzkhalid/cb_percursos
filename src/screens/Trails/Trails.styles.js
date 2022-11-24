@@ -19,12 +19,16 @@ const TrailImg = styled(Image)`
   opacity: 0.8;
 `
 
-const TrailLabel = styled(Flex)`
+const LabelsContainer = styled(Flex)`
   margin: 10px;
   position: absolute;
   bottom: 0px;
+`
+
+const TrailLabel = styled(Flex)`
   background-color: ${({ color }) => `${color}`};
-  max-width: 250px;
+  flex-grow: 0;
+  align-self: flex-start;
 `
 const TrailType = styled(Flex)`
   margin: 10px;
@@ -83,6 +87,7 @@ export default {
   TrailContainer,
   TrailImg,
   TrailLabel,
+  LabelsContainer,
   LogoImg,
   OptionRow,
   TrailType,
