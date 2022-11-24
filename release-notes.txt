@@ -1,2 +1,1 @@
-- added filter selection option at the start of Trails Screen
-- fixed map icon image size
+- improved performance of trails screen

@@ -7,14 +7,18 @@ const filter = createSlice({
   // initial state
   initialState: {
     trailFilters: FILTER_INITIAL_STATE,
+    filterLoading: true,
   },
   reducers: {
     setFilter(state, action) {
       state.trailFilters = action.payload
     },
+    setFilterLoading(state, action) {
+      state.filterLoading = action.payload
+    },
   },
 })
 
 // actions that can be made
-export const { setFilter } = filter.actions
+export const { setFilter, setFilterLoading } = filter.actions
 export default filter.reducer

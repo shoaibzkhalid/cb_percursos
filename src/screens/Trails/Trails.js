@@ -26,6 +26,7 @@ const Trails = ({ navigation: { navigate } }) => {
 
   const trails = useSelector((state) => state.app.trails)
   const trailFilters = useSelector((state) => state.filter.trailFilters)
+  const filterLoading = useSelector((state) => state.filter.filterLoading)
   const userLocation = useSelector((state) => state.app.userLocation)
 
   const places = [
@@ -40,14 +41,6 @@ const Trails = ({ navigation: { navigate } }) => {
       data: trails.filter((t) => t.properties.place == Places.Sarzedas),
     },
   ]
-
-  const [loading, setLoading] = React.useState(true)
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 300)
-  }, [])
 
   const Item = React.useCallback(({ item, index }) => {
     const { properties } = item
@@ -136,12 +129,14 @@ const Trails = ({ navigation: { navigate } }) => {
     )
   }, [])
 
+  console.log(filterLoading, places[0].data)
+
   return (
     <>
       <TrailSelection isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)} />
       <Header />
 
-      {loading ? (
+      {filterLoading ? (
         <LoadingAnimation />
       ) : (
         <>
@@ -149,6 +144,13 @@ const Trails = ({ navigation: { navigate } }) => {
             data={places}
             renderItem={({ item }) => (
               <FlatList
+                data={item.data}
+                getItemLayout={getItemLayout}
+                initialNumToRender={8}
+                keyExtractor={(item, index) => index}
+                showsVerticalScrollIndicator={false}
+                bounces={false}
+                renderItem={({ item, index }) => <Item item={item} index={index} />}
                 ListHeaderComponent={() => (
                   <>
                     {item.data.length ? (
@@ -158,14 +160,6 @@ const Trails = ({ navigation: { navigate } }) => {
                     ) : null}
                   </>
                 )}
-                refreshing={loading}
-                data={item.data}
-                getItemLayout={getItemLayout}
-                initialNumToRender={8}
-                keyExtractor={(item, index) => index}
-                showsVerticalScrollIndicator={false}
-                bounces={false}
-                renderItem={({ item, index }) => <Item item={item} index={index} />}
               />
             )}
             ListEmptyComponent={() => (
