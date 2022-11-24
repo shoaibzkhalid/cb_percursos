@@ -56,4 +56,5 @@ export const en = {
   EMERGENCY_TXT: 'Use only in case of emergency',
 
   OTHER_CONTACTS: 'Other emergency contacts',
+  GO_TO_MAP: 'Go to map',
 }

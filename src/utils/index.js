@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { Linking, Share } from 'react-native'
 
 export const getDifficulty = (distance) => {
@@ -41,6 +42,8 @@ export const openMapLink = (destination) => {
   }
 
   return Linking.openURL(
-    `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=bicycling`
+    `https://www.google.com/maps/dir/?api=1&destination=${destination}`
+
+    // &travelmode=bicycling
   )
 }

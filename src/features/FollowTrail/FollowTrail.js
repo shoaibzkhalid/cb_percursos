@@ -49,6 +49,8 @@ const FollowTrail = () => {
   }
   const isHigherThanOneKM = distance / 1000 > 1
 
+  console.log('distance / 1000', distance / 1000, isHigherThanOneKM)
+
   const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)
 
   const deltas = {
@@ -61,6 +63,7 @@ const FollowTrail = () => {
     : waypoints[trail.waypoints.length - 1]
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
+
   // const currentLocation = waypoints[currentIndex]
   const currentLocation = currentLocation
     ? {
@@ -133,7 +136,7 @@ const FollowTrail = () => {
     <>
       <AlertModal
         onPress={() => openMapLink(originForMap)}
-        isOpen={!showAlert}
+        isOpen={showAlert}
         onClose={() => setShowAlert(!showAlert)}
       />
       <MapView

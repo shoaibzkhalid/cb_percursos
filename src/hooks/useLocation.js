@@ -14,6 +14,7 @@ export const useLocation = () => {
         const location = {
           latitude: info.coords.latitude,
           longitude: info.coords.longitude,
+          altitude: info.coords.altitude,
         }
 
         dispatch(setUserLocation(location))

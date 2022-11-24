@@ -43,7 +43,7 @@ const Trails = ({ navigation: { navigate } }) => {
   React.useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 100)
+    }, 300)
   }, [])
 
   const Item = React.useCallback(({ item, index }) => {
@@ -51,8 +51,8 @@ const Trails = ({ navigation: { navigate } }) => {
     const origin = item.waypoints[0]
     const { name, color, type, image } = properties
 
-    // const distance = Math.abs(getDistance(origin, userLocation) / 1000).toFixed(1)
-    // console.log('item', distance)
+    const distance = Math.abs(getDistance(origin, userLocation) / 1000).toFixed(1)
+    const localeDistance = parseFloat(distance).toLocaleString('pt-PT')
 
     return (
       <Styles.Item
@@ -72,13 +72,14 @@ const Trails = ({ navigation: { navigate } }) => {
           <Styles.TrailType color={COLORS.textAccent}>
             {trailTypes[type].typeIcon}
           </Styles.TrailType>
-          {/* <Styles.TrailDist
-          // color={COLORS.textAccent}
-          >
-            <Fonts.SmallText color={COLORS.white}>
-              {distance.toLocaleString('pt-PT')} km
-            </Fonts.SmallText>
-          </Styles.TrailDist> */}
+
+          {isNaN(distance) ? null : (
+            <Styles.TrailDist
+            // color={COLORS.textAccent}
+            >
+              <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
+            </Styles.TrailDist>
+          )}
         </Styles.TrailContainer>
 
         <TrailSpecs ml={'10px'} item={item} />
@@ -155,7 +156,7 @@ const Trails = ({ navigation: { navigate } }) => {
                 refreshing={loading}
                 data={item.data}
                 getItemLayout={getItemLayout}
-                initialNumToRender={3}
+                initialNumToRender={4}
                 keyExtractor={(item, index) => index}
                 showsVerticalScrollIndicator={false}
                 bounces={false}

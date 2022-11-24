@@ -14,6 +14,7 @@ const app = createSlice({
     },
     filters: [],
     trails: [],
+    trailSpecs: [],
 
     routePlaying: false,
     activeTrail: null,

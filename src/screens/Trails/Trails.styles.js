@@ -24,6 +24,7 @@ const TrailLabel = styled(Flex)`
   position: absolute;
   bottom: 0px;
   background-color: ${({ color }) => `${color}`};
+  max-width: 250px;
 `
 const TrailType = styled(Flex)`
   margin: 10px;
@@ -38,6 +39,7 @@ const TrailType = styled(Flex)`
 
 const TrailDist = styled(Flex)`
   margin: 10px;
+  margin-right: 0;
   position: absolute;
   bottom: 0px;
   /* top: 0; */

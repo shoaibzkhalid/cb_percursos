@@ -116,13 +116,13 @@ export const filters = [
   },
 ]
 
-const BIG_SIDE = 50
+const BIG_SIZE = 50
 
 export const trailTypes = {
   BIKE: {
     iconLight: <Icons.BikePin color={COLORS.white} width={25} height={25} />,
     icon: <Icons.BikePin color={COLORS.black} width={25} height={25} />,
-    iconBig: <Icons.BikePin color={COLORS.black} width={BIG_SIDE} height={BIG_SIDE} />,
+    iconBig: <Icons.BikePin color={COLORS.black} width={BIG_SIZE} height={BIG_SIZE} />,
     locationIcon: <Icons.Bike color={COLORS.textAccent} width={25} height={25} />,
     typeIcon: <Icons.Bike color={COLORS.white} width={20} height={20} />,
     mapMode: 'BICYCLING',
@@ -130,7 +130,7 @@ export const trailTypes = {
   WALK: {
     iconLight: <Icons.WalkPin color={COLORS.white} width={25} height={25} />,
     icon: <Icons.WalkPin color={COLORS.black} width={25} height={25} />,
-    iconBig: <Icons.WalkPin color={COLORS.black} width={BIG_SIDE} height={BIG_SIDE} />,
+    iconBig: <Icons.WalkPin color={COLORS.black} width={BIG_SIZE} height={BIG_SIZE} />,
     locationIcon: <Icons.Walk color={COLORS.textAccent} width={25} height={25} />,
     typeIcon: <Icons.Walk color={COLORS.white} width={20} height={20} />,
     mapMode: 'WALKING',
