@@ -1,2 +1,2 @@
-- moved places name to Trail Card
-- added labels for new modals
+- fixed position for a label
+- fixed a crash

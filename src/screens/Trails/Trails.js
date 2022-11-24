@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import { getDistance } from 'geolib'
 import { FlatList, Flex, Row } from 'native-base'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -13,8 +14,6 @@ import FilterModal from 'features/FilterModal'
 import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
-import { Places } from 'enums/places'
-import { getDistance } from 'geolib'
 import TrailSelection from 'features/TrailSelection'
 
 const ITEM_HEIGHT = 232
@@ -61,13 +60,13 @@ const Trails = ({ navigation: { navigate } }) => {
           <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
 
           <Styles.LabelsContainer>
-            <Styles.TrailLabel color={COLORS.white} mb={'10px'}>
+            <Styles.TrailLabel maxW={'100%'} color={COLORS.white} mb={'10px'}>
               <Flex p={'5px'}>
                 <Fonts.RegularText color={COLORS.black}>{place}</Fonts.RegularText>
               </Flex>
             </Styles.TrailLabel>
 
-            <Styles.TrailLabel color={color}>
+            <Styles.TrailLabel maxW={'95%'} color={color}>
               <Flex p={'5px'}>
                 <Fonts.RegularText color={COLORS.white}>{name}</Fonts.RegularText>
               </Flex>

@@ -39,7 +39,7 @@ const FollowTrail = () => {
   const { name, color } = properties
   const isPoly = trailType === 'MultiPolygon'
 
-  const origin = isPoly ? waypoints[0][0] : waypoints[0]
+  const origin = isPoly ? trail?.waypoints[0][0] : waypoints[0]
   const originForMap = `${origin.latitude},${origin.longitude}%2C`
 
   let distance
@@ -48,8 +48,6 @@ const FollowTrail = () => {
     distance = getDistance(origin, userLocation) // returns meters
   }
   const isHigherThanOneKM = distance / 1000 > 1
-
-  console.log('distance / 1000', distance / 1000, isHigherThanOneKM)
 
   const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)
 
@@ -114,14 +112,12 @@ const FollowTrail = () => {
                   },
                 })
               }}
-              onError={(error) => {
-                console.log('error', error)
-              }}
+              onError={(error) => console.log('error', error)}
             />
             <Marker
               coordinate={currentLocation}
               identifier={'currentLocation'}
-              description={name}
+              description={String(name)}
               title={'Start'}
             >
               {trailTypes[type].icon}

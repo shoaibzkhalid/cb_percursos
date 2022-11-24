@@ -44,7 +44,7 @@ const TrailSelection = ({ isOpen, onClose }) => {
 
         <Row alignItems={'center'} justifyContent={'space-around'}>
           {items.map(({ type, id, icon, title }) => (
-            <Flex alignItems={'center'}>
+            <Flex alignItems={'center'} key={id}>
               <IconContainer
                 key={id}
                 onPress={async () => {

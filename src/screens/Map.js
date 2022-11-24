@@ -46,9 +46,11 @@ const Map = () => {
     >
       {trails.map((t, index) => {
         const { trailType, waypoints, properties } = t
+
         const isPoly = trailType === 'MultiPolygon'
         const specs = getTrailSpecs(t)
-        const origin = isPoly ? waypoints[0][0] : waypoints[0]
+
+        const origin = isPoly ? t?.waypoints[0][0] : waypoints[0]
 
         return (
           <Fragment key={index}>

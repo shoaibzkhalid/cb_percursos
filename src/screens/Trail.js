@@ -32,7 +32,7 @@ const Trail = ({ navigation: { navigate } }) => {
   const trailImage = route.params.trailImage
   const desc = item.description[lang]
   const showExpandIcon = desc.length > 1000
-  const { longitude, latitude } = isPoly ? waypoints[0][0] : waypoints[0]
+  const { longitude, latitude } = isPoly ? item?.waypoints[0][0] : waypoints[0]
   const origin = `${latitude},${longitude}%2C`
 
   const Header = () => (
@@ -88,7 +88,6 @@ const Trail = ({ navigation: { navigate } }) => {
         )}
       </Row>
       <Map />
-
       <FlatList
         data={weatherForecast}
         numColumns={4}

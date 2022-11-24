@@ -21,8 +21,7 @@ const TrailMap = (props) => {
   const { waypoints, properties, trailType } = trail
   const { name, color } = properties
   const isPoly = trailType === 'MultiPolygon'
-
-  const origin = isPoly ? waypoints[0][0] : waypoints[0]
+  const origin = isPoly ? trail?.waypoints[0][0] : waypoints[0]
   const [region, setRegion] = React.useState(origin)
 
   const deltas = {
@@ -45,11 +44,6 @@ const TrailMap = (props) => {
       </PressableOpacity>
       <MapView
         ref={mapRef}
-        // initialRegion={{
-        //   ...origin,
-        //   ...deltas,
-        // }}
-
         camera={{
           center: region,
           pitch: 0,
@@ -65,24 +59,23 @@ const TrailMap = (props) => {
         customMapStyle={{ padding: 40, borderRadius: 40 }}
         {...props}
       >
-        {/* <Flex
-          background={'red.100'}
-          style={{ position: 'absolute', top: 110, left: 0, right: 0, bottom: 0 }}
-        >
-          <Icons.Gps />
-        </Flex> */}
         {userLocation && (
           <Marker
             coordinate={userLocation}
             identifier={'userLocation'}
-            description={name}
+            description={String(name)}
             title={'Start'}
           >
             {trailTypes[trail.properties.type].icon}
           </Marker>
         )}
 
-        <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
+        <Marker
+          coordinate={origin}
+          identifier={'origin'}
+          description={String(name)}
+          title={'Start'}
+        >
           {trailTypes[trail.properties.type].icon}
         </Marker>
 
