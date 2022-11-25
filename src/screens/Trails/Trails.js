@@ -78,9 +78,7 @@ const Trails = ({ navigation: { navigate } }) => {
           </Styles.TrailType>
 
           {isNaN(distance) ? null : (
-            <Styles.TrailDist
-            // color={COLORS.textAccent}
-            >
+            <Styles.TrailDist>
               <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
             </Styles.TrailDist>
           )}

@@ -1,6 +1,7 @@
 export const es = {
   CHOOSE_LANG: 'Elige tu idioma',
 
+  APPLY: 'Aplicar',
   FILTER: 'Filtrar',
 
   TRAILS: 'Rutas',
@@ -21,6 +22,7 @@ export const es = {
   BIKE: 'Bicicleta',
   WALK: 'Andar',
   TYPE: 'Modelo',
+  CHOOSE_TYPE: 'Elija el tipo de ruta',
 
   WEATHER_FORECAST: `Pronóstico del tiempo`,
 

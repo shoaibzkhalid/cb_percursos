@@ -1,1 +1,5 @@
-- made some alignment changes
+- changed follow trail logic
+- changed map icon press behavior
+- logo change
+- translation, text changes
+- refactored code

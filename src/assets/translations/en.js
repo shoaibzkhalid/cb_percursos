@@ -1,6 +1,7 @@
 export const en = {
   CHOOSE_LANG: 'Choose your language',
   FILTER: 'Filter',
+  APPLY: 'Apply',
   TRAILS: 'Trails',
 
   TRAIL: 'Trail',
@@ -20,6 +21,7 @@ export const en = {
   BIKE: 'Bike',
   WALK: 'Walk',
   TYPE: 'Type',
+  CHOOSE_TYPE: 'Choose the type of trail',
 
   WEATHER_FORECAST: `Weather Forecast`,
 

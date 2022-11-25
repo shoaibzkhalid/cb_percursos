@@ -7,32 +7,34 @@ import { PressableOpacity } from 'components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRoutePlaying } from 'store/slices/appSlice'
 import { useI18n } from 'hooks/useI18n'
+import { getDistance } from 'geolib'
+import { getDistanceInKm, getTimeFromSecs } from './utils'
 
-const RouteInfoBox = ({ routeDetails, altitude }) => {
+const RouteInfoBox = ({ currentLocation }) => {
   const dispatch = useDispatch()
-  // console.log('TEST', routeDetails)
   const { t } = useI18n()
+  const timeInterval = React.useRef(null)
+  const timeElapsed = React.useRef(0)
+  const distance = React.useRef(0)
+  const previous = React.useRef(null)
+  const userLocation = useSelector((state) => state.app.userLocation)
   const routePlaying = useSelector((state) => state.app.routePlaying)
 
-  const { distance, duration } = routeDetails
-  const columns = [
-    { id: 0, title: t('DURATION'), value: `${Math.abs(duration.toFixed(1))} min` },
-    { id: 1, title: t('DISTANCE'), value: `${Math.abs(distance.toFixed(2))} km` },
-    { id: 2, title: t('ELEVATION'), value: `${Math.abs(altitude).toFixed(1)} m` },
-  ]
+  let previousLocation = previous.current || userLocation
+  // newly calculated distance from the new point -- currentLocation
+  const newCalcDistance = getDistance(previousLocation, currentLocation)
+  // add new distance in the previous distance tally -- acc
+  distance.current = distance.current + newCalcDistance
+  // SET previous location to the current location
+  previous.current = currentLocation
+  // console.log('test', newCalcDistance, distance.current)
 
   const ActionBtn = React.useCallback(() => {
     return (
       <PauseBtn
         backgroundColor={'red.400'}
-        // backgroundColor={COLORS}
-        onPress={() => {
-          dispatch(setRoutePlaying(!routePlaying))
-        }}
+        onPress={() => dispatch(setRoutePlaying(!routePlaying))}
       >
-        {/* <Fonts.RegularText color={COLORS.white}>
-          {routePlaying ? 'Pause' : 'Play'}
-        </Fonts.RegularText> */}
         {routePlaying ? (
           <Icons.Pause color={COLORS.white} />
         ) : (
@@ -42,8 +44,36 @@ const RouteInfoBox = ({ routeDetails, altitude }) => {
     )
   }, [routePlaying])
 
-  return (
-    <Container>
+  React.useEffect(() => {
+    if (routePlaying) {
+      // getDistance()
+
+      timeInterval.current = setInterval(() => {
+        timeElapsed.current = timeElapsed.current + 1
+      }, 1000)
+      return
+    }
+
+    clearInterval(timeInterval.current)
+  }, [routePlaying])
+
+  React.useEffect(() => {
+    return () => {
+      clearInterval(timeInterval.current)
+    }
+  }, [])
+
+  const InfoRow = React.useCallback(() => {
+    const seconds = timeElapsed.current // in seconds
+    const altitude = currentLocation?.altitude
+
+    const columns = [
+      { id: 0, title: t('DURATION'), value: `${getTimeFromSecs(seconds)}` },
+      { id: 1, title: t('DISTANCE'), value: `${getDistanceInKm(distance.current)} km` },
+      { id: 2, title: t('ELEVATION'), value: `${Math.abs(altitude).toFixed(1)} m` },
+    ]
+
+    return (
       <Row alignItems={'center'} p={'20px'} justifyContent={'space-around'}>
         {columns.map((c) => (
           <Flex alignItems={'center'} key={c.id}>
@@ -52,12 +82,18 @@ const RouteInfoBox = ({ routeDetails, altitude }) => {
           </Flex>
         ))}
       </Row>
+    )
+  }, [timeElapsed.current])
 
+  return (
+    <Container>
+      <InfoRow />
       <ActionBtn />
-
-      <Flex my={'10px'} m={'auto'}>
-        <Fonts.SmallText color={COLORS.dark80}>{t('PRESS_TO_START')}</Fonts.SmallText>
-      </Flex>
+      {routePlaying ? null : (
+        <Flex my={'10px'} m={'auto'}>
+          <Fonts.SmallText color={COLORS.dark80}>{t('PRESS_TO_START')}</Fonts.SmallText>
+        </Flex>
+      )}
     </Container>
   )
 }
@@ -70,7 +106,6 @@ const Container = styled(Flex)`
   right: 0;
   background-color: ${COLORS.white};
   opacity: 0.9;
-  /* ...Styles.dropShadowLight, */
 `
 
 const PauseBtn = styled(PressableOpacity)`

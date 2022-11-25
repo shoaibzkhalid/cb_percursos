@@ -8,7 +8,6 @@ import { COLORS, Fonts, images } from 'theme'
 import PressableOpacity from 'components/PressableOpacity'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLang } from 'store/slices/appSlice'
-import { useI18n } from 'hooks/useI18n'
 import { languages } from 'config/constants'
 import { useWeather } from 'hooks/useWeather'
 import { weatherIcons } from 'theme/weatherIcons'
@@ -22,7 +21,6 @@ const Welcome = ({ navigation: { navigate } }) => {
   useTrails()
 
   const dispatch = useDispatch()
-  const { t } = useI18n()
   const { weather, main } = useSelector((state) => state.app.weather)
   const weatherIcon = weather ? weatherIcons[`_${weather[0].icon}`] : null
 
@@ -48,7 +46,7 @@ const Welcome = ({ navigation: { navigate } }) => {
     <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
       <Flex alignItems={'center'} mt={'20px'}>
         <Flex mr={'auto'} mb={'20px'}>
-          <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logo} />
+          <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logoLight} />
         </Flex>
 
         <Image
@@ -67,7 +65,7 @@ const Welcome = ({ navigation: { navigate } }) => {
         </Flex> */}
 
         <Row justifyContent={'space-between'}>
-          {languages.map(({ title, code }) => (
+          {languages.map(({ title, code, image }) => (
             <Language
               p={'10px'}
               key={title}
@@ -79,7 +77,7 @@ const Welcome = ({ navigation: { navigate } }) => {
               }}
             >
               <Flex alignSelf={'center'}>
-                <Flag source={images[title]} alt={'flag'} />
+                <Flag source={images[image]} alt={'flag'} />
               </Flex>
               <Flex mt={'20px'}>
                 <Fonts.SmallText style={{ textAlign: 'center' }} color={COLORS.white}>

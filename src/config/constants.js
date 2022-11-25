@@ -9,16 +9,19 @@ export const FILTER_INITIAL_STATE = {
 
 export const languages = [
   {
-    title: 'portuguese',
+    title: 'português',
     code: 'pt',
+    image: 'portuguese',
   },
   {
-    title: 'english',
+    title: 'Inglês',
     code: 'en',
+    image: 'english',
   },
   {
-    title: 'espanol',
+    title: 'Espanhol',
     code: 'es',
+    image: 'espanol',
   },
 ]
 
@@ -100,7 +103,7 @@ export const filters = [
   {
     id: 3,
     name: 'type',
-    title: 'TYPE',
+    title: 'CHOOSE_TYPE',
     icon: <Icons.Category color={COLORS.textAccent} width={25} />,
     options: [
       {

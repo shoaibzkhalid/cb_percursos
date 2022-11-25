@@ -92,7 +92,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
         })}
         <Row alignItems={'center'} justifyContent={'space-around'}>
           <CustomButton
-            title={t('FILTER')}
+            title={t('APPLY')}
             onPress={() => {
               dispatch(setFilter(localFilters))
               onClose()

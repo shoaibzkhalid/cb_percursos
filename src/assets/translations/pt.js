@@ -1,6 +1,7 @@
 export const pt = {
   CHOOSE_LANG: 'Escolha seu idioma',
   FILTER: 'Filtro',
+  APPLY: 'Aplicar',
 
   TRAILS: 'Percursos',
   TRAIL: 'Percurso',
@@ -21,6 +22,8 @@ export const pt = {
   WALK: 'Pedestre',
 
   TYPE: 'Escribe',
+  CHOOSE_TYPE: 'Escolha o tipo de percurso',
+
   WEATHER_FORECAST: `Previsão do tempo`,
 
   ELEVATION: 'Elevação',
