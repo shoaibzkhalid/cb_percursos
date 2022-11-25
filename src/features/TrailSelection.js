@@ -38,7 +38,7 @@ const TrailSelection = ({ isOpen, onClose }) => {
       size={'full'}
     >
       <StyledModal showsVerticalScrollIndicator={false}>
-        <Flex mb={'20px'}>
+        <Flex mb={'20px'} alignSelf={'center'}>
           <Fonts.RegularText color={COLORS.dark80}>{t('SELECT_TYPE')}</Fonts.RegularText>
         </Flex>
 

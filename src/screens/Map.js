@@ -7,6 +7,8 @@ import { COLORS, Fonts, images } from 'theme'
 import { useTrails } from 'hooks/useTrails'
 import { useTrailActions } from 'hooks/useTrailActions'
 import { Flex, Image, Row } from 'native-base'
+import { trailTypes } from 'config/constants'
+import { useSelector } from 'react-redux'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -17,6 +19,8 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 const Map = () => {
   const { trails } = useTrails()
   const mapRef = React.useRef()
+  const userLocation = useSelector((state) => state.app.userLocation)
+
   const { getTrailSpecs } = useTrailActions()
 
   const { waypoints } = trails[0]
@@ -53,6 +57,15 @@ const Map = () => {
 
         return (
           <Fragment key={index}>
+            {/* <Marker
+              coordinate={userLocation}
+              identifier={'origin'}
+              // title={String(t.properties.name)}
+              // image={images[properties.type]}
+            >
+              {trailTypes[properties.type].locationIcon}
+            </Marker> */}
+
             <Marker
               coordinate={origin}
               identifier={'origin'}

@@ -21,9 +21,10 @@ const TrailImg = styled(Image)`
 `
 
 const LabelsContainer = styled(Flex)`
-  margin: 10px;
   position: absolute;
-  bottom: 20px;
+  margin: 10px;
+  bottom: 0px;
+  height: 40%;
 `
 
 const TrailLabel = styled(Flex)`

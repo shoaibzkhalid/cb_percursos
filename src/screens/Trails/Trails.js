@@ -60,13 +60,13 @@ const Trails = ({ navigation: { navigate } }) => {
           <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
 
           <Styles.LabelsContainer>
-            <Styles.TrailLabel maxW={'100%'} color={COLORS.white} mb={'10px'}>
+            <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
               <Flex p={'5px'}>
                 <Fonts.RegularText color={COLORS.black}>{place}</Fonts.RegularText>
               </Flex>
             </Styles.TrailLabel>
 
-            <Styles.TrailLabel maxW={'95%'} color={color}>
+            <Styles.TrailLabel mt={'5px'} maxW={'97%'} color={color}>
               <Flex p={'5px'}>
                 <Fonts.RegularText color={COLORS.white}>{name}</Fonts.RegularText>
               </Flex>
