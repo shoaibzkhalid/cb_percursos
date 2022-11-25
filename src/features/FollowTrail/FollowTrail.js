@@ -117,7 +117,7 @@ const FollowTrail = () => {
             <Marker
               coordinate={currentLocation}
               identifier={'currentLocation'}
-              description={String(name)}
+              // description={String(name)}
               title={'Start'}
             >
               {trailTypes[type].icon}
@@ -154,7 +154,7 @@ const FollowTrail = () => {
         // showsUserLocation
         // followsUserLocation
       >
-        <Marker coordinate={origin} identifier={'origin'} description={name} title={'Start'}>
+        <Marker coordinate={origin} identifier={'origin'} title={'Start'}>
           {trailTypes[type].icon}
         </Marker>
 
@@ -170,12 +170,7 @@ const FollowTrail = () => {
           <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
         )}
 
-        <Marker
-          coordinate={destination}
-          identifier={'destination'}
-          description={name}
-          title={'End'}
-        >
+        <Marker coordinate={destination} identifier={'destination'} title={'End'}>
           <Icons.Finish />
         </Marker>
       </MapView>
