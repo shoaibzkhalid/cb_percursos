@@ -1,0 +1,33 @@
+import { Animated } from 'react-native'
+import React from 'react'
+import { Flex } from 'native-base'
+import styled from 'styled-components'
+import { Icons } from 'theme'
+import { useCompass } from 'hooks/useCompass'
+
+const Compass = () => {
+  const { heading } = useCompass()
+
+  return (
+    <Container
+      style={{
+        transform: [
+          {
+            rotate: `${heading}deg`,
+          },
+        ],
+      }}
+    >
+      <Icons.CompassLight />
+    </Container>
+  )
+}
+
+const Container = styled(Animated.View)`
+  position: absolute;
+  top: 10px;
+
+  z-index: 100000;
+`
+
+export default Compass

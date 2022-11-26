@@ -47,20 +47,20 @@ const TrailMap = (props) => {
         camera={{
           center: region,
           pitch: 0,
-          heading: 0.5,
+          heading: 0,
           zoom: 14,
         }}
         minZoomLevel={3}
         showsMyLocationButton={false}
-        // showsMyLocationButton={false}
         showsUserLocation={false}
-        // followsUserLocation
         zoomControlEnabled
+        showsCompass={false}
         customMapStyle={{ padding: 40, borderRadius: 40 }}
         {...props}
       >
         {userLocation && (
           <Marker
+            tracksViewChanges={false}
             coordinate={userLocation}
             identifier={'userLocation'}
             description={String(name)}

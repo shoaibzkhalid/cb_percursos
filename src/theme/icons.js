@@ -41,6 +41,7 @@ import Pin from 'assets/icons/Pin.svg'
 import Gps from 'assets/icons/Gps.svg'
 
 import Category from 'assets/icons/Category.svg'
+import CompassLight from 'assets/icons/CompassLight.svg'
 
 // All the icons used in the app
 export default {
@@ -77,4 +78,5 @@ export default {
 
   Safety,
   Expand,
+  CompassLight,
 }

@@ -1,3 +1,3 @@
-- added icon for distance from
-- sorted trails by asc order
-- fixed another crash
+- added a custom compass
+- border radius for elevation graph
+- increased size of icons on map

@@ -38,7 +38,7 @@ const ElevationGraph = ({ trail }) => {
     >
       <Animated.View
         style={{
-          height: height / 2.2,
+          height: height / 2.12,
           transform: [
             {
               translateY: animatedValue,
@@ -46,11 +46,22 @@ const ElevationGraph = ({ trail }) => {
           ],
         }}
       >
-        <Pressable onPress={() => animateView()} w={'100%'}>
+        <Pressable
+          style={{
+            paddingTop: 10,
+            backgroundColor: COLORS.white,
+            borderRadius: 25,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          }}
+          onPress={() => animateView()}
+          w={'100%'}
+        >
           <Row
             px={'10px'}
             py={'20px'}
-            background={COLORS.white}
+            // top={'-10px'}
+            background={COLORS.transparent}
             w={'100%'}
             justifyContent={'space-between'}
             alignItems={'center'}

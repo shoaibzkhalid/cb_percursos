@@ -1,22 +1,18 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
 import { Flex } from 'native-base'
 import { useDispatch, useSelector } from 'react-redux'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 import { getDistance } from 'geolib'
-import MapViewDirections from 'react-native-maps-directions'
 
 import { Icons } from 'theme'
 import { trailTypes } from 'config/constants'
-import { GC_API_KEY } from 'config/keys'
 import RouteInfoBox from './RouteInfoBox'
 import { BackButton } from 'components'
 import { setRoutePlaying } from 'store/slices/appSlice'
 import { useLocation } from 'hooks/useLocation'
 import AlertModal from 'features/AlertModal'
 import { openMapLink } from 'utils'
-
-const { width, height } = Dimensions.get('window')
+import Compass from 'features/Compass'
 
 const FollowTrail = () => {
   const mapRef = React.useRef()
@@ -65,7 +61,12 @@ const FollowTrail = () => {
     return (
       <>
         {userLocation && (
-          <Marker coordinate={userLocation} identifier={'userLocation'} title={'Start'}>
+          <Marker
+            tracksViewChanges={false}
+            coordinate={userLocation}
+            identifier={'userLocation'}
+            title={'Start'}
+          >
             {trailTypes[type].icon}
           </Marker>
         )}
@@ -80,18 +81,29 @@ const FollowTrail = () => {
         isOpen={showAlert}
         onClose={() => setShowAlert(!showAlert)}
       />
+
+      <Flex ml={'auto'} mr={'55px'} top={'50px'}>
+        <Compass />
+      </Flex>
+
       <MapView
         ref={mapRef}
         style={{ flex: 1 }}
         camera={{
           center: origin,
           pitch: 0,
-          heading: 0.5,
+          heading: 0,
           zoom: 14,
         }}
         showsUserLocation={true}
+        showsCompass={false}
       >
-        <Marker coordinate={origin} identifier={'origin'} title={'Start'}>
+        <Marker
+          tracksViewChanges={false}
+          coordinate={origin}
+          identifier={'origin'}
+          title={'Start'}
+        >
           {trailTypes[type].icon}
         </Marker>
 
@@ -107,12 +119,17 @@ const FollowTrail = () => {
           <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
         )}
 
-        <Marker coordinate={destination} identifier={'destination'} title={'End'}>
+        <Marker
+          tracksViewChanges={false}
+          coordinate={destination}
+          identifier={'destination'}
+          title={'End'}
+        >
           <Icons.Finish />
         </Marker>
       </MapView>
 
-      <Flex position={'absolute'} top={'50px'} left={'10px'} backgroundColor={'transparent'}>
+      <Flex position={'absolute'} top={'0px'} left={'10px'} backgroundColor={'transparent'}>
         <BackButton />
       </Flex>
       <RouteInfoBox currentLocation={userLocation} />

@@ -51,7 +51,7 @@ export const en = {
   NO_DATA: 'No data',
 
   ALERT_MSG:
-    'The trail is more than 1 km away. Do you want directions to the starting point from your location?',
+    'The trail is more than 1 km away. Do you want directions to the trail from your location?',
 
   ALERT_TITLE: 'Get Directions',
 

@@ -57,7 +57,7 @@ export const pt = {
   NO_DATA: 'sem dados',
 
   ALERT_MSG:
-    'A trilha fica a mais de 1 km de distância. Você quer direções para o ponto de partida da sua localização?',
+    'A trilha fica a mais de 1 km de distância. Você quer instruções para a trilha a partir de sua localização?',
 
   ALERT_TITLE: 'Obter direções',
 

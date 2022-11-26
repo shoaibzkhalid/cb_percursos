@@ -50,7 +50,7 @@ export const es = {
   NO_DATA: 'Sin datos',
 
   ALERT_MSG:
-    'El sendero está a más de 1 km de distancia. ¿Quieres indicaciones para llegar al punto de partida desde tu ubicación?',
+    'El sendero está a más de 1 km de distancia. ¿Quieres indicaciones para llegar al sendero desde tu ubicación?',
   ALERT_TITLE: 'Obtener las direcciones',
 
   EMERGENCY_TXT: 'Usar solo en caso de emergencia',

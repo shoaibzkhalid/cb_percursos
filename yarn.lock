@@ -7013,6 +7013,11 @@ react-native-codegen@^0.70.6:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-compass-heading@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-compass-heading/-/react-native-compass-heading-1.4.1.tgz#c43604648989e97edf8c6126d1179f0c88d8e701"
+  integrity sha512-z6LKuGexRECjQccuLZ3AQxSPxy62w+Nl0EBRLiUImf9opXtsp59AV2JXyDD9kJqJTYlCW9pr+Pr41iq12hed6g==
+
 react-native-gesture-handler@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.8.0.tgz#ef9857871c10663c95a51546225b6e00cd4740cf"
