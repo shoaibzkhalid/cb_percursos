@@ -10,9 +10,12 @@ import {
 } from 'utils/filter'
 import { trailsData } from 'services/trails'
 import { setTrails } from 'store/slices/appSlice'
+import { getDistance } from 'geolib'
+import _ from 'lodash'
 
 export const useTrails = () => {
   const dispatch = useDispatch()
+  const userLocation = useSelector((state) => state.app.userLocation)
 
   const trailFilters = useSelector((state) => state.filter.trailFilters)
   let trails = trailsData.map((t) => ({
@@ -29,16 +32,20 @@ export const useTrails = () => {
     }),
     trailType: t.features[0].geometry.type,
     elevations: t.features[0].geometry.coordinates.map((c) => c[2]),
-  }))
 
-  // console.log('trailFilters', trailFilters)
+    ...(userLocation && {
+      distFromUser: Math.abs(
+        getDistance(t.features[0].geometry.coordinates[0], userLocation) / 1000
+      ).toFixed(1),
+    }),
+  }))
 
   const difficultySelected = trailFilters.difficulty.map((i) => i.id)
   const distanceSelected = trailFilters.distance.map((i) => i.id)
   const durationSelected = trailFilters.duration.map((i) => i.id)
   const typeSelected = trailFilters.type.map((i) => i.id)
 
-  let filtered = trails
+  let filtered = _.orderBy(trails, 'distFromUser', 'asc')
 
   filtered = distanceFilter(distanceSelected, filtered, filterByDistance)
   filtered = distanceFilter(durationSelected, filtered, filterByDuration, 'duration')
@@ -49,5 +56,5 @@ export const useTrails = () => {
     dispatch(setTrails(filtered))
   }, [trailFilters])
 
-  return { trails }
+  return { trails: _.orderBy(trails, 'distFromUser', 'asc') }
 }

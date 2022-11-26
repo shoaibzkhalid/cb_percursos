@@ -36,16 +36,16 @@ const FollowTrail = () => {
   const origin = isPoly ? trail?.waypoints[0][0] : waypoints[0]
   const originForMap = `${origin.latitude},${origin.longitude}%2C`
 
-  const isHigherThanOneKM = getDistance(origin, userLocation) / 1000 > 1
-  const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)
-
   const destination = isPoly
     ? waypoints[0][trail.waypoints[0].length - 1]
     : waypoints[trail.waypoints.length - 1]
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
 
-  // const userLocation = waypoints[currentIndex]
+  // const userLocation = waypoints.flat()[0]
+
+  const isHigherThanOneKM = getDistance(origin, userLocation) / 1000 > 1
+  const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)
 
   React.useEffect(() => {
     return () => {
@@ -65,33 +65,9 @@ const FollowTrail = () => {
     return (
       <>
         {userLocation && (
-          <>
-            <MapViewDirections
-              // mode={trailTypes[].mapMode}
-              mode={'BICYCLING'}
-              origin={origin}
-              destination={userLocation}
-              precision={'high'}
-              apikey={GC_API_KEY}
-              strokeWidth={5}
-              strokeColor={'transparent'}
-              resetOnChange={false}
-              onReady={(result) => {
-                mapRef.current.fitToCoordinates(result.coordinates, {
-                  edgePadding: {
-                    right: width / 20,
-                    bottom: height / 20,
-                    left: width / 20,
-                    top: height / 20,
-                  },
-                })
-              }}
-              onError={(error) => console.log('error', error)}
-            />
-            <Marker coordinate={userLocation} identifier={'userLocation'} title={'Start'}>
-              {trailTypes[type].icon}
-            </Marker>
-          </>
+          <Marker coordinate={userLocation} identifier={'userLocation'} title={'Start'}>
+            {trailTypes[type].icon}
+          </Marker>
         )}
       </>
     )

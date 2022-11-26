@@ -71,7 +71,6 @@ const Map = ({ navigation: { navigate } }) => {
               title={String(t.properties.name)}
               // image={images[properties.type]}
               onCalloutPress={() => {
-                console.log('TEST')
                 navigate('Trail', { item: t, trailImage: trailImages[image] })
               }}
             >

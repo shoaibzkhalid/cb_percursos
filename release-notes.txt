@@ -1,5 +1,3 @@
-- changed follow trail logic
-- changed map icon press behavior
-- logo change
-- translation, text changes
-- refactored code
+- added icon for distance from
+- sorted trails by asc order
+- fixed another crash

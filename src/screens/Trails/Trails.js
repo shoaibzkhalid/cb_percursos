@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash'
-import { getDistance } from 'geolib'
 import { FlatList, Flex, Row } from 'native-base'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -24,30 +23,13 @@ const Trails = ({ navigation: { navigate } }) => {
   const [modelOpen, setModelOpen] = React.useState(true)
 
   const trails = useSelector((state) => state.app.trails)
-  // const trailFilters = useSelector((state) => state.filter.trailFilters)
   const filterLoading = useSelector((state) => state.filter.filterLoading)
-  const userLocation = useSelector((state) => state.app.userLocation)
 
-  // const places = [
-  //   {
-  //     id: 0,
-  //     place: Places.Gardunha,
-  //     data: trails.filter((t) => t.properties.place == Places.Gardunha),
-  //   },
-  //   {
-  //     id: 1,
-  //     place: Places.Sarzedas,
-  //     data: trails.filter((t) => t.properties.place == Places.Sarzedas),
-  //   },
-  // ]
-
-  const Item = React.useCallback(({ item, index }) => {
-    const { properties } = item
-    const origin = item.waypoints[0]
+  const Item = React.useCallback(({ item }) => {
+    const { properties, distFromUser } = item
     const { name, color, type, image, place } = properties
 
-    const distance = Math.abs(getDistance(origin, userLocation) / 1000).toFixed(1)
-    const localeDistance = parseFloat(distance).toLocaleString('pt-PT')
+    const localeDistance = parseFloat(distFromUser).toLocaleString('pt-PT')
 
     return (
       <Styles.Item
@@ -62,13 +44,13 @@ const Trails = ({ navigation: { navigate } }) => {
           <Styles.LabelsContainer>
             <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
               <Flex p={'5px'}>
-                <Fonts.RegularText color={COLORS.black}>{place}</Fonts.RegularText>
+                <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
               </Flex>
             </Styles.TrailLabel>
 
-            <Styles.TrailLabel mt={'5px'} maxW={'97%'} color={color}>
+            <Styles.TrailLabel mt={'5px'} maxW={'91%'} color={color}>
               <Flex p={'5px'}>
-                <Fonts.RegularText color={COLORS.white}>{name}</Fonts.RegularText>
+                <Fonts.MediumPlus color={COLORS.white}>{name}</Fonts.MediumPlus>
               </Flex>
             </Styles.TrailLabel>
           </Styles.LabelsContainer>
@@ -77,15 +59,24 @@ const Trails = ({ navigation: { navigate } }) => {
             {trailTypes[type].typeIcon}
           </Styles.TrailType>
 
-          {isNaN(distance) ? null : (
+          {isNaN(distFromUser) ? null : (
             <Styles.TrailDist>
-              <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
+              <Row alignItems={'center'}>
+                <Icons.Gps
+                  color={COLORS.primaryBtnLight}
+                  width={20}
+                  height={20}
+                  style={{
+                    marginRight: 4,
+                  }}
+                />
+                <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
+              </Row>
             </Styles.TrailDist>
           )}
         </Styles.TrailContainer>
 
         <TrailSpecs ml={'10px'} item={item} />
-
         <Styles.LogoImg alt={'logo'} source={images.logo} />
       </Styles.Item>
     )
@@ -100,9 +91,6 @@ const Trails = ({ navigation: { navigate } }) => {
 
   const Header = React.useCallback(() => {
     const [modalOpen, setModalOpen] = React.useState(false)
-    // const filterActive = Boolean(Object.values(trailFilters).flat().length)
-
-    // const filterIconColor = filterActive ? COLORS.textAccent : COLORS.white
 
     return (
       <Flex my={'20px'}>
@@ -162,38 +150,6 @@ const Trails = ({ navigation: { navigate } }) => {
               borderRadius: 20,
             }}
           />
-          {/* <FlatList
-            data={places}
-            renderItem={({ item }) => (
-              <FlatList
-                data={item.data}
-                getItemLayout={getItemLayout}
-                initialNumToRender={8}
-                keyExtractor={(item, index) => index}
-                showsVerticalScrollIndicator={false}
-                bounces={false}
-                renderItem={({ item, index }) => <Item item={item} index={index} />}
-                ListHeaderComponent={() => (
-                  <>
-                    {item.data.length ? (
-                      <Flex m={'10px'} mt={'20px'} mb={0}>
-                        <Fonts.Heading>{item.place}</Fonts.Heading>
-                      </Flex>
-                    ) : null}
-                  </>
-                )}
-              />
-            )}
-            ListEmptyComponent={() => (
-              <Flex alignSelf={'center'}>
-                <Fonts.RegularText color={COLORS.white}>{t('NO_DATA')}</Fonts.RegularText>
-              </Flex>
-            )}
-            contentContainerStyle={{
-              backgroundColor: trails.length ? COLORS.white : COLORS.transparent,
-              borderRadius: 20,
-            }}
-          /> */}
         </>
       )}
     </>
