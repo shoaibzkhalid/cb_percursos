@@ -1,6 +1,5 @@
 import React from 'react'
 import { Fragment } from 'react'
-import { Dimensions } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 
 import { useTrails } from 'hooks/useTrails'
@@ -26,12 +25,6 @@ const Map = ({ navigation: { navigate } }) => {
           pitch: 0,
           heading: 0.5,
           zoom: 9,
-        }}
-        camera={{
-          center: origin,
-          pitch: 0,
-          heading: 0.5,
-          zoom: 10,
         }}
         showsCompass={false}
         zoomControlEnabled={true}

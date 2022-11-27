@@ -9,14 +9,14 @@ export const FILTER_INITIAL_STATE = {
 
 export const languages = [
   {
-    title: 'português',
-    code: 'pt',
-    image: 'portuguese',
-  },
-  {
     title: 'Inglês',
     code: 'en',
     image: 'english',
+  },
+  {
+    title: 'português',
+    code: 'pt',
+    image: 'portuguese',
   },
   {
     title: 'Espanhol',

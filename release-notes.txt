@@ -1,3 +1,2 @@
-- added a custom compass
-- border radius for elevation graph
-- increased size of icons on map
+- added error message in case there is no user location
+- removed unused code and packages

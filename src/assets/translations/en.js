@@ -60,4 +60,5 @@ export const en = {
   OTHER_CONTACTS: 'Other emergency contacts',
   GO_TO_MAP: 'Go to map',
   SELECT_TYPE: 'Select the type of route',
+  LOC_FEATURE_MSG: 'You need to turn on your location to use this feature.',
 }

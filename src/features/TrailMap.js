@@ -1,17 +1,10 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 
 import { trailTypes } from 'config/constants'
 import { COLORS, Icons } from 'theme'
 import { PressableOpacity } from 'components'
-
-const { width, height } = Dimensions.get('window')
-const ASPECT_RATIO = width / height
-
-const LATITUDE_DELTA = 0.0922
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 const TrailMap = (props) => {
   const { trail } = props
@@ -23,11 +16,6 @@ const TrailMap = (props) => {
   const isPoly = trailType === 'MultiPolygon'
   const origin = isPoly ? trail?.waypoints[0][0] : waypoints[0]
   const [region, setRegion] = React.useState(origin)
-
-  const deltas = {
-    latitudeDelta: LATITUDE_DELTA,
-    longitudeDelta: LONGITUDE_DELTA,
-  }
 
   return (
     <>
@@ -44,7 +32,7 @@ const TrailMap = (props) => {
       </PressableOpacity>
       <MapView
         ref={mapRef}
-        camera={{
+        initialCamera={{
           center: region,
           pitch: 0,
           heading: 0,

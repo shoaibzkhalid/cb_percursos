@@ -54,6 +54,10 @@ const ElevationGraph = ({ trail }) => {
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
           }}
+          android_ripple={{
+            color: COLORS.secondaryBtn,
+            borderless: false,
+          }}
           onPress={() => animateView()}
           w={'100%'}
         >

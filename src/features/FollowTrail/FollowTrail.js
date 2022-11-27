@@ -89,7 +89,7 @@ const FollowTrail = () => {
       <MapView
         ref={mapRef}
         style={{ flex: 1 }}
-        camera={{
+        initialCamera={{
           center: origin,
           pitch: 0,
           heading: 0,

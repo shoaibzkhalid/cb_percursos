@@ -6,11 +6,9 @@ import { COLORS } from 'theme'
 const baseToast = (props, color) => (
   <BaseToast
     {...props}
-    text1Style={{ fontSize: 15, color, paddingVertical: 10 }}
     text2Style={{ fontSize: 19 }}
-    style={{ borderLeftColor: color, paddingBottom: 10, height: 100 }}
-    text1NumberOfLines={1}
-    text2NumberOfLines={2}
+    style={{ borderLeftColor: color, paddingBottom: 4, height: 100 }}
+    text2NumberOfLines={3}
   />
 )
 
@@ -33,7 +31,6 @@ export const showSuccessToast = (message, subject) => {
 export const showErrorToast = (message) => {
   Toast.show({
     type: 'error',
-    text1: 'Error',
     text2: message,
   })
 }

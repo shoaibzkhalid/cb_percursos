@@ -8,11 +8,14 @@ import TrailMap from 'features/TrailMap'
 import { BackButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { useI18n } from 'hooks/useI18n'
+import { showErrorToast } from 'utils/toast'
 
 const height = Dimensions.get('window').height
 
 const TrailMapFull = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
+  const userLocation = useSelector((state) => state.app.userLocation)
+
   const activeTrail = useSelector((state) => state.app.activeTrail)
   const { trailType } = activeTrail
   const isPoly = trailType === 'MultiPolygon'
@@ -30,6 +33,7 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           ml={'auto'}
           mr={'15px'}
           onPress={() => {
+            if (!userLocation) return showErrorToast(t('LOC_FEATURE_MSG'))
             navigate('FollowTrail')
           }}
           hitSlop={50}

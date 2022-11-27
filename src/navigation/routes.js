@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-// import Toast from 'react-native-toast-message'
+import Toast from 'react-native-toast-message'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-// import { toastConfig } from 'utils/toast'
+import { toastConfig } from 'utils/toast'
 
 import { COLORS } from 'theme'
 import Tabs from './tabs'
@@ -45,6 +45,7 @@ const Routes = () => {
           <Stack.Screen name="FollowTrail" component={FollowTrail} />
           <Stack.Screen name="HomeTabs" component={Tabs} />
         </Stack.Navigator>
+        <Toast config={toastConfig} />
       </NavigationContainer>
     </StyledSafeAreaView>
   )

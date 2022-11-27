@@ -65,4 +65,5 @@ export const pt = {
   OTHER_CONTACTS: 'Outros contactos de emergência',
   GO_TO_MAP: 'Ir para o mapa',
   SELECT_TYPE: 'Seleccione o tipo de percurso',
+  LOC_FEATURE_MSG: 'Você precisa ativar sua localização para usar esse recurso.',
 }

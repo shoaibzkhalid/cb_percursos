@@ -190,11 +190,4 @@ const WeatherRow = styled(Row)`
   padding: 10px 0px;
 `
 
-const ElevationTextContainer = styled(Row)`
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  align-items: center;
-`
-
 export default Trail
