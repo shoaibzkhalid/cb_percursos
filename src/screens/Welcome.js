@@ -60,33 +60,26 @@ const Welcome = ({ navigation: { navigate } }) => {
       <Weather />
 
       <LangSelector>
-        {/* <Flex mb={'0px'}>
-          <Fonts.RegularText color={COLORS.white}>{t('CHOOSE_LANG')}</Fonts.RegularText>
-        </Flex> */}
-
-        <Row justifyContent={'space-between'}>
-          {languages.map(({ title, code, image }) => (
-            <Language
-              p={'10px'}
-              key={title}
-              onPress={() => {
-                dispatch(setFilterLoading(true))
-                dispatch(setLang(code))
-                navigate('HomeTabs')
-                dispatch(setLang(code))
-              }}
-            >
-              <Flex alignSelf={'center'}>
-                <Flag source={images[image]} alt={'flag'} />
-              </Flex>
-              <Flex mt={'20px'}>
-                <Fonts.SmallText style={{ textAlign: 'center' }} color={COLORS.white}>
-                  {capitalize(title)}
-                </Fonts.SmallText>
-              </Flex>
-            </Language>
-          ))}
-        </Row>
+        {languages.map(({ title, code, image }) => (
+          <Language
+            key={title}
+            onPress={() => {
+              dispatch(setFilterLoading(true))
+              dispatch(setLang(code))
+              navigate('HomeTabs')
+              dispatch(setLang(code))
+            }}
+          >
+            <Flex alignSelf={'center'}>
+              <Flag source={images[image]} alt={'flag'} />
+            </Flex>
+            <Flex mt={'20px'}>
+              <Fonts.SmallText style={{ textAlign: 'center' }} color={COLORS.white}>
+                {capitalize(title)}
+              </Fonts.SmallText>
+            </Flex>
+          </Language>
+        ))}
       </LangSelector>
     </ImageBackground>
   )
@@ -103,14 +96,15 @@ const Language = styled(PressableOpacity)`
 
   align-items: center;
   justify-content: center;
-  width: 35%;
 `
 
 const LangSelector = styled(Flex)`
   margin: 20px;
-  align-items: center;
   margin-top: auto;
-  top: 10px;
+  /* top: 10px; */
+  /* background-color: rebeccapurple; */
+  flex-direction: row;
+  justify-content: space-between;
 `
 
 const WeatherRow = styled(Row)`

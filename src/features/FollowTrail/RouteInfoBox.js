@@ -36,9 +36,9 @@ const RouteInfoBox = ({ currentLocation }) => {
         onPress={() => dispatch(setRoutePlaying(!routePlaying))}
       >
         {routePlaying ? (
-          <Icons.Pause color={COLORS.white} />
+          <Icons.Pause color={COLORS.white} width={25} height={25} />
         ) : (
-          <Icons.Play color={COLORS.white} />
+          <Icons.Play color={COLORS.white} width={25} height={25} />
         )}
       </PauseBtn>
     )
@@ -99,7 +99,7 @@ const RouteInfoBox = ({ currentLocation }) => {
 }
 
 const Container = styled(Flex)`
-  height: 230px;
+  height: 200px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -110,8 +110,8 @@ const Container = styled(Flex)`
 
 const PauseBtn = styled(PressableOpacity)`
   align-self: center;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 100px;
   align-items: center;
   justify-content: center;

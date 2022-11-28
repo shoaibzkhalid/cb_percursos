@@ -20,6 +20,8 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
   const { trailType } = activeTrail
   const isPoly = trailType === 'MultiPolygon'
 
+  // console.log(activeTrail.elevations.filter((t, i) => i % 5 === 0))
+
   return (
     <Flex>
       <Row alignItems={'center'} m={'10px'}>

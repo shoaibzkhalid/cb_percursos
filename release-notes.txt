@@ -1,2 +1,2 @@
-- added error message in case there is no user location
-- removed unused code and packages
+- Added new language support for French
+- Decreased the size of Follow Trail bottom action container  

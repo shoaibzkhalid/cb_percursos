@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { en } from 'assets/translations/en'
 import { es } from 'assets/translations/es'
 import { pt } from 'assets/translations/pt'
+import { fr } from 'assets/translations/fr'
 import dayjs from 'dayjs'
 
 // dayjs locales for portuguese and spanish
@@ -17,6 +18,7 @@ export const useI18n = () => {
     en,
     es,
     pt,
+    fr,
   })
 
   dayjs.locale(lang)

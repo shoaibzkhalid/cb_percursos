@@ -15,6 +15,9 @@ const ElevationGraph = ({ trail }) => {
   const [isOpen, setIsOpen] = React.useState(true)
 
   const animatedValue = React.useRef(new Animated.Value(0)).current
+  const dataSet = {
+    data: trail.elevations.filter((t, i) => i % 5 === 0),
+  }
 
   const animateView = () => {
     setIsOpen(!isOpen)
@@ -107,11 +110,7 @@ const ElevationGraph = ({ trail }) => {
         <LineChart
           data={{
             labels: xLabels,
-            datasets: [
-              {
-                data: trail.elevations,
-              },
-            ],
+            datasets: [dataSet],
           }}
           withVerticalLines={false}
           width={Dimensions.get('window').width} // from react-native
@@ -119,6 +118,7 @@ const ElevationGraph = ({ trail }) => {
           yAxisSuffix="m"
           xAxisLabel=" km"
           withDots={false}
+          withShadow={false}
           yAxisInterval={1000}
           // fromZero
           // yAxisInterval={null} // optional, defaults to 1

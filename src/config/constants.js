@@ -23,6 +23,11 @@ export const languages = [
     code: 'es',
     image: 'espanol',
   },
+  {
+    title: 'Francesa',
+    code: 'fr',
+    image: 'french',
+  },
 ]
 
 export const deltaCoordinates = {
