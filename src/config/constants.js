@@ -24,7 +24,7 @@ export const languages = [
     image: 'espanol',
   },
   {
-    title: 'Francesa',
+    title: 'Francês',
     code: 'fr',
     image: 'french',
   },

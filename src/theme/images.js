@@ -5,6 +5,7 @@ const french = require('../assets/images/french.png')
 
 const logo = require('../assets/images/logo.png')
 const logo1 = require('../assets/images/logo1.png')
+const logo2 = require('../assets/images/logo2.png')
 const logoLight = require('../assets/images/logoLight.png')
 const splash = require('../assets/images/splash.png')
 
@@ -18,6 +19,7 @@ export default {
   french,
   logo,
   logo1,
+  logo2,
   splash,
   BIKE,
   WALK,

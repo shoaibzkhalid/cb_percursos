@@ -28,10 +28,9 @@ const Trail = ({ navigation: { navigate } }) => {
   const { properties, trailType, waypoints } = item
   const { type } = properties
   const isPoly = trailType === 'MultiPolygon'
-  const maxEle = `${_.max(item.elevations)}m`
   const trailImage = route.params.trailImage
-  const desc = item.description[lang]
-  const showExpandIcon = desc.length > 1000
+  const desc = item.description[lang] || null
+  const showExpandIcon = desc?.length > 1000
   const { longitude, latitude } = isPoly ? item?.waypoints[0][0] : waypoints[0]
   const origin = `${latitude},${longitude}%2C`
 

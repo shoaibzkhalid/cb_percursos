@@ -44,10 +44,24 @@ const Welcome = ({ navigation: { navigate } }) => {
 
   return (
     <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
-      <Flex alignItems={'center'} mt={'20px'}>
-        <Flex mr={'auto'} mb={'20px'}>
+      <Flex alignItems={'center'}>
+        <Row
+          // background={'red.100'}
+          w={'100%'}
+          // alignItems={'center'}
+          justifyContent={'space-between'}
+          mt={'10px'}
+        >
           <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logoLight} />
-        </Flex>
+          {/* <Image alt={'logo'} source={images.logo2} /> */}
+
+          {/* <Image
+            source={images.logo2}
+            resizeMode={'contain'}
+            style={{ width: 140, height: 180 }}
+            alt={'title'}
+          /> */}
+        </Row>
 
         <Image
           source={images.logo1}
