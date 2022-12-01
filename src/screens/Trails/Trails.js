@@ -42,13 +42,14 @@ const Trails = ({ navigation: { navigate } }) => {
           <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
 
           <Styles.LabelsContainer>
-            <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
-              <Flex p={'5px'}>
-                <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
-              </Flex>
-            </Styles.TrailLabel>
-
-            <Styles.TrailLabel mt={'5px'} maxW={'91%'} color={color}>
+            {place && (
+              <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
+                <Flex p={'5px'}>
+                  <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
+                </Flex>
+              </Styles.TrailLabel>
+            )}
+            <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} maxW={'94%'} color={color}>
               <Flex p={'5px'}>
                 <Fonts.MediumPlus color={COLORS.white}>{name}</Fonts.MediumPlus>
               </Flex>

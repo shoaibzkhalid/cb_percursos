@@ -44,6 +44,9 @@ export const openMapLink = (destination) => {
   return Linking.openURL(
     `https://www.google.com/maps/dir/?api=1&destination=${destination}`
 
+    // &provideRouteAlternatives=true
+    // &travelmode=driving
     // &travelmode=bicycling
+    // &travelmode=transit
   )
 }
