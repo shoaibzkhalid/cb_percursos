@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native'
-import { Flex, Image, Row } from 'native-base'
+import { Flex, Row } from 'native-base'
+import FastImage from 'react-native-fast-image'
 import styled from 'styled-components'
 
 import { COLORS } from 'theme'
-import { PressableOpacity } from 'components'
+import { PressableOpacity, ProgressiveImg } from 'components'
 
 const Item = styled(PressableOpacity)`
   border-radius: 15px;
@@ -14,7 +15,7 @@ const TrailContainer = styled(Flex)`
   border-radius: 15px;
 `
 
-const TrailImg = styled(Image)`
+const TrailImg = styled(ProgressiveImg)`
   height: 190px;
   border-radius: 15px;
   opacity: 0.8;
@@ -54,7 +55,7 @@ const TrailDist = styled(Flex)`
   background-color: ${({ color }) => `${color}`};
 `
 
-const LogoImg = styled(Image)`
+const LogoImg = styled(FastImage)`
   margin: 10px;
   margin-left: 0;
   width: 110px;

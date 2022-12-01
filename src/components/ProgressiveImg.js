@@ -16,9 +16,9 @@ const ProgressiveImg = (props) => {
 }
 
 const LoadingBg = styled(Flex)`
-  width: 45px;
-  height: 45px;
-  border-radius: 50px;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
   background-color: ${COLORS.grey};
   position: absolute;
 `

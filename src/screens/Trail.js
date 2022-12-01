@@ -64,58 +64,60 @@ const Trail = ({ navigation: { navigate } }) => {
     </>
   )
 
-  const Content = () => (
-    <CustomCard>
-      <Flex mb={'20px'}>
-        <TrailSpecs item={item} mx={'10px'} />
-      </Flex>
-
-      <DescModal isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)}>
-        <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight>
-      </DescModal>
-      <Row>
-        <Flex w={showExpandIcon ? '90%' : '100%'}>
-          <Fonts.RegularTextLight color={COLORS.dark80} numberOfLines={10}>
-            {desc}
-          </Fonts.RegularTextLight>
+  const Content = () => {
+    return (
+      <CustomCard>
+        <Flex mb={'20px'}>
+          <TrailSpecs item={item} mx={'10px'} />
         </Flex>
 
-        {showExpandIcon && (
-          <PressableOpacity onPress={() => setModelOpen(true)} style={{ top: 0 }}>
-            <Icons.Expand color={COLORS.textAccent} />
-          </PressableOpacity>
-        )}
-      </Row>
-      <Map />
-      <FlatList
-        data={weatherForecast}
-        numColumns={4}
-        renderItem={({ item }) => {
-          const { weather, main } = item
-          const weatherIcon = weather ? weatherIcons[`_${weather[0].icon}`] : null
+        <DescModal isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)}>
+          <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight>
+        </DescModal>
+        <Row>
+          <Flex w={showExpandIcon ? '90%' : '100%'}>
+            <Fonts.RegularTextLight color={COLORS.dark80} numberOfLines={10}>
+              {desc}
+            </Fonts.RegularTextLight>
+          </Flex>
 
-          return (
-            <WeatherRow>
-              <Flex alignItems={'center'}>
-                <Fonts.SmallHeadingLight color={COLORS.dark80}>
-                  {dayjs(item.dt_txt).format('ddd')}
-                </Fonts.SmallHeadingLight>
+          {showExpandIcon && (
+            <PressableOpacity onPress={() => setModelOpen(true)} style={{ top: 0 }}>
+              <Icons.Expand color={COLORS.textAccent} />
+            </PressableOpacity>
+          )}
+        </Row>
+        <Map />
+        <FlatList
+          data={weatherForecast}
+          numColumns={4}
+          renderItem={({ item }) => {
+            const { weather, main } = item
+            const weatherIcon = weather ? weatherIcons[`_${weather[0].icon}`] : null
 
-                <Flex py={'10px'}>{weatherIcon(COLORS.dark80)}</Flex>
-
-                <Flex>
+            return (
+              <WeatherRow>
+                <Flex alignItems={'center'}>
                   <Fonts.SmallHeadingLight color={COLORS.dark80}>
-                    {Math.floor(main?.temp)}°C
+                    {dayjs(item.dt_txt).format('ddd')}
                   </Fonts.SmallHeadingLight>
+
+                  <Flex py={'10px'}>{weatherIcon(COLORS.dark80)}</Flex>
+
+                  <Flex>
+                    <Fonts.SmallHeadingLight color={COLORS.dark80}>
+                      {Math.floor(main?.temp)}°C
+                    </Fonts.SmallHeadingLight>
+                  </Flex>
                 </Flex>
-              </Flex>
-            </WeatherRow>
-          )
-        }}
-        columnWrapperStyle={{ justifyContent: 'space-around' }}
-      />
-    </CustomCard>
-  )
+              </WeatherRow>
+            )
+          }}
+          columnWrapperStyle={{ justifyContent: 'space-around' }}
+        />
+      </CustomCard>
+    )
+  }
 
   const Map = () => (
     <Flex my={'20px'}>

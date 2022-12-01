@@ -53,7 +53,7 @@ const Welcome = ({ navigation: { navigate } }) => {
           mt={'10px'}
         >
           <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logoLight} />
-          {/* <Image alt={'logo'} source={images.logo2} /> */}
+          {/* <Image alt={'logo'} source={images.logo2} style={{ borderRadius: 15 }} /> */}
 
           {/* <Image
             source={images.logo2}
@@ -73,6 +73,10 @@ const Welcome = ({ navigation: { navigate } }) => {
 
       <Weather />
 
+      <Flex mt={'auto'} m={'10px'}>
+        <Image alt={'logo'} source={images.logo2} style={{ borderRadius: 15 }} />
+      </Flex>
+
       <LangSelector>
         {languages.map(({ title, code, image }) => (
           <Language
@@ -87,7 +91,7 @@ const Welcome = ({ navigation: { navigate } }) => {
             <Flex alignSelf={'center'}>
               <Flag source={images[image]} alt={'flag'} />
             </Flex>
-            <Flex mt={'20px'}>
+            <Flex mt={'10px'}>
               <Fonts.SmallText style={{ textAlign: 'center' }} color={COLORS.white}>
                 {capitalize(title)}
               </Fonts.SmallText>
@@ -106,7 +110,7 @@ const Flag = styled(Image)`
 `
 
 const Language = styled(PressableOpacity)`
-  margin: 10px 5px;
+  margin: 0px 5px;
 
   align-items: center;
   justify-content: center;
@@ -114,7 +118,7 @@ const Language = styled(PressableOpacity)`
 
 const LangSelector = styled(Flex)`
   margin: 20px;
-  margin-top: auto;
+  /* margin-top: auto; */
   /* top: 10px; */
   /* background-color: rebeccapurple; */
   flex-direction: row;

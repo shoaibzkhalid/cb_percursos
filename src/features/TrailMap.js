@@ -10,6 +10,7 @@ const TrailMap = (props) => {
   const { trail } = props
   const mapRef = React.useRef()
   const userLocation = useSelector((state) => state.app.userLocation)
+  const [isReady, setIsReady] = React.useState(false)
 
   const { waypoints, properties, trailType } = trail
   const { name, color } = properties
@@ -43,38 +44,43 @@ const TrailMap = (props) => {
         showsUserLocation={false}
         zoomControlEnabled
         showsCompass={false}
+        onMapReady={() => setIsReady(true)}
         customMapStyle={{ padding: 40, borderRadius: 40 }}
         {...props}
       >
-        {userLocation && (
-          <Marker
-            tracksViewChanges={false}
-            coordinate={userLocation}
-            identifier={'userLocation'}
-            description={String(name)}
-            title={'Start'}
-          >
-            {trailTypes[trail.properties.type].icon}
-          </Marker>
-        )}
-
-        <Marker
-          coordinate={origin}
-          identifier={'origin'}
-          description={String(name)}
-          title={'Start'}
-        >
-          {trailTypes[trail.properties.type].icon}
-        </Marker>
-
-        {isPoly ? (
+        {isReady && (
           <>
-            {waypoints.map((w, index) => (
-              <Polyline key={index} coordinates={w} strokeWidth={5} strokeColor={'red'} />
-            ))}
+            {userLocation && (
+              <Marker
+                tracksViewChanges={false}
+                coordinate={userLocation}
+                identifier={'userLocation'}
+                description={String(name)}
+                title={'Start'}
+              >
+                {trailTypes[trail.properties.type].icon}
+              </Marker>
+            )}
+
+            <Marker
+              coordinate={origin}
+              identifier={'origin'}
+              description={String(name)}
+              title={'Start'}
+            >
+              {trailTypes[trail.properties.type].icon}
+            </Marker>
+
+            {isPoly ? (
+              <>
+                {waypoints.map((w, index) => (
+                  <Polyline key={index} coordinates={w} strokeWidth={5} strokeColor={'red'} />
+                ))}
+              </>
+            ) : (
+              <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
+            )}
           </>
-        ) : (
-          <Polyline coordinates={waypoints} strokeWidth={5} strokeColor={color} />
         )}
       </MapView>
     </>

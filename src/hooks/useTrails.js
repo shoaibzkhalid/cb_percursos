@@ -46,6 +46,7 @@ export const useTrails = () => {
   const typeSelected = trailFilters.type.map((i) => i.id)
 
   let filtered = _.orderBy(trails, 'distFromUser', 'asc')
+  // let filtered = trails
 
   filtered = distanceFilter(distanceSelected, filtered, filterByDistance)
   filtered = distanceFilter(durationSelected, filtered, filterByDuration, 'duration')
