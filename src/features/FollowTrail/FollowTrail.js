@@ -1,18 +1,25 @@
 import React from 'react'
+import { Dimensions } from 'react-native'
 import { Flex } from 'native-base'
 import { useDispatch, useSelector } from 'react-redux'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 import { getDistance } from 'geolib'
 
+import { BackButton } from 'components'
 import { Icons } from 'theme'
+import { openMapLink } from 'utils'
 import { trailTypes } from 'config/constants'
 import RouteInfoBox from './RouteInfoBox'
-import { BackButton } from 'components'
 import { setRoutePlaying } from 'store/slices/appSlice'
 import { useLocation } from 'hooks/useLocation'
-import AlertModal from 'features/AlertModal'
-import { openMapLink } from 'utils'
 import Compass from 'features/Compass'
+import AlertModal from 'features/AlertModal'
+
+const { width, height } = Dimensions.get('window')
+const ASPECT_RATIO = width / height
+
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 const FollowTrail = () => {
   const mapRef = React.useRef()
@@ -55,6 +62,11 @@ const FollowTrail = () => {
       // setCurrentIndex(currentIndex + 1)
       getLocation()
     }, 10000)
+
+    if (!userLocation || !origin) return
+    setTimeout(() => {
+      mapRef.current.fitToSuppliedMarkers(['userLocation', 'userLocation'])
+    }, 1000)
   }, [routePlaying, currentIndex, userLocation])
 
   const MapDirections = React.useCallback(() => {
@@ -89,13 +101,14 @@ const FollowTrail = () => {
       <MapView
         ref={mapRef}
         style={{ flex: 1 }}
-        initialCamera={{
+        camera={{
           center: origin,
           pitch: 0,
           heading: 0,
-          zoom: 14,
+          zoom: 8,
         }}
-        showsUserLocation={true}
+        showsUserLocation={false}
+        followsUserLocation
         showsCompass={false}
       >
         <Marker

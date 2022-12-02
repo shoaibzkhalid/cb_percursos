@@ -1,3 +1,2 @@
-- fixed wrong names
-- tweak welcome screen
-= added placeholder color when images not loaded
+- made Follow info box smaller
+- Hid the user blue marker from Follow Trail
