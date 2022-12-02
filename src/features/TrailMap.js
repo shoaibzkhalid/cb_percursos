@@ -39,9 +39,16 @@ const TrailMap = (props) => {
           heading: 0,
           zoom: 14,
         }}
+        camera={{
+          center: region,
+          pitch: 0,
+          heading: 0,
+          zoom: 14,
+        }}
         minZoomLevel={3}
         showsMyLocationButton={false}
         showsUserLocation={false}
+        followsUserLocation
         zoomControlEnabled
         showsCompass={false}
         onMapReady={() => setIsReady(true)}
@@ -55,8 +62,8 @@ const TrailMap = (props) => {
                 tracksViewChanges={false}
                 coordinate={userLocation}
                 identifier={'userLocation'}
-                description={String(name)}
-                title={'Start'}
+                // description={String(name)}
+                // title={'Start'}
               >
                 {trailTypes[trail.properties.type].icon}
               </Marker>

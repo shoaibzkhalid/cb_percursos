@@ -13,7 +13,7 @@ const Compass = () => {
       style={{
         transform: [
           {
-            rotate: `${heading}deg`,
+            rotate: `${360 - heading}deg`,
           },
         ],
       }}

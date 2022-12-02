@@ -36,9 +36,9 @@ const RouteInfoBox = ({ currentLocation }) => {
         onPress={() => dispatch(setRoutePlaying(!routePlaying))}
       >
         {routePlaying ? (
-          <Icons.Pause color={COLORS.white} width={25} height={25} />
+          <Icons.Pause color={COLORS.white} width={15} height={15} />
         ) : (
-          <Icons.Play color={COLORS.white} width={25} height={25} />
+          <Icons.Play color={COLORS.white} width={15} height={15} />
         )}
       </PauseBtn>
     )
@@ -74,7 +74,7 @@ const RouteInfoBox = ({ currentLocation }) => {
     ]
 
     return (
-      <Row alignItems={'center'} p={'20px'} justifyContent={'space-around'}>
+      <Row alignItems={'center'} p={'10px'} justifyContent={'space-around'}>
         {columns.map((c) => (
           <Flex alignItems={'center'} key={c.id}>
             <Fonts.RegularTextLight color={COLORS.dark80}>{c.title}</Fonts.RegularTextLight>
@@ -90,7 +90,7 @@ const RouteInfoBox = ({ currentLocation }) => {
       <InfoRow />
       <ActionBtn />
       {routePlaying ? null : (
-        <Flex my={'10px'} m={'auto'}>
+        <Flex my={'5px'} m={'auto'}>
           <Fonts.SmallText color={COLORS.dark80}>{t('PRESS_TO_START')}</Fonts.SmallText>
         </Flex>
       )}
@@ -99,7 +99,7 @@ const RouteInfoBox = ({ currentLocation }) => {
 }
 
 const Container = styled(Flex)`
-  height: 200px;
+  height: 150px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -110,8 +110,8 @@ const Container = styled(Flex)`
 
 const PauseBtn = styled(PressableOpacity)`
   align-self: center;
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   border-radius: 100px;
   align-items: center;
   justify-content: center;

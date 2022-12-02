@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Flex, Row } from 'native-base'
-import FastImage from 'react-native-fast-image'
+import { Flex, Row, Image } from 'native-base'
 import styled from 'styled-components'
 
 import { COLORS } from 'theme'
@@ -55,7 +54,7 @@ const TrailDist = styled(Flex)`
   background-color: ${({ color }) => `${color}`};
 `
 
-const LogoImg = styled(FastImage)`
+const LogoImg = styled(Image)`
   margin: 10px;
   margin-left: 0;
   width: 110px;
