@@ -52,7 +52,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
           }}
         >
           <Fonts.RegularText style={{ textAlign: 'center' }} color={selectedTextColor}>
-            {name === 'difficulty' ? t(value) : value} {unit}
+            {name === 'difficulty' || name === 'type' ? t(value) : value} {unit}
           </Fonts.RegularText>
         </OptionRow>
       )
@@ -82,7 +82,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
                 <Fonts.RegularText>{capitalize(t(title))}</Fonts.RegularText>
               </Row>
 
-              <Row mt={'10px'} justifyContent={'space-between'} flexWrap={'wrap'}>
+              <Row mt={'10px'} flexWrap={'wrap'}>
                 {options.map((option, index) => {
                   return <FilterOption filter={filter} option={option} key={index} />
                 })}

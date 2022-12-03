@@ -78,18 +78,18 @@ const ElevationGraph = ({ trail }) => {
                 <Flex mr={'10px'}>
                   <Icons.Elevation color={COLORS.textAccent} />
                 </Flex>
-                <Fonts.RegularTextLightest color={COLORS.dark80}>
+                <Fonts.SmallTextLight color={COLORS.dark80}>
                   {_.max(trail.elevations)}m
-                </Fonts.RegularTextLightest>
+                </Fonts.SmallTextLight>
 
-                <Row ml={'10px'}>
+                <Row ml={'10px'} alignItems={'center'}>
                   <Flex mr={'10px'}>
                     <Icons.ElevationDown color={COLORS.textAccent} />
                   </Flex>
-                  <Fonts.RegularTextLightest color={COLORS.dark80}>
+                  <Fonts.SmallTextLight color={COLORS.dark80}>
                     {/* {t('MIN')} {t('ELEVATION')}: */}
                     {_.min(trail.elevations)}m
-                  </Fonts.RegularTextLightest>
+                  </Fonts.SmallTextLight>
                 </Row>
               </Row>
 

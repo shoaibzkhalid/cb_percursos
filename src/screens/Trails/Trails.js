@@ -49,32 +49,40 @@ const Trails = ({ navigation: { navigate } }) => {
                 </Flex>
               </Styles.TrailLabel>
             )}
-            <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} maxW={'94%'} color={color}>
-              <Flex p={'5px'}>
-                <Fonts.MediumPlus color={COLORS.white}>{name}</Fonts.MediumPlus>
-              </Flex>
-            </Styles.TrailLabel>
+            <Styles.BottomLabels>
+              <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} color={color}>
+                <Flex p={'5px'}>
+                  <Fonts.MediumPlus
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                    color={COLORS.white}
+                  >
+                    {name}
+                  </Fonts.MediumPlus>
+                </Flex>
+              </Styles.TrailLabel>
+
+              {isNaN(distFromUser) ? null : (
+                <Styles.TrailDist>
+                  <Row alignItems={'center'}>
+                    <Icons.Gps
+                      color={COLORS.primaryBtnLight}
+                      width={20}
+                      height={20}
+                      style={{
+                        marginRight: 4,
+                      }}
+                    />
+                    <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
+                  </Row>
+                </Styles.TrailDist>
+              )}
+            </Styles.BottomLabels>
           </Styles.LabelsContainer>
 
           <Styles.TrailType color={COLORS.textAccent}>
             {trailTypes[type].typeIcon}
           </Styles.TrailType>
-
-          {isNaN(distFromUser) ? null : (
-            <Styles.TrailDist>
-              <Row alignItems={'center'}>
-                <Icons.Gps
-                  color={COLORS.primaryBtnLight}
-                  width={20}
-                  height={20}
-                  style={{
-                    marginRight: 4,
-                  }}
-                />
-                <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
-              </Row>
-            </Styles.TrailDist>
-          )}
         </Styles.TrailContainer>
 
         <TrailSpecs ml={'10px'} item={item} />

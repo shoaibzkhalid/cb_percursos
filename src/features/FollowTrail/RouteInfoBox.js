@@ -68,18 +68,37 @@ const RouteInfoBox = ({ currentLocation }) => {
     const altitude = currentLocation?.altitude
 
     const columns = [
-      { id: 0, title: t('DURATION'), value: `${getTimeFromSecs(seconds)}` },
-      { id: 1, title: t('DISTANCE'), value: `${getDistanceInKm(distance.current)} km` },
-      { id: 2, title: t('ELEVATION'), value: `${Math.abs(altitude).toFixed(1)} m` },
+      {
+        id: 0,
+        title: t('DURATION'),
+        value: `${getTimeFromSecs(seconds)}`,
+        icon: <Icons.Hourglass color={COLORS.textAccent} />,
+      },
+      {
+        id: 1,
+        title: t('DISTANCE'),
+        value: `${getDistanceInKm(distance.current)} km`,
+
+        icon: <Icons.Compass color={COLORS.textAccent} />,
+      },
+      {
+        id: 2,
+        title: t('ELEVATION'),
+        value: `${Math.abs(altitude).toFixed(1)} m`,
+        icon: <Icons.Elevation color={COLORS.textAccent} />,
+      },
     ]
 
     return (
       <Row alignItems={'center'} p={'10px'} justifyContent={'space-around'}>
         {columns.map((c) => (
-          <Flex alignItems={'center'} key={c.id}>
-            <Fonts.RegularTextLight color={COLORS.dark80}>{c.title}</Fonts.RegularTextLight>
-            <Fonts.RegularText>{c.value}</Fonts.RegularText>
-          </Flex>
+          <Row alignItems={'center'}>
+            <Flex mr={'6px'}>{c.icon}</Flex>
+            <Flex alignItems={'center'} key={c.id}>
+              <Fonts.SmallTextLight color={COLORS.dark80}>{c.title}</Fonts.SmallTextLight>
+              <Fonts.MediumPlus>{c.value}</Fonts.MediumPlus>
+            </Flex>
+          </Row>
         ))}
       </Row>
     )

@@ -4,7 +4,7 @@ import { Flex, Modal, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
 import { PressableOpacity } from 'components'
-import { batch, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setFilter, setFilterLoading } from 'store/slices/filterSlice'
 import { filters, FILTER_INITIAL_STATE } from 'config/constants'
 import { useI18n } from 'hooks/useI18n'
@@ -17,13 +17,13 @@ const TrailSelection = ({ isOpen, onClose }) => {
     {
       id: 0,
       icon: <Icons.Bike color={COLORS.textAccent} width={50} height={50} />,
-      type: filters[3].options[0], // bike
+      type: filters[0].options[0], // bike
       title: t('BIKE'),
     },
     {
       id: 1,
       icon: <Icons.Walk color={COLORS.textAccent} width={50} height={50} />,
-      type: filters[3].options[1], // walk
+      type: filters[0].options[1], // walk
       title: t('WALK'),
     },
   ]

@@ -24,30 +24,27 @@ const LabelsContainer = styled(Flex)`
   position: absolute;
   margin: 10px;
   bottom: 0px;
-  height: 40%;
+`
+
+const BottomLabels = styled(Row)`
+  align-items: center;
+  width: 100%;
 `
 
 const TrailLabel = styled(Flex)`
   background-color: ${({ color }) => `${color}`};
-  flex-grow: 0;
   align-self: flex-start;
+  max-width: 70%;
 `
+const TrailDist = styled(Flex)`
+  background-color: ${({ color }) => `${color}`};
+  margin-left: auto;
+`
+
 const TrailType = styled(Flex)`
   margin: 10px;
   position: absolute;
   top: 0;
-  right: 0;
-
-  padding: 5px 10px;
-  background-color: ${({ color }) => `${color}`};
-`
-
-const TrailDist = styled(Flex)`
-  margin: 10px;
-  margin-right: 0;
-  position: absolute;
-  bottom: 0px;
-  /* top: 0; */
   right: 0;
 
   padding: 5px 10px;
@@ -93,4 +90,5 @@ export default {
   OptionRow,
   TrailType,
   TrailDist,
+  BottomLabels,
 }

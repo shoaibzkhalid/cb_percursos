@@ -1,10 +1,10 @@
 import { COLORS, Icons } from 'theme'
 
 export const FILTER_INITIAL_STATE = {
+  type: [],
   duration: [],
   distance: [],
   difficulty: [],
-  type: [],
 }
 
 export const languages = [
@@ -43,6 +43,23 @@ export const deltaCoordinatesTrail = {
 export const filters = [
   {
     id: 0,
+    name: 'type',
+    title: 'CHOOSE_TYPE',
+    icon: <Icons.Category color={COLORS.textAccent} width={25} />,
+    options: [
+      {
+        id: 8,
+        value: 'BIKE',
+      },
+      {
+        id: 9,
+        value: 'WALK',
+      },
+    ],
+    unit: '',
+  },
+  {
+    id: 1,
     name: 'distance',
     title: 'DISTANCE',
     icon: <Icons.Compass color={COLORS.textAccent} width={25} />,
@@ -63,7 +80,7 @@ export const filters = [
     unit: 'km',
   },
   {
-    id: 1,
+    id: 2,
     name: 'duration',
     title: 'DURATION',
     icon: <Icons.Hourglass color={COLORS.textAccent} width={25} />,
@@ -84,7 +101,7 @@ export const filters = [
     unit: 'hr',
   },
   {
-    id: 2,
+    id: 3,
     name: 'difficulty',
     title: 'DIFFICULTY',
     icon: <Icons.Balance color={COLORS.textAccent} width={25} />,
@@ -100,24 +117,6 @@ export const filters = [
       {
         id: 8,
         value: 'HARD',
-      },
-    ],
-    unit: '',
-  },
-
-  {
-    id: 3,
-    name: 'type',
-    title: 'CHOOSE_TYPE',
-    icon: <Icons.Category color={COLORS.textAccent} width={25} />,
-    options: [
-      {
-        id: 8,
-        value: 'BIKE',
-      },
-      {
-        id: 9,
-        value: 'WALK',
       },
     ],
     unit: '',
