@@ -16,6 +16,8 @@ import TrailMap from 'features/TrailMap'
 import { trailTypes } from 'config/constants'
 import DescModal from 'features/DescModal'
 import { openMapLink } from 'utils'
+import { Pressable } from 'react-native'
+import ImageModal from 'features/ImageModal'
 
 const Trail = ({ navigation: { navigate } }) => {
   const route = useRoute()
@@ -50,19 +52,18 @@ const Trail = ({ navigation: { navigate } }) => {
     </>
   )
 
-  const TrailImg = () => (
-    <>
-      <Image source={trailImage} h={'250px'} alt={'trail'} />
-      {/* {item.elevations[0] && (
-        <ElevationTextContainer>
-          <Flex mx={'10px'}>
-            <Icons.Elevation color={COLORS.textAccent} />
-          </Flex>
-          <Fonts.RegularTextLight color={COLORS.white}>{maxEle}</Fonts.RegularTextLight>
-        </ElevationTextContainer>
-      )} */}
-    </>
-  )
+  const TrailImg = () => {
+    const [modalOpen, setModalOpen] = React.useState(false)
+
+    return (
+      <Pressable onPress={() => setModalOpen(true)}>
+        <Image source={trailImage} h={'250px'} alt={'trail'} />
+        <ImageModal isOpen={modalOpen} onClose={() => setModalOpen(!modalOpen)}>
+          <Image source={trailImage} h={'250px'} alt={'trail'} />
+        </ImageModal>
+      </Pressable>
+    )
+  }
 
   const Content = () => {
     return (

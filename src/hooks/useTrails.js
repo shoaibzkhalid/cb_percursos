@@ -47,10 +47,9 @@ export const useTrails = () => {
 
   let filtered = _.orderBy(trails, 'distFromUser', 'asc')
   // let filtered = trails
+  // console.log('TEST', userLocation?.latitude)
 
-  // console.log('typeSelected', trailFilters)
   filtered = distanceFilter(typeSelected, filtered, filterByType, 'type')
-
   filtered = distanceFilter(distanceSelected, filtered, filterByDistance)
   filtered = distanceFilter(durationSelected, filtered, filterByDuration, 'duration')
   filtered = distanceFilter(difficultySelected, filtered, filterByDifficulty, 'difficulty')

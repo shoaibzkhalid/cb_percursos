@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import _, { capitalize } from 'lodash'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Modal, Pressable, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
@@ -14,7 +14,12 @@ import { filters, FILTER_INITIAL_STATE } from 'config/constants'
 const FilterModal = ({ title, isOpen, onClose, headingW }) => {
   const dispatch = useDispatch()
   const { t } = useI18n()
-  const [localFilters, setLocalFilters] = React.useState(FILTER_INITIAL_STATE)
+  const trailFilters = useSelector((state) => state.filter.trailFilters)
+  const [localFilters, setLocalFilters] = React.useState(trailFilters)
+
+  React.useEffect(() => {
+    setLocalFilters(trailFilters)
+  }, [trailFilters])
 
   const FilterOption = React.useCallback(
     ({ filter, option }) => {

@@ -24,9 +24,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 const FollowTrail = () => {
   const mapRef = React.useRef()
   const dispatch = useDispatch()
-  const userLocation = useSelector((state) => state.app.userLocation)
-
-  const { getLocation } = useLocation()
+  const { userLocation, getLocation } = useLocation()
 
   const routePlaying = useSelector((state) => state.app.routePlaying)
   const trail = useSelector((state) => state.app.activeTrail)
@@ -45,7 +43,7 @@ const FollowTrail = () => {
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
 
-  // const userLocation = waypoints.flat()[0]
+  // console.log('userLocation', userLocation)
 
   const isHigherThanOneKM = getDistance(origin, userLocation) / 1000 > 1
   const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)

@@ -10,50 +10,31 @@ export const useLocation = () => {
 
   const getLocation = async () => {
     try {
-      Geolocation.getCurrentPosition(
-        (info) => {
-          const location = {
-            latitude: info.coords.latitude,
-            longitude: info.coords.longitude,
-            altitude: info.coords.altitude,
-          }
-
-          console.log(info.coords)
-
-          dispatch(setUserLocation(location))
-        },
-        () => {},
-        {
-          enableHighAccuracy: false,
+      Geolocation.getCurrentPosition((info) => {
+        const location = {
+          latitude: info.coords.latitude,
+          longitude: info.coords.longitude,
+          altitude: info.coords.altitude,
         }
-      )
+        console.log('getting location')
+        dispatch(setUserLocation(location))
+      })
     } catch (e) {
       console.log('error getting location', e)
     }
   }
 
-  React.useEffect(() => {
-    getLocation()
+  Geolocation.watchPosition((info) => {
+    const location = {
+      latitude: info.coords.latitude,
+      longitude: info.coords.longitude,
+      altitude: info.coords.altitude,
+    }
 
-    // Geolocation.watchPosition(
-    //   (info) => {
-    //     const location = {
-    //       latitude: info.coords.latitude,
-    //       longitude: info.coords.longitude,
-    //       altitude: info.coords.altitude,
-    //     }
+    // console.log('watchPosition', location)
 
-    //     console.log('test', location)
-
-    //     dispatch(setUserLocation(location))
-    //   },
-    //   null,
-    //   {
-    //     timeout: 1000,
-    //     maximumAge: 0,
-    //   }
-    // )
-  }, [])
+    dispatch(setUserLocation(location))
+  })
 
   return { userLocation, getLocation }
 }

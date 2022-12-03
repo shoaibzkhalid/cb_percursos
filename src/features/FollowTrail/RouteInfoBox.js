@@ -92,9 +92,9 @@ const RouteInfoBox = ({ currentLocation }) => {
     return (
       <Row alignItems={'center'} p={'10px'} justifyContent={'space-around'}>
         {columns.map((c) => (
-          <Row alignItems={'center'}>
+          <Row alignItems={'center'} key={c.id}>
             <Flex mr={'6px'}>{c.icon}</Flex>
-            <Flex alignItems={'center'} key={c.id}>
+            <Flex alignItems={'center'}>
               <Fonts.SmallTextLight color={COLORS.dark80}>{c.title}</Fonts.SmallTextLight>
               <Fonts.MediumPlus>{c.value}</Fonts.MediumPlus>
             </Flex>

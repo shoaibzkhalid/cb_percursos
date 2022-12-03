@@ -9,11 +9,14 @@ import { BackButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { useI18n } from 'hooks/useI18n'
 import { showErrorToast } from 'utils/toast'
+import { useLocation } from 'hooks/useLocation'
 
 const height = Dimensions.get('window').height
 
 const TrailMapFull = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
+  const { getLocation } = useLocation()
+
   const userLocation = useSelector((state) => state.app.userLocation)
 
   const activeTrail = useSelector((state) => state.app.activeTrail)
@@ -36,6 +39,7 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           mr={'15px'}
           onPress={() => {
             if (!userLocation) return showErrorToast(t('LOC_FEATURE_MSG'))
+            getLocation()
             navigate('FollowTrail')
           }}
           hitSlop={50}
@@ -52,7 +56,7 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
           trail={activeTrail}
           showsUserLocation={true}
           style={{
-            height: isPoly ? height - 100 : height - 150,
+            height: isPoly ? height - 100 : height - 140,
           }}
         />
       </Flex>

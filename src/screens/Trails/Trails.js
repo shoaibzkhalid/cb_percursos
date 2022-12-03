@@ -14,6 +14,8 @@ import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
 import TrailSelection from 'features/TrailSelection'
+import { RefreshControl } from 'react-native'
+import { useLocation } from 'hooks/useLocation'
 
 const ITEM_HEIGHT = 232
 
@@ -21,6 +23,7 @@ const Trails = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
   const dispatch = useDispatch()
   const [modelOpen, setModelOpen] = React.useState(true)
+  const { getLocation } = useLocation()
 
   const trails = useSelector((state) => state.app.trails)
   const filterLoading = useSelector((state) => state.filter.filterLoading)
@@ -147,7 +150,16 @@ const Trails = ({ navigation: { navigate } }) => {
             initialNumToRender={8}
             keyExtractor={(item, index) => index}
             showsVerticalScrollIndicator={false}
-            bounces={false}
+            refreshing={filterLoading}
+            refreshControl={
+              <RefreshControl
+                colors={[COLORS.white]}
+                refreshing={filterLoading}
+                onRefresh={() => {
+                  getLocation()
+                }}
+              />
+            }
             renderItem={({ item, index }) => <Item item={item} index={index} />}
             ListEmptyComponent={() => (
               <Flex alignSelf={'center'}>

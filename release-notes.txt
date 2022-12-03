@@ -1,3 +1,5 @@
+- Distance not updating on refresh
+- Filter issue
 - Trail files to update pr1, pr6 
 - Icons for Follow Box 
 - altitude text size smaller 
