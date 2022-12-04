@@ -37,7 +37,7 @@ const Trails = ({ navigation: { navigate } }) => {
     return (
       <Styles.Item
         onPress={() => {
-          navigate('Trail', { item, trailImage: trailImages[image] })
+          navigate('Trail', { item })
           dispatch(setActiveTrail(item))
         }}
       >

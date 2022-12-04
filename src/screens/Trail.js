@@ -13,7 +13,7 @@ import { weatherIcons } from 'theme/weatherIcons'
 import { useI18n } from 'hooks/useI18n'
 import TrailSpecs from 'features/TrailSpecs'
 import TrailMap from 'features/TrailMap'
-import { trailTypes } from 'config/constants'
+import { trailImages, trailTypes } from 'config/constants'
 import DescModal from 'features/DescModal'
 import { openMapLink } from 'utils'
 import { Pressable } from 'react-native'
@@ -28,13 +28,13 @@ const Trail = ({ navigation: { navigate } }) => {
 
   const item = route.params.item
   const { properties, trailType, waypoints } = item
-  const { type } = properties
+  const { type, image } = properties
   const isPoly = trailType === 'MultiPolygon'
-  const trailImage = route.params.trailImage
   const desc = item.description[lang] || null
   const showExpandIcon = desc?.length > 1000
   const { longitude, latitude } = isPoly ? item?.waypoints[0][0] : waypoints[0]
   const origin = `${latitude},${longitude}%2C`
+  const trailImage = trailImages[image]
 
   const Header = () => (
     <>
