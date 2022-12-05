@@ -1,1 +1,2 @@
+- updated trail assets
 - fixed an inconsistent images issue
