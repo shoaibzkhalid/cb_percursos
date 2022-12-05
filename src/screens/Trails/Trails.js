@@ -28,71 +28,76 @@ const Trails = ({ navigation: { navigate } }) => {
   const trails = useSelector((state) => state.app.trails)
   const filterLoading = useSelector((state) => state.filter.filterLoading)
 
-  const Item = React.useCallback(({ item }) => {
-    const { properties, distFromUser } = item
-    const { name, color, type, image, place } = properties
+  const Item = React.useCallback(
+    ({ item, index }) => {
+      const { properties, distFromUser } = item
+      const { name, color, type, image, place } = properties
 
-    const localeDistance = parseFloat(distFromUser).toLocaleString('pt-PT')
+      const localeDistance = parseFloat(distFromUser).toLocaleString('pt-PT')
 
-    return (
-      <Styles.Item
-        onPress={() => {
-          navigate('Trail', { item })
-          dispatch(setActiveTrail(item))
-        }}
-      >
-        <Styles.TrailContainer>
-          <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
+      return (
+        <Styles.Item
+          onPress={() => {
+            navigate('Trail', { item })
+            dispatch(setActiveTrail(item))
+          }}
+        >
+          <Styles.TrailContainer>
+            <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
 
-          <Styles.LabelsContainer>
-            {place && (
-              <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
-                <Flex p={'5px'}>
-                  <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
-                </Flex>
-              </Styles.TrailLabel>
-            )}
-            <Styles.BottomLabels>
-              <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} color={color}>
-                <Flex p={'5px'}>
-                  <Fonts.MediumPlus
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                    color={COLORS.white}
-                  >
-                    {name}
-                  </Fonts.MediumPlus>
-                </Flex>
-              </Styles.TrailLabel>
-
-              {isNaN(distFromUser) ? null : (
-                <Styles.TrailDist>
-                  <Row alignItems={'center'}>
-                    <Icons.Gps
-                      color={COLORS.primaryBtnLight}
-                      width={20}
-                      height={20}
-                      style={{
-                        marginRight: 4,
-                      }}
-                    />
-                    <Fonts.SmallText color={COLORS.white}>{localeDistance} km</Fonts.SmallText>
-                  </Row>
-                </Styles.TrailDist>
+            <Styles.LabelsContainer>
+              {place && (
+                <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
+                  <Flex p={'5px'}>
+                    <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
+                  </Flex>
+                </Styles.TrailLabel>
               )}
-            </Styles.BottomLabels>
-          </Styles.LabelsContainer>
+              <Styles.BottomLabels>
+                <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} color={color}>
+                  <Flex p={'5px'}>
+                    <Fonts.MediumPlus
+                      numberOfLines={1}
+                      ellipsizeMode={'tail'}
+                      color={COLORS.white}
+                    >
+                      {name}
+                    </Fonts.MediumPlus>
+                  </Flex>
+                </Styles.TrailLabel>
 
-          <Styles.TrailType color={COLORS.textAccent}>
-            {trailTypes[type].typeIcon}
-          </Styles.TrailType>
-        </Styles.TrailContainer>
+                {isNaN(distFromUser) ? null : (
+                  <Styles.TrailDist>
+                    <Row alignItems={'center'}>
+                      <Icons.Gps
+                        color={COLORS.primaryBtnLight}
+                        width={20}
+                        height={20}
+                        style={{
+                          marginRight: 4,
+                        }}
+                      />
+                      <Fonts.SmallText color={COLORS.white}>
+                        {localeDistance} km
+                      </Fonts.SmallText>
+                    </Row>
+                  </Styles.TrailDist>
+                )}
+              </Styles.BottomLabels>
+            </Styles.LabelsContainer>
 
-        <TrailSpecs ml={'10px'} item={item} />
-        <Styles.LogoImg alt={'logo'} source={images.logo} />
-      </Styles.Item>
-    )
-  }, [])
+            <Styles.TrailType color={COLORS.textAccent}>
+              {trailTypes[type].typeIcon}
+            </Styles.TrailType>
+          </Styles.TrailContainer>
+
+          <TrailSpecs ml={'10px'} item={item} />
+          <Styles.LogoImg alt={'logo'} source={images.logo} />
+        </Styles.Item>
+      )
+    },
+    [trails]
+  )
 
   // we set the height of item is fixed
   const getItemLayout = (data, index) => ({

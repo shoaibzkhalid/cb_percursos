@@ -417,8 +417,10 @@
 
       "description": {
         "pt": "Percurso circular com início e fim em Almaceda. Desenvolve-seao longo da Ribeira de Almaceda em direção à aldeia de Rochasde Baixo, retomando o percurso para Almaceda. É um percursofácil, acessível a todos os praticantes da modalidade.",
-        "en": "Circular route starting and finishing in Almaceda. Theroute runs along the Ribeira de Almaceda to the villageof Rochas de Baixo, before returning to Almaceda. It is an easy route, accessible to all practitioners of the sport."
-      }
+        "en": "Circular route starting and finishing in Almaceda. Theroute runs along the Ribeira de Almaceda to the villageof Rochas de Baixo, before returning to Almaceda. It is an easy route, accessible to all practitioners of the sport.",
+        "es": "Esta ruta circular comienza y termina en Almaceda. Recorre el arroyo de la Almaceda en dirección a la aldea de Rochasde Baixo y luego vuelve a la Almaceda. Es un recorrido fácil, accesible a todos los practicantes de este deporte.",
+        "fr": "Cette route circulaire commence et se termine à Almaceda. Il longe le ruisseau Almaceda en direction du village de Rochasde Baixo et revient ensuite à Almaceda. Il s'agit d'un parcours facile, accessible à tous les pratiquants de ce sport."
+      } 
     }
   ]
 }

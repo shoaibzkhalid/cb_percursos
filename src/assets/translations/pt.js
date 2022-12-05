@@ -1,5 +1,5 @@
 export const pt = {
-  CHOOSE_LANG: 'Escolha seu idioma',
+  CHOOSE_LANG: 'Escolha o idioma',
   FILTER: 'Filtro',
   APPLY: 'Aplicar',
 
@@ -44,20 +44,20 @@ export const pt = {
   DIRECTIONS: 'instruções',
 
   GNR: 'GNR',
-  CIVIL_DEFENSE: 'Proteção CiIvil',
+  CIVIL_DEFENSE: 'Proteção Civil',
 
-  MY_LOCATION: 'minha posição atual',
+  MY_LOCATION: 'A minha posição atual,',
   COORDINATES: 'coordenadas',
   SENT_FROM: 'Enviado do aplicativo móvel CB Percursos',
 
   CALL: 'Ligar',
-  SEND_LOCATION: 'enviar localização',
+  SEND_LOCATION: 'Enviar localização',
 
-  PRESS_TO_START: 'Pressione para começar a rastrear a trilha',
+  PRESS_TO_START: 'Pressione para começar a rastrear o percurso',
   NO_DATA: 'sem dados',
 
   ALERT_MSG:
-    'A trilha fica a mais de 1 km de distância. Você quer instruções para a trilha a partir de sua localização?',
+    'O percurso fica a mais de 1 km de distância. Quer abrir o navegador para ir para o início do percurso?',
 
   ALERT_TITLE: 'Obter direções',
 
