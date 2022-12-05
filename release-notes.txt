@@ -1,2 +1,2 @@
-- updated trail assets
-- fixed an inconsistent images issue
+- replaced an image
+- change limit to show expand icon 
