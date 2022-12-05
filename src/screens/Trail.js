@@ -31,7 +31,7 @@ const Trail = ({ navigation: { navigate } }) => {
   const { type, image } = properties
   const isPoly = trailType === 'MultiPolygon'
   const desc = item.description[lang] || null
-  const showExpandIcon = desc?.length > 1000
+  const showExpandIcon = desc?.length > 400
   const { longitude, latitude } = isPoly ? item?.waypoints[0][0] : waypoints[0]
   const origin = `${latitude},${longitude}%2C`
   const trailImage = trailImages[image]
