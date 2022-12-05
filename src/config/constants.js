@@ -145,47 +145,23 @@ export const trailTypes = {
   },
 }
 
-export const trailImages1 = [
-  require('../assets/images/21.jpg'),
-  require('../assets/images/22.jpg'),
-  require('../assets/images/23.jpg'),
-  require('../assets/images/24.jpg'),
-  require('../assets/images/24.jpg'),
-  require('../assets/images/24.jpg'),
-  require('../assets/images/24.jpg'),
-
-  require('../assets/images/28.jpg'),
-  require('../assets/images/28.jpg'),
-  require('../assets/images/28.jpg'),
-  require('../assets/images/28.jpg'),
-  require('../assets/images/28.jpg'),
-  require('../assets/images/28.jpg'),
-  require('../assets/images/28.jpg'),
-  // require('../assets/images/PR1.png'),
-  // require('../assets/images/PR2.png'),
-  // require('../assets/images/PR3.png'),
-  // require('../assets/images/PR4.png'),
-  // require('../assets/images/PR6.png'),
-  // require('../assets/images/PR7.png'),
-  // require('../assets/images/PR8.png'),
-]
-
 export const trailImages = {
   _21: require('../assets/images/21.jpg'),
   _22: require('../assets/images/22.jpg'),
   _23: require('../assets/images/23.jpg'),
   _24: require('../assets/images/24.jpg'),
-  _25: require('../assets/images/24.jpg'),
-  _26: require('../assets/images/24.jpg'),
-  _27: require('../assets/images/24.jpg'),
+  _25: require('../assets/images/25.jpg'),
+  _26: require('../assets/images/26.jpg'),
+  _27: require('../assets/images/27.jpg'),
+  _28: require('../assets/images/28.jpg'),
 
   pr1: require('../assets/images/pr1.jpg'),
-  pr2: require('../assets/images/pr4.jpg'),
-  pr3: require('../assets/images/pr1.jpg'),
+  pr2: require('../assets/images/pr2.jpg'),
+  pr3: require('../assets/images/pr3.jpg'),
   pr4: require('../assets/images/pr4.jpg'),
-  pr6: require('../assets/images/pr9.jpg'),
+  pr6: require('../assets/images/pr6.jpg'),
   pr7: require('../assets/images/pr7.jpg'),
-  pr8: require('../assets/images/pr4.jpg'),
+  pr8: require('../assets/images/pr8.jpg'),
   pr9: require('../assets/images/pr9.jpg'),
 
   cg1: require('../assets/images/cg1.jpg'),
@@ -196,4 +172,5 @@ export const trailImages = {
   cg6: require('../assets/images/cg6.jpg'),
   cg7: require('../assets/images/cg7.jpg'),
   cg8: require('../assets/images/cg8.jpg'),
+  cg9: require('../assets/images/cg9.jpg'),
 }
