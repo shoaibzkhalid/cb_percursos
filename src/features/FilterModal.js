@@ -7,7 +7,7 @@ import { Flex, Modal, Pressable, Row } from 'native-base'
 import { COLORS, Fonts, Icons } from 'theme'
 import { useI18n } from 'hooks/useI18n'
 import { CustomButton, PressableOpacity } from 'components'
-import { setApplied, setFiltering } from 'store/slices/filterSlice'
+import { setApplied } from 'store/slices/filterSlice'
 
 import { filters } from 'config/constants'
 import { useFilter } from 'hooks/useFilter'
@@ -61,11 +61,6 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
     [isOpen, lFilters]
   )
 
-  const apply = async () => {
-    dispatch(setApplied(true))
-    dispatch(setFiltering(false))
-  }
-
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={'full'}>
       <StyledModal>
@@ -101,8 +96,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
             title={t('APPLY')}
             onPress={() => {
               onClose()
-              dispatch(setFiltering(true))
-              apply()
+              dispatch(setApplied(true))
             }}
           />
           <CustomButton title={t('CLEAR')} type={'secondary'} onPress={() => clearFilters()} />

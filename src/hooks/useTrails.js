@@ -31,13 +31,10 @@ export const useFilteredTrails = () => {
   trails = distanceFilter(duration, trails, filterByDuration, 'duration')
   trails = distanceFilter(difficulty, trails, filterByDifficulty, 'difficulty')
 
-  // console.log('TEST filtering', filtering)
-
   React.useEffect(() => {
     if (applied) {
       dispatch(setFilteredTrails(_.orderBy(trails, 'distFromUser', 'asc')))
       dispatch(setApplied(false))
-      dispatch(setFiltering(false))
     }
   }, [applied, filtering])
 }
