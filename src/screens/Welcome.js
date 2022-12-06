@@ -13,7 +13,7 @@ import { useWeather } from 'hooks/useWeather'
 import { weatherIcons } from 'theme/weatherIcons'
 import { useTrails } from 'hooks/useTrails'
 import { useLocation } from 'hooks/useLocation'
-import { setFilterLoading } from 'store/slices/filterSlice'
+import { setFiltering } from 'store/slices/filterSlice'
 
 const Welcome = ({ navigation: { navigate } }) => {
   useTrails()
@@ -82,7 +82,7 @@ const Welcome = ({ navigation: { navigate } }) => {
           <Language
             key={title}
             onPress={() => {
-              dispatch(setFilterLoading(true))
+              dispatch(setFiltering(true))
               dispatch(setLang(code))
               navigate('HomeTabs')
               dispatch(setLang(code))

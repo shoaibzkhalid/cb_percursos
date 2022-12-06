@@ -7,7 +7,7 @@ const filter = createSlice({
   // initial state
   initialState: {
     trailFilters: FILTER_INITIAL_STATE,
-    filterLoading: true,
+    filtering: false,
     applied: false,
 
     distance: [],
@@ -19,8 +19,9 @@ const filter = createSlice({
     setFilter(state, action) {
       state.trailFilters = action.payload
     },
-    setFilterLoading(state, action) {
-      state.filterLoading = action.payload
+
+    setFiltering(state, action) {
+      state.filtering = action.payload
     },
 
     setDistance(state, action) {
@@ -44,12 +45,12 @@ const filter = createSlice({
 // actions that can be made
 export const {
   setFilter,
-  setFilterLoading,
   setDistance,
   setType,
   setDifficulty,
   setDuration,
   setApplied,
+  setFiltering,
 } = filter.actions
 
 export default filter.reducer

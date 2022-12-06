@@ -5,7 +5,7 @@ import { Flex, Modal, Row } from 'native-base'
 import { COLORS, Fonts, Icons } from 'theme'
 import { PressableOpacity } from 'components'
 import { useDispatch } from 'react-redux'
-import { setApplied, setFilterLoading, setType } from 'store/slices/filterSlice'
+import { setApplied, setFiltering, setType } from 'store/slices/filterSlice'
 import { filters } from 'config/constants'
 import { useI18n } from 'hooks/useI18n'
 
@@ -28,11 +28,17 @@ const TrailSelection = ({ isOpen, onClose }) => {
     },
   ]
 
+  const apply = async (type) => {
+    dispatch(setType([type.id]))
+    dispatch(setApplied(true))
+    dispatch(setFiltering(false))
+  }
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={() => {
-        dispatch(setFilterLoading(false))
+        dispatch(setFiltering(false))
         onClose()
       }}
       size={'full'}
@@ -47,14 +53,9 @@ const TrailSelection = ({ isOpen, onClose }) => {
             <Flex alignItems={'center'} key={id}>
               <IconContainer
                 key={id}
-                onPress={async () => {
-                  dispatch(setApplied(true))
+                onPress={() => {
                   onClose()
-                  dispatch(setType([type.id]))
-
-                  setTimeout(() => {
-                    dispatch(setFilterLoading(false))
-                  }, 1)
+                  apply(type)
                 }}
               >
                 {icon}

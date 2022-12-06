@@ -34,7 +34,7 @@ const BottomLabels = styled(Row)`
 const TrailLabel = styled(Flex)`
   background-color: ${({ color }) => `${color}`};
   align-self: flex-start;
-  max-width: 220px;
+  max-width: 245px;
 `
 const TrailDist = styled(Flex)`
   background-color: ${({ color }) => `${color}`};

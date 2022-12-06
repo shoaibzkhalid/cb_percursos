@@ -26,7 +26,7 @@ const Trails = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch()
   const [modelOpen, setModelOpen] = React.useState(true)
   const { getLocation } = useLocation()
-  const filterLoading = useSelector((state) => state.filter.filterLoading)
+  const filtering = useSelector((state) => state.filter.filtering)
 
   // we set the height of item is fixed
   const getItemLayout = (data, index) => ({
@@ -63,9 +63,7 @@ const Trails = ({ navigation: { navigate } }) => {
         <FilterModal
           isOpen={modalOpen}
           title={t('FILTER')}
-          onClose={() => {
-            setModalOpen(!modalOpen)
-          }}
+          onClose={() => setModalOpen(!modalOpen)}
         />
       </Flex>
     )
@@ -85,7 +83,7 @@ const Trails = ({ navigation: { navigate } }) => {
         }}
       />
 
-      {filterLoading ? (
+      {filtering ? (
         <LoadingAnimation />
       ) : (
         <>
@@ -168,11 +166,11 @@ const Trails = ({ navigation: { navigate } }) => {
               )
             }}
             showsVerticalScrollIndicator={false}
-            refreshing={filterLoading}
+            refreshing={filtering}
             refreshControl={
               <RefreshControl
                 colors={[COLORS.textAccent]}
-                refreshing={filterLoading}
+                refreshing={filtering}
                 onRefresh={() => {
                   getLocation()
                 }}

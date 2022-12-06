@@ -12,7 +12,7 @@ import {
 } from 'utils/filter'
 import { trailsData } from 'services/trails'
 import { setFilteredTrails, setTrails } from 'store/slices/trailSlice'
-import { setApplied } from 'store/slices/filterSlice'
+import { setApplied, setFiltering } from 'store/slices/filterSlice'
 
 export const useFilteredTrails = () => {
   const dispatch = useDispatch()
@@ -24,17 +24,22 @@ export const useFilteredTrails = () => {
   const difficulty = useSelector((state) => state.filter.difficulty)
   const type = useSelector((state) => state.filter.type)
 
+  const filtering = useSelector((state) => state.filter.filtering)
+
   trails = distanceFilter(type, trails, filterByType, 'type')
   trails = distanceFilter(distance, trails, filterByDistance)
   trails = distanceFilter(duration, trails, filterByDuration, 'duration')
   trails = distanceFilter(difficulty, trails, filterByDifficulty, 'difficulty')
 
+  // console.log('TEST filtering', filtering)
+
   React.useEffect(() => {
     if (applied) {
       dispatch(setFilteredTrails(_.orderBy(trails, 'distFromUser', 'asc')))
       dispatch(setApplied(false))
+      dispatch(setFiltering(false))
     }
-  }, [applied])
+  }, [applied, filtering])
 }
 
 export const useTrails = () => {

@@ -1,2 +1,1 @@
-- added sort for filtered list of trails
-- refactored the Filter functionality to improve performance
+- improved the flow of the app
