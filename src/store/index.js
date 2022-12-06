@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import app from 'store/slices/appSlice'
 import filter from 'store/slices/filterSlice'
+import trail from 'store/slices/trailSlice'
 
 // Redux store setup
 // root reducer
 const rootReducer = combineReducers({
   app,
   filter,
+  trail,
 })
 
 // store configuration

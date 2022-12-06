@@ -1,3 +1,4 @@
+import { FilterTypes } from 'enums/filterTypes'
 import { COLORS, Icons } from 'theme'
 
 export const FILTER_INITIAL_STATE = {
@@ -48,12 +49,13 @@ export const filters = [
     icon: <Icons.Category color={COLORS.textAccent} width={25} />,
     options: [
       {
-        id: 8,
         value: 'BIKE',
+        id: FilterTypes.bike,
       },
       {
-        id: 9,
+        id: 11,
         value: 'WALK',
+        id: FilterTypes.walk,
       },
     ],
     unit: '',
@@ -65,16 +67,16 @@ export const filters = [
     icon: <Icons.Compass color={COLORS.textAccent} width={25} />,
     options: [
       {
-        id: 0,
         value: '0 - 10',
+        id: FilterTypes.zeroTo10KM,
       },
       {
-        id: 1,
         value: '10 - 40',
+        id: FilterTypes.tenTo40KM,
       },
       {
-        id: 2,
         value: '40 - 100',
+        id: FilterTypes.fortyTo100KM,
       },
     ],
     unit: 'km',
@@ -86,15 +88,15 @@ export const filters = [
     icon: <Icons.Hourglass color={COLORS.textAccent} width={25} />,
     options: [
       {
-        id: 3,
         value: '1 - 4',
+        id: FilterTypes.oneTo4Hr,
       },
       {
-        id: 4,
         value: '5 - 10',
+        id: FilterTypes.fiveTo10hr,
       },
       {
-        id: 5,
+        id: FilterTypes.above10Hr,
         value: '> 10',
       },
     ],
@@ -107,16 +109,17 @@ export const filters = [
     icon: <Icons.Balance color={COLORS.textAccent} width={25} />,
     options: [
       {
-        id: 6,
         value: 'EASY',
+        id: FilterTypes.easy,
       },
       {
-        id: 7,
         value: 'MEDIUM',
+        id: FilterTypes.medium,
       },
       {
-        id: 8,
+        id: 9,
         value: 'HARD',
+        id: FilterTypes.hard,
       },
     ],
     unit: '',

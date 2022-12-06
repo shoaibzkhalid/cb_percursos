@@ -27,7 +27,5 @@ export const useI18n = () => {
   i18n.defaultLocale = lang
   i18n.locale = lang
 
-  // console.log('i18n', i18n, i18n.t('CHOOSE_LANG'))
-
   return { i18n, t: (key) => i18n.t(key) }
 }

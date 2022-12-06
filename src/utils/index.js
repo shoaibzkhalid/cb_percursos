@@ -35,8 +35,6 @@ export const onShare = async (message) => {
 }
 
 export const openMapLink = (destination) => {
-  // console.log('destination', destination)
-
   if (Platform.OS === 'ios') {
     return Linking.openURL(`http://maps.apple.com/?daddr=${destination}&dirflg=w`)
   }

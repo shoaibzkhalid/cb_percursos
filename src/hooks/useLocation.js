@@ -30,8 +30,7 @@ export const useLocation = () => {
       longitude: info.coords.longitude,
       altitude: info.coords.altitude,
     }
-
-    // console.log('watchPosition', location)
+    // console.log('watchPosition', info)
 
     dispatch(setUserLocation(location))
   })

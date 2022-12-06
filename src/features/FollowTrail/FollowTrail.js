@@ -27,7 +27,7 @@ const FollowTrail = () => {
   const { userLocation, getLocation } = useLocation()
 
   const routePlaying = useSelector((state) => state.app.routePlaying)
-  const trail = useSelector((state) => state.app.activeTrail)
+  const trail = useSelector((state) => state.trail.activeTrail)
 
   const { waypoints, properties, trailType } = trail
   const { type } = properties
@@ -42,8 +42,6 @@ const FollowTrail = () => {
     : waypoints[trail.waypoints.length - 1]
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
-
-  // console.log('userLocation', userLocation)
 
   const isHigherThanOneKM = getDistance(origin, userLocation) / 1000 > 1
   const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)

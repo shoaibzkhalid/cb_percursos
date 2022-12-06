@@ -1,79 +1,70 @@
-export const filterByDifficulty = (difficulty, key) => {
-  if (key === 6) {
-    if (difficulty === 'easy') return true
-    return false
+import { FilterTypes } from 'enums/filterTypes'
+
+export const filterByType = (key, val) => {
+  if (key === FilterTypes.bike && val === 'BIKE') {
+    return true
   }
 
-  if (key === 7) {
-    if (difficulty === 'medium') return true
-    return false
-  }
-
-  if (key === 8) {
-    if (difficulty === 'hard') return true
-    return false
+  if (key === FilterTypes.walk && val === 'WALK') {
+    return true
   }
 
   return false
 }
 
-export const filterByDistance = (distance, key) => {
-  if (key === 0) {
-    if (distance > 0 && distance <= 10000) return true
-    return false
+export const filterByDifficulty = (key, val) => {
+  if (key === FilterTypes.easy && val === 'easy') {
+    return true
   }
 
-  if (key === 1) {
-    if (distance > 10000 && distance <= 40000) return true
-    return false
+  if (key === FilterTypes.medium && val === 'medium') {
+    return true
   }
 
-  if (key === 2) {
-    if (distance > 40000 && distance <= 100000) return true
-    return false
+  if (key === FilterTypes.hard && val === 'hard') {
+    return true
   }
 
   return false
 }
 
-export const filterByDuration = (duration, key) => {
-  if (key === 3) {
-    if (duration > 59 && duration <= 240) return true
-    return false
+export const filterByDistance = (key, val) => {
+  if (key === FilterTypes.zeroTo10KM && val > 0 && val <= 10000) {
+    return true
   }
 
-  if (key === 4) {
-    if (duration > 240 && duration <= 600) return true
-    return false
+  if (key === FilterTypes.tenTo40KM && val > 10000 && val <= 40000) {
+    return true
   }
 
-  if (key === 5) {
-    if (duration > 600) return true
-    return false
+  if (key === FilterTypes.fortyTo100KM && val > 40000 && val <= 100000) {
+    return true
   }
 
   return false
 }
 
-export const filterByType = (type, key) => {
-  if (key === 8) {
-    if (type === 'BIKE') return true
-    return false
+export const filterByDuration = (key, val) => {
+  if (key === FilterTypes.oneTo4Hr && val > 59 && val <= 240) {
+    return true
   }
 
-  if (key === 9) {
-    if (type === 'WALK') return true
-    return false
+  if (key === FilterTypes.fiveTo10hr && val > 240 && val <= 600) {
+    return true
+  }
+
+  if (key === FilterTypes.above10Hr && val > 600) {
+    return true
   }
 
   return false
 }
 
-export const distanceFilter = (filters, toFilter, filterer, key = 'distance') => {
-  if (!filters.length) return toFilter
+export const distanceFilter = (ids, toFilter, filterer, key = 'distance') => {
+  if (!ids.length) return toFilter
 
-  const filtered = filters.map((filterKey) =>
-    toFilter.filter(({ properties }) => filterer(properties[key], filterKey))
+  const filtered = ids.map((id) =>
+    toFilter.filter(({ properties }) => filterer(id, properties[key]))
   )
 
   return filtered.flat()

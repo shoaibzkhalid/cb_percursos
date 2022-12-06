@@ -1,5 +1,7 @@
 import React from 'react'
+import _ from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
+import { getDistance } from 'geolib'
 
 import {
   distanceFilter,
@@ -9,54 +11,61 @@ import {
   filterByDuration,
 } from 'utils/filter'
 import { trailsData } from 'services/trails'
-import { setTrails } from 'store/slices/appSlice'
-import { getDistance } from 'geolib'
-import _ from 'lodash'
+import { setFilteredTrails, setTrails } from 'store/slices/trailSlice'
+import { setApplied } from 'store/slices/filterSlice'
+
+export const useFilteredTrails = () => {
+  const dispatch = useDispatch()
+  let trails = useSelector((state) => state.trail.trails)
+
+  const applied = useSelector((state) => state.filter.applied)
+  const distance = useSelector((state) => state.filter.distance)
+  const duration = useSelector((state) => state.filter.duration)
+  const difficulty = useSelector((state) => state.filter.difficulty)
+  const type = useSelector((state) => state.filter.type)
+
+  trails = distanceFilter(type, trails, filterByType, 'type')
+  trails = distanceFilter(distance, trails, filterByDistance)
+  trails = distanceFilter(duration, trails, filterByDuration, 'duration')
+  trails = distanceFilter(difficulty, trails, filterByDifficulty, 'difficulty')
+
+  React.useEffect(() => {
+    if (applied) {
+      dispatch(setFilteredTrails(_.orderBy(trails, 'distFromUser', 'asc')))
+      dispatch(setApplied(false))
+    }
+  }, [applied])
+}
 
 export const useTrails = () => {
   const dispatch = useDispatch()
   const userLocation = useSelector((state) => state.app.userLocation)
 
-  const trailFilters = useSelector((state) => state.filter.trailFilters)
-  let trails = trailsData.map((t) => ({
-    properties: t.features[0].properties,
-    description: t.features[0].description,
-    waypoints: t.features[0].geometry.coordinates.map((c) => {
-      if (t.features[0].geometry.type == 'MultiPolygon') {
-        return c[0].map((c) => ({ longitude: c[0], latitude: c[1] }))
-      }
-      return {
-        longitude: c[0],
-        latitude: c[1],
-      }
-    }),
-    trailType: t.features[0].geometry.type,
-    elevations: t.features[0].geometry.coordinates.map((c) => c[2]),
+  const trails = React.useMemo(() => {
+    return trailsData.map((t) => ({
+      properties: t.features[0].properties,
+      description: t.features[0].description,
+      waypoints: t.features[0].geometry.coordinates.map((c) => {
+        if (t.features[0].geometry.type == 'MultiPolygon') {
+          return c[0].map((c) => ({ longitude: c[0], latitude: c[1] }))
+        }
+        return {
+          longitude: c[0],
+          latitude: c[1],
+        }
+      }),
+      trailType: t.features[0].geometry.type,
+      elevations: t.features[0].geometry.coordinates.map((c) => c[2]),
 
-    ...(userLocation && {
-      distFromUser: Math.abs(
-        getDistance(t.features[0].geometry.coordinates[0], userLocation) / 1000
-      ).toFixed(1),
-    }),
-  }))
-
-  const difficultySelected = trailFilters.difficulty.map((i) => i.id)
-  const distanceSelected = trailFilters.distance.map((i) => i.id)
-  const durationSelected = trailFilters.duration.map((i) => i.id)
-  const typeSelected = trailFilters.type.map((i) => i.id)
-
-  let filtered = _.orderBy(trails, 'distFromUser', 'asc')
-  // let filtered = trails
-  // console.log('TEST', userLocation?.latitude)
-
-  filtered = distanceFilter(typeSelected, filtered, filterByType, 'type')
-  filtered = distanceFilter(distanceSelected, filtered, filterByDistance)
-  filtered = distanceFilter(durationSelected, filtered, filterByDuration, 'duration')
-  filtered = distanceFilter(difficultySelected, filtered, filterByDifficulty, 'difficulty')
+      ...(userLocation && {
+        distFromUser: Math.abs(
+          getDistance(t.features[0].geometry.coordinates[0], userLocation) / 1000
+        ).toFixed(1),
+      }),
+    }))
+  }, [trailsData])
 
   React.useEffect(() => {
-    dispatch(setTrails(filtered))
-  }, [trailFilters])
-
-  return { trails: _.orderBy(trails, 'distFromUser', 'asc') }
+    dispatch(setTrails(_.orderBy(trails, 'distFromUser', 'asc')))
+  }, [])
 }

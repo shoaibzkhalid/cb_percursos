@@ -27,7 +27,6 @@ const RouteInfoBox = ({ currentLocation }) => {
   distance.current = distance.current + newCalcDistance
   // SET previous location to the current location
   previous.current = currentLocation
-  // console.log('test', newCalcDistance, distance.current)
 
   const ActionBtn = React.useCallback(() => {
     return (

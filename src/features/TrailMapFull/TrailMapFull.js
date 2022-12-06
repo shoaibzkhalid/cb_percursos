@@ -18,12 +18,10 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
   const { getLocation } = useLocation()
 
   const userLocation = useSelector((state) => state.app.userLocation)
+  const activeTrail = useSelector((state) => state.trail.activeTrail)
 
-  const activeTrail = useSelector((state) => state.app.activeTrail)
   const { trailType } = activeTrail
   const isPoly = trailType === 'MultiPolygon'
-
-  // console.log(activeTrail.elevations.filter((t, i) => i % 5 === 0))
 
   return (
     <Flex>

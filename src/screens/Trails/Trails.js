@@ -1,103 +1,32 @@
 import React from 'react'
 import _ from 'lodash'
 import { FlatList, Flex, Row } from 'native-base'
+import { RefreshControl } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { LoadingAnimation, PressableOpacity } from 'components'
 import { trailImages, trailTypes } from 'config/constants'
 
-import { setActiveTrail } from 'store/slices/appSlice'
 import { useI18n } from 'hooks/useI18n'
 import FilterModal from 'features/FilterModal'
 import TrailSpecs from 'features/TrailSpecs'
 
 import Styles from './Trails.styles'
 import TrailSelection from 'features/TrailSelection'
-import { RefreshControl } from 'react-native'
 import { useLocation } from 'hooks/useLocation'
+import { setActiveTrail } from 'store/slices/trailSlice'
 
 const ITEM_HEIGHT = 232
 
 const Trails = ({ navigation: { navigate } }) => {
+  const trails = useSelector((state) => state.trail.filteredTrails)
+
   const { t } = useI18n()
   const dispatch = useDispatch()
   const [modelOpen, setModelOpen] = React.useState(true)
   const { getLocation } = useLocation()
-
-  const trails = useSelector((state) => state.app.trails)
   const filterLoading = useSelector((state) => state.filter.filterLoading)
-
-  const Item = React.useCallback(
-    ({ item, index }) => {
-      const { properties, distFromUser } = item
-      const { name, color, type, image, place } = properties
-
-      const localeDistance = parseFloat(distFromUser).toLocaleString('pt-PT')
-
-      return (
-        <Styles.Item
-          onPress={() => {
-            navigate('Trail', { item })
-            dispatch(setActiveTrail(item))
-          }}
-        >
-          <Styles.TrailContainer>
-            <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />
-
-            <Styles.LabelsContainer>
-              {place && (
-                <Styles.TrailLabel mt={'auto'} maxW={'100%'} color={COLORS.white} mb={'10px'}>
-                  <Flex p={'5px'}>
-                    <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
-                  </Flex>
-                </Styles.TrailLabel>
-              )}
-              <Styles.BottomLabels>
-                <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} color={color}>
-                  <Flex p={'5px'}>
-                    <Fonts.MediumPlus
-                      numberOfLines={1}
-                      ellipsizeMode={'tail'}
-                      color={COLORS.white}
-                    >
-                      {name}
-                    </Fonts.MediumPlus>
-                  </Flex>
-                </Styles.TrailLabel>
-
-                {isNaN(distFromUser) ? null : (
-                  <Styles.TrailDist>
-                    <Row alignItems={'center'}>
-                      <Icons.Gps
-                        color={COLORS.primaryBtnLight}
-                        width={20}
-                        height={20}
-                        style={{
-                          marginRight: 4,
-                        }}
-                      />
-                      <Fonts.SmallText color={COLORS.white}>
-                        {localeDistance} km
-                      </Fonts.SmallText>
-                    </Row>
-                  </Styles.TrailDist>
-                )}
-              </Styles.BottomLabels>
-            </Styles.LabelsContainer>
-
-            <Styles.TrailType color={COLORS.textAccent}>
-              {trailTypes[type].typeIcon}
-            </Styles.TrailType>
-          </Styles.TrailContainer>
-
-          <TrailSpecs ml={'10px'} item={item} />
-          <Styles.LogoImg alt={'logo'} source={images.logo} />
-        </Styles.Item>
-      )
-    },
-    [trails]
-  )
 
   // we set the height of item is fixed
   const getItemLayout = (data, index) => ({
@@ -134,38 +63,121 @@ const Trails = ({ navigation: { navigate } }) => {
         <FilterModal
           isOpen={modalOpen}
           title={t('FILTER')}
-          onClose={() => setModalOpen(!modalOpen)}
+          onClose={() => {
+            setModalOpen(!modalOpen)
+          }}
         />
       </Flex>
     )
   }, [])
 
+  const TrailImg = React.useCallback(
+    ({ image, name }) => <Styles.TrailImg source={trailImages[image]} alt={`image ${name}`} />,
+    [trails]
+  )
+
   return (
     <>
-      <TrailSelection isOpen={modelOpen} onClose={() => setModelOpen(!modelOpen)} />
-      <Header />
+      <TrailSelection
+        isOpen={modelOpen}
+        onClose={() => {
+          setModelOpen(!modelOpen)
+        }}
+      />
 
       {filterLoading ? (
         <LoadingAnimation />
       ) : (
         <>
+          <Header />
           <FlatList
             data={trails}
             getItemLayout={getItemLayout}
             initialNumToRender={8}
             keyExtractor={(item, index) => index}
+            renderItem={({ item, index }) => {
+              const { properties, distFromUser } = item
+              const { name, color, type, image, place } = properties
+
+              const localeDistance = parseFloat(distFromUser).toLocaleString('pt-PT')
+
+              return (
+                <Styles.Item
+                  onPress={() => {
+                    navigate('Trail', { item })
+                    dispatch(setActiveTrail(item))
+                  }}
+                >
+                  <Styles.TrailContainer>
+                    <TrailImg image={image} name={name} />
+
+                    <Styles.LabelsContainer>
+                      {place && (
+                        <Styles.TrailLabel
+                          mt={'auto'}
+                          maxW={'100%'}
+                          color={COLORS.white}
+                          mb={'10px'}
+                        >
+                          <Flex p={'5px'}>
+                            <Fonts.MediumPlus color={COLORS.black}>{place}</Fonts.MediumPlus>
+                          </Flex>
+                        </Styles.TrailLabel>
+                      )}
+                      <Styles.BottomLabels>
+                        <Styles.TrailLabel mt={`${place ? '5px' : 'auto'}`} color={color}>
+                          <Flex p={'5px'}>
+                            <Fonts.MediumPlus
+                              numberOfLines={1}
+                              ellipsizeMode={'tail'}
+                              color={COLORS.white}
+                            >
+                              {name}
+                            </Fonts.MediumPlus>
+                          </Flex>
+                        </Styles.TrailLabel>
+
+                        {isNaN(distFromUser) ? null : (
+                          <Styles.TrailDist>
+                            <Row alignItems={'center'}>
+                              <Icons.Gps
+                                color={COLORS.primaryBtnLight}
+                                width={20}
+                                height={20}
+                                style={{
+                                  marginRight: 4,
+                                }}
+                              />
+                              <Fonts.SmallText color={COLORS.white}>
+                                {localeDistance} km
+                              </Fonts.SmallText>
+                            </Row>
+                          </Styles.TrailDist>
+                        )}
+                      </Styles.BottomLabels>
+                    </Styles.LabelsContainer>
+
+                    <Styles.TrailType color={COLORS.textAccent}>
+                      {trailTypes[type].typeIcon}
+                    </Styles.TrailType>
+                  </Styles.TrailContainer>
+
+                  <TrailSpecs ml={'10px'} item={item} />
+                  <Styles.LogoImg alt={'logo'} source={images.logo} />
+                </Styles.Item>
+              )
+            }}
             showsVerticalScrollIndicator={false}
             refreshing={filterLoading}
             refreshControl={
               <RefreshControl
-                colors={[COLORS.white]}
+                colors={[COLORS.textAccent]}
                 refreshing={filterLoading}
                 onRefresh={() => {
                   getLocation()
                 }}
               />
             }
-            renderItem={({ item, index }) => <Item item={item} index={index} />}
             ListEmptyComponent={() => (
               <Flex alignSelf={'center'}>
                 <Fonts.RegularText color={COLORS.white}>{t('NO_DATA')}</Fonts.RegularText>

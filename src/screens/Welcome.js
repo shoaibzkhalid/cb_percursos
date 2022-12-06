@@ -16,9 +16,9 @@ import { useLocation } from 'hooks/useLocation'
 import { setFilterLoading } from 'store/slices/filterSlice'
 
 const Welcome = ({ navigation: { navigate } }) => {
+  useTrails()
   useWeather()
   useLocation()
-  useTrails()
 
   const dispatch = useDispatch()
   const { weather, main } = useSelector((state) => state.app.weather)

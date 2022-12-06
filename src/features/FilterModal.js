@@ -1,25 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 import _, { capitalize } from 'lodash'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Flex, Modal, Pressable, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
 import { useI18n } from 'hooks/useI18n'
 import { CustomButton, PressableOpacity } from 'components'
-import { setFilter } from 'store/slices/filterSlice'
+import { setApplied } from 'store/slices/filterSlice'
 
-import { filters, FILTER_INITIAL_STATE } from 'config/constants'
+import { filters } from 'config/constants'
+import { useFilter } from 'hooks/useFilter'
+import { useFilteredTrails } from 'hooks/useTrails'
 
 const FilterModal = ({ title, isOpen, onClose, headingW }) => {
   const dispatch = useDispatch()
   const { t } = useI18n()
-  const trailFilters = useSelector((state) => state.filter.trailFilters)
-  const [localFilters, setLocalFilters] = React.useState(trailFilters)
-
-  React.useEffect(() => {
-    setLocalFilters(trailFilters)
-  }, [trailFilters])
+  const { lFilters, setFilter, clearFilters } = useFilter()
+  useFilteredTrails()
 
   const FilterOption = React.useCallback(
     ({ filter, option }) => {
@@ -27,11 +25,15 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
       const { value } = option
       let [selectedOption, setSelectedOption] = React.useState(null)
 
-      const selected = localFilters[name].filter(({ id }) => id === option.id)[0]
-      const filtered = localFilters[name].filter(({ id }) => id !== option.id)
+      const selected = lFilters[name].filter((id) => id === option.id)[0]
+      const filtered = lFilters[name].filter((id) => id !== option.id)
 
       if (selected && selectedOption === null) {
         selectedOption = selected
+      }
+
+      if (name === 'distance' && option.id == 0) {
+        console.log('option', selectedOption)
       }
 
       const selectedColor = selectedOption ? COLORS.textAccent : COLORS.transparent
@@ -44,16 +46,10 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
             setSelectedOption(!selectedOption)
 
             if (selectedOption) {
-              return setLocalFilters({
-                ...localFilters,
-                [name]: filtered,
-              })
+              return setFilter(filter, filtered)
             }
 
-            return setLocalFilters({
-              ...localFilters,
-              [name]: [...new Set([...localFilters[name], option])],
-            })
+            return setFilter(filter, [...lFilters[name], option.id])
           }}
         >
           <Fonts.RegularText style={{ textAlign: 'center' }} color={selectedTextColor}>
@@ -62,7 +58,7 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
         </OptionRow>
       )
     },
-    [isOpen, localFilters]
+    [isOpen, lFilters]
   )
 
   return (
@@ -88,9 +84,9 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
               </Row>
 
               <Row mt={'10px'} flexWrap={'wrap'}>
-                {options.map((option, index) => {
-                  return <FilterOption filter={filter} option={option} key={index} />
-                })}
+                {options.map((option, index) => (
+                  <FilterOption filter={filter} option={option} key={index} />
+                ))}
               </Row>
             </Flex>
           )
@@ -99,19 +95,11 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
           <CustomButton
             title={t('APPLY')}
             onPress={() => {
-              dispatch(setFilter(localFilters))
               onClose()
+              dispatch(setApplied(true))
             }}
           />
-          <CustomButton
-            title={t('CLEAR')}
-            type={'secondary'}
-            onPress={() => {
-              onClose()
-              dispatch(setFilter(FILTER_INITIAL_STATE))
-              setLocalFilters(FILTER_INITIAL_STATE)
-            }}
-          />
+          <CustomButton title={t('CLEAR')} type={'secondary'} onPress={() => clearFilters()} />
         </Row>
       </StyledModal>
     </Modal>

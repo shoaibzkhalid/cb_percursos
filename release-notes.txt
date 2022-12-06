@@ -1,2 +1,2 @@
-- replaced an image
-- change limit to show expand icon 
+- added sort for filtered list of trails
+- refactored the Filter functionality to improve performance

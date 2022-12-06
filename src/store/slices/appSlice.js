@@ -12,17 +12,12 @@ const app = createSlice({
         temp: null,
       },
     },
-    filters: [],
-    trails: [],
-    trailSpecs: [],
 
     routePlaying: false,
-    activeTrail: null,
 
     weatherForecast: null,
     weatherLoading: null,
     userLocation: null,
-    isLoading: false,
   },
   reducers: {
     setLang(state, action) {
@@ -37,10 +32,6 @@ const app = createSlice({
       state.weatherForecast = action.payload
     },
 
-    setActiveTrail(state, action) {
-      state.activeTrail = action.payload
-    },
-
     setWeatherLoading(state, action) {
       state.weatherLoading = action.payload
     },
@@ -52,21 +43,15 @@ const app = createSlice({
     setRoutePlaying(state, action) {
       state.routePlaying = action.payload
     },
-
-    setTrails(state, action) {
-      state.trails = action.payload
-    },
   },
 })
 
 // actions that can be made
 export const {
   setLang,
-  setTrails,
   setWeatherLoading,
   setWeather,
   setWeatherForecast,
-  setActiveTrail,
   setUserLocation,
   setRoutePlaying,
 } = app.actions
