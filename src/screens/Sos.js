@@ -1,12 +1,11 @@
 import React from 'react'
-
-import Content from 'features/Content'
-import { useI18n } from 'hooks/useI18n'
-
-import { Flex, Pressable, Row } from 'native-base'
-import { useSelector } from 'react-redux'
 import { Linking } from 'react-native'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { Flex, Pressable, Row } from 'native-base'
+
+import { Content } from 'features'
+import { useI18n } from 'hooks'
 
 import { COLORS, Fonts, Icons } from 'theme'
 import { CustomButton } from 'components'

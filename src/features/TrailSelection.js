@@ -51,6 +51,10 @@ const TrailSelection = ({ isOpen, onClose }) => {
                   onClose()
                   dispatch(setType([type.id]))
                   dispatch(setApplied(true))
+
+                  setTimeout(() => {
+                    dispatch(setFiltering(false))
+                  }, 1)
                 }}
               >
                 {icon}

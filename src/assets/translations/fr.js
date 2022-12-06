@@ -36,6 +36,7 @@ export const fr = {
   RULES_HEADING: 'Règles du parcours',
 
   START: 'Commencer',
+  END: 'Fin',
   DIRECTIONS: 'les directions',
 
   GNR: 'Police',
@@ -61,4 +62,6 @@ export const fr = {
   GO_TO_MAP: 'Aller à la carte',
   SELECT_TYPE: 'Sélectionnez le type de parcours',
   LOC_FEATURE_MSG: 'Vous devez activer votre position pour utiliser cette fonctionnalité.',
+
+  DIR_MSG: "Vous souhaitez vous rendre au point de départ ou au point d'arrivée du parcours ?",
 }

@@ -34,6 +34,8 @@ export const es = {
   SAFETY: 'La seguridad',
 
   START: 'Comienzo',
+  END: 'Final',
+
   DIRECTIONS: 'Direcciones',
 
   GNR: 'policía',
@@ -59,4 +61,6 @@ export const es = {
   GO_TO_MAP: 'ir al mapa',
   SELECT_TYPE: 'Seleccione el tipo de ruta',
   LOC_FEATURE_MSG: 'Debe activar su ubicación para usar esta función.',
+
+  DIR_MSG: '¿Quieres ir al punto de inicio o al punto final del sendero?',
 }

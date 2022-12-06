@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { getDistance } from 'geolib'
 import { Flex, Row } from 'native-base'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { COLORS, Fonts, Icons } from 'theme'
 import { PressableOpacity } from 'components'
-import { useDispatch, useSelector } from 'react-redux'
 import { setRoutePlaying } from 'store/slices/appSlice'
-import { useI18n } from 'hooks/useI18n'
-import { getDistance } from 'geolib'
+import { useI18n } from 'hooks'
 import { getDistanceInKm, getTimeFromSecs } from './utils'
 
 const RouteInfoBox = ({ currentLocation }) => {

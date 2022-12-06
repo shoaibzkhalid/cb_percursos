@@ -1,15 +1,15 @@
 import React from 'react'
 import { Fragment } from 'react'
+import { useSelector } from 'react-redux'
 import MapView, { Marker } from 'react-native-maps'
 
-import { useTrails } from 'hooks/useTrails'
+import { Compass } from 'features'
 import { trailImages, trailTypes } from 'config/constants'
-import Compass from 'features/Compass'
 
 const Map = ({ navigation: { navigate } }) => {
-  const { trails } = useTrails()
-  const mapRef = React.useRef()
+  const trails = useSelector((state) => state.trail.filteredTrails)
 
+  const mapRef = React.useRef()
   const { waypoints } = trails[0]
   const origin = waypoints[0]
 

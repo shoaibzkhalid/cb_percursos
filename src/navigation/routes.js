@@ -5,14 +5,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { toastConfig } from 'utils/toast'
+import { TrailMapFull, FollowTrail } from 'features'
 
+import { toastConfig } from 'utils/toast'
 import { COLORS } from 'theme'
 import Tabs from './tabs'
 import Welcome from 'screens/Welcome'
 import Trail from 'screens/Trail'
-import TrailMapFull from 'features/TrailMapFull/TrailMapFull'
-import FollowTrail from 'features/FollowTrail/FollowTrail'
 
 const Routes = () => {
   const Stack = createStackNavigator()

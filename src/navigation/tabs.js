@@ -1,11 +1,11 @@
 import React from 'react'
+import { Flex } from 'native-base'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { COLORS, Fonts, Styles } from 'theme'
 import { PressableOpacity } from 'components'
 import { bottomTabs } from 'config'
-import { Flex } from 'native-base'
-import { useI18n } from 'hooks/useI18n'
+import { useI18n } from 'hooks'
 
 const Tabs = () => {
   const { t } = useI18n()

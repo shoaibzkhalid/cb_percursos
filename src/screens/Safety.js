@@ -1,9 +1,9 @@
 import React from 'react'
+import { FlatList, Flex } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
-import Content from 'features/Content'
-import { useI18n } from 'hooks/useI18n'
-import { FlatList, Flex } from 'native-base'
+import { Content } from 'features'
+import { useI18n } from 'hooks'
 
 const Safety = () => {
   const { t } = useI18n()

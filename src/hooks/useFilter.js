@@ -1,9 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setDifficulty, setDistance, setDuration, setType } from 'store/slices/filterSlice'
+import {
+  setDifficulty,
+  setDistance,
+  setDuration,
+  setFiltering,
+  setType,
+} from 'store/slices/filterSlice'
 import { setFilteredTrails } from 'store/slices/trailSlice'
+import { useFilteredTrails } from './useTrails'
 
 export const useFilter = () => {
+  useFilteredTrails()
   const dispatch = useDispatch()
   let trails = useSelector((state) => state.trail.trails)
 
@@ -27,7 +35,17 @@ export const useFilter = () => {
     }
   }
 
+  const setLoading = (loading) => {
+    setTimeout(() => {
+      dispatch(setFiltering(loading))
+    }, 1)
+  }
+
   const clearFilters = () => {
+    setTimeout(() => {
+      dispatch(setFiltering(false))
+    }, 1)
+
     dispatch(setType([]))
     dispatch(setDifficulty([]))
     dispatch(setDistance([]))
@@ -44,5 +62,6 @@ export const useFilter = () => {
       type,
       difficulty,
     },
+    setLoading,
   }
 }

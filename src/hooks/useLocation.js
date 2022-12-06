@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserLocation } from 'store/slices/appSlice'
 
@@ -16,7 +15,7 @@ export const useLocation = () => {
           longitude: info.coords.longitude,
           altitude: info.coords.altitude,
         }
-        console.log('getting location')
+        console.log('got location', info)
         dispatch(setUserLocation(location))
       })
     } catch (e) {
@@ -31,7 +30,6 @@ export const useLocation = () => {
       altitude: info.coords.altitude,
     }
     // console.log('watchPosition', info)
-
     dispatch(setUserLocation(location))
   })
 

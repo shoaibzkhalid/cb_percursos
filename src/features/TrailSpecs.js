@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { Flex, Row } from 'native-base'
 
 import { Fonts } from 'theme'
-import { useTrailActions } from 'hooks/useTrailActions'
+import { useTrailActions } from 'hooks'
 
 const TrailSpecs = ({ item }) => {
   const { getTrailSpecs } = useTrailActions()

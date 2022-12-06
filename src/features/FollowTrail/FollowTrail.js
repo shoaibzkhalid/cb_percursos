@@ -12,8 +12,8 @@ import { trailTypes } from 'config/constants'
 import RouteInfoBox from './RouteInfoBox'
 import { setRoutePlaying } from 'store/slices/appSlice'
 import { useLocation } from 'hooks/useLocation'
-import Compass from 'features/Compass'
-import AlertModal from 'features/AlertModal'
+
+import { Compass, AlertModal } from 'features'
 
 const { width, height } = Dimensions.get('window')
 const ASPECT_RATIO = width / height
@@ -113,7 +113,7 @@ const FollowTrail = () => {
           identifier={'origin'}
           title={'Start'}
         >
-          {trailTypes[type].icon}
+          {trailTypes[type].start}
         </Marker>
 
         <MapDirections />

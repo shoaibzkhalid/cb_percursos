@@ -2,22 +2,18 @@ import React from 'react'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import styled from 'styled-components'
+import { Pressable } from 'react-native'
 import { useSelector } from 'react-redux'
 import { FlatList, Flex, Image, Row } from 'native-base'
 import { useRoute } from '@react-navigation/native'
 
+import { useI18n } from 'hooks'
+import { TrailSpecs, TrailMap, DescModal, ImageModal, DirectionModal } from 'features'
 import { BackButton, CustomButton, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { weatherIcons } from 'theme/weatherIcons'
 
-import { useI18n } from 'hooks/useI18n'
-import TrailSpecs from 'features/TrailSpecs'
-import TrailMap from 'features/TrailMap'
 import { trailImages, trailTypes } from 'config/constants'
-import DescModal from 'features/DescModal'
-import { openMapLink } from 'utils'
-import { Pressable } from 'react-native'
-import ImageModal from 'features/ImageModal'
 
 const Trail = ({ navigation: { navigate } }) => {
   const route = useRoute()
@@ -25,6 +21,7 @@ const Trail = ({ navigation: { navigate } }) => {
   const lang = useSelector((state) => state.app.lang)
   const weatherForecast = useSelector((state) => state.app.weatherForecast)
   const [modelOpen, setModelOpen] = React.useState(false)
+  const [dirModelOpen, setDirModelOpen] = React.useState(false)
 
   const item = route.params.item
   const { properties, trailType, waypoints } = item
@@ -33,7 +30,14 @@ const Trail = ({ navigation: { navigate } }) => {
   const desc = item.description[lang] || null
   const showExpandIcon = desc?.length > 400
   const { longitude, latitude } = isPoly ? item?.waypoints[0][0] : waypoints[0]
+
+  const destLocation = isPoly
+    ? item?.waypoints[0][item.waypoints[0].length - 1]
+    : item?.waypoints[item.waypoints.length - 1]
+
   const origin = `${latitude},${longitude}%2C`
+
+  const destination = `${destLocation.latitude},${destLocation.longitude}%2C`
   const trailImage = trailImages[image]
 
   const Header = () => (
@@ -44,7 +48,6 @@ const Trail = ({ navigation: { navigate } }) => {
         <Flex w={'70%'}>
           <Fonts.Heading color={COLORS.white}>{properties.name}</Fonts.Heading>
         </Flex>
-        {/* <Fonts.Heading color={COLORS.white}>{t('TRAIL')}</Fonts.Heading> */}
         <Flex ml={'auto'} mr={'10px'}>
           {trailTypes[type].typeIcon}
         </Flex>
@@ -139,7 +142,16 @@ const Trail = ({ navigation: { navigate } }) => {
         />
       </Flex>
 
-      <CustomButton onPress={() => openMapLink(origin)}>
+      <DirectionModal
+        destination={destination}
+        origin={origin}
+        isOpen={dirModelOpen}
+        onClose={() => setDirModelOpen(!dirModelOpen)}
+      >
+        {/* <Fonts.RegularTextLight color={COLORS.dark80}>{desc}</Fonts.RegularTextLight> */}
+      </DirectionModal>
+
+      <CustomButton onPress={() => setDirModelOpen(true)}>
         <Flex mr={'10px'}>
           <Icons.Directions color={'white'} />
         </Flex>

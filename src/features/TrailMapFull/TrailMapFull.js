@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux'
 import { Flex, Row } from 'native-base'
 import { Dimensions } from 'react-native'
 
-import ElevationGraph from 'features/ElevationGraph/ElevationGraph'
-import TrailMap from 'features/TrailMap'
+import { TrailMap, ElevationGraph } from 'features'
 import { BackButton, PressableOpacity } from 'components'
+import { useLocation, useI18n } from 'hooks'
 import { COLORS, Fonts, Icons } from 'theme'
-import { useI18n } from 'hooks/useI18n'
 import { showErrorToast } from 'utils/toast'
-import { useLocation } from 'hooks/useLocation'
 
 const height = Dimensions.get('window').height
 

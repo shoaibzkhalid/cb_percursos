@@ -36,6 +36,8 @@ export const en = {
   RULES_HEADING: 'Rules of the trail',
 
   START: 'Start',
+  END: 'End',
+
   DIRECTIONS: 'Directions',
 
   GNR: 'Police',
@@ -61,4 +63,5 @@ export const en = {
   GO_TO_MAP: 'Go to map',
   SELECT_TYPE: 'Select the type of route',
   LOC_FEATURE_MSG: 'You need to turn on your location to use this feature.',
+  DIR_MSG: 'Do you want to go to the starting point or the ending point of the trail?',
 }

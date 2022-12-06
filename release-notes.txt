@@ -1,1 +1,2 @@
+- added choice for user to choose either ending or starting point of trail
 - changed initialNumToRender for the list and cleaned up code

@@ -6,7 +6,7 @@ const filter = createSlice({
   // initial state
   initialState: {
     trailFilters: FILTER_INITIAL_STATE,
-    filtering: false,
+    filtering: true,
     applied: false,
 
     distance: [],

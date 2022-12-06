@@ -5,19 +5,15 @@ import { useDispatch } from 'react-redux'
 import { Flex, Modal, Pressable, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
-import { useI18n } from 'hooks/useI18n'
+import { useI18n, useFilter } from 'hooks'
 import { CustomButton, PressableOpacity } from 'components'
-import { setApplied } from 'store/slices/filterSlice'
-
+import { setApplied, setFiltering } from 'store/slices/filterSlice'
 import { filters } from 'config/constants'
-import { useFilter } from 'hooks/useFilter'
-import { useFilteredTrails } from 'hooks/useTrails'
 
 const FilterModal = ({ title, isOpen, onClose, headingW }) => {
   const dispatch = useDispatch()
   const { t } = useI18n()
-  const { lFilters, setFilter, clearFilters } = useFilter()
-  useFilteredTrails()
+  const { lFilters, setFilter, clearFilters, setLoading } = useFilter()
 
   const FilterOption = React.useCallback(
     ({ filter, option }) => {
@@ -96,7 +92,9 @@ const FilterModal = ({ title, isOpen, onClose, headingW }) => {
             title={t('APPLY')}
             onPress={() => {
               onClose()
+              dispatch(setFiltering(true))
               dispatch(setApplied(true))
+              setLoading(false)
             }}
           />
           <CustomButton title={t('CLEAR')} type={'secondary'} onPress={() => clearFilters()} />

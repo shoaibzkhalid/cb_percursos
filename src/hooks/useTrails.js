@@ -63,9 +63,9 @@ export const useTrails = () => {
         ).toFixed(1),
       }),
     }))
-  }, [trailsData])
+  }, [trailsData, userLocation])
 
   React.useEffect(() => {
     dispatch(setTrails(_.orderBy(trails, 'distFromUser', 'asc')))
-  }, [])
+  }, [userLocation])
 }

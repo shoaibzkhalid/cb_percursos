@@ -2,17 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Image, Row } from 'native-base'
 import { ImageBackground } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import { capitalize } from 'lodash'
 
+import { PressableOpacity } from 'components'
 import { COLORS, Fonts, images } from 'theme'
-import PressableOpacity from 'components/PressableOpacity'
-import { useDispatch, useSelector } from 'react-redux'
+import { useWeather, useTrails, useLocation } from 'hooks'
 import { setLang } from 'store/slices/appSlice'
 import { languages } from 'config/constants'
-import { useWeather } from 'hooks/useWeather'
 import { weatherIcons } from 'theme/weatherIcons'
-import { useTrails } from 'hooks/useTrails'
-import { useLocation } from 'hooks/useLocation'
 
 const Welcome = ({ navigation: { navigate } }) => {
   useTrails()
@@ -44,22 +42,8 @@ const Welcome = ({ navigation: { navigate } }) => {
   return (
     <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
       <Flex alignItems={'center'}>
-        <Row
-          // background={'red.100'}
-          w={'100%'}
-          // alignItems={'center'}
-          justifyContent={'space-between'}
-          mt={'10px'}
-        >
+        <Row w={'100%'} justifyContent={'space-between'} mt={'10px'}>
           <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logoLight} />
-          {/* <Image alt={'logo'} source={images.logo2} style={{ borderRadius: 15 }} /> */}
-
-          {/* <Image
-            source={images.logo2}
-            resizeMode={'contain'}
-            style={{ width: 140, height: 180 }}
-            alt={'title'}
-          /> */}
         </Row>
 
         <Image
@@ -82,7 +66,6 @@ const Welcome = ({ navigation: { navigate } }) => {
             key={title}
             onPress={() => {
               navigate('HomeTabs')
-              dispatch(setLang(code))
               dispatch(setLang(code))
             }}
           >
@@ -116,9 +99,6 @@ const Language = styled(PressableOpacity)`
 
 const LangSelector = styled(Flex)`
   margin: 20px;
-  /* margin-top: auto; */
-  /* top: 10px; */
-  /* background-color: rebeccapurple; */
   flex-direction: row;
   justify-content: space-between;
 `

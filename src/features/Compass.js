@@ -1,9 +1,9 @@
 import { Animated } from 'react-native'
 import React from 'react'
-import { Flex } from 'native-base'
 import styled from 'styled-components'
+
 import { Icons } from 'theme'
-import { useCompass } from 'hooks/useCompass'
+import { useCompass } from 'hooks'
 
 const Compass = () => {
   const { heading } = useCompass()
