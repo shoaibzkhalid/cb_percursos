@@ -3,8 +3,8 @@ import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import MapView, { Marker } from 'react-native-maps'
 
-import { Compass } from 'features'
 import { trailImages, trailTypes } from 'config/constants'
+import { Compass } from 'features'
 
 const Map = ({ navigation: { navigate } }) => {
   const trails = useSelector((state) => state.trail.filteredTrails)

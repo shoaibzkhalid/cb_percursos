@@ -28,12 +28,19 @@ const TrailSelection = ({ isOpen, onClose }) => {
     },
   ]
 
+  const setLoading = () => {
+    setTimeout(() => {
+      dispatch(setFiltering(false))
+    }, 1)
+  }
+
   return (
     <Modal
       isOpen={isOpen}
       onClose={() => {
-        dispatch(setFiltering(false))
         onClose()
+        dispatch(setApplied(true))
+        setLoading()
       }}
       size={'full'}
     >
@@ -51,10 +58,7 @@ const TrailSelection = ({ isOpen, onClose }) => {
                   onClose()
                   dispatch(setType([type.id]))
                   dispatch(setApplied(true))
-
-                  setTimeout(() => {
-                    dispatch(setFiltering(false))
-                  }, 1)
+                  setLoading()
                 }}
               >
                 {icon}

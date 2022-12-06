@@ -36,6 +36,9 @@ export const es = {
   START: 'Comienzo',
   END: 'Final',
 
+  RULES_HEADING: 'Reglas de encabezamiento',
+  RULES: `• Conduzca únicamente por senderos abiertos • No deje rastros de su paso • Controle su bicicleta • Ceda el paso a los demás • Nunca asuste a los animales • Planifique con anticipación • Preste atención a los vehículos motorizados en la vía pública • Está prohibido usar vehículos motorizados en los senderos cuesta abajo • Respetar la señalización medioambiental o de mantenimiento • Uso recomendado de dispositivo GPS`,
+
   DIRECTIONS: 'Direcciones',
 
   GNR: 'policía',

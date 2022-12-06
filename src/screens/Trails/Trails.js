@@ -15,7 +15,7 @@ import Styles from './Trails.styles'
 import { setActiveTrail } from 'store/slices/trailSlice'
 
 const ITEM_HEIGHT = 232
-const NUM_TO_RENDER = 3
+const NUM_TO_RENDER = 4
 
 const Trails = ({ navigation: { navigate } }) => {
   const { t } = useI18n()
@@ -23,6 +23,7 @@ const Trails = ({ navigation: { navigate } }) => {
   const { getLocation } = useLocation()
   const [modelOpen, setModelOpen] = React.useState(true)
   const trails = useSelector((state) => state.trail.filteredTrails)
+
   const filtering = useSelector((state) => state.filter.filtering)
   // const [start, setStart] = React.useState(0)
   // const [data, setData] = React.useState(trails.slice(start, NUM_TO_RENDER))
@@ -88,7 +89,6 @@ const Trails = ({ navigation: { navigate } }) => {
         <>
           <FlatList
             data={trails}
-            // data={data}
             // onEndReached={() => {
             //   setStart(start + NUM_TO_RENDER)
             // }}

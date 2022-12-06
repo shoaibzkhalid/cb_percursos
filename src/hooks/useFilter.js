@@ -11,8 +11,9 @@ import { setFilteredTrails } from 'store/slices/trailSlice'
 import { useFilteredTrails } from './useTrails'
 
 export const useFilter = () => {
-  useFilteredTrails()
   const dispatch = useDispatch()
+  useFilteredTrails()
+
   let trails = useSelector((state) => state.trail.trails)
 
   const type = useSelector((state) => state.filter.type)

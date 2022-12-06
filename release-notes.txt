@@ -1,5 +1,1 @@
-- added choice for user to choose either ending or starting point of trail
-- changed icon color for Follow Trail starting point
-- cleaned up some code one last time
-- added index file for hooks and features
-- fixed location error
+- fixed problem on safety screen for spanish
