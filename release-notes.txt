@@ -1,2 +1,5 @@
 - added choice for user to choose either ending or starting point of trail
-- changed initialNumToRender for the list and cleaned up code
+- changed icon color for Follow Trail starting point
+- cleaned up some code one last time
+- added index file for hooks and features
+- fixed location error
