@@ -1,1 +1,1 @@
-- improved the flow of the app
+- changed initialNumToRender for the list and cleaned up code

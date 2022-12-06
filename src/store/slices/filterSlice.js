@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { FILTER_INITIAL_STATE } from 'config/constants'
 
-// slice for general global app variables
 const filter = createSlice({
   name: 'filter',
   // initial state

@@ -5,7 +5,7 @@ import { Flex, Modal, Row } from 'native-base'
 import { COLORS, Fonts, Icons } from 'theme'
 import { PressableOpacity } from 'components'
 import { useDispatch } from 'react-redux'
-import { applyFilters, setApplied, setFiltering, setType } from 'store/slices/filterSlice'
+import { setApplied, setFiltering, setType } from 'store/slices/filterSlice'
 import { filters } from 'config/constants'
 import { useI18n } from 'hooks/useI18n'
 
