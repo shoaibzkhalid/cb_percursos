@@ -90,7 +90,7 @@ const FollowTrail = () => {
         onClose={() => setShowAlert(!showAlert)}
       />
 
-      <Flex ml={'auto'} mr={'55px'} top={'50px'}>
+      <Flex ml={'auto'} mr={'55px'}>
         <Compass />
       </Flex>
 
@@ -101,7 +101,7 @@ const FollowTrail = () => {
           center: origin,
           pitch: 0,
           heading: 0,
-          zoom: 8,
+          zoom: 13,
         }}
         showsUserLocation={false}
         followsUserLocation

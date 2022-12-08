@@ -1,1 +1,4 @@
-- fixed problem on safety screen for spanish
+- Zoomed in follow trail
+- Fixed position of compass on Follow Trail
+- removed an unnecessary icon in Trail map view
+- added sub folders for images

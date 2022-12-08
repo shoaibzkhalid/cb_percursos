@@ -47,7 +47,7 @@ const Welcome = ({ navigation: { navigate } }) => {
         </Row>
 
         <Image
-          source={images.logo1}
+          source={images.launcherIcon}
           resizeMode={'contain'}
           style={{ width: 140, height: 180 }}
           alt={'title'}
@@ -57,7 +57,7 @@ const Welcome = ({ navigation: { navigate } }) => {
       <Weather />
 
       <Flex mt={'auto'} m={'10px'}>
-        <Image alt={'logo'} source={images.logo2} style={{ borderRadius: 15 }} />
+        <Image alt={'logo'} source={images.branding} style={{ borderRadius: 15 }} />
       </Flex>
 
       <LangSelector>

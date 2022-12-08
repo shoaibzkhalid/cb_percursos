@@ -1,16 +1,13 @@
-const espanol = require('../assets/images/espanol.png')
-const portuguese = require('../assets/images/portuguese.png')
-const english = require('../assets/images/english.png')
-const french = require('../assets/images/french.png')
+const espanol = require('../assets/images/flags/espanol.png')
+const portuguese = require('../assets/images/flags/portuguese.png')
+const english = require('../assets/images/flags/english.png')
+const french = require('../assets/images/flags/french.png')
 
 const logo = require('../assets/images/logo.png')
-const logo1 = require('../assets/images/logo1.png')
-const logo2 = require('../assets/images/logo2.png')
+const launcherIcon = require('../assets/images/launcher_ic.png')
+const branding = require('../assets/images/branding.png')
 const logoLight = require('../assets/images/logoLight.png')
 const splash = require('../assets/images/splash.png')
-
-const BIKE = require('../assets/images/BikePin.png')
-const WALK = require('../assets/images/WalkPin.png')
 
 export default {
   portuguese,
@@ -18,10 +15,8 @@ export default {
   espanol,
   french,
   logo,
-  logo1,
-  logo2,
+  launcherIcon,
+  branding,
   splash,
-  BIKE,
-  WALK,
   logoLight,
 }

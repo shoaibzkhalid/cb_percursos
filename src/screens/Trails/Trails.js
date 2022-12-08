@@ -2,29 +2,27 @@ import React from 'react'
 import _ from 'lodash'
 import { FlatList, Flex, Row } from 'native-base'
 import { RefreshControl } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { COLORS, Fonts, Icons, images } from 'theme'
 import { LoadingAnimation, PressableOpacity } from 'components'
 import { trailImages, trailTypes } from 'config/constants'
 
-import { useI18n, useLocation } from 'hooks'
+import { useI18n } from 'hooks'
 import { TrailSpecs, FilterModal, TrailSelection } from 'features'
 
 import Styles from './Trails.styles'
 import { setActiveTrail } from 'store/slices/trailSlice'
+import { useTrailsData } from './Trails.hook'
 
 const ITEM_HEIGHT = 232
 const NUM_TO_RENDER = 4
 
 const Trails = ({ navigation: { navigate } }) => {
-  const { t } = useI18n()
   const dispatch = useDispatch()
-  const { getLocation } = useLocation()
+  const { t } = useI18n()
+  const { trails, filtering, getLocation } = useTrailsData()
   const [modelOpen, setModelOpen] = React.useState(true)
-  const trails = useSelector((state) => state.trail.filteredTrails)
-
-  const filtering = useSelector((state) => state.filter.filtering)
   // const [start, setStart] = React.useState(0)
   // const [data, setData] = React.useState(trails.slice(start, NUM_TO_RENDER))
 

@@ -20,17 +20,20 @@ const TrailMap = (props) => {
 
   return (
     <>
-      <PressableOpacity
-        onPress={() => setRegion(userLocation)}
-        style={{
-          position: 'absolute',
-          top: 20,
-          right: 15,
-          zIndex: 100000,
-        }}
-      >
-        <Icons.Gps color={COLORS.dark80} />
-      </PressableOpacity>
+      {props.showsUserLocation && (
+        <PressableOpacity
+          onPress={() => setRegion(userLocation)}
+          style={{
+            position: 'absolute',
+            top: 20,
+            right: 15,
+            zIndex: 100000,
+          }}
+        >
+          <Icons.Gps color={COLORS.dark80} />
+        </PressableOpacity>
+      )}
+
       <MapView
         ref={mapRef}
         initialCamera={{
