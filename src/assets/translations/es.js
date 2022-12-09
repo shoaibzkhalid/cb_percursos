@@ -65,5 +65,5 @@ export const es = {
   SELECT_TYPE: 'Seleccione el tipo de ruta',
   LOC_FEATURE_MSG: 'Debe activar su ubicación para usar esta función.',
 
-  DIR_MSG: '¿Quieres ir al punto de inicio o al punto final del sendero?',
+  DIR_MSG: '¿Quieres ir al principio o al final de la ruta?',
 }

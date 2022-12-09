@@ -63,5 +63,5 @@ export const fr = {
   SELECT_TYPE: 'Sélectionnez le type de parcours',
   LOC_FEATURE_MSG: 'Vous devez activer votre position pour utiliser cette fonctionnalité.',
 
-  DIR_MSG: "Vous souhaitez vous rendre au point de départ ou au point d'arrivée du parcours ?",
+  DIR_MSG: 'Vous souhaitez vous rendre au début ou à la fin du parcours ?',
 }

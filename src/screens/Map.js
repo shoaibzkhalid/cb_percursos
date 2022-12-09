@@ -23,7 +23,7 @@ const Map = ({ navigation: { navigate } }) => {
         initialCamera={{
           center: origin,
           pitch: 0,
-          heading: 0.5,
+          heading: 0,
           zoom: 9,
         }}
         showsCompass={false}

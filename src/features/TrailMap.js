@@ -17,6 +17,12 @@ const TrailMap = (props) => {
   const isPoly = trailType === 'MultiPolygon'
   const origin = isPoly ? trail?.waypoints[0][0] : waypoints[0]
   const [region, setRegion] = React.useState(origin)
+  const camera = {
+    center: region,
+    pitch: 0,
+    heading: 0,
+    zoom: 11,
+  }
 
   return (
     <>
@@ -36,18 +42,8 @@ const TrailMap = (props) => {
 
       <MapView
         ref={mapRef}
-        initialCamera={{
-          center: region,
-          pitch: 0,
-          heading: 0,
-          zoom: 14,
-        }}
-        camera={{
-          center: region,
-          pitch: 0,
-          heading: 0,
-          zoom: 14,
-        }}
+        initialCamera={camera}
+        camera={camera}
         minZoomLevel={3}
         showsMyLocationButton={false}
         showsUserLocation={false}

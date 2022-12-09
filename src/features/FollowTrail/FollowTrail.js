@@ -45,6 +45,12 @@ const FollowTrail = () => {
 
   const isHigherThanOneKM = getDistance(origin, userLocation) / 1000 > 1
   const [showAlert, setShowAlert] = React.useState(isHigherThanOneKM)
+  const camera = {
+    center: origin,
+    pitch: 0,
+    heading: 0,
+    zoom: 13,
+  }
 
   React.useEffect(() => {
     return () => {
@@ -97,12 +103,7 @@ const FollowTrail = () => {
       <MapView
         ref={mapRef}
         style={{ flex: 1 }}
-        camera={{
-          center: origin,
-          pitch: 0,
-          heading: 0,
-          zoom: 13,
-        }}
+        camera={camera}
         showsUserLocation={false}
         followsUserLocation
         showsCompass={false}

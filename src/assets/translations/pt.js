@@ -39,7 +39,7 @@ export const pt = {
 
   RULES_HEADING: 'Normas de conduta',
 
-  START: 'Começar',
+  START: 'Início',
   END: 'Fim',
 
   DIRECTIONS: 'instruções',
@@ -68,5 +68,5 @@ export const pt = {
   SELECT_TYPE: 'Seleccione o tipo de percurso',
   LOC_FEATURE_MSG: 'Você precisa ativar sua localização para usar esse recurso.',
 
-  DIR_MSG: 'Você quer ir ao ponto inicial ou ao ponto final da trilha?',
+  DIR_MSG: 'Quer ir para o início ou fim do percurso?',
 }

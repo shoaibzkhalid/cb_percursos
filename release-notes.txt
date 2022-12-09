@@ -1,4 +1,2 @@
-- Zoomed in follow trail
-- Fixed position of compass on Follow Trail
-- removed an unnecessary icon in Trail map view
-- added sub folders for images
+- zoomed out trails to show full path
+- changed the text on modal
