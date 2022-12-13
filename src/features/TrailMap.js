@@ -64,7 +64,7 @@ const TrailMap = (props) => {
                 // description={String(name)}
                 // title={'Start'}
               >
-                {trailTypes[trail.properties.type].icon}
+                {trailTypes[trail.properties.type].userLoc}
               </Marker>
             )}
 

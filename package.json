@@ -20,7 +20,8 @@
     "bundle": "cd android && ./gradlew clean && ./gradlew bundleRelease",
     "push": "git push cat master && yarn build && yarn dist",
     "list-ios-devices": "xcrun simctl list devices",
-    "getip": "adb shell \"ifconfig | grep -A 1 wlan0 | tail -n 1 | cut -f2 -d: | cut -f1 -d' '\""
+    "getip": "adb shell \"ifconfig | grep -A 1 wlan0 | tail -n 1 | cut -f2 -d: | cut -f1 -d' '\"",
+    "and": "adb tcpip 5555 && adb connect 192.168.18.13 && yarn android --deviceId 192.168.18.13:5555"
   },
   "dependencies": {
     "@react-native-community/geolocation": "^3.0.3",

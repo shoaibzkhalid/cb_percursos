@@ -81,7 +81,7 @@ const FollowTrail = () => {
             identifier={'userLocation'}
             title={'Start'}
           >
-            {trailTypes[type].icon}
+            {trailTypes[type].userLoc}
           </Marker>
         )}
       </>

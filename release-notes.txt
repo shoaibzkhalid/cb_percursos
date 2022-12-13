@@ -1,2 +1,1 @@
-- zoomed out trails to show full path
-- changed the text on modal
+- changed the color of user location

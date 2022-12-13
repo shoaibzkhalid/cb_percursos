@@ -132,6 +132,7 @@ const ICON_SIZE = 35
 export const trailTypes = {
   BIKE: {
     icon: <Icons.BikePin color={COLORS.textAccent} width={ICON_SIZE} height={ICON_SIZE} />,
+    userLoc: <Icons.BikePin color={COLORS.primaryBtn} width={ICON_SIZE} height={ICON_SIZE} />,
     start: <Icons.BikePin color={COLORS.green} width={ICON_SIZE} height={ICON_SIZE} />,
 
     iconBig: <Icons.BikePin color={COLORS.textAccent} width={BIG_SIZE} height={BIG_SIZE} />,
@@ -140,6 +141,7 @@ export const trailTypes = {
   },
   WALK: {
     icon: <Icons.WalkPin color={COLORS.textAccent} width={ICON_SIZE} height={ICON_SIZE} />,
+    userLoc: <Icons.BikePin color={COLORS.primaryBtn} width={ICON_SIZE} height={ICON_SIZE} />,
     start: <Icons.BikePin color={COLORS.green} width={ICON_SIZE} height={ICON_SIZE} />,
 
     iconBig: <Icons.WalkPin color={COLORS.textAccent} width={BIG_SIZE} height={BIG_SIZE} />,
