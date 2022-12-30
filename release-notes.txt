@@ -1,2 +1,1 @@
-- updated package name for android
-- fixed some ios issues
+- updated package name for ios

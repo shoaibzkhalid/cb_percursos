@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "cb_percursos.app"
-               BlueprintName = "cb_percursos"
-               ReferencedContainer = "container:cb_percursos.xcodeproj">
+               BuildableName = "cb_percursos_updated.app"
+               BlueprintName = "cb_percursos_updated"
+               ReferencedContainer = "container:cb_percursos_updated.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "cb_percursosTests.xctest"
                BlueprintName = "cb_percursosTests"
-               ReferencedContainer = "container:cb_percursos.xcodeproj">
+               ReferencedContainer = "container:cb_percursos_updated.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "cb_percursos.app"
-            BlueprintName = "cb_percursos"
-            ReferencedContainer = "container:cb_percursos.xcodeproj">
+            BuildableName = "cb_percursos_updated.app"
+            BlueprintName = "cb_percursos_updated"
+            ReferencedContainer = "container:cb_percursos_updated.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "cb_percursos.app"
-            BlueprintName = "cb_percursos"
-            ReferencedContainer = "container:cb_percursos.xcodeproj">
+            BuildableName = "cb_percursos_updated.app"
+            BlueprintName = "cb_percursos_updated"
+            ReferencedContainer = "container:cb_percursos_updated.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

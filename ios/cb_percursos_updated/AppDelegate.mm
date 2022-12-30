@@ -46,7 +46,7 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 #endif
 
   NSDictionary *initProps = [self prepareInitialProps];
-  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"cb_percursos", initProps);
+  UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"cb_percursos_updated", initProps);
 
 rootView.backgroundColor = [UIColor colorWithRed:0.23529 green:0.12157 blue:0.05882 alpha:1.00000];
 
