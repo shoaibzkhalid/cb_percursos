@@ -1,4 +1,4 @@
-package com.cb_percursos.newarchitecture;
+package com.cb_percursos_updated.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.cb_percursos.BuildConfig;
-import com.cb_percursos.newarchitecture.components.MainComponentsRegistry;
-import com.cb_percursos.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.cb_percursos_updated.BuildConfig;
+import com.cb_percursos_updated.newarchitecture.components.MainComponentsRegistry;
+import com.cb_percursos_updated.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

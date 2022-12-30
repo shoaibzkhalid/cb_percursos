@@ -13,7 +13,7 @@ class MainComponentsRegistry
  public:
   // Adapt it to the package you used for your Java class.
   constexpr static auto kJavaDescriptor =
-      "Lcom/cb_percursos/newarchitecture/components/MainComponentsRegistry;";
+      "Lcom/cb_percursos_updated/newarchitecture/components/MainComponentsRegistry;";
 
   static void registerNatives();
 

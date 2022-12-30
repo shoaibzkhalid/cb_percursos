@@ -1,4 +1,4 @@
-package com.cb_percursos;
+package com.cb_percursos_updated;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "cb_percursos";
+    return "cb_percursos_updated";
   }
 
   /**

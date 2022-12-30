@@ -1,4 +1,4 @@
-package com.cb_percursos.newarchitecture.modules;
+package com.cb_percursos_updated.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

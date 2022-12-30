@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.cb_percursos">
+  package="com.cb_percursos_updated">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

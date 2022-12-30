@@ -1,4 +1,4 @@
-package com.cb_percursos.newarchitecture.components;
+package com.cb_percursos_updated.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

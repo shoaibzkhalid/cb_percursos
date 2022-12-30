@@ -24,7 +24,7 @@ const Routes = () => {
   })
 
   return (
-    <StyledSafeAreaView edges={['top']}>
+    <StyledSafeAreaView edges={['top']} style={{ backgroundColor: COLORS.brand }}>
       <NavigationContainer
         theme={{
           colors: {

@@ -1,1 +1,2 @@
-- changed the color of user location
+- updated package name for android
+- fixed some ios issues

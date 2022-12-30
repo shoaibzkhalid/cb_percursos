@@ -6,10 +6,12 @@ import { COLORS, Fonts, Styles } from 'theme'
 import { PressableOpacity } from 'components'
 import { bottomTabs } from 'config'
 import { useI18n } from 'hooks'
+import { Platform } from 'react-native'
 
 const Tabs = () => {
   const { t } = useI18n()
   const Tab = createBottomTabNavigator()
+  const isIOS = Platform.OS === 'ios'
 
   return (
     <Tab.Navigator
@@ -17,12 +19,12 @@ const Tabs = () => {
         headerShown: false,
         tabBarStyle: {
           paddingBottom: 0,
-          height: 66,
+          height: isIOS ? 80 : 66,
           borderTopColor: 'transparent',
           ...Styles.dropShadow,
         },
       }}
-      // initialRouteName={'SOS'}
+      initialRouteName={'Map'}
     >
       {bottomTabs.map(({ name, component, getIcon }) => {
         return (
@@ -35,7 +37,7 @@ const Tabs = () => {
                 <Flex mt={'10px'}>{getIcon(focused ? COLORS.textAccent : COLORS.dark40)}</Flex>
               ),
               tabBarLabel: ({ focused }) => (
-                <Flex mb={'10px'}>
+                <Flex mb={isIOS ? '20px' : '10px'}>
                   <Fonts.SmallTextLight color={focused ? COLORS.textAccent : COLORS.dark40}>
                     {t(name)}
                   </Fonts.SmallTextLight>
