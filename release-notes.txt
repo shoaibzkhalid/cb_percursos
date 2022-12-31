@@ -1,1 +1,1 @@
-- fixed map issue
+- made last changes for android and ios

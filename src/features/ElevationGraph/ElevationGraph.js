@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { LineChart } from 'react-native-chart-kit'
-import { Animated, Dimensions, Pressable } from 'react-native'
+import { Animated, Dimensions, Platform, Pressable } from 'react-native'
 import { Flex, Row } from 'native-base'
 
 import { COLORS, Fonts, Icons } from 'theme'
@@ -33,7 +33,7 @@ const ElevationGraph = ({ trail }) => {
       style={[
         {
           position: 'absolute',
-          bottom: 0,
+          bottom: Platform.OS === 'ios' ? 20 : 0,
           left: 0,
           right: 0,
         },

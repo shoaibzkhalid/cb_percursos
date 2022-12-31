@@ -4,7 +4,7 @@ import { Flex, Row } from 'native-base'
 import { Dimensions } from 'react-native'
 
 import { TrailMap, ElevationGraph } from 'features'
-import { BackButton, PressableOpacity } from 'components'
+import { BackButton, HeaderWrapper, PressableOpacity } from 'components'
 import { useLocation, useI18n } from 'hooks'
 import { COLORS, Fonts, Icons } from 'theme'
 import { showErrorToast } from 'utils/toast'
@@ -22,43 +22,47 @@ const TrailMapFull = ({ navigation: { navigate } }) => {
   const isPoly = trailType === 'MultiPolygon'
 
   return (
-    <Flex>
-      <Row alignItems={'center'} m={'10px'}>
-        <BackButton />
+    <HeaderWrapper>
+      <Flex>
+        <Row alignItems={'center'} m={'10px'}>
+          <BackButton />
 
-        <Flex w={'50%'}>
-          <Fonts.Heading color={COLORS.white}>{activeTrail.properties.name}</Fonts.Heading>
+          <Flex w={'50%'}>
+            <Fonts.Heading color={COLORS.white}>{activeTrail.properties.name}</Fonts.Heading>
+          </Flex>
+
+          <PressableOpacity
+            ml={'auto'}
+            mr={'15px'}
+            onPress={() => {
+              if (!userLocation) return showErrorToast(t('LOC_FEATURE_MSG'))
+              getLocation()
+              navigate('FollowTrail')
+            }}
+            hitSlop={50}
+          >
+            <Row alignItems={'center'}>
+              <Fonts.RegularTextLight color={COLORS.white}>
+                {t('START')}
+              </Fonts.RegularTextLight>
+              <Icons.Start color={COLORS.white} width={20} style={{ marginLeft: 5 }} />
+            </Row>
+          </PressableOpacity>
+        </Row>
+
+        <Flex h={height}>
+          <TrailMap
+            trail={activeTrail}
+            showsUserLocation={true}
+            style={{
+              height: isPoly ? height - 100 : height - 140,
+            }}
+          />
         </Flex>
 
-        <PressableOpacity
-          ml={'auto'}
-          mr={'15px'}
-          onPress={() => {
-            if (!userLocation) return showErrorToast(t('LOC_FEATURE_MSG'))
-            getLocation()
-            navigate('FollowTrail')
-          }}
-          hitSlop={50}
-        >
-          <Row alignItems={'center'}>
-            <Fonts.RegularTextLight color={COLORS.white}>{t('START')}</Fonts.RegularTextLight>
-            <Icons.Start color={COLORS.white} width={20} style={{ marginLeft: 5 }} />
-          </Row>
-        </PressableOpacity>
-      </Row>
-
-      <Flex h={height}>
-        <TrailMap
-          trail={activeTrail}
-          showsUserLocation={true}
-          style={{
-            height: isPoly ? height - 100 : height - 140,
-          }}
-        />
+        {!isPoly && <ElevationGraph trail={activeTrail} />}
       </Flex>
-
-      {!isPoly && <ElevationGraph trail={activeTrail} />}
-    </Flex>
+    </HeaderWrapper>
   )
 }
 

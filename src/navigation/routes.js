@@ -1,9 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import Toast from 'react-native-toast-message'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { TrailMapFull, FollowTrail } from 'features'
 
@@ -15,6 +13,7 @@ import Trail from 'screens/Trail'
 
 const Routes = () => {
   const Stack = createStackNavigator()
+  const MapStack = createStackNavigator()
 
   // All the routes of the app are defined here
   const forFade = ({ current }) => ({
@@ -24,35 +23,29 @@ const Routes = () => {
   })
 
   return (
-    <StyledSafeAreaView edges={['top']} style={{ backgroundColor: COLORS.brand }}>
-      <NavigationContainer
-        theme={{
-          colors: {
-            background: COLORS.brand,
-          },
+    <NavigationContainer
+      theme={{
+        colors: {
+          background: COLORS.brand,
+        },
+      }}
+    >
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyleInterpolator: forFade,
         }}
       >
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-            cardStyleInterpolator: forFade,
-          }}
-        >
-          <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="Trail" component={Trail} />
-          <Stack.Screen name="TrailMapFull" component={TrailMapFull} />
-          <Stack.Screen name="FollowTrail" component={FollowTrail} />
-          <Stack.Screen name="HomeTabs" component={Tabs} />
-        </Stack.Navigator>
-        <Toast config={toastConfig} />
-      </NavigationContainer>
-    </StyledSafeAreaView>
+        <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="HomeTabs" component={Tabs} />
+
+        <Stack.Screen name="Trail" component={Trail} />
+        <Stack.Screen name="TrailMapFull" component={TrailMapFull} />
+        <Stack.Screen name="FollowTrail" component={FollowTrail} />
+      </Stack.Navigator>
+      <Toast config={toastConfig} />
+    </NavigationContainer>
   )
 }
-
-const StyledSafeAreaView = styled(SafeAreaView)`
-  flex: 1;
-  background-color: ${({ accessToken }) => `${accessToken ? COLORS.screenBg : COLORS.white}`};
-`
 
 export default Routes

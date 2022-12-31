@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Image, Row } from 'native-base'
-import { ImageBackground } from 'react-native'
+import { ImageBackground, Platform } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { capitalize } from 'lodash'
 
@@ -42,7 +42,11 @@ const Welcome = ({ navigation: { navigate } }) => {
   return (
     <ImageBackground opacity={0.9} source={images.splash} style={{ height: '100%' }}>
       <Flex alignItems={'center'}>
-        <Row w={'100%'} justifyContent={'space-between'} mt={'10px'}>
+        <Row
+          w={'100%'}
+          justifyContent={'space-between'}
+          mt={Platform.OS === 'ios' ? '50px' : '10px'}
+        >
           <Image alt={'logo'} style={{ width: 130, height: 60 }} source={images.logoLight} />
         </Row>
 

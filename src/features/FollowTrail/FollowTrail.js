@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 import { getDistance } from 'geolib'
 
-import { BackButton } from 'components'
+import { BackButton, HeaderWrapper } from 'components'
 import { Icons } from 'theme'
 import { openMapLink } from 'utils'
 import { trailTypes } from 'config/constants'
@@ -89,7 +89,7 @@ const FollowTrail = () => {
   }, [currentIndex, userLocation])
 
   return (
-    <>
+    <HeaderWrapper>
       <AlertModal
         onPress={() => openMapLink(originForMap)}
         isOpen={showAlert}
@@ -139,11 +139,16 @@ const FollowTrail = () => {
         </Marker>
       </MapView>
 
-      <Flex position={'absolute'} top={'0px'} left={'10px'} backgroundColor={'transparent'}>
+      <Flex
+        position={'absolute'}
+        top={Platform.OS === 'ios' ? '50px' : '0px'}
+        left={'10px'}
+        backgroundColor={'transparent'}
+      >
         <BackButton />
       </Flex>
       <RouteInfoBox currentLocation={userLocation} />
-    </>
+    </HeaderWrapper>
   )
 }
 

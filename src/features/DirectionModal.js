@@ -15,13 +15,19 @@ const DirectionModal = ({ isOpen, onClose, origin, destination }) => {
       id: 0,
       icon: <Icons.Pin color={COLORS.textAccent} width={50} height={50} />,
       title: t('START'),
-      onPress: () => openMapLink(origin),
+      onPress: () => {
+        onClose()
+        openMapLink(origin)
+      },
     },
     {
       id: 1,
       icon: <Icons.Finish color={COLORS.textAccent} width={50} height={50} />,
       title: t('END'),
-      onPress: () => openMapLink(destination),
+      onPress: () => {
+        onClose()
+        openMapLink(destination)
+      },
     },
   ]
 

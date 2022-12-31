@@ -9,7 +9,7 @@ import { useRoute } from '@react-navigation/native'
 
 import { useI18n } from 'hooks'
 import { TrailSpecs, TrailMap, DescModal, ImageModal, DirectionModal } from 'features'
-import { BackButton, CustomButton, PressableOpacity } from 'components'
+import { BackButton, CustomButton, HeaderWrapper, PressableOpacity } from 'components'
 import { COLORS, Fonts, Icons } from 'theme'
 import { weatherIcons } from 'theme/weatherIcons'
 
@@ -168,23 +168,25 @@ const Trail = ({ navigation: { navigate } }) => {
   )
 
   return (
-    <FlatList
-      // keyExtractor={(item) => item.properties.name}
-      initialNumToRender={3}
-      showsVerticalScrollIndicator={false}
-      data={[
-        { id: 0, comp: <Header /> },
-        {
-          id: 1,
-          comp: <TrailImg />,
-        },
-        {
-          id: 2,
-          comp: <Content />,
-        },
-      ]}
-      renderItem={({ item }) => item.comp}
-    />
+    <HeaderWrapper>
+      <FlatList
+        // keyExtractor={(item) => item.properties.name}
+        initialNumToRender={3}
+        showsVerticalScrollIndicator={false}
+        data={[
+          { id: 0, comp: <Header /> },
+          {
+            id: 1,
+            comp: <TrailImg />,
+          },
+          {
+            id: 2,
+            comp: <Content />,
+          },
+        ]}
+        renderItem={({ item }) => item.comp}
+      />
+    </HeaderWrapper>
   )
 }
 
