@@ -1,1 +1,1 @@
-- updated package name for ios
+- fixed map issue

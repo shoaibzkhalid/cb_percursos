@@ -1,4 +1,5 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { useSelector } from 'react-redux'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 
@@ -42,8 +43,9 @@ const TrailMap = (props) => {
 
       <MapView
         ref={mapRef}
-        initialCamera={camera}
-        camera={camera}
+        region={{ ...region, latitudeDelta: 0.009, longitudeDelta: 0.15 }}
+        initialCamera={Platform.OS == 'ios' ? null : camera}
+        camera={Platform.OS == 'ios' ? null : camera}
         minZoomLevel={3}
         showsMyLocationButton={false}
         showsUserLocation={false}

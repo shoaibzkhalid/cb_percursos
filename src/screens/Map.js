@@ -1,11 +1,10 @@
-import React from 'react'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
+import { Platform } from 'react-native'
 import { useSelector } from 'react-redux'
 import MapView, { Marker } from 'react-native-maps'
 
-import { trailImages, trailTypes } from 'config/constants'
 import { Compass } from 'features'
-import { deltaCoordinates } from 'config/constants'
+import { trailImages, trailTypes } from 'config/constants'
 
 const Map = ({ navigation: { navigate } }) => {
   const trails = useSelector((state) => state.trail.filteredTrails)
@@ -13,6 +12,12 @@ const Map = ({ navigation: { navigate } }) => {
   const mapRef = React.useRef()
   const { waypoints } = trails[0]
   const origin = waypoints[0]
+  const camera = {
+    center: origin,
+    pitch: 0,
+    heading: 0,
+    zoom: 10,
+  }
 
   return (
     <>
@@ -21,12 +26,7 @@ const Map = ({ navigation: { navigate } }) => {
         region={{ ...origin, latitudeDelta: 0.9, longitudeDelta: 0.8 }}
         ref={mapRef}
         style={{ flex: 1 }}
-        initialCamera={{
-          center: origin,
-          pitch: 0,
-          heading: 0,
-          zoom: 10,
-        }}
+        camera={Platform.OS == 'ios' ? null : camera}
         showsCompass={false}
         zoomControlEnabled={true}
         showsUserLocation
@@ -48,6 +48,7 @@ const Map = ({ navigation: { navigate } }) => {
                 onCalloutPress={() => {
                   navigate('Trail', { item: t, trailImage: trailImages[image] })
                 }}
+                pointerEvents={'none'}
               >
                 {trailTypes[type].iconBig}
               </Marker>
