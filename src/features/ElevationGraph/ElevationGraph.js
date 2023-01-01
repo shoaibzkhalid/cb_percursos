@@ -28,12 +28,15 @@ const ElevationGraph = ({ trail }) => {
     }).start()
   }
 
+  const isMax = height > 900
+  const bottomIOS = isMax ? -20 : 5
+
   return (
     <Flex
       style={[
         {
           position: 'absolute',
-          bottom: Platform.OS === 'ios' ? 20 : 0,
+          bottom: Platform.OS === 'ios' ? bottomIOS : 0,
           left: 0,
           right: 0,
         },

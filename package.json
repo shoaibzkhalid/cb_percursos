@@ -3,7 +3,7 @@
   "version": "1.9.5",
   "private": true,
   "scripts": {
-    "ios": "npx react-native run-ios --simulator=\"iPhone 11 Pro\"",
+    "ios": "npx react-native run-ios --simulator=\"iPhone 14\"",
     "ipad": "npx react-native run-ios --simulator=\"iPad mini (6th generation)\"",
     "android": "npx react-native run-android",
     "start": "react-native start",

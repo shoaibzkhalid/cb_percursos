@@ -88,6 +88,10 @@ const FollowTrail = () => {
     )
   }, [currentIndex, userLocation])
 
+  const isMax = height > 900
+
+  const backTop = isMax ? '60px' : '50px'
+
   return (
     <HeaderWrapper>
       <AlertModal
@@ -141,7 +145,7 @@ const FollowTrail = () => {
 
       <Flex
         position={'absolute'}
-        top={Platform.OS === 'ios' ? '50px' : '0px'}
+        top={Platform.OS === 'ios' ? backTop : '0px'}
         left={'10px'}
         backgroundColor={'transparent'}
       >
