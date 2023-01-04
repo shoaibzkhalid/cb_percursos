@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUserLocation } from 'store/slices/appSlice'
 
 import Geolocation from '@react-native-community/geolocation'
+import React from 'react'
 
 export const useLocation = () => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export const useLocation = () => {
           longitude: info.coords.longitude,
           altitude: info.coords.altitude,
         }
-        console.log('got location', info)
+        // console.log('got location', info)
         dispatch(setUserLocation(location))
       })
     } catch (e) {
@@ -23,15 +24,17 @@ export const useLocation = () => {
     }
   }
 
-  Geolocation.watchPosition((info) => {
-    const location = {
-      latitude: info.coords.latitude,
-      longitude: info.coords.longitude,
-      altitude: info.coords.altitude,
-    }
-    // console.log('watchPosition', info)
-    dispatch(setUserLocation(location))
-  })
+  React.useEffect(() => {
+    Geolocation.watchPosition((info) => {
+      const location = {
+        latitude: info.coords.latitude,
+        longitude: info.coords.longitude,
+        altitude: info.coords.altitude,
+      }
+      // console.log('watchPosition', info)
+      dispatch(setUserLocation(location))
+    })
+  }, [])
 
   return { userLocation, getLocation }
 }

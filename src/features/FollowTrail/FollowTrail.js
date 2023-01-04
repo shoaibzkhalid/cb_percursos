@@ -11,20 +11,14 @@ import { openMapLink } from 'utils'
 import { trailTypes } from 'config/constants'
 import RouteInfoBox from './RouteInfoBox'
 import { setRoutePlaying } from 'store/slices/appSlice'
-import { useLocation } from 'hooks/useLocation'
-
 import { Compass, AlertModal } from 'features'
 
-const { width, height } = Dimensions.get('window')
-const ASPECT_RATIO = width / height
-
-const LATITUDE_DELTA = 0.0922
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
+const { height } = Dimensions.get('window')
 
 const FollowTrail = () => {
   const mapRef = React.useRef()
   const dispatch = useDispatch()
-  const { userLocation, getLocation } = useLocation()
+  const userLocation = useSelector((state) => state.app.userLocation)
 
   const routePlaying = useSelector((state) => state.app.routePlaying)
   const trail = useSelector((state) => state.trail.activeTrail)
@@ -51,6 +45,8 @@ const FollowTrail = () => {
     heading: 0,
     zoom: 13,
   }
+  const isMax = height > 900
+  const backTop = isMax ? '60px' : '50px'
 
   React.useEffect(() => {
     return () => {
@@ -60,37 +56,15 @@ const FollowTrail = () => {
 
   React.useEffect(() => {
     if (!routePlaying) return
-    setTimeout(() => {
-      // setCurrentIndex(currentIndex + 1)
-      getLocation()
-    }, 10000)
+    // setTimeout(() => {
+    // setCurrentIndex(currentIndex + 1)
+    // }, 10000)
 
     if (!userLocation || !origin) return
-    setTimeout(() => {
-      mapRef.current.fitToSuppliedMarkers(['userLocation', 'userLocation'])
-    }, 1000)
-  }, [routePlaying, currentIndex, userLocation])
-
-  const MapDirections = React.useCallback(() => {
-    return (
-      <>
-        {userLocation && (
-          <Marker
-            tracksViewChanges={false}
-            coordinate={userLocation}
-            identifier={'userLocation'}
-            title={'Start'}
-          >
-            {trailTypes[type].userLoc}
-          </Marker>
-        )}
-      </>
-    )
-  }, [currentIndex, userLocation])
-
-  const isMax = height > 900
-
-  const backTop = isMax ? '60px' : '50px'
+    // setTimeout(() => {
+    //   mapRef.current.fitToSuppliedMarkers(['userLocation', 'userLocation'])
+    // }, 1000)
+  }, [routePlaying, currentIndex])
 
   return (
     <HeaderWrapper>
@@ -108,7 +82,7 @@ const FollowTrail = () => {
         ref={mapRef}
         style={{ flex: 1 }}
         camera={camera}
-        showsUserLocation={false}
+        showsUserLocation={true}
         followsUserLocation
         showsCompass={false}
       >
@@ -121,7 +95,16 @@ const FollowTrail = () => {
           {trailTypes[type].start}
         </Marker>
 
-        <MapDirections />
+        {userLocation && (
+          <Marker
+            tracksViewChanges={false}
+            coordinate={userLocation}
+            identifier={'userLocation'}
+            title={'Start'}
+          >
+            {trailTypes[type].userLoc}
+          </Marker>
+        )}
 
         {isPoly ? (
           <>

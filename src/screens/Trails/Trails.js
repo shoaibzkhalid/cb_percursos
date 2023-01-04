@@ -173,9 +173,7 @@ const Trails = ({ navigation: { navigate } }) => {
               <RefreshControl
                 colors={[COLORS.textAccent]}
                 refreshing={filtering}
-                onRefresh={() => {
-                  getLocation()
-                }}
+                onRefresh={() => getLocation()}
               />
             }
             ListEmptyComponent={() => (

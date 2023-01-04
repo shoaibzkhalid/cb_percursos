@@ -34,8 +34,4 @@ export const useWeather = () => {
     dispatch(setWeatherForecast(forecast))
     dispatch(setWeatherLoading(false))
   }
-
-  // const getIconUrl = (icon) => `https://openweathermap.org/img/w/${icon}.png`
-
-  return {}
 }

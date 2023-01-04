@@ -1,1 +1,3 @@
-- made last changes for android and ios
+- removed unused packages 
+- fixed timer on Follow Trail
+- fixed an issue of set state call exceeding

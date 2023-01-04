@@ -20,8 +20,7 @@
     "bundle": "cd android && ./gradlew clean && ./gradlew bundleRelease",
     "push": "git push cat master && yarn build && yarn dist",
     "list-ios-devices": "xcrun simctl list devices",
-    "getip": "adb shell \"ifconfig | grep -A 1 wlan0 | tail -n 1 | cut -f2 -d: | cut -f1 -d' '\"",
-    "and": "adb tcpip 5555 && adb connect 192.168.18.13 && yarn android --deviceId 192.168.18.13:5555"
+    "getip": "adb shell \"ifconfig | grep -A 1 wlan0 | tail -n 1 | cut -f2 -d: | cut -f1 -d' '\""
   },
   "dependencies": {
     "@react-native-community/geolocation": "^3.0.3",
@@ -39,9 +38,7 @@
     "react-native-chart-kit": "^6.12.0",
     "react-native-compass-heading": "^1.4.1",
     "react-native-gesture-handler": "^2.8.0",
-    "react-native-get-location": "^2.2.1",
     "react-native-maps": "^1.3.2",
-    "react-native-maps-directions": "^1.9.0",
     "react-native-reanimated": "^2.11.0",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",

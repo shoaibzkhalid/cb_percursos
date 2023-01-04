@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import dayjs from 'dayjs'
 import { getDistance } from 'geolib'
 import { Flex, Row } from 'native-base'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,6 +21,8 @@ const RouteInfoBox = ({ currentLocation }) => {
   const userLocation = useSelector((state) => state.app.userLocation)
   const routePlaying = useSelector((state) => state.app.routePlaying)
 
+  const [initTime, setInitTime] = React.useState(null)
+  // const initTime = React.useRef(null)
   let previousLocation = previous.current || userLocation
   // newly calculated distance from the new point -- currentLocation
   const newCalcDistance = getDistance(previousLocation, currentLocation)
@@ -32,7 +35,12 @@ const RouteInfoBox = ({ currentLocation }) => {
     return (
       <PauseBtn
         backgroundColor={'red.400'}
-        onPress={() => dispatch(setRoutePlaying(!routePlaying))}
+        onPress={() => {
+          if (!routePlaying) {
+            setInitTime(new Date().toLocaleString())
+          }
+          dispatch(setRoutePlaying(!routePlaying))
+        }}
       >
         {routePlaying ? (
           <Icons.Pause color={COLORS.white} width={15} height={15} />
@@ -43,52 +51,53 @@ const RouteInfoBox = ({ currentLocation }) => {
     )
   }, [routePlaying])
 
-  React.useEffect(() => {
-    if (routePlaying) {
-      // getDistance()
+  if (routePlaying) {
+    // getDistance()
+    timeInterval.current = setInterval(() => {
+      timeElapsed.current = timeElapsed.current + 1
+    }, 1000)
+  }
 
-      timeInterval.current = setInterval(() => {
-        timeElapsed.current = timeElapsed.current + 1
+  const [dt, setDt] = React.useState(new Date().toLocaleString())
+
+  React.useEffect(() => {
+    let secTimer
+    if (routePlaying) {
+      secTimer = setInterval(() => {
+        setDt(new Date().toLocaleString())
       }, 1000)
-      return
     }
 
-    clearInterval(timeInterval.current)
+    return () => clearInterval(secTimer)
   }, [routePlaying])
 
-  React.useEffect(() => {
-    return () => {
-      clearInterval(timeInterval.current)
-    }
-  }, [])
+  const seconds = initTime ? dayjs(dt).diff(initTime, 'seconds') : 0 // in seconds
+  const altitude = currentLocation?.altitude
 
-  const InfoRow = React.useCallback(() => {
-    const seconds = timeElapsed.current // in seconds
-    const altitude = currentLocation?.altitude
+  const columns = [
+    {
+      id: 0,
+      title: t('DURATION'),
+      value: `${getTimeFromSecs(seconds < 0 ? 0 : seconds)}`,
+      icon: <Icons.Hourglass color={COLORS.textAccent} />,
+    },
+    {
+      id: 1,
+      title: t('DISTANCE'),
+      value: `${getDistanceInKm(distance.current)} km`,
 
-    const columns = [
-      {
-        id: 0,
-        title: t('DURATION'),
-        value: `${getTimeFromSecs(seconds)}`,
-        icon: <Icons.Hourglass color={COLORS.textAccent} />,
-      },
-      {
-        id: 1,
-        title: t('DISTANCE'),
-        value: `${getDistanceInKm(distance.current)} km`,
+      icon: <Icons.Compass color={COLORS.textAccent} />,
+    },
+    {
+      id: 2,
+      title: t('ELEVATION'),
+      value: `${Math.abs(altitude).toFixed(1)} m`,
+      icon: <Icons.Elevation color={COLORS.textAccent} />,
+    },
+  ]
 
-        icon: <Icons.Compass color={COLORS.textAccent} />,
-      },
-      {
-        id: 2,
-        title: t('ELEVATION'),
-        value: `${Math.abs(altitude).toFixed(1)} m`,
-        icon: <Icons.Elevation color={COLORS.textAccent} />,
-      },
-    ]
-
-    return (
+  return (
+    <Container>
       <Row alignItems={'center'} p={'10px'} justifyContent={'space-around'}>
         {columns.map((c) => (
           <Row alignItems={'center'} key={c.id}>
@@ -100,12 +109,6 @@ const RouteInfoBox = ({ currentLocation }) => {
           </Row>
         ))}
       </Row>
-    )
-  }, [timeElapsed.current])
-
-  return (
-    <Container>
-      <InfoRow />
       <ActionBtn />
       {routePlaying ? null : (
         <Flex my={'5px'} m={'auto'}>
