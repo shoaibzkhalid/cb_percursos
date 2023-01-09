@@ -1,6 +1,6 @@
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useFilter, useLocation } from 'hooks'
-import React from 'react'
 
 export const useTrailsData = () => {
   const { getLocation } = useLocation()
