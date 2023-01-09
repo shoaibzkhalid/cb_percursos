@@ -15,7 +15,7 @@
     "prod-logs": "adb logcat",
     "build": "yarn pre:build && yarn post:build",
     "cache-clean": "react-native start --reset-cache",
-    "dist": "firebase appdistribution:distribute android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk --app 1:334901946661:android:3eec83cb80299a4a7cd2cc --groups team --release-notes-file release-notes.txt",
+    "dist": "firebase appdistribution:distribute android/app/build/outputs/apk/release/app-armeabi-v7a-release.apk --app 1:297881712430:android:70bfe217a5da2405c62cbf --groups team --release-notes-file release-notes.txt",
     "pub": "git push && git push cat master && yarn dist",
     "bundle": "cd android && ./gradlew clean && ./gradlew bundleRelease",
     "push": "git push cat master && yarn build && yarn dist",

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "334901946661",
-    "project_id": "cb-percursos-3d272",
-    "storage_bucket": "cb-percursos-3d272.appspot.com"
+    "project_number": "297881712430",
+    "project_id": "cb-percursos-e892b",
+    "storage_bucket": "cb-percursos-e892b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:334901946661:android:3eec83cb80299a4a7cd2cc",
+        "mobilesdk_app_id": "1:297881712430:android:70bfe217a5da2405c62cbf",
         "android_client_info": {
           "package_name": "com.cb_percursos_updated"
         }
       },
       "oauth_client": [
         {
-          "client_id": "334901946661-k5in61eh5ohgalnob0vbn59hcu2ds495.apps.googleusercontent.com",
+          "client_id": "297881712430-jd88o190s960v8slse70ab37mabhf1so.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCBCQG_Ra6q3EQ0TIY90myaLJDUbkoOBZQ"
+          "current_key": "AIzaSyAUfIC6KSA_dzoYTMk57peCF8xfW53I07w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "334901946661-k5in61eh5ohgalnob0vbn59hcu2ds495.apps.googleusercontent.com",
+              "client_id": "297881712430-jd88o190s960v8slse70ab37mabhf1so.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
