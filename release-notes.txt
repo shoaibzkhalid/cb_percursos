@@ -1,1 +1,1 @@
-- fixed time of Follow Trail for android
+- fixed timer of Follow Trail for android

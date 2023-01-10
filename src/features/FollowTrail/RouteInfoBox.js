@@ -30,6 +30,7 @@ const RouteInfoBox = ({ currentLocation }) => {
   distance.current = distance.current + newCalcDistance
   // SET previous location to the current location
   previous.current = currentLocation
+
   const [dt, setDt] = React.useState(new Date().toISOString())
 
   React.useEffect(() => {
