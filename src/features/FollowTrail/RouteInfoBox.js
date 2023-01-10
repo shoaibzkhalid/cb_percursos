@@ -14,10 +14,10 @@ import { getDistanceInKm, getTimeFromSecs } from './utils'
 const RouteInfoBox = ({ currentLocation }) => {
   const dispatch = useDispatch()
   const { t } = useI18n()
-  const timeInterval = React.useRef(null)
-  const timeElapsed = React.useRef(0)
   const distance = React.useRef(0)
   const previous = React.useRef(null)
+
+  const accSec = React.useRef(null)
   const userLocation = useSelector((state) => state.app.userLocation)
   const routePlaying = useSelector((state) => state.app.routePlaying)
 
@@ -30,55 +30,33 @@ const RouteInfoBox = ({ currentLocation }) => {
   distance.current = distance.current + newCalcDistance
   // SET previous location to the current location
   previous.current = currentLocation
-
-  const ActionBtn = React.useCallback(() => {
-    return (
-      <PauseBtn
-        backgroundColor={'red.400'}
-        onPress={() => {
-          if (!routePlaying) {
-            setInitTime(new Date().toLocaleString())
-          }
-          dispatch(setRoutePlaying(!routePlaying))
-        }}
-      >
-        {routePlaying ? (
-          <Icons.Pause color={COLORS.white} width={15} height={15} />
-        ) : (
-          <Icons.Play color={COLORS.white} width={15} height={15} />
-        )}
-      </PauseBtn>
-    )
-  }, [routePlaying])
-
-  if (routePlaying) {
-    // getDistance()
-    timeInterval.current = setInterval(() => {
-      timeElapsed.current = timeElapsed.current + 1
-    }, 1000)
-  }
-
-  const [dt, setDt] = React.useState(new Date().toLocaleString())
+  const [dt, setDt] = React.useState(new Date().toISOString())
 
   React.useEffect(() => {
     let secTimer
     if (routePlaying) {
       secTimer = setInterval(() => {
-        setDt(new Date().toLocaleString())
+        setDt(new Date().toISOString())
       }, 1000)
+    }
+
+    if (routePlaying === false) {
+      clearInterval(secTimer)
     }
 
     return () => clearInterval(secTimer)
   }, [routePlaying])
 
   const seconds = initTime ? dayjs(dt).diff(initTime, 'seconds') : 0 // in seconds
+  const accSeconds = accSec.current
+
   const altitude = currentLocation?.altitude
 
   const columns = [
     {
       id: 0,
       title: t('DURATION'),
-      value: `${getTimeFromSecs(seconds < 0 ? 0 : seconds)}`,
+      value: `${getTimeFromSecs(seconds < 0 ? 0 + accSeconds : seconds + accSeconds)}`,
       icon: <Icons.Hourglass color={COLORS.textAccent} />,
     },
     {
@@ -109,7 +87,26 @@ const RouteInfoBox = ({ currentLocation }) => {
           </Row>
         ))}
       </Row>
-      <ActionBtn />
+
+      <PauseBtn
+        backgroundColor={'red.400'}
+        onPress={() => {
+          dispatch(setRoutePlaying(!routePlaying))
+
+          if (!routePlaying && !initTime) {
+            return setInitTime(new Date().toISOString())
+          }
+
+          accSec.current = accSeconds + seconds
+          setInitTime(null)
+        }}
+      >
+        {routePlaying ? (
+          <Icons.Pause color={COLORS.white} width={15} height={15} />
+        ) : (
+          <Icons.Play color={COLORS.white} width={15} height={15} />
+        )}
+      </PauseBtn>
       {routePlaying ? null : (
         <Flex my={'5px'} m={'auto'}>
           <Fonts.SmallText color={COLORS.dark80}>{t('PRESS_TO_START')}</Fonts.SmallText>

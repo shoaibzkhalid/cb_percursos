@@ -1,1 +1,1 @@
-- updated api key
+- fixed time of Follow Trail for android
